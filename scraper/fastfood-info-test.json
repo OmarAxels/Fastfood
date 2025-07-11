@@ -10,5 +10,11 @@
   "website": "https://www.dominos.is",
   "menu_page": "https://www.dominos.is/panta/pizzur",
   "offers_page": "https://www.dominos.is/panta/tilbod"
+},
+{
+  "name": "Subway Iceland",
+  "website": "https://www.subway.is",
+  "menu_page": "https://www.subway.is/menu",
+  "offers_page": "https://subway.is/menu#tilbod"
 }
 ]

@@ -4,6 +4,7 @@ from typing import Dict, List
 from json_reader import FastfoodInfoReader
 from parsers.kfc_parser import KFCParser
 from parsers.dominos_parser import DominosParser
+from parsers.subway_parser import SubwayParser
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +19,8 @@ class FastfoodScraper:
         # Initialize parsers
         self.parsers = {
             'KFC Iceland': KFCParser(),
-            "Domino's Pizza Iceland": DominosParser()
+            "Domino's Pizza Iceland": DominosParser(),
+            'Subway Iceland': SubwayParser()
         }
         
         # Statistics tracking

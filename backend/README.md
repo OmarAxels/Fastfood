@@ -4,3 +4,6 @@
    source venv/Scripts/activate
    python run_server.py
    ```
+  *CMD*
+   venv\Scripts\activate
+   python run_server.py

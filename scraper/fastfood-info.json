@@ -1,15 +1,8 @@
 [
   {
-    "name": "Bæjarins Beztu Pylsur",
-    "website": "https://www.bbp.is"
-  },
-  {
     "name": "Hlöllabátar",
-    "website": "https://hlollabatar.is"
-  },
-  {
-    "name": "Metro",
-    "website": "https://www.metro.is"
+    "website": "https://hlollabatar.is",
+    "offers_page": "https://hlolli.is"
   },
   {
     "name": "KFC Iceland",
@@ -24,20 +17,20 @@
     "offers_page": "https://www.dominos.is/panta/tilbod"
   },
   {
-    "name": "Mandi",
-    "website": "https://www.mandi.is"
-  },
-  {
     "name": "Subway Iceland",
-    "website": "https://www.subway.is"
+    "website": "https://www.subway.is",
+    "menu_page": "https://www.subway.is/menu",
+    "offers_page": "https://subway.is/menu#tilbod"
   },
   {
     "name": "Reykjavik Chips",
-    "website": "https://reykjavikchips.is"
+    "website": "https://reykjavikchips.is",
+    "menu_page": "https://reykjavikchips.is/panta"
   },
   {
     "name": "Zorbian",
-    "website": "https://www.zorbian.is"
+    "website": "https://www.zorbian.is",
+    "menu_page": "https://zorbian.is/menu/"
   },
   {
     "name": "Block Burger",
@@ -45,10 +38,112 @@
   },
   {
     "name": "Hamborgarabúllan (Tommi's Burger Joint)",
-    "website": "https://www.bullan.is"
+    "website": "https://www.bullan.is",
+    "menu_page": "https://tommis.is/is/matsedill/"
   },
   {
     "name": "Ali Baba",
     "website": "https://www.alibaba.is"
+  },
+  {
+    "name": "Taco Bell Iceland",
+    "website": "https://www.tacobell.is",
+    "note": "Two locations near Reykjavík",
+    "menu_page": "https://www.tacobell.is/music-codes/moves-like-jagger-music-code-maroon-5-feat-christina-aguilera/"
+  },
+  {
+    "name": "TGI Friday's Iceland",
+    "website": "https://www.tgifridays.is",
+    "note": "One location south of Reykjavík"
+  },
+  {
+    "name": "Te & Kaffi",
+    "website": "https://www.teogkaffi.is",
+    "note": "Icelandic coffee chain",
+    "menu_page": "https://www.teogkaffi.is/is/vorur"
+  },
+  {
+    "name": "Aktu Taktu",
+    "website": "https://www.aktutaktu.is",
+    "note": "Icelandic fast food chain"
+  },
+  {
+    "name": "Noodle Station",
+    "website": "https://www.noodlestation.is",
+    "note": "Asian fast food",
+    "menu_page": "https://noodlestation.is/shop/"
+  },
+  {
+    "name": "Eldsmiðjan",
+    "website": "https://www.eldsmidjan.is",
+    "note": "Pizza chain"
+  },
+  {
+    "name": "Serrano",
+    "website": "https://www.serrano.is",
+    "note": "Mexican fast food",
+    "menu_page": "https://www.serrano.is",
+    "offers_page": "https://serrano.is/matsedill/tilbod/"
+  },
+  {
+    "name": "Ísbúðin",
+    "website": "https://www.isbudin.is",
+    "note": "Ice cream chain"
+  },
+  {
+    "name": "Hagkaup Bistro",
+    "website": "https://www.hagkaup.is",
+    "note": "Supermarket chain with fast food counters",
+    "menu_page": "https://www.hagkaup.is/buildabear"
+  },
+  {
+    "name": "Krua Thai",
+    "website": "https://www.kruathai.is",
+    "note": "Thai fast food",
+    "menu_page": "https://www.kruathai.is/is/matsedhill",
+    "offers_page": "https://www.kruathai.is/is/sott-og-sent-tilbod"
+  },
+  {
+    "name": "Súp",
+    "website": "https://www.sup.is",
+    "note": "Soup and salad chain"
+  },
+  {
+    "name": "Jómfrúin",
+    "website": "https://www.jomfruin.is",
+    "note": "Danish-style open sandwiches",
+    "menu_page": "https://jomfruin.is/matsedill/"
+  },
+  {
+    "name": "Búllan",
+    "website": "https://www.bullan.is",
+    "note": "Alternative name for Hamborgarabúllan",
+    "menu_page": "https://tommis.is/is/matsedill/"
+  },
+  {
+    "name": "Icelandic Fish & Chips",
+    "website": "https://www.fishandchips.is",
+    "note": "Traditional Icelandic fish and chips"
+  },
+  {
+    "name": "Sægreifinn (Sea Baron)",
+    "website": "https://www.saegreifinn.is",
+    "note": "Seafood fast food"
+  },
+  {
+    "name": "Pylsuvagninn",
+    "website": "https://www.pylsuvagninn.is",
+    "note": "Hot dog chain",
+    "menu_page": "https://www.pylsuvagninn.is/menu"
+  },
+  {
+    "name": "Yummi Yoggi",
+    "website": "https://www.yummiyoggi.is",
+    "note": "Frozen yogurt chain"
+  },
+  {
+    "name": "Brennivín Bar",
+    "website": "https://www.brennivin.is",
+    "note": "Fast casual with traditional Icelandic food"
   }
 ]

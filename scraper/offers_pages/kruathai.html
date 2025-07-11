@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="is-is" dir="ltr">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes"/>
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="apple-mobile-web-app-capable" content="YES" />
+			<meta charset="utf-8" />
+	<base href="https://kruathai.is/is/sott-og-sent-tilbod" />
+	<meta name="author" content="Super User" />
+	<meta name="generator" content="Joomla! - Open Source Content Management" />
+	<title>Sótt og sent tilboð</title>
+	<link href="/templates/beez3/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+	<link rel="stylesheet" href="/templates/system/css/system.css" />
+	<link rel="stylesheet" href="/templates/beez3/css/position.css" media="screen" />
+	<link rel="stylesheet" href="/templates/beez3/css/layout.css" media="screen" />
+	<link rel="stylesheet" href="/templates/beez3/css/print.css" media="print" />
+	<link rel="stylesheet" href="/templates/beez3/css/general.css" media="screen" />
+	<link rel="stylesheet" href="/templates/beez3/css/turq.css" media="screen" />
+	<link rel="stylesheet" href="/media/mod_languages/css/template.css" />
+	<style>
+
+
+.bfClearfix:after {
+content: ".";
+display: block;
+height: 0;
+clear: both;
+visibility: hidden;
+}
+
+.bfFadingClass{
+display:none;
+}
+
+	</style>
+	<script src="/media/jui/js/jquery.min.js"></script>
+	<script src="/media/jui/js/jquery-noconflict.js"></script>
+	<script src="/media/jui/js/jquery-migrate.min.js"></script>
+	<script src="/media/system/js/caption.js"></script>
+	<script src="/media/system/js/mootools-core.js"></script>
+	<script src="/media/system/js/core.js"></script>
+	<script src="/media/system/js/mootools-more.js"></script>
+	<script src="/media/jui/js/bootstrap.min.js"></script>
+	<script src="/templates/beez3/javascript/md_stylechanger.js"></script>
+	<script src="/templates/beez3/javascript/hide.js"></script>
+	<script src="/templates/beez3/javascript/respond.src.js"></script>
+	<script src="/templates/beez3/javascript/template.js"></script>
+	<script src="/components/com_breezingforms/libraries/jquery/jq.min.js"></script>
+	<script>
+jQuery(window).on('load',  function() {
+				new JCaption('img.caption');
+			});
+	var big        = '72%';
+	var small      = '53%';
+	var bildauf    = '/templates/beez3/images/plus.png';
+	var bildzu     = '/templates/beez3/images/minus.png';
+	var rightopen  = 'Open info';
+	var rightclose = 'Close info';
+	var altopen    = 'is open';
+	var altclose   = 'is closed';
+<!--
+                    jQuery(document).ready(function()
+                    {
+                            jQuery(".hasTooltip").tooltip({"html": true,"container": "body"});
+                    });
+			var inlineErrorElements = new Array();
+			var bfSummarizers = new Array();
+			var bfDeactivateField = new Array();
+			var bfDeactivateSection = new Array();
+			
+                        
+                        function bf_validate_nextpage(element, action)
+                        {
+                            if(typeof bfUseErrorAlerts != "undefined"){
+                             JQuery(".bfErrorMessage").html("");
+                             JQuery(".bfErrorMessage").css("display","none");
+                            }
+
+                            error = ff_validation(ff_currentpage);
+                            if (error != "") {
+                               if(typeof bfUseErrorAlerts == ""){
+                                   alert(error);
+                                } else {
+                                   bfShowErrors(error);
+                                }
+                                ff_validationFocus("");
+                            } else {
+                                ff_switchpage(ff_currentpage+1);
+                                self.scrollTo(0,0);   
+                            }
+                        } 
+
+
+			function bfCheckMaxlength(id, maxlength, showMaxlength){
+				if( JQuery("#ff_elem"+id).val().length > maxlength ){
+					JQuery("#ff_elem"+id).val( JQuery("#ff_elem"+id).val().substring(0, maxlength) );
+				}
+				if(showMaxlength){
+					JQuery("#bfMaxLengthCounter"+id).text( "(" + (maxlength - JQuery("#ff_elem"+id).val().length) + " chars left)" );
+				}
+			}
+			function bfRegisterSummarize(id, connectWith, type, emptyMessage, hideIfEmpty){
+				bfSummarizers.push( { id : id, connectWith : connectWith, type : type, emptyMessage : emptyMessage, hideIfEmpty : hideIfEmpty } );
+			}
+			function bfField(name){
+				var value = "";
+				switch(ff_getElementByName(name).type){
+					case "radio":
+						if(JQuery("[name=\""+ff_getElementByName(name).name+"\"]:checked").val() != "" && typeof JQuery("[name=\""+ff_getElementByName(name).name+"\"]:checked").val() != "undefined"){
+							value = JQuery("[name=\""+ff_getElementByName(name).name+"\"]:checked").val();
+							if(!isNaN(value)){
+								value = Number(value);
+							}
+						}
+						break;
+					case "checkbox":
+					case "select-one":
+					case "select-multiple":
+						var nodeList = document["ff_form1"][""+ff_getElementByName(name).name+""];
+						if(ff_getElementByName(name).type == "checkbox" && typeof nodeList.length == "undefined"){
+							if(typeof JQuery("[name=\""+ff_getElementByName(name).name+"\"]:checked").val() != "undefined"){
+								value = JQuery("[name=\""+ff_getElementByName(name).name+"\"]:checked").val();
+								if(!isNaN(value)){
+									value = Number(value);
+								}
+							}
+						} else {
+							var val = "";
+							for(var j = 0; j < nodeList.length; j++){
+								if(nodeList[j].checked || nodeList[j].selected){
+									val += nodeList[j].value + ", ";
+								}
+							}
+							if(val != ""){
+								value = val.substr(0, val.length - 2);
+								if(!isNaN(value)){
+									value = Number(value);
+								}
+							}
+						}
+						break;
+					default:
+						if(!isNaN(ff_getElementByName(name).value)){
+							value = Number(ff_getElementByName(name).value);
+						} else {
+							value = ff_getElementByName(name).value;
+						}
+				}
+				return value;
+			}
+			function populateSummarizers(){
+				// cleaning first
+                                
+				for(var i = 0; i < bfSummarizers.length; i++){
+					JQuery("#"+bfSummarizers[i].id).parent().css("display", "");
+					JQuery("#"+bfSummarizers[i].id).html("<span class=\"bfNotAvailable\">"+bfSummarizers[i].emptyMessage+"</span>");
+				}
+				for(var i = 0; i < bfSummarizers.length; i++){
+					var summVal = "";
+					switch(bfSummarizers[i].type){
+						case "bfTextfield":
+						case "bfTextarea":
+						case "bfHidden":
+						case "bfCalendar":
+                                                case "bfCalendarResponsive":
+						case "bfFile":
+							if(JQuery("[name=\"ff_nm_"+bfSummarizers[i].connectWith+"[]\"]").val() != ""){
+								JQuery("#"+bfSummarizers[i].id).text( JQuery("[name=\"ff_nm_"+bfSummarizers[i].connectWith+"[]\"]").val() ).html();
+								var breakableText = JQuery("#"+bfSummarizers[i].id).html().replace(/\r/g, "").replace(/\n/g, "<br/>");
+								
+								if(breakableText != ""){
+									var calc = null;
+									eval( "calc = typeof bfFieldCalc"+bfSummarizers[i].id+" != \"undefined\" ? bfFieldCalc"+bfSummarizers[i].id+" : null" );
+									if(calc){
+										breakableText = calc(breakableText);
+									}
+								}
+								
+								JQuery("#"+bfSummarizers[i].id).html(breakableText);
+								summVal = breakableText;
+							}
+						break;
+						case "bfRadioGroup":
+						case "bfCheckbox":
+							if(JQuery("[name=\"ff_nm_"+bfSummarizers[i].connectWith+"[]\"]:checked").val() != "" && typeof JQuery("[name=\"ff_nm_"+bfSummarizers[i].connectWith+"[]\"]:checked").val() != "undefined"){
+								var theText = JQuery("[name=\"ff_nm_"+bfSummarizers[i].connectWith+"[]\"]:checked").val();
+								if(theText != ""){
+									var calc = null;
+									eval( "calc = typeof bfFieldCalc"+bfSummarizers[i].id+" != \"undefined\" ? bfFieldCalc"+bfSummarizers[i].id+" : null" );
+									if(calc){
+										theText = calc(theText);
+									}
+								}
+								JQuery("#"+bfSummarizers[i].id).text( theText );
+								summVal = theText;
+							}
+						break;
+						case "bfCheckboxGroup":
+						case "bfSelect":
+							var val = "";
+							var nodeList = document["ff_form1"]["ff_nm_"+bfSummarizers[i].connectWith+"[]"];
+							
+							for(var j = 0; j < nodeList.length; j++){
+								if(nodeList[j].checked || nodeList[j].selected){
+									val += nodeList[j].value + ", ";
+								}
+							}
+							if(val != ""){
+								var theText = val.substr(0, val.length - 2);
+								if(theText != ""){
+									var calc = null;
+									eval( "calc = typeof bfFieldCalc"+bfSummarizers[i].id+" != \"undefined\" ? bfFieldCalc"+bfSummarizers[i].id+" : null" );
+									if(calc){
+										theText = calc(theText);
+									}
+								}
+								JQuery("#"+bfSummarizers[i].id).text( theText );
+								summVal = theText;
+							}
+						break;
+					}
+					
+					if( ( bfSummarizers[i].hideIfEmpty && summVal == "" ) || ( typeof bfDeactivateField != "undefined" && bfDeactivateField["ff_nm_"+bfSummarizers[i].connectWith+"[]"] ) ){
+                                            JQuery("#"+bfSummarizers[i].id).parent().css("display", "none");
+					}
+				}
+			}
+var bfUseErrorAlerts = false;
+
+				function bfShowErrors(error){
+                                        JQuery(".bfErrorMessage").html("");
+					JQuery(".bfErrorMessage").css("display","none");
+					JQuery(".bfErrorMessage").fadeIn(1500);
+					var allErrors = "";
+					var errors = error.split("\n");
+					for(var i = 0; i < errors.length; i++){
+						allErrors += "<div class=\"bfError\">" + errors[i] + "</div>";
+					}
+					JQuery(".bfErrorMessage").html(allErrors);
+					JQuery(".bfErrorMessage").css("display","");
+
+                                        if(JQuery.bfvalidationEngine)
+                                        {
+                                            JQuery("#ff_form1").bfvalidationEngine({
+                                              promptPosition: "bottomLeft",
+                                              success :  false,
+                                              failure : function() {}
+                                            });
+
+                                            for(var i = 0; i < inlineErrorElements.length; i++)
+                                            {
+                                                if(inlineErrorElements[i][1] != "")
+                                                {
+                                                    var prompt = null;
+                                                    
+                                                    if(inlineErrorElements[i][0] == "bfCaptchaEntry"){
+                                                        prompt = JQuery.bfvalidationEngine.buildPrompt("#bfCaptchaEntry",inlineErrorElements[i][1],"error");
+                                                    }
+                                                    else if(inlineErrorElements[i][0] == "bfReCaptchaEntry"){
+                                                        // nothing here yet for recaptcha, alert is default
+                                                        alert(inlineErrorElements[i][1]);
+                                                    }
+                                                    else if(typeof JQuery("#bfUploader"+inlineErrorElements[i][0]).get(0) != "undefined")
+                                                    {
+                                                        alert(inlineErrorElements[i][1]);
+                                                        //prompt = JQuery.bfvalidationEngine.buildPrompt("#"+JQuery("#bfUploader"+inlineErrorElements[i][0]).val(),inlineErrorElements[i][1],"error");
+                                                    }
+                                                    else
+                                                    {
+                                                        if(ff_getElementByName(inlineErrorElements[i][0])){
+                                                            prompt = JQuery.bfvalidationEngine.buildPrompt("#"+ff_getElementByName(inlineErrorElements[i][0]).id,inlineErrorElements[i][1],"error");
+                                                        }else{
+                                                            alert(inlineErrorElements[i][1]);
+                                                        }
+                                                    }
+                                                    
+                                                    JQuery(prompt).mouseover(
+                                                        function(){
+                                                            var inlineError = JQuery(this).attr("class").split(" ");
+                                                            if(inlineError && inlineError.length && inlineError.length == 2){
+                                                                var result = inlineError[1].split("formError");
+                                                                if(result && result.length && result.length >= 1){
+                                                                    JQuery.bfvalidationEngine.closePrompt("#"+result[0]);
+                                                                }
+                                                            }
+                                                        }
+                                                    );
+                                                }
+                                                else
+                                                {
+                                                    if(typeof JQuery("#bfUploader"+inlineErrorElements[i][0]).get(0) != "undefined")
+                                                    {
+                                                        //JQuery.bfvalidationEngine.closePrompt("#"+JQuery("#bfUploader"+inlineErrorElements[i][0]).val());
+                                                    }
+                                                    else
+                                                    {
+                                                        if(ff_getElementByName(inlineErrorElements[i][0])){
+                                                            JQuery.bfvalidationEngine.closePrompt("#"+ff_getElementByName(inlineErrorElements[i][0]).id);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            inlineErrorElements = new Array();
+                                        }
+				}
+			JQuery(document).ready(function() {
+				if(typeof bfFade != "undefined")bfFade();
+				if(typeof bfRollover != "undefined")bfRollover();
+				if(typeof bfRollover2 != "undefined")bfRollover2();
+				if(typeof bfRegisterToggleFields != "undefined")bfRegisterToggleFields();
+				if(typeof bfDeactivateSectionFields != "undefined")bfDeactivateSectionFields();
+                                if(JQuery.bfvalidationEngine)
+                                {
+                                    JQuery.bfvalidationEngineLanguage.newLang();
+                                    JQuery(".ff_elem").change(
+                                        function(){
+                                            JQuery.bfvalidationEngine.closePrompt(this);
+                                        }
+                                    );
+                                }
+				JQuery(".hasTip").css("color","inherit"); // fixing label text color issue
+				JQuery(".bfTooltip").css("color","inherit"); // fixing label text color issue
+    
+                                JQuery("input[type=text]").bind("keypress", function(evt) {
+                                    if(evt.keyCode == 13) {
+                                        evt.preventDefault();
+                                    }
+                                });
+			});
+		//-->
+	</script>
+	<script>
+		(function() {
+			Joomla.JText.load({"TPL_BEEZ3_ALTOPEN":"is open","TPL_BEEZ3_ALTCLOSE":"is closed","TPL_BEEZ3_TEXTRIGHTOPEN":"Open info","TPL_BEEZ3_TEXTRIGHTCLOSE":"Close info","TPL_BEEZ3_FONTSIZE":"Font size","TPL_BEEZ3_BIGGER":"Bigger","TPL_BEEZ3_RESET":"Reset","TPL_BEEZ3_SMALLER":"Smaller","TPL_BEEZ3_INCREASE_SIZE":"Increase size","TPL_BEEZ3_REVERT_STYLES_TO_DEFAULT":"Revert styles to default","TPL_BEEZ3_DECREASE_SIZE":"Decrease size","TPL_BEEZ3_OPENMENU":"Open Menu","TPL_BEEZ3_CLOSEMENU":"Close Menu"});
+		})();
+	</script>
+	<link rel="stylesheet" href="/components/com_breezingforms/themes/quickmode-bootstrap/system.css" />
+
+		<!--[if IE 7]><link href="/templates/beez3/css/ie7only.css" rel="stylesheet" /><![endif]-->
+		<!--[if lt IE 9]><script src="/media/jui/js/html5.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Cutive">
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Lobster">
+      
+	</head>
+    </html>
+
+<html>
+  <div id="allt">
+    
+  
+   <div id="haus">
+    		<div class="moduletable">
+				<div class="mod-languages">
+
+	<ul class="lang-inline">
+						<li class="lang-active" dir="ltr">
+			<a href="/is/sott-og-sent-tilbod">
+							<img src="/media/mod_languages/images/is.gif" alt="Íslenska" title="Íslenska" />						</a>
+			</li>
+								<li class="" dir="ltr">
+			<a href="/en/">
+							<img src="/media/mod_languages/images/en.gif" alt="English (UK)" title="English (UK)" />						</a>
+			</li>
+				</ul>
+
+</div>
+</div>
+			<div class="moduletable haus">
+				
+
+<div class="custom haus"  >
+	<img src="/images/image_298_.png" alt="image 298 " style="float: left;" /></div>
+</div>
+			<div class="moduletable pontun">
+				
+
+<div class="custom pontun"  >
+	<p>&nbsp;</p>
+<p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: baseline; font-family: Arial, Helvetica, sans-serif; text-align: right;"><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 18px; vertical-align: baseline; font-family: Georgia, 'Times New Roman', Times, serif; color: #000000; font-style: italic; line-height: 18px;">Pantaðu í síma&nbsp;552-2525</span></p>
+<p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: baseline; font-family: Arial, Helvetica, sans-serif; text-align: right;"><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 15px; vertical-align: baseline; font-family: Georgia, 'Times New Roman', Times, serif; color: #000000; font-style: italic; line-height: 18px;"></span></p></div>
+</div>
+	
+  </div>
+  <div id="menu">
+    		<div class="moduletable">
+				<ul class="nav menu">
+<li class="item-117 default"><a href="/is/" >Forsíða</a></li><li class="item-107"><a href="/is/matsedhill" >Matseðill</a></li><li class="item-116 current active"><a href="/is/sott-og-sent-tilbod" >Sótt og sent tilboð</a></li></ul>
+</div>
+	
+  </div>
+      <body id="shadow">
+		<div id="all">
+			<div id="back">
+				<header id="header">
+					<div class="logoheader">
+						<h1 id="logo">
+													<img src="/images/image_298_.png"  alt="Krua Thai" />
+																		<span class="header1">
+												</span></h1>
+					</div><!-- end logoheader -->
+					<ul class="skiplinks">
+						<li><a href="#main" class="u2">Skip to content</a></li>
+						<li><a href="#nav" class="u2">Jump to main navigation and login</a></li>
+											</ul>
+					<h2 class="unseen">Nav view search</h2>
+					<h3 class="unseen">Navigation</h3>
+					
+					<div id="line">
+						<div id="fontsize"></div>
+						<h3 class="unseen">Search</h3>
+						
+					</div> <!-- end line -->
+				</header><!-- end header -->
+				<div id="contentarea">
+					<div id="breadcrumbs">
+						
+					</div>
+
+					
+					<div id="wrapper2" class="shownocolumns">
+						<div id="main">
+
+							
+							<div id="system-message-container">
+	</div>
+
+							<article class="item-page">
+
+
+	
+	
+
+
+	
+
+			<table>
+<tbody>
+<tr>
+<td>
+<p><img src="/images/image_317_.jpeg" alt="image 317 " />&nbsp;</p>
+</td>
+<td style="width: 300px;">&nbsp;<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 28px; vertical-align: baseline; color: #000000; font-family: Georgia, 'Times New Roman', Times, serif; font-style: italic; line-height: 29px;">Sótt &amp; Sent tilboð #1&nbsp;</span><br /><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 14px; vertical-align: baseline; line-height: 23px;">Steiktar eggjanúðlur með kjúklingi. Massaman kjúklingur. Nautakjöt í ostrusósu. Djúpsteiktar rækjur.&nbsp;</span><br /><br /><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #6b9c06;">Fyrir 2: 5.880 kr</span><br /><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #6b9c06;">Fyrir 3: 8.350 kr</span><br /><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #6b9c06;">Fyrir 4: 10.120 kr</span><br /><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #6b9c06;">Fyrir 5 eða fleiri: <span style="color: #6b9c06; font-size: medium; text-align: start;">2.595&nbsp;</span> kr á mann</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr>
+<td>
+<p><img src="/images/image_318_.jpeg" alt="image 318 " /></p>
+</td>
+<td style="width: 300px;"><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 28px; vertical-align: baseline; color: #000000; font-family: Georgia, 'Times New Roman', Times, serif; font-style: italic; line-height: 29px;">Sótt &amp; Sent tilboð #2&nbsp;</span><br /><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 14px; vertical-align: baseline; line-height: 23px;">Hrísnúðlur með kjúklingi. Súrsætt svínakjöt. Kjúklingur í grænu karrý. Djúpsteiktar rækjur.&nbsp;</span><br /><br /><span style="text-align: start; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #6b9c06;">Fyrir 2: 5.880 kr</span><br style="color: #000000; font-size: 11px; text-align: start;" /><span style="text-align: start; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #6b9c06;">Fyrir 3: 8.350 kr</span><br style="color: #000000; font-size: 11px; text-align: start;" /><span style="text-align: start; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #6b9c06;">Fyrir 4: 10.120 kr</span><br style="color: #000000; font-size: 11px; text-align: start;" /><span style="text-align: start; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #6b9c06;">Fyrir 5 eða fleiri:&nbsp;<span>2.595&nbsp;</span>&nbsp;kr á mann</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr>
+<td>
+<p><img src="/images/image_317_.jpeg" alt="image 317 " /></p>
+</td>
+<td style="width: 300px;"><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 28px; vertical-align: baseline; color: #000000; font-family: Georgia, 'Times New Roman', Times, serif; font-style: italic; line-height: 29px;">Sótt &amp; Sent tilboð #3&nbsp;</span><br /><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 14px; vertical-align: baseline; line-height: 23px;">Eggjanúðlur með kjúkling. Kjúklingur í gulu karrý. Svínakjöt í ostrusósu og engifer. Djúpsteikt ýsa ásamt hrísgrjónum og súrsætri sósu.&nbsp;</span><br /><br /><span style="text-align: start; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #6b9c06;">Fyrir 2: 5.880 kr</span><br style="color: #000000; font-size: 11px; text-align: start;" /><span style="text-align: start; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #6b9c06;">Fyrir 3: 8.350 kr</span><br style="color: #000000; font-size: 11px; text-align: start;" /><span style="text-align: start; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #6b9c06;">Fyrir 4: 10.120 kr</span><br style="color: #000000; font-size: 11px; text-align: start;" /><span style="text-align: start; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #6b9c06;">Fyrir 5 eða fleiri:&nbsp;<span>2.595&nbsp;</span>&nbsp;kr á mann</span></td>
+</tr>
+</tbody>
+</table>
+<br />
+<div style="text-align: center;"><span style="font-size: 14pt;"><a href="https://wolt.com/is/isl/reykjavik/restaurant/krua-thai-baejarlind"><span style="font-size: 14pt;"><strong style="text-align: start; color: #649a34; font-size: 17px; line-height: 24px;"><span style="font-family: Calibri, sans-serif;">Panta heimsendingu með Wolt</span></strong> </span> </a> </span></div>
+<div style="text-align: center;"><a href="https://wolt.com/is/isl/reykjavik/restaurant/krua-thai-baejarlind"><span style="font-size: 14pt;"></span></a><a href="https://www.aha.is/krua-thai-baejarlind"><span style="font-size: 14pt;"><strong style="text-align: start; color: #649a34; font-size: 17px; line-height: 24px;"><span style="font-family: Calibri, sans-serif;">Panta heimsendingu með Aha.is</span></strong> </span> </a></div>
+<h3><span style="font-size: 14pt;"><strong style="text-align: start; color: #649a34; font-size: 17px; line-height: 24px;"><span style="font-size: 11pt; font-family: Calibri, sans-serif;"></span></strong></span></h3> 
+
+
+		</article>
+
+
+						</div><!-- end main -->
+					</div><!-- end wrapper -->
+
+					
+					
+					<div class="wrap"></div>
+				</div> <!-- end contentarea -->
+			</div><!-- back -->
+		</div><!-- all -->
+
+		<div id="footer-outer">
+							<div id="footer-inner" >
+
+					<div id="bottom">
+						<div class="box box1"> 		<div class="moduletable">
+				
+<!-- BreezingForms V1.8.7 Stable (build 891) Copyright(c) 2008-2013 by Markus Bopp | FacileForms Copyright 2004-2006 by Peter Koch, Chur, Switzerland.  All rights reserved. -->
+<div class="bfClearfix">
+<script type="text/javascript">
+<!--
+ff_processor=new Object();ff_processor.okrun=true;ff_processor.ip='127.0.0.1';ff_processor.agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36';ff_processor.browser='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36';
+ff_processor.opsys='win';ff_processor.provider='Unknown';ff_processor.submitted='2025-07-11 13:56:49';ff_processor.form=1;ff_processor.form_id='ff_form1';ff_processor.page=1;ff_processor.target=1;ff_processor.runmode=0;ff_processor.inframe=0;ff_processor.inline=0;
+ff_processor.template=0;ff_processor.homepage='https://kruathai.is';ff_processor.mossite='https://kruathai.is';ff_processor.images='https://kruathai.is/components/com_breezingforms/images';ff_processor.border=0;ff_processor.align=1;ff_processor.top=0;
+ff_processor.suffix='';ff_processor.status=null;ff_processor.message=null;ff_processor.record_id=null;ff_processor.showgrid=false;ff_processor.traceBuffer=null;
+//-->
+</script>
+<script type="text/javascript" src="/components/com_breezingforms/facileforms.js"></script>
+<div id="ff_formdiv1" class="bfFormDiv samband"><script type="text/javascript">
+<!--
+
+function checkFileExtensions(){
+			return true;
+		}
+		function bfCheckCaptcha(){if(checkFileExtensions())ff_submitForm2();}function ff_initialize(condition)
+{}
+onload=function()
+{ff_initialize('formentry');ff_initialize('pageentry');if(ff_processor&&ff_processor.traceBuffer)ff_traceWindow();}
+function ff_submitForm()
+{if(document.getElementById('bfSubmitButton')){document.getElementById('bfSubmitButton').disabled=true;}if(typeof JQuery!='undefined'){JQuery('.bfCustomSubmitButton').prop('disabled',true);}bfCheckCaptcha();}function ff_submitForm2()
+{if(document.getElementById('bfSubmitButton')){document.getElementById('bfSubmitButton').disabled=true;}if(typeof JQuery!='undefined'){JQuery('.bfCustomSubmitButton').prop('disabled',true);}if(typeof bf_ajax_submit!='undefined'){bf_ajax_submit()}else{document.ff_form1.submit();}
+}
+var ff_validationFocusName='';
+var ff_elements=[['ff_elem111','ff_div111','bfFakeName',1,111],['ff_elem112','ff_div112','bfFakeName2',1,112],['ff_elem113','ff_div113','bfFakeName3',1,113],['ff_elem114','ff_div114','bfFakeName4',1,114],['ff_elem1','ff_div1','Fyrirsogn',1,1],['ff_elem2','ff_div2','Netfang',1,2],
+['ff_elem3','ff_div3','Skilabod',1,3]
+];
+function ff_getElementByName(name)
+{if(name.substr(0,6)=='ff_nm_')name=name.substring(6,name.length-2);for(var i=0;i<ff_elements.length;i++)
+if(ff_elements[i][2]==name)
+return eval('document.ff_form1.'+ff_elements[i][0]);return null;}
+function ff_getPageByName(name)
+{if(name.substr(0,6)=='ff_nm_')name=name.substring(6,name.length-2);for(var i=0;i<ff_elements.length;i++)
+if(ff_elements[i][2]==name)
+return ff_elements[i][3];return 0;}
+var ff_currentpage=1;
+function ff_switchpage(page){if(document.getElementById("bfPage1"))document.getElementById("bfPage1").style.display="none";if(document.getElementById("bfPage"+page))document.getElementById("bfPage"+page).style.display="";ff_currentpage=page;ff_initialize("pageentry");
+}
+function ff_validationFocus(name)
+{if(name==undefined||name==''){if(ff_validationFocusName!=''){ff_switchpage(ff_getPageByName(ff_validationFocusName));if(ff_getElementByName(ff_validationFocusName).focus){ff_getElementByName(ff_validationFocusName).focus();}}}else{if(ff_validationFocusName=='')
+ff_validationFocusName=name;}}
+function ff_validation(page)
+{if(typeof inlineErrorElements!='undefined')inlineErrorElements=new Array();error='';ff_validationFocusName='';if(error!=""&&document.getElementById('ff_capimgValue')){document.getElementById('ff_capimgValue').src='/components/com_breezingforms/images/captcha/securimage_show.php?bfMathRandom='+Math.random();
+document.getElementById('bfCaptchaEntry').value="";}if(error!=""&&document.getElementById("bfSubmitButton")){document.getElementById("bfSubmitButton").disabled=false;}if(error!=""&&typeof JQuery!="undefined"){JQuery(".bfCustomSubmitButton").prop("disabled",false);}
+return error;}
+function ff_validate_submit(element,action)
+{if(typeof bfUseErrorAlerts!='undefined'){JQuery(".bfErrorMessage").html('');JQuery(".bfErrorMessage").css("display","none");}error=ff_validation(0);if(error!=''){if(typeof bfUseErrorAlerts=='undefined'){alert(error);}else{bfShowErrors(error);}ff_validationFocus();
+}else
+ff_submitForm();}
+function ff_resetForm(element,action)
+{eval('document.'+ff_processor.form_id).reset();}
+function ff_validate_prevpage(element,action)
+{if(typeof bfUseErrorAlerts!='undefined'){JQuery(".bfErrorMessage").html('');JQuery(".bfErrorMessage").css("display","none");}error=ff_validation(ff_currentpage);if(error!=''){if(typeof bfUseErrorAlerts=='undefined'){alert(error);}else{bfShowErrors(error);
+}ff_validationFocus('');}else{if(ff_currentpage>1){ff_switchpage(ff_currentpage-1);self.scrollTo(0,0);}}}
+function ff_validate_nextpage(element,action)
+{if(typeof bfUseErrorAlerts!='undefined'){JQuery(".bfErrorMessage").html('');JQuery(".bfErrorMessage").css("display","none");}error=ff_validation(ff_currentpage);if(error!=''){if(typeof bfUseErrorAlerts=='undefined'){alert(error);}else{bfShowErrors(error);
+}ff_validationFocus('');}else{ff_switchpage(ff_currentpage+1);self.scrollTo(0,0);}}
+//-->
+</script>
+<form data-ajax="false"  action="https://kruathai.is/is/sott-og-sent-tilbod" method="post" name="ff_form1" id="ff_form1" enctype="multipart/form-data" accept-charset="utf-8" onsubmit="return false;" class="bfQuickMode">
+<div id="bfPage1" class="bfPage">
+<div class="">
+<span style="color: #000000; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 24px; font-style: italic; line-height: 18px; text-align: start; background-color: #eeeeee;">Hafðu samband</span>
+</div>
+<div class="bfErrorMessage alert alert-error" style="display:none"></div>
+<div class="bfElemWrap control-group" id="bfElemWrap1">
+<div class="controls form-inline"><label class="control-label" id="bfLabel1" for="ff_elem1">*</label>
+<input placeholder="Fyrirs&ouml;gn" class="ff_elem inputbox" style="width:280px !important; min-width:280px !important;" type="text" name="ff_nm_Fyrirsogn[]" value="" id="ff_elem1"/>
+</div></div>
+<div class="bfElemWrap control-group" id="bfElemWrap2">
+<div class="controls form-inline"><label class="control-label" id="bfLabel2" for="ff_elem2">*</label>
+<input placeholder="Netfang" class="ff_elem inputbox" style="width:280px !important; min-width:280px !important;" type="text" name="ff_nm_Netfang[]" value="" id="ff_elem2"/>
+</div></div>
+<div class="bfElemWrap control-group" id="bfElemWrap3">
+<div class="controls form-inline"><label class="control-label" id="bfLabel3" for="ff_elem3">*</label>
+<textarea placeholder="Skilabo&eth;" cols="20" rows="5" class="ff_elem inputbox" onkeyup="bfCheckMaxlength(3, 1000, false)" style="width:280px !important; min-width:280px !important;height:50px;" name="ff_nm_Skilabod[]" id="ff_elem3"></textarea>
+</div></div>
+<div class="bfClearfix"></div><div class="form-actions"><button type="button" id="bfSubmitButton" class="bfSubmitButton btn btn-primary pull-right button" onclick="this.disabled=true;if(typeof bf_htmltextareainit != 'undefined'){ bf_htmltextareainit() }if(document.getElementById('bfPaymentMethod')){document.getElementById('bfPaymentMethod').value='';};ff_validate_submit(this, 'click');" value="Senda"><span>Senda</span></button>
+</div></div>
+<noscript>Please turn on javascript to submit your data. Thank you!</noscript>
+<input type="hidden" name="ff_contentid" value="0"/>
+<input type="hidden" name="ff_applic" value=""/>
+<input type="hidden" name="ff_record_id" value=""/>
+<input type="hidden" name="ff_module_id" value="0"/>
+<input type="hidden" name="ff_form" value="1"/>
+<input type="hidden" name="ff_task" value="submit"/>
+<input type="hidden" name="option" value="com_content"/>
+<input type="hidden" name="Itemid" value="116"/>
+<input type="hidden" name="id" value="5"/>
+</form>
+</div><!-- form end -->
+</div>
+</div>
+	</div>
+						<div class="box box2"> 		<div class="moduletable">
+				
+
+<div class="custom"  >
+	<div style="text-align: center;"><span style="color: #000000; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 24px; font-style: italic; line-height: 18px;">Opnunartímar<br /><br /><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 24px; vertical-align: baseline; color: #000000; font-family: Georgia, 'Times New Roman', Times, serif; font-style: italic; line-height: 18px; text-align: start;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #888888;">Bæjarlind, </strong></span><span style="color: #000000;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #888888;">552-2525</strong></span><br /></span></div>
+<div style="text-align: center;"><span style="color: #808080; font-size: medium;">Alla virka daga frá 11:30 til 21:00</span></div>
+<div style="text-align: center;"><span style="color: #808080; font-size: medium;"></span><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #808080;">Laugardaga frá 12:00 til 21:00</span></div>
+<div style="text-align: center;"><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #808080;">Sunnudaga frá 17:00 til 21:00<br /><br /><span style="color: #000000; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 24px; font-style: italic; line-height: 18px;"><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 24px; vertical-align: baseline; color: #000000; font-family: Georgia, 'Times New Roman', Times, serif; line-height: 18px; text-align: start;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #888888;">Skólavörðustígur</strong></span><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 24px; vertical-align: baseline; color: #000000; font-family: Georgia, 'Times New Roman', Times, serif; font-style: italic; line-height: 18px; text-align: start;">&nbsp;&nbsp;</span><span style="color: #000000;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #888888;">551-0833</strong></span></span><br /><span style="color: #808080; font-size: medium;">Alla virka daga frá 11:30 til 21:30</span><br /><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #808080;">Laugardaga frá 12:00 til 21:30</span><br /><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #808080;">Sunnudaga frá 17:00 til 21:30</span></span></div></div>
+</div>
+	</div>
+						<div class="box box3"> 		<div class="moduletable">
+				
+
+<div class="custom"  >
+	<p><span style="color: #000000; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 24px; font-style: italic; line-height: 18px; text-align: start;">Staðsetning&nbsp;</span></p>
+<p><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #808080;">Bæjarlind 14-16 - Kópavogi</span><br /><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: medium; vertical-align: baseline; color: #808080;">Skólavörðustíg 21a - Reykjavík<br /><br /></span></p>
+<p>&nbsp;</p>
+<p><span style="color: #000000; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 24px; font-style: italic; line-height: 18px; text-align: left;">Við erum á facebook<br /></span></p> <iframe allowtransparency="true" frameborder="0" height="100%" marginheight="0" marginwidth="0" scrolling="no" src="https://www.facebook.com/plugins/likebox.php?id=157740274317155&amp;header=false" width="100%">
+    </iframe></div>
+</div>
+	</div>
+					</div>
+
+				</div>
+			
+			<div id="footer-sub">
+				<footer id="footer">
+					
+				</footer><!-- end footer -->
+			</div>
+		</div>
+		
+	</body>
+    </div>
+</html>
