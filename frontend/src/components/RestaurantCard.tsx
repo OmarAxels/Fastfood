@@ -5,42 +5,85 @@ interface RestaurantCardProps {
   restaurant: Restaurant
 }
 
+function getRestaurantLogo(restaurantName: string): string {
+  const name = restaurantName.toLowerCase()
+  if (name.includes('dominos') || name.includes('domino')) {
+    return '/dominos.png'
+  } else if (name.includes('kfc')) {
+    return '/kfc.png'
+  }
+  // Default placeholder if no logo found
+  return '/dominos.png' // You can change this to a generic restaurant icon
+}
+
+function getRestaurantColors(restaurantName: string): { bg: string; text: string } {
+  const name = restaurantName.toLowerCase()
+  if (name.includes('dominos') || name.includes('domino')) {
+    return { bg: 'bg-blue-50', text: 'text-blue-700' }
+  } else if (name.includes('kfc')) {
+    return { bg: 'bg-red-50', text: 'text-red-700' }
+  }
+  // Default colors
+  return { bg: 'bg-red-50', text: 'text-red-700' }
+}
+
 export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
+  const logoSrc = getRestaurantLogo(restaurant.name)
+  const colors = getRestaurantColors(restaurant.name)
+  
   return (
-    <div className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-      {/* Restaurant Header */}
-      <div className="border-b border-gray-100 p-6 pb-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900">
-              {restaurant.name}
-            </h2>
-            {restaurant.website && (
-              <a 
-                href={restaurant.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-blue-600 hover:text-blue-800 underline mt-1 inline-block"
-              >
-                Visit website →
-              </a>
-            )}
-          </div>
-          <div className="text-right">
-            <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
-              {restaurant.offers.length} offer{restaurant.offers.length !== 1 ? 's' : ''}
+    <div className="mb-6">
+      {/* Restaurant Banner */}
+      <div className="-mx-4 mb-4">
+        {restaurant.website ? (
+          <a
+            href={restaurant.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`block ${colors.bg} rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow`}
+          >
+            <div className="flex items-center space-x-3">
+              <img
+                src={logoSrc}
+                alt={restaurant.name}
+                className="w-8 h-8 rounded-md"
+              />
+              <div>
+                <h2 className={`text-lg font-semibold ${colors.text}`}>
+                  {restaurant.name}
+                </h2>
+                <p className="text-sm text-gray-600">
+                  {restaurant.offers.length} tilboð
+                </p>
+              </div>
+            </div>
+          </a>
+        ) : (
+          <div className={`${colors.bg} rounded-xl p-4 shadow-sm`}>
+            <div className="flex items-center space-x-3">
+              <img
+                src={logoSrc}
+                alt={restaurant.name}
+                className="w-8 h-8 rounded-md"
+              />
+              <div>
+                <h2 className={`text-lg font-semibold ${colors.text}`}>
+                  {restaurant.name}
+                </h2>
+                <p className="text-sm text-gray-600">
+                  {restaurant.offers.length} tilboð
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
 
-      {/* Offers List */}
-      <div className="p-6 pt-4">
-        <div className="space-y-4">
-          {restaurant.offers.map((offer) => (
-            <OfferItem key={offer.id} offer={offer} />
-          ))}
-        </div>
+      {/* Offer Cards */}
+      <div className="grid grid-cols-3 gap-2">
+        {restaurant.offers.map((offer) => (
+          <OfferItem key={offer.id} offer={offer} />
+        ))}
       </div>
     </div>
   )

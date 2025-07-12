@@ -1,4 +1,6 @@
-3. **Run the server:**
+3. 
+
+**Run the server:**
    ```bash
    cd backend
    source venv/Scripts/activate
