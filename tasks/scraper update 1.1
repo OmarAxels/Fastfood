@@ -1,0 +1,24 @@
+Lets update the scraper.
+Currently it's only fetching from 3 fast food places.
+We've made another service, a crawler, that's supposed to crawl all possible fast food places' websites and figure out where the information about offers is.
+scraper\website_crawler.py
+
+but it's not working correctly. Please expand on and fix the crawler so that we can read from all 
+of the fast food places in:
+scraper\fastfood-info.json
+
+Also in kfc scraper figure out why prices are wrong, they should be 4549, 10999, 7899, 2599 and 4999
+
+
+
+Also to better detect from the description of an offer what food it contains, use this llm chatbot from g4f. Here is example usage:
+
+from g4f.client import Client
+
+client = Client()
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Hello"}],
+    web_search=False
+)
+print(response.choices[0].message.content)

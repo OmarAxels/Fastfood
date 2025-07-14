@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skynditilboð</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #1d1d1f;
+        }
+
+        .container {
+            max-width: 414px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 24px 32px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .app-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .app-subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .restaurant-header {
+            padding: 20px 24px 16px;
+            background: #f8f9fa;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(20px);
+        }
+
+        .restaurant-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .restaurant-logo {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(238, 90, 82, 0.3);
+        }
+
+        .restaurant-details h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 4px;
+        }
+
+        .availability-badge {
+            background: #34c759;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .offers-section {
+            padding: 0;
+            background: white;
+        }
+
+        .offer-card {
+            background: white;
+            border-radius: 0;
+            margin-bottom: 0;
+            box-shadow: none;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .offer-card:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .offer-card:active {
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        .offer-header {
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .offer-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .offer-details-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .offer-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1d1d1f;
+            line-height: 1.3;
+        }
+
+        .offer-icons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .food-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .icon-burger { background: #fff3cd; }
+        .icon-chicken { background: #d4edda; }
+        .icon-fries { background: #f8d7da; }
+        .icon-drink { background: #d1ecf1; }
+        .icon-dessert { background: #e2e3e5; }
+
+        .offer-price {
+            background: linear-gradient(135deg, #34c759, #30d158);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            min-width: 70px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(52, 199, 89, 0.3);
+        }
+
+        .offer-quantity {
+            background: #007aff;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .special-offer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .special-offer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(52, 199, 89, 0.05), rgba(48, 209, 88, 0.05));
+            pointer-events: none;
+        }
+
+
+
+        .bottom-nav {
+            background: rgba(248, 248, 248, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 12px 24px 24px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #007aff, #0056cc);
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0, 122, 255, 0.4);
+        }
+
+        .nav-button:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 0;
+                border-radius: 0;
+                min-height: 100vh;
+            }
+            
+            body {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1 class="app-title">Skynditilboð 🍔</h1>
+                <p class="app-subtitle">Bestu tilboðin í bænum</p>
+            </div>
+        </div>
+
+        <div class="restaurant-header">
+            <div class="restaurant-info">
+                <div class="restaurant-logo">KFC</div>
+                <div class="restaurant-details">
+                    <h3>KFC Iceland</h3>
+                    <span class="availability-badge">5 tilboð</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="offers-section">
+            <div class="offer-card special-offer">
+                <div class="offer-header">
+                    <div class="offer-title-row">
+                        <h3 class="offer-title">Duo Bucket fyrir 2</h3>
+                        <div class="offer-price">454 kr.</div>
+                    </div>
+                    <div class="offer-details-row">
+                        <div class="offer-icons">
+                            <div class="food-icon icon-burger">🍗</div>
+                            <div class="food-icon icon-chicken">🍗</div>
+                        </div>
+                        <div class="offer-quantity">± 2</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offer-card">
+                <div class="offer-header">
+                    <div class="offer-title-row">
+                        <h3 class="offer-title">Fjölskyldupakki fyrir 6</h3>
+                        <div class="offer-price">109 kr.</div>
+                    </div>
+                    <div class="offer-details-row">
+                        <div class="offer-icons">
+                            <div class="food-icon icon-burger">🍗</div>
+                            <div class="food-icon icon-chicken">🍗</div>
+                            <div class="food-icon icon-fries">🍟</div>
+                            <div class="food-icon icon-drink">🥤</div>
+                            <div class="food-icon icon-dessert">🍰</div>
+                        </div>
+                        <div class="offer-quantity">± 6</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offer-card">
+                <div class="offer-header">
+                    <div class="offer-title-row">
+                        <h3 class="offer-title">Fjölskyldupakki fyrir 4</h3>
+                        <div class="offer-price">789 kr.</div>
+                    </div>
+                    <div class="offer-details-row">
+                        <div class="offer-icons">
+                            <div class="food-icon icon-burger">🍗</div>
+                            <div class="food-icon icon-chicken">🍗</div>
+                            <div class="food-icon icon-fries">🍟</div>
+                            <div class="food-icon icon-drink">🥤</div>
+                            <div class="food-icon icon-dessert">🍰</div>
+                        </div>
+                        <div class="offer-quantity">± 4</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offer-card">
+                <div class="offer-header">
+                    <div class="offer-title-row">
+                        <h3 class="offer-title">Þreföld brenna</h3>
+                        <div class="offer-price">259 kr.</div>
+                    </div>
+                    <div class="offer-details-row">
+                        <div class="offer-icons">
+                            <div class="food-icon icon-burger">🍗</div>
+                            <div class="food-icon icon-chicken">🍗</div>
+                            <div class="food-icon icon-fries">🍟</div>
+                            <div class="food-icon icon-drink">🥤</div>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offer-card">
+                <div class="offer-header">
+                    <div class="offer-title-row">
+                        <h3 class="offer-title">Fjörborgaratilboð</h3>
+                        <div class="offer-price">499 kr.</div>
+                    </div>
+                    <div class="offer-details-row">
+                        <div class="offer-icons">
+                            <div class="food-icon icon-burger">🍔</div>
+                            <div class="food-icon icon-drink">🥤</div>
+                        </div>
+                        <div class="offer-quantity">Þrí</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-nav">
+            <button class="nav-button">Skoða körfu</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,5 +1,7 @@
 import { Offer } from '@/types'
 import { useState } from 'react'
+import MealVisualizer from './MealVisualizer'
+import { colors } from '@/config/colors'
 
 interface OfferItemProps {
   offer: Offer
@@ -27,80 +29,141 @@ function formatPrice(price: number): string {
   return new Intl.NumberFormat('is-IS').format(price)
 }
 
+// Better people icon component
+const PeopleIcon = ({ count }: { count: number }) => (
+  <div className="flex items-center space-x-1 text-xs px-3 py-1.5 rounded-full shadow-sm transition-all duration-200 hover:shadow-md" style={{ 
+    background: `linear-gradient(135deg, ${colors.info} 0%, ${colors.purple} 100%)`,
+    color: colors.white 
+  }}>
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="flex-shrink-0">
+      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+    </svg>
+    <span className="font-medium">{count}</span>
+  </div>
+)
+
 export default function OfferItem({ offer }: OfferItemProps) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
-    <div className="relative group">
+    <div className="relative group w-full">
       <div 
-        className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm cursor-pointer hover:shadow-md transition-shadow w-full"
+        className="rounded-xl p-4 cursor-pointer hover:shadow-lg transition-all duration-300 w-full border border-gray-100"
+        style={{ backgroundColor: colors.surface }}
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        {/* Offer Title */}
-        <h3 className="text-md font-semibold text-gray-800 truncate mb-1">
-          {offer.name}
-        </h3>
-        
-        {/* Price */}
-        {offer.price_kr !== null ? (
-          <p className="text-sm text-green-700 font-medium mb-2">
-            {formatPrice(offer.price_kr)} kr.
-          </p>
-        ) : (
-          <p className="text-sm text-gray-500 font-medium mb-2">
-            Sjá nánar
-          </p>
-        )}
+        {/* Main content - always visible */}
+        <div className="flex items-start justify-between gap-4">
+          {/* Left side - Title and Food visualization */}
+          <div className="flex-1 min-w-0">
+            {/* Offer Title */}
+            <h3 className="text-lg font-bold mb-3" style={{ color: colors.primary }}>
+              {offer.name}
+            </h3>
+            
+            {/* Food Visualization - Compact */}
+            <div className="mb-3">
+              <MealVisualizer offer={offer} showDetails={false} />
+            </div>
+          </div>
 
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2">
-          {/* People count */}
-          {offer.suits_people && (
-            <div className="flex items-center space-x-1 text-gray-500 text-sm">
-              <span>👤</span>
-              <span>{offer.suits_people}</span>
+          {/* Right side - Price and Tags */}
+          <div className="flex flex-col items-end gap-3 flex-shrink-0">
+            {/* Price with modern gradient background */}
+            {offer.price_kr !== null ? (
+              <div className="px-4 py-2 shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105" style={{ 
+                color: '#0073aa'
+              }}>
+                <p className="text-lg font-bold">
+                  {formatPrice(offer.price_kr)} kr.
+                </p>
+              </div>
+            ) : (
+              <p className="text-sm font-medium px-3 py-1 rounded-full" style={{ 
+                color: colors.secondary,
+                backgroundColor: colors.gray[100] 
+              }}>
+                Sjá nánar
+              </p>
+            )}
+
+            {/* Tags with smooth modern styling */}
+            <div className="flex flex-wrap gap-2 justify-end">
+              {/* People count with custom icon */}
+              {offer.suits_people && (
+                <PeopleIcon count={offer.suits_people} />
+              )}
+              
+              {/* Pickup/Delivery with modern styling */}
+              {offer.pickup_delivery && (
+                <div className="text-xs font-semibold px-3 py-1.5 rounded-full shadow-sm hover:shadow-md transition-all duration-200" style={{ 
+                  background: `linear-gradient(135deg, ${colors.success} 0%, #48BB78 100%)`,
+                  color: colors.white 
+                }}>
+                  {offer.pickup_delivery === 'Pickup' || offer.pickup_delivery === 'sækja' ? '🛍️ Sótt' : offer.pickup_delivery === 'Delivery' ? '🚚 Heimsent' : offer.pickup_delivery}
+                </div>
+              )}
+              
+              {/* Available hours with modern styling */}
+              {offer.available_hours && (
+                <div className="text-xs font-semibold px-3 py-1.5 rounded-full shadow-sm hover:shadow-md transition-all duration-200" style={{ 
+                  background: `linear-gradient(135deg, ${colors.warning} 0%, #F6AD55 100%)`,
+                  color: colors.white 
+                }}>
+                  ⏰ {offer.available_hours}
+                </div>
+              )}
+              
+              {/* Available days with modern styling */}
+              {offer.available_weekdays && (
+                <div className="text-xs font-semibold px-3 py-1.5 rounded-full shadow-sm hover:shadow-md transition-all duration-200" style={{ 
+                  background: `linear-gradient(135deg, ${colors.pink} 0%, #ED64A6 100%)`,
+                  color: colors.white 
+                }}>
+                  📅 {formatWeekdays(offer.available_weekdays)}
+                </div>
+              )}
             </div>
-          )}
-          
-          {/* Pickup/Delivery */}
-          {offer.pickup_delivery && (
-            <div className="bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded-full">
-              {offer.pickup_delivery === 'Pickup' || offer.pickup_delivery === 'sækja' ? 'Sótt' : offer.pickup_delivery === 'Delivery' ? 'Heimsent' : offer.pickup_delivery}
-            </div>
-          )}
-          
-          {/* Available hours */}
-          {offer.available_hours && (
-            <div className="bg-orange-100 text-orange-800 text-xs font-medium px-2 py-0.5 rounded-full">
-              {offer.available_hours}
-            </div>
-          )}
-          
-          {/* Available days */}
-          {offer.available_weekdays && (
-            <div className="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded-full">
-              {formatWeekdays(offer.available_weekdays)}
-            </div>
-          )}
+          </div>
         </div>
 
-        {/* Description - shown when expanded on mobile or hover on desktop */}
-        {offer.description && (
+        {/* Expanded content - shown when expanded on mobile or hover on desktop */}
+        {(isExpanded || true) && (
           <>
-            {/* Mobile: Expanded description */}
+            {/* Mobile: Expanded description and food details */}
             {isExpanded && (
-              <div className="mt-3 pt-3 border-t border-gray-100 md:hidden">
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {offer.description}
-                </p>
+              <div className="mt-4 pt-4 md:hidden space-y-3" style={{ borderTop: `1px solid ${colors.gray[200]}` }}>
+                {/* Detailed Food Visualization */}
+                <MealVisualizer offer={offer} showDetails={true} />
+                
+                {/* Description */}
+                {offer.description && (
+                  <div className="bg-gray-50 p-3 rounded-lg">
+                    <h4 className="text-sm font-semibold mb-2" style={{ color: colors.primary }}>Lýsing</h4>
+                    <p className="text-sm leading-relaxed" style={{ color: colors.secondary }}>
+                      {offer.description}
+                    </p>
+                  </div>
+                )}
               </div>
             )}
             
-            {/* Desktop: Hover description */}
-            <div className="hidden md:block absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg p-3 shadow-lg z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
-              <p className="text-sm text-gray-600 leading-relaxed">
-                {offer.description}
-              </p>
+            {/* Desktop: Hover description and food details */}
+            <div className="hidden md:block absolute left-0 right-0 top-full mt-2 rounded-xl p-4 shadow-xl z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto border border-gray-100" style={{ backgroundColor: colors.white }}>
+              {/* Detailed Food Visualization */}
+              <div className="mb-1">
+                <MealVisualizer offer={offer} showDetails={true} />
+              </div>
+              
+              {/* Description */}
+              {offer.description && (
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h4 className="text-sm font-semibold mb-2" style={{ color: colors.primary }}>Lýsing</h4>
+                  <p className="text-sm leading-relaxed" style={{ color: colors.secondary }}>
+                    {offer.description}
+                  </p>
+                </div>
+              )}
             </div>
           </>
         )}

@@ -1,0 +1,1598 @@
+{
+  "scraped_at": "2025-07-14T00:16:40.020285",
+  "total_offers": 19,
+  "restaurants": [
+    "Subway Iceland",
+    "Domino's Pizza Iceland",
+    "KFC Iceland"
+  ],
+  "offers": [
+    {
+      "offer_name": "Duo Bucket fyrir 2",
+      "description": "Tveir Original kjúklingabitar, tvær Zinger kjúklingalundir, fjórir Hot Wings, tveir skammtar af heitri brúnni sósu, tveir skammtar af frönskum, fjórar Hot Sauce og BBQ Dip-sósa.",
+      "price_kr": 4549,
+      "pickup_delivery": null,
+      "suits_people": 2,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "chicken",
+          "name": "kjúklingabitar",
+          "category": "main",
+          "icon": "🍗",
+          "quantity": 8,
+          "size": null,
+          "modifiers": [
+            "original",
+            "hot",
+            "zinger"
+          ],
+          "phrase": "2 tveir original kjúklingabitar"
+        },
+        {
+          "type": "sauce",
+          "name": "sauce",
+          "category": "side",
+          "icon": "🍅",
+          "quantity": 5,
+          "size": null,
+          "modifiers": [
+            "hot sauce",
+            "bbq"
+          ],
+          "phrase": "fjórar hot sauce"
+        }
+      ],
+      "meal_type": "family",
+      "is_combo": true,
+      "complexity_score": 16,
+      "total_food_items": 13,
+      "main_items": [
+        {
+          "type": "chicken",
+          "name": "kjúklingabitar",
+          "category": "main",
+          "icon": "🍗",
+          "quantity": 8,
+          "size": null,
+          "modifiers": [
+            "original",
+            "hot",
+            "zinger"
+          ],
+          "phrase": "2 tveir original kjúklingabitar"
+        }
+      ],
+      "side_items": [
+        {
+          "type": "sauce",
+          "name": "sauce",
+          "category": "side",
+          "icon": "🍅",
+          "quantity": 5,
+          "size": null,
+          "modifiers": [
+            "hot sauce",
+            "bbq"
+          ],
+          "phrase": "fjórar hot sauce"
+        }
+      ],
+      "drink_items": [],
+      "dessert_items": [],
+      "visual_summary": "👨‍👩‍👧‍👦 🍗 + 🍅",
+      "restaurant_name": "KFC Iceland"
+    },
+    {
+      "offer_name": "Fjölskyldupakki fyrir 6",
+      "description": "Tólf Original kjúklingabitar, franskar, tvær sósur – heit brún sósa, heit BBQ-sósa eða kokteilsósa – og hrásalat ásamt tveggja lítra gosi.",
+      "price_kr": 10999,
+      "pickup_delivery": null,
+      "suits_people": 6,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "chicken",
+          "name": "kjúklingabitar",
+          "category": "main",
+          "icon": "🍗",
+          "quantity": 6,
+          "size": null,
+          "modifiers": [
+            "original"
+          ],
+          "phrase": "6 tólf original kjúklingabitar"
+        },
+        {
+          "type": "fries",
+          "name": "franskar",
+          "category": "side",
+          "icon": "🍟",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "franskar"
+        },
+        {
+          "type": "sauce",
+          "name": "sósa",
+          "category": "side",
+          "icon": "🍅",
+          "quantity": 3,
+          "size": null,
+          "modifiers": [
+            "brún",
+            "kokteilsósa",
+            "bbq",
+            "heit"
+          ],
+          "phrase": "tvær sósur – heit brún sósa"
+        },
+        {
+          "type": "salad",
+          "name": "salat",
+          "category": "side",
+          "icon": "🥗",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "hrásalat"
+        },
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "tveggja lítra gosi"
+        }
+      ],
+      "meal_type": "family",
+      "is_combo": true,
+      "complexity_score": 20,
+      "total_food_items": 12,
+      "main_items": [
+        {
+          "type": "chicken",
+          "name": "kjúklingabitar",
+          "category": "main",
+          "icon": "🍗",
+          "quantity": 6,
+          "size": null,
+          "modifiers": [
+            "original"
+          ],
+          "phrase": "6 tólf original kjúklingabitar"
+        }
+      ],
+      "side_items": [
+        {
+          "type": "fries",
+          "name": "franskar",
+          "category": "side",
+          "icon": "🍟",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "franskar"
+        },
+        {
+          "type": "sauce",
+          "name": "sósa",
+          "category": "side",
+          "icon": "🍅",
+          "quantity": 3,
+          "size": null,
+          "modifiers": [
+            "brún",
+            "kokteilsósa",
+            "bbq",
+            "heit"
+          ],
+          "phrase": "tvær sósur – heit brún sósa"
+        },
+        {
+          "type": "salad",
+          "name": "salat",
+          "category": "side",
+          "icon": "🥗",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "hrásalat"
+        }
+      ],
+      "drink_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "tveggja lítra gosi"
+        }
+      ],
+      "dessert_items": [],
+      "visual_summary": "👨‍👩‍👧‍👦 🍗 + 🍟🍅🥗 + 🥤",
+      "restaurant_name": "KFC Iceland"
+    },
+    {
+      "offer_name": "Fjölskyldupakki fyrir 4",
+      "description": "Átta Original kjúklingabitar, franskar, tvær sósur – heit brún sósa, heit BBQ-sósa eða kokteilsósa – og hrásalat ásamt tveggja lítra gosi.",
+      "price_kr": 7899,
+      "pickup_delivery": null,
+      "suits_people": 4,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "chicken",
+          "name": "kjúklingabitar",
+          "category": "main",
+          "icon": "🍗",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [
+            "original"
+          ],
+          "phrase": "4 átta original kjúklingabitar"
+        },
+        {
+          "type": "fries",
+          "name": "franskar",
+          "category": "side",
+          "icon": "🍟",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "franskar"
+        },
+        {
+          "type": "sauce",
+          "name": "sósa",
+          "category": "side",
+          "icon": "🍅",
+          "quantity": 3,
+          "size": null,
+          "modifiers": [
+            "brún",
+            "kokteilsósa",
+            "bbq",
+            "heit"
+          ],
+          "phrase": "tvær sósur – heit brún sósa"
+        },
+        {
+          "type": "salad",
+          "name": "salat",
+          "category": "side",
+          "icon": "🥗",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "hrásalat"
+        },
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "tveggja lítra gosi"
+        }
+      ],
+      "meal_type": "family",
+      "is_combo": true,
+      "complexity_score": 20,
+      "total_food_items": 10,
+      "main_items": [
+        {
+          "type": "chicken",
+          "name": "kjúklingabitar",
+          "category": "main",
+          "icon": "🍗",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [
+            "original"
+          ],
+          "phrase": "4 átta original kjúklingabitar"
+        }
+      ],
+      "side_items": [
+        {
+          "type": "fries",
+          "name": "franskar",
+          "category": "side",
+          "icon": "🍟",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "franskar"
+        },
+        {
+          "type": "sauce",
+          "name": "sósa",
+          "category": "side",
+          "icon": "🍅",
+          "quantity": 3,
+          "size": null,
+          "modifiers": [
+            "brún",
+            "kokteilsósa",
+            "bbq",
+            "heit"
+          ],
+          "phrase": "tvær sósur – heit brún sósa"
+        },
+        {
+          "type": "salad",
+          "name": "salat",
+          "category": "side",
+          "icon": "🥗",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "hrásalat"
+        }
+      ],
+      "drink_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "tveggja lítra gosi"
+        }
+      ],
+      "dessert_items": [],
+      "visual_summary": "👨‍👩‍👧‍👦 🍗 + 🍟🍅🥗 + 🥤",
+      "restaurant_name": "KFC Iceland"
+    },
+    {
+      "offer_name": "Þreföld þrenna",
+      "description": "3 leggir - 3 Hot Wings - franskar, gos og kúlur.",
+      "price_kr": 2599,
+      "pickup_delivery": null,
+      "suits_people": null,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "chicken",
+          "name": "wings",
+          "category": "main",
+          "icon": "🍗",
+          "quantity": 3,
+          "size": null,
+          "modifiers": [
+            "hot"
+          ],
+          "phrase": "þreföld þrenna 3 leggir - 3 hot wings - franskar"
+        },
+        {
+          "type": "fries",
+          "name": "franskar",
+          "category": "side",
+          "icon": "🍟",
+          "quantity": 3,
+          "size": null,
+          "modifiers": [],
+          "phrase": "þreföld þrenna 3 leggir - 3 hot wings - franskar"
+        },
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "gos"
+        }
+      ],
+      "meal_type": "family",
+      "is_combo": true,
+      "complexity_score": 16,
+      "total_food_items": 7,
+      "main_items": [
+        {
+          "type": "chicken",
+          "name": "wings",
+          "category": "main",
+          "icon": "🍗",
+          "quantity": 3,
+          "size": null,
+          "modifiers": [
+            "hot"
+          ],
+          "phrase": "þreföld þrenna 3 leggir - 3 hot wings - franskar"
+        }
+      ],
+      "side_items": [
+        {
+          "type": "fries",
+          "name": "franskar",
+          "category": "side",
+          "icon": "🍟",
+          "quantity": 3,
+          "size": null,
+          "modifiers": [],
+          "phrase": "þreföld þrenna 3 leggir - 3 hot wings - franskar"
+        }
+      ],
+      "drink_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "gos"
+        }
+      ],
+      "dessert_items": [],
+      "visual_summary": "👨‍👩‍👧‍👦 🍗 + 🍟 + 🥤",
+      "restaurant_name": "KFC Iceland"
+    },
+    {
+      "offer_name": "Fjórborgaratilboð",
+      "description": "Alla þriðjudaga. Fjórir Original kjúklingaborgarar og tveggja lítra gos.",
+      "price_kr": 4999,
+      "pickup_delivery": null,
+      "suits_people": null,
+      "available_weekdays": "þriðjudagur",
+      "available_hours": null,
+      "availability_text": "Fjórborgaratilboð Alla þriðjudaga. Fjórir Original kjúklingaborgarar og tveggja lítra gos. Setja í körfu kr 4999",
+      "food_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "tveggja lítra gos"
+        }
+      ],
+      "meal_type": "snack",
+      "is_combo": false,
+      "complexity_score": 4,
+      "total_food_items": 1,
+      "main_items": [],
+      "side_items": [],
+      "drink_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "tveggja lítra gos"
+        }
+      ],
+      "dessert_items": [],
+      "visual_summary": "🥨 🥤",
+      "restaurant_name": "KFC Iceland"
+    },
+    {
+      "offer_name": "EM tilboð",
+      "description": "Stór eða pönnupizza af matseðli, 2 lítra ískalt gos, meðlæti og sósa. Pakki af EM fótboltaspjöldum fylgir með. | Stór eða pönnupizza af matseðli, 2 lítra ískalt gos, meðlæti og sósa. Pakki af EM fótboltaspjöldum fylgir með.",
+      "price_kr": 4690.0,
+      "pickup_delivery": "sækja",
+      "suits_people": 4,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "pizza",
+          "name": "pizza",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 2,
+          "size": {
+            "descriptor": "stór",
+            "unit": "descriptor"
+          },
+          "modifiers": [
+            "pönnupizza",
+            "stór"
+          ],
+          "phrase": "em tilboð stór eða pönnupizza af matseðli"
+        },
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 4,
+          "size": {
+            "liters": 2,
+            "unit": "liters"
+          },
+          "modifiers": [],
+          "phrase": "2 lítra ískalt gos"
+        },
+        {
+          "type": "sauce",
+          "name": "sósa",
+          "category": "side",
+          "icon": "🍅",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "sósa"
+        }
+      ],
+      "meal_type": "family",
+      "is_combo": true,
+      "complexity_score": 19,
+      "total_food_items": 8,
+      "main_items": [
+        {
+          "type": "pizza",
+          "name": "pizza",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 2,
+          "size": {
+            "descriptor": "stór",
+            "unit": "descriptor"
+          },
+          "modifiers": [
+            "pönnupizza",
+            "stór"
+          ],
+          "phrase": "em tilboð stór eða pönnupizza af matseðli"
+        }
+      ],
+      "side_items": [
+        {
+          "type": "sauce",
+          "name": "sósa",
+          "category": "side",
+          "icon": "🍅",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "sósa"
+        }
+      ],
+      "drink_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 4,
+          "size": {
+            "liters": 2,
+            "unit": "liters"
+          },
+          "modifiers": [],
+          "phrase": "2 lítra ískalt gos"
+        }
+      ],
+      "dessert_items": [],
+      "visual_summary": "👨‍👩‍👧‍👦 🍕 + 🍅 + 🥤",
+      "restaurant_name": "Domino's Pizza Iceland"
+    },
+    {
+      "offer_name": "TRÍÓ",
+      "description": "Í hverjum mánuði eru 3 pizzur af matseðli á 2.590 kr. stykkið ef pantað er á vef/appi, greitt fyrirfram og sótt. Gildir fyrir stórar pizzur. | Í hverjum mánuði eru 3 pizzur af matseðli á 2.590 kr. stykkið ef pantað er á vef/appi, greitt fyrirfram og sótt. Gildir fyrir stórar pizzur.",
+      "price_kr": 2590.0,
+      "pickup_delivery": "sækja",
+      "suits_people": null,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "pizza",
+          "name": "pizzur",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 6,
+          "size": null,
+          "modifiers": [],
+          "phrase": "tríó í hverjum mánuði eru 3 pizzur af matseðli á 2"
+        },
+        {
+          "type": "pizza",
+          "name": "pizzur",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 2,
+          "size": {
+            "descriptor": "stór",
+            "unit": "descriptor"
+          },
+          "modifiers": [
+            "stór"
+          ],
+          "phrase": "stórar pizzur"
+        }
+      ],
+      "meal_type": "family",
+      "is_combo": true,
+      "complexity_score": 13,
+      "total_food_items": 8,
+      "main_items": [
+        {
+          "type": "pizza",
+          "name": "pizzur",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 6,
+          "size": null,
+          "modifiers": [],
+          "phrase": "tríó í hverjum mánuði eru 3 pizzur af matseðli á 2"
+        },
+        {
+          "type": "pizza",
+          "name": "pizzur",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 2,
+          "size": {
+            "descriptor": "stór",
+            "unit": "descriptor"
+          },
+          "modifiers": [
+            "stór"
+          ],
+          "phrase": "stórar pizzur"
+        }
+      ],
+      "side_items": [],
+      "drink_items": [],
+      "dessert_items": [],
+      "visual_summary": "👨‍👩‍👧‍👦 🍕🍕",
+      "restaurant_name": "Domino's Pizza Iceland"
+    },
+    {
+      "offer_name": "Þín pizza",
+      "description": "Stór eða pönnupizza með tveimur áleggstegundum. | Stór eða pönnupizza með tveimur áleggstegundum.",
+      "price_kr": 2490.0,
+      "pickup_delivery": "sækja",
+      "suits_people": 4,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "pizza",
+          "name": "pizza",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 2,
+          "size": {
+            "descriptor": "stór",
+            "unit": "descriptor"
+          },
+          "modifiers": [
+            "pönnupizza",
+            "stór"
+          ],
+          "phrase": "þín pizza stór eða pönnupizza"
+        }
+      ],
+      "meal_type": "individual",
+      "is_combo": false,
+      "complexity_score": 7,
+      "total_food_items": 2,
+      "main_items": [
+        {
+          "type": "pizza",
+          "name": "pizza",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 2,
+          "size": {
+            "descriptor": "stór",
+            "unit": "descriptor"
+          },
+          "modifiers": [
+            "pönnupizza",
+            "stór"
+          ],
+          "phrase": "þín pizza stór eða pönnupizza"
+        }
+      ],
+      "side_items": [],
+      "drink_items": [],
+      "dessert_items": [],
+      "visual_summary": "🧑 🍕",
+      "restaurant_name": "Domino's Pizza Iceland"
+    },
+    {
+      "offer_name": "Tvennutilboð",
+      "description": "Þú sækir pizzu og stóran skammt af brauðstöngum og færð aðra pizzu að auki. Greitt er fyrir dýrari pizzuna. | Þú sækir pizzu og stóran skammt af brauðstöngum og færð aðra pizzu að auki. Greitt er fyrir dýrari pizzuna.",
+      "price_kr": null,
+      "pickup_delivery": "sækja",
+      "suits_people": null,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "pizza",
+          "name": "pizzu",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 6,
+          "size": null,
+          "modifiers": [],
+          "phrase": "tvennutilboð þú sækir pizzu"
+        }
+      ],
+      "meal_type": "family",
+      "is_combo": false,
+      "complexity_score": 9,
+      "total_food_items": 6,
+      "main_items": [
+        {
+          "type": "pizza",
+          "name": "pizzu",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 6,
+          "size": null,
+          "modifiers": [],
+          "phrase": "tvennutilboð þú sækir pizzu"
+        }
+      ],
+      "side_items": [],
+      "drink_items": [],
+      "dessert_items": [],
+      "visual_summary": "👨‍👩‍👧‍👦 🍕",
+      "restaurant_name": "Domino's Pizza Iceland"
+    },
+    {
+      "offer_name": "Hópatilboð",
+      "description": "Tvær stórar pizzur með tveimur áleggstegundum, stór skammtur af brauðstöngum með sósu og Gott að eigin vali. Hópatilboð er upplagt fyrir barnaafmæli og slíka hópa og hentar vel fyrir 6-8 börn eða 4-6 fullorðna | Tvær stórar pizzur með tveimur áleggstegundum, stór skammtur af brauðstöngum með sósu og Gott að eigin vali. Hópatilboð er upplagt fyrir barnaafmæli og slíka hópa og hentar vel fyrir 6-8 börn eða 4-6 fullorðna",
+      "price_kr": 6490.0,
+      "pickup_delivery": "sækja",
+      "suits_people": 6,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "pizza",
+          "name": "pizzur",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 4,
+          "size": {
+            "descriptor": "stór",
+            "unit": "descriptor"
+          },
+          "modifiers": [
+            "stór"
+          ],
+          "phrase": "hópatilboð tvær stórar pizzur"
+        }
+      ],
+      "meal_type": "individual",
+      "is_combo": false,
+      "complexity_score": 9,
+      "total_food_items": 4,
+      "main_items": [
+        {
+          "type": "pizza",
+          "name": "pizzur",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 4,
+          "size": {
+            "descriptor": "stór",
+            "unit": "descriptor"
+          },
+          "modifiers": [
+            "stór"
+          ],
+          "phrase": "hópatilboð tvær stórar pizzur"
+        }
+      ],
+      "side_items": [],
+      "drink_items": [],
+      "dessert_items": [],
+      "visual_summary": "🧑 🍕",
+      "restaurant_name": "Domino's Pizza Iceland"
+    },
+    {
+      "offer_name": "Matarboð",
+      "description": "Tvær stórar pizzur af matseðli, tvö meðlæti að eigin vali, tvær sósur og 2L gos. Matarboðið hentar vel fyrir 5-7 fullorðna og er upplagt fyrir fundi, stóra fjölskyldu, vinahitting eða góða hópa. | Tvær stórar pizzur af matseðli, tvö meðlæti að eigin vali, tvær sósur og 2L gos. Matarboðið hentar vel fyrir 5-7 fullorðna og er upplagt fyrir fundi, stóra fjölskyldu, vinahitting eða góða hópa.",
+      "price_kr": 7990.0,
+      "pickup_delivery": "sækja",
+      "suits_people": 5,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "pizza",
+          "name": "pizzur",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 4,
+          "size": {
+            "descriptor": "stór",
+            "unit": "descriptor"
+          },
+          "modifiers": [
+            "stór"
+          ],
+          "phrase": "matarboð tvær stórar pizzur af matseðli"
+        },
+        {
+          "type": "sauce",
+          "name": "sósur",
+          "category": "side",
+          "icon": "🍅",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "tvær sósur"
+        },
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2l gos"
+        }
+      ],
+      "meal_type": "family",
+      "is_combo": true,
+      "complexity_score": 20,
+      "total_food_items": 12,
+      "main_items": [
+        {
+          "type": "pizza",
+          "name": "pizzur",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 4,
+          "size": {
+            "descriptor": "stór",
+            "unit": "descriptor"
+          },
+          "modifiers": [
+            "stór"
+          ],
+          "phrase": "matarboð tvær stórar pizzur af matseðli"
+        }
+      ],
+      "side_items": [
+        {
+          "type": "sauce",
+          "name": "sósur",
+          "category": "side",
+          "icon": "🍅",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "tvær sósur"
+        }
+      ],
+      "drink_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2l gos"
+        }
+      ],
+      "dessert_items": [],
+      "visual_summary": "👨‍👩‍👧‍👦 🍕 + 🍅 + 🥤",
+      "restaurant_name": "Domino's Pizza Iceland"
+    },
+    {
+      "offer_name": "Kvöldvaktin",
+      "description": "Miðstærð af pizzu af matseðli og 0.5 ltr. gos. | Miðstærð af pizzu af matseðli og 0.5 ltr. gos.",
+      "price_kr": 2190.0,
+      "pickup_delivery": "sækja",
+      "suits_people": null,
+      "available_weekdays": null,
+      "available_hours": "17:00-22:00",
+      "availability_text": "Kvöldvaktin Miðstærð af pizzu af matseðli og 0.5 ltr. gos. Sækja 2.190 kr. 2",
+      "food_items": [
+        {
+          "type": "pizza",
+          "name": "pizzu",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "kvöldvaktin miðstærð af pizzu af matseðli"
+        },
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "gos"
+        }
+      ],
+      "meal_type": "combo",
+      "is_combo": true,
+      "complexity_score": 10,
+      "total_food_items": 4,
+      "main_items": [
+        {
+          "type": "pizza",
+          "name": "pizzu",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "kvöldvaktin miðstærð af pizzu af matseðli"
+        }
+      ],
+      "side_items": [],
+      "drink_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "gos"
+        }
+      ],
+      "dessert_items": [],
+      "visual_summary": "🍽️ 🍕 + 🥤",
+      "restaurant_name": "Domino's Pizza Iceland"
+    },
+    {
+      "offer_name": "Vængjatilboð",
+      "description": "Tuttugu ljúffengir kjúklingavængir með sósu að eigin vali, kartöflubátar með sósu, Gott að eigin vali og 2l ískalt gos. | Tuttugu ljúffengir kjúklingavængir með sósu að eigin vali, kartöflubátar með sósu, Gott að eigin vali og 2l ískalt gos.",
+      "price_kr": 3790.0,
+      "pickup_delivery": "sækja",
+      "suits_people": null,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "sub",
+          "name": "báta",
+          "category": "main",
+          "icon": "🥪",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "kartöflubátar"
+        },
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2l ískalt gos"
+        }
+      ],
+      "meal_type": "family",
+      "is_combo": true,
+      "complexity_score": 12,
+      "total_food_items": 6,
+      "main_items": [
+        {
+          "type": "sub",
+          "name": "báta",
+          "category": "main",
+          "icon": "🥪",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "kartöflubátar"
+        }
+      ],
+      "side_items": [],
+      "drink_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2l ískalt gos"
+        }
+      ],
+      "dessert_items": [],
+      "visual_summary": "👨‍👩‍👧‍👦 🥪 + 🥤",
+      "restaurant_name": "Domino's Pizza Iceland"
+    },
+    {
+      "offer_name": "Sparitilboð A",
+      "description": "Stór eða pönnupizza af matseðli, 2 lítra ískalt gos, stór skammtur af brauðstöngum og sósa. | Stór eða pönnupizza af matseðli, 2 lítra ískalt gos, stór skammtur af brauðstöngum og sósa.",
+      "price_kr": 5690.0,
+      "pickup_delivery": "sækja",
+      "suits_people": 4,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "pizza",
+          "name": "pizza",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 2,
+          "size": {
+            "descriptor": "stór",
+            "unit": "descriptor"
+          },
+          "modifiers": [
+            "pönnupizza",
+            "stór"
+          ],
+          "phrase": "sparitilboð a stór eða pönnupizza af matseðli"
+        },
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 4,
+          "size": {
+            "liters": 2,
+            "unit": "liters"
+          },
+          "modifiers": [],
+          "phrase": "2 lítra ískalt gos"
+        },
+        {
+          "type": "sauce",
+          "name": "sósa",
+          "category": "side",
+          "icon": "🍅",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "sósa"
+        }
+      ],
+      "meal_type": "family",
+      "is_combo": true,
+      "complexity_score": 19,
+      "total_food_items": 8,
+      "main_items": [
+        {
+          "type": "pizza",
+          "name": "pizza",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 2,
+          "size": {
+            "descriptor": "stór",
+            "unit": "descriptor"
+          },
+          "modifiers": [
+            "pönnupizza",
+            "stór"
+          ],
+          "phrase": "sparitilboð a stór eða pönnupizza af matseðli"
+        }
+      ],
+      "side_items": [
+        {
+          "type": "sauce",
+          "name": "sósa",
+          "category": "side",
+          "icon": "🍅",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "sósa"
+        }
+      ],
+      "drink_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 4,
+          "size": {
+            "liters": 2,
+            "unit": "liters"
+          },
+          "modifiers": [],
+          "phrase": "2 lítra ískalt gos"
+        }
+      ],
+      "dessert_items": [],
+      "visual_summary": "👨‍👩‍👧‍👦 🍕 + 🍅 + 🥤",
+      "restaurant_name": "Domino's Pizza Iceland"
+    },
+    {
+      "offer_name": "Sparitilboð B",
+      "description": "Miðstærð af pizzu af matseðli, 2 lítra ískalt gos, stór skammtur af brauðstöngum og sósa. | Miðstærð af pizzu af matseðli, 2 lítra ískalt gos, stór skammtur af brauðstöngum og sósa.",
+      "price_kr": 4990.0,
+      "pickup_delivery": "sækja",
+      "suits_people": null,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "pizza",
+          "name": "pizzu",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "sparitilboð b miðstærð af pizzu af matseðli"
+        },
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 4,
+          "size": {
+            "liters": 2,
+            "unit": "liters"
+          },
+          "modifiers": [],
+          "phrase": "2 lítra ískalt gos"
+        },
+        {
+          "type": "sauce",
+          "name": "sósa",
+          "category": "side",
+          "icon": "🍅",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "sósa"
+        }
+      ],
+      "meal_type": "family",
+      "is_combo": true,
+      "complexity_score": 19,
+      "total_food_items": 8,
+      "main_items": [
+        {
+          "type": "pizza",
+          "name": "pizzu",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "sparitilboð b miðstærð af pizzu af matseðli"
+        }
+      ],
+      "side_items": [
+        {
+          "type": "sauce",
+          "name": "sósa",
+          "category": "side",
+          "icon": "🍅",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "sósa"
+        }
+      ],
+      "drink_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 4,
+          "size": {
+            "liters": 2,
+            "unit": "liters"
+          },
+          "modifiers": [],
+          "phrase": "2 lítra ískalt gos"
+        }
+      ],
+      "dessert_items": [],
+      "visual_summary": "👨‍👩‍👧‍👦 🍕 + 🍅 + 🥤",
+      "restaurant_name": "Domino's Pizza Iceland"
+    },
+    {
+      "offer_name": "Stjörnumáltíð",
+      "description": "Bættu við gosi og köku eða snakki",
+      "price_kr": null,
+      "pickup_delivery": null,
+      "suits_people": null,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "stjörnumáltíð bættu við gosi"
+        },
+        {
+          "type": "snack",
+          "name": "snakki",
+          "category": "side",
+          "icon": "🥨",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "köku eða snakki"
+        }
+      ],
+      "meal_type": "snack",
+      "is_combo": true,
+      "complexity_score": 8,
+      "total_food_items": 2,
+      "main_items": [],
+      "side_items": [
+        {
+          "type": "snack",
+          "name": "snakki",
+          "category": "side",
+          "icon": "🥨",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "köku eða snakki"
+        }
+      ],
+      "drink_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "stjörnumáltíð bættu við gosi"
+        }
+      ],
+      "dessert_items": [],
+      "visual_summary": "🥨 🥨 + 🥤",
+      "restaurant_name": "Subway Iceland"
+    },
+    {
+      "offer_name": "Fjölskyldutilboð",
+      "description": "Tveir 12\" tommu bátar, tveir 6\" bátar og ein tveggja lítra gos. Bættu við 4 kökum fyrir 600 kr.",
+      "price_kr": 5999.0,
+      "pickup_delivery": null,
+      "suits_people": 600,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "sub",
+          "name": "báta",
+          "category": "main",
+          "icon": "🥪",
+          "quantity": 12,
+          "size": {
+            "inches": 12,
+            "unit": "inches"
+          },
+          "modifiers": [],
+          "phrase": "fjölskyldutilboð tveir 12\" tommu bátar"
+        },
+        {
+          "type": "sub",
+          "name": "báta",
+          "category": "main",
+          "icon": "🥪",
+          "quantity": 6,
+          "size": null,
+          "modifiers": [],
+          "phrase": "tveir 6\" bátar"
+        },
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "ein tveggja lítra gos"
+        }
+      ],
+      "meal_type": "family",
+      "is_combo": true,
+      "complexity_score": 18,
+      "total_food_items": 19,
+      "main_items": [
+        {
+          "type": "sub",
+          "name": "báta",
+          "category": "main",
+          "icon": "🥪",
+          "quantity": 12,
+          "size": {
+            "inches": 12,
+            "unit": "inches"
+          },
+          "modifiers": [],
+          "phrase": "fjölskyldutilboð tveir 12\" tommu bátar"
+        },
+        {
+          "type": "sub",
+          "name": "báta",
+          "category": "main",
+          "icon": "🥪",
+          "quantity": 6,
+          "size": null,
+          "modifiers": [],
+          "phrase": "tveir 6\" bátar"
+        }
+      ],
+      "side_items": [],
+      "drink_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "ein tveggja lítra gos"
+        }
+      ],
+      "dessert_items": [],
+      "visual_summary": "👨‍👩‍👧‍👦 🥪🥪 + 🥤",
+      "restaurant_name": "Subway Iceland"
+    },
+    {
+      "offer_name": "Barnabox",
+      "description": "6 tommu bátur. Val um skinkubát, pizzabát, kalkún, túnfisk eða grænmetissælu. Með fylgir ávaxtasafi, kaka og glaðningur. Fyrir 12 ára og yngri.",
+      "price_kr": 1549.0,
+      "pickup_delivery": null,
+      "suits_people": 12,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "sub",
+          "name": "bátur",
+          "category": "main",
+          "icon": "🥪",
+          "quantity": 6,
+          "size": {
+            "inches": 6,
+            "unit": "inches"
+          },
+          "modifiers": [],
+          "phrase": "barnabox 6 tommu bátur"
+        },
+        {
+          "type": "sub",
+          "name": "bát",
+          "category": "main",
+          "icon": "🥪",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [
+            "skinkubát",
+            "pizzabát"
+          ],
+          "phrase": "val um skinkubát"
+        },
+        {
+          "type": "pizza",
+          "name": "pizza",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "pizzabát"
+        },
+        {
+          "type": "salad",
+          "name": "grænmeti",
+          "category": "side",
+          "icon": "🥗",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "túnfisk eða grænmetissælu"
+        },
+        {
+          "type": "fruit",
+          "name": "ávaxta",
+          "category": "drink",
+          "icon": "🧃",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "fylgir ávaxtasafi"
+        },
+        {
+          "type": "cookie",
+          "name": "kaka",
+          "category": "dessert",
+          "icon": "🍪",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "kaka"
+        }
+      ],
+      "meal_type": "family",
+      "is_combo": true,
+      "complexity_score": 20,
+      "total_food_items": 12,
+      "main_items": [
+        {
+          "type": "sub",
+          "name": "bátur",
+          "category": "main",
+          "icon": "🥪",
+          "quantity": 6,
+          "size": {
+            "inches": 6,
+            "unit": "inches"
+          },
+          "modifiers": [],
+          "phrase": "barnabox 6 tommu bátur"
+        },
+        {
+          "type": "sub",
+          "name": "bát",
+          "category": "main",
+          "icon": "🥪",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [
+            "skinkubát",
+            "pizzabát"
+          ],
+          "phrase": "val um skinkubát"
+        },
+        {
+          "type": "pizza",
+          "name": "pizza",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "pizzabát"
+        }
+      ],
+      "side_items": [
+        {
+          "type": "salad",
+          "name": "grænmeti",
+          "category": "side",
+          "icon": "🥗",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "túnfisk eða grænmetissælu"
+        }
+      ],
+      "drink_items": [
+        {
+          "type": "fruit",
+          "name": "ávaxta",
+          "category": "drink",
+          "icon": "🧃",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "fylgir ávaxtasafi"
+        }
+      ],
+      "dessert_items": [
+        {
+          "type": "cookie",
+          "name": "kaka",
+          "category": "dessert",
+          "icon": "🍪",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "kaka"
+        }
+      ],
+      "visual_summary": "👨‍👩‍👧‍👦 🥪🥪🍕 + 🥗 + 🧃 + 🍪",
+      "restaurant_name": "Subway Iceland"
+    },
+    {
+      "offer_name": "3x Kökur",
+      "description": "Þrjár kökur á 669!",
+      "price_kr": 669.0,
+      "pickup_delivery": null,
+      "suits_people": null,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "cookie",
+          "name": "kökur",
+          "category": "dessert",
+          "icon": "🍪",
+          "quantity": 3,
+          "size": null,
+          "modifiers": [],
+          "phrase": "3x kökur þrjár kökur á 669!"
+        }
+      ],
+      "meal_type": "dessert",
+      "is_combo": false,
+      "complexity_score": 6,
+      "total_food_items": 3,
+      "main_items": [],
+      "side_items": [],
+      "drink_items": [],
+      "dessert_items": [
+        {
+          "type": "cookie",
+          "name": "kökur",
+          "category": "dessert",
+          "icon": "🍪",
+          "quantity": 3,
+          "size": null,
+          "modifiers": [],
+          "phrase": "3x kökur þrjár kökur á 669!"
+        }
+      ],
+      "visual_summary": "🍰 🍪",
+      "restaurant_name": "Subway Iceland"
+    }
+  ]
+}

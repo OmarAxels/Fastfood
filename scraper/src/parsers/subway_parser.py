@@ -10,6 +10,101 @@ logger = logging.getLogger(__name__)
 class SubwayParser(BaseParser):
     """Parser for Subway Iceland offers"""
     
+    def fetch_page(self, url: str):
+        """Override fetch_page to handle JavaScript-rendered content for Subway"""
+        # First try the standard approach
+        try:
+            soup = super().fetch_page(url)
+            
+            # Check if we got meaningful content (deal cards)
+            deal_cards = soup.select('a[href*="/deals/"]')
+            
+            if deal_cards:
+                logger.info(f"Found {len(deal_cards)} deal cards with standard fetch")
+                return soup
+            else:
+                logger.info("No deal cards found with standard fetch, trying JavaScript rendering...")
+                return self._fetch_with_javascript(url)
+                
+        except Exception as e:
+            logger.warning(f"Standard fetch failed: {e}, trying JavaScript rendering...")
+            return self._fetch_with_javascript(url)
+    
+    def _fetch_with_javascript(self, url: str):
+        """Fetch page content using Selenium to handle JavaScript rendering"""
+        try:
+            from selenium import webdriver
+            from selenium.webdriver.chrome.options import Options
+            from selenium.webdriver.chrome.service import Service
+            from selenium.webdriver.common.by import By
+            from selenium.webdriver.support.ui import WebDriverWait
+            from selenium.webdriver.support import expected_conditions as EC
+            from selenium.common.exceptions import TimeoutException
+            from webdriver_manager.chrome import ChromeDriverManager
+            from bs4 import BeautifulSoup
+            
+            logger.info("Using Selenium to fetch JavaScript-rendered content...")
+            
+            # Configure Chrome options
+            chrome_options = Options()
+            chrome_options.add_argument("--headless")  # Run in background
+            chrome_options.add_argument("--no-sandbox")
+            chrome_options.add_argument("--disable-dev-shm-usage")
+            chrome_options.add_argument("--disable-gpu")
+            chrome_options.add_argument("--window-size=1920,1080")
+            chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+            chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+            chrome_options.add_experimental_option('useAutomationExtension', False)
+            
+            # Create driver with automatic ChromeDriver management
+            service = Service(ChromeDriverManager().install())
+            driver = webdriver.Chrome(service=service, options=chrome_options)
+            
+            # Execute script to hide webdriver property
+            driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+            
+            try:
+                # Navigate to page
+                driver.get(url)
+                
+                # Wait for deal cards to load (up to 15 seconds)
+                try:
+                    WebDriverWait(driver, 15).until(
+                        EC.presence_of_element_located((By.CSS_SELECTOR, 'a[href*="/deals/"]'))
+                    )
+                    logger.info("Deal cards loaded successfully")
+                except TimeoutException:
+                    logger.warning("Deal cards didn't load within 15 seconds, proceeding anyway...")
+                    # Wait a bit more and check for any grid content
+                    import time
+                    time.sleep(5)
+                
+                # Get page source after JavaScript execution
+                html_content = driver.page_source
+                soup = BeautifulSoup(html_content, 'html.parser')
+                
+                # Verify we got content
+                deal_cards = soup.select('a[href*="/deals/"]')
+                grids = soup.select('[class*="grid"]')
+                logger.info(f"Selenium fetch found {len(deal_cards)} deal cards and {len(grids)} grid elements")
+                
+                return soup
+                
+            finally:
+                driver.quit()
+                
+        except ImportError as e:
+            logger.error(f"Required packages not available: {e}")
+            logger.error("Install with: pip install selenium webdriver-manager")
+            # Fallback to standard fetch
+            return super().fetch_page(url)
+            
+        except Exception as e:
+            logger.error(f"Selenium fetch failed: {e}")
+            logger.info("Falling back to standard fetch...")
+            # Fallback to standard fetch
+            return super().fetch_page(url)
+    
     def scrape_offers(self, url: str) -> List[Dict]:
         """Scrape offers from Subway Iceland website"""
         try:
@@ -49,90 +144,10 @@ class SubwayParser(BaseParser):
     
     def _create_subway_offers(self):
         """Create clean Subway offers based on their typical structure"""
+        # No longer using hardcoded offers - everything should be extracted dynamically
         offers = []
         
-        # Subway Iceland typically has daily specials and promotional offers
-        # Create these manually to avoid JavaScript parsing issues
-        
-        # Daily meal specials (these are common patterns from Subway Iceland)
-        daily_meals = [
-            {
-                'day': 'Mánudagur',
-                'meal': 'Kalkúnn og Skinka',
-                'weekday': 'mánudagur'
-            },
-            {
-                'day': 'Þriðjudagur', 
-                'meal': 'Ítalskur BMT',
-                'weekday': 'þriðjudagur'
-            },
-            {
-                'day': 'Miðvikudagur',
-                'meal': 'BLT Beikonbátur',
-                'weekday': 'miðvikudagur'
-            },
-            {
-                'day': 'Fimmtudagur',
-                'meal': 'Skinkubátur',
-                'weekday': 'fimmtudagur'
-            },
-            {
-                'day': 'Föstudagur',
-                'meal': 'Pizzabátur', 
-                'weekday': 'föstudagur'
-            },
-            {
-                'day': 'Laugardagur',
-                'meal': 'Sterkur ítalskur',
-                'weekday': 'laugardagur'
-            },
-            {
-                'day': 'Sunnudagur',
-                'meal': 'Bræðingur',
-                'weekday': 'sunnudagur'
-            }
-        ]
-        
-        for daily in daily_meals:
-            offer = {
-                'offer_name': daily['meal'],
-                'description': f"Máltíð dagsins {daily['day']}",
-                'price_kr': None,
-                'pickup_delivery': None,
-                'suits_people': 1,
-                'available_weekdays': daily['weekday'],
-                'available_hours': None,
-                'availability_text': f"Máltíð dagsins {daily['day']}"
-            }
-            offers.append(offer)
-        
-        # Common promotional offers
-        promo_offers = [
-            {
-                'offer_name': '50% afsláttur af öllum bátum',
-                'description': 'Einungis á vef og í appi',
-                'price_kr': None,
-                'pickup_delivery': None,
-                'suits_people': None,
-                'available_weekdays': None,
-                'available_hours': None,
-                'availability_text': 'Einungis á vef og í appi'
-            },
-            {
-                'offer_name': 'Veisluplattar',
-                'description': 'Fyrir stóra hópa og viðburði',
-                'price_kr': None,
-                'pickup_delivery': None,
-                'suits_people': 8,
-                'available_weekdays': None,
-                'available_hours': None,
-                'availability_text': None
-            }
-        ]
-        
-        offers.extend(promo_offers)
-        
-        logger.info(f"Created {len(offers)} standard Subway offers")
+        logger.info("No hardcoded offers - relying on dynamic extraction from website")
         return offers
     
     def _extract_real_offers_from_scripts(self, soup):
@@ -177,41 +192,87 @@ class SubwayParser(BaseParser):
                             }
                             offers.append(offer)
                             
-                    # Extract main promotional offer (50% discount)
-                    promo_pattern = r'"text":"50% afsláttur"[^}]*"text":"af öllum bátum"'
-                    if re.search(promo_pattern, script_content):
-                        promo_offer = {
-                            'offer_name': '50% afsláttur af öllum bátum',
-                            'description': 'Einungis á vef og í appi',
-                            'price_kr': None,
-                            'pickup_delivery': None,
-                            'suits_people': None,
-                            'available_weekdays': None,
-                            'available_hours': None,
-                            'availability_text': 'Einungis á vef og í appi'
-                        }
-                        offers.append(promo_offer)
+                    # Extract promotional offers dynamically using broader patterns
+                    # Look for discount patterns with percentages
+                    discount_pattern = r'"text":"(\d+%[^"]*afsláttur[^"]*)"[^}]*"text":"([^"]*)"'
+                    discount_matches = re.finditer(discount_pattern, script_content)
                     
-                    # Look for veisluplattar (party platters)
-                    if 'veisluplatti' in script_content.lower():
-                        party_offer = {
-                            'offer_name': 'Veisluplattar',
-                            'description': 'Fyrir stóra hópa og viðburði',
-                            'price_kr': None,
-                            'pickup_delivery': None,
-                            'suits_people': 8,
-                            'available_weekdays': None,
-                            'available_hours': None,
-                            'availability_text': None
-                        }
-                        offers.append(party_offer)
+                    for match in discount_matches:
+                        discount_text, additional_text = match.groups()
+                        
+                        # Combine discount text with additional context
+                        full_offer_name = f"{discount_text} {additional_text}".strip()
+                        
+                        if self._is_clean_promo_text(full_offer_name):
+                            promo_offer = {
+                                'offer_name': full_offer_name,
+                                'description': None,
+                                'price_kr': None,
+                                'pickup_delivery': None,
+                                'suits_people': None,
+                                'available_weekdays': None,
+                                'available_hours': None,
+                                'availability_text': None
+                            }
+                            offers.append(promo_offer)
+                    
+                    # Look for other promotional text patterns
+                    general_promo_pattern = r'"text":"([^"]*(?:afsláttur|tilboð|special|deal)[^"]*)"'
+                    promo_matches = re.finditer(general_promo_pattern, script_content, re.IGNORECASE)
+                    
+                    for match in promo_matches:
+                        promo_text = match.group(1)
+                        
+                        if (len(promo_text) > 5 and len(promo_text) < 100 and 
+                            self._is_clean_promo_text(promo_text)):
+                            
+                            promo_offer = {
+                                'offer_name': promo_text,
+                                'description': None,
+                                'price_kr': None,
+                                'pickup_delivery': None,
+                                'suits_people': None,
+                                'available_weekdays': None,
+                                'available_hours': None,
+                                'availability_text': None
+                            }
+                            offers.append(promo_offer)
+                    
+                    # Look for veisluplattar (party platters) dynamically
+                    platter_pattern = r'"text":"([^"]*(?:veisluplatt|party platter|platter)[^"]*)"'
+                    platter_matches = re.finditer(platter_pattern, script_content, re.IGNORECASE)
+                    
+                    for match in platter_matches:
+                        platter_text = match.group(1)
+                        
+                        if self._is_clean_promo_text(platter_text):
+                            party_offer = {
+                                'offer_name': platter_text,
+                                'description': None,
+                                'price_kr': None,
+                                'pickup_delivery': None,
+                                'suits_people': 8,  # Default for party platters
+                                'available_weekdays': None,
+                                'available_hours': None,
+                                'availability_text': None
+                            }
+                            offers.append(party_offer)
                     
                     break  # Found the right script, no need to continue
             
-            if offers:
-                logger.info(f"Successfully extracted {len(offers)} real offers from script data")
+            # Remove duplicates based on offer name
+            unique_offers = []
+            seen_names = set()
+            for offer in offers:
+                name = offer.get('offer_name', '')
+                if name and name not in seen_names:
+                    unique_offers.append(offer)
+                    seen_names.add(name)
             
-            return offers
+            if unique_offers:
+                logger.info(f"Successfully extracted {len(unique_offers)} real offers from script data")
+            
+            return unique_offers
             
         except Exception as e:
             logger.error(f"Error extracting real offers from scripts: {e}")
@@ -425,39 +486,39 @@ class SubwayParser(BaseParser):
         return promo_offers
     
     def _find_offers_by_content(self, soup):
-        """Find offer elements by looking for offer-related content in HTML"""
-        # Look for elements containing Icelandic offer terms
-        offer_terms = [
-            'tilboð', 'afsláttur', 'máltíð dagsins', 'dagstilboð', 
-            'special', 'deal', 'offer', 'panta'
-        ]
-        
+        """Find offer elements by looking for Subway's specific deal cards only"""
         potential_offers = []
         
-        for term in offer_terms:
-            # Find text elements containing offer terms
-            elements = soup.find_all(text=lambda text: text and term.lower() in text.lower())
-            for text_element in elements:
-                # Get parent containers that might hold the full offer
-                for parent in [text_element.parent, text_element.parent.parent if text_element.parent else None]:
-                    if parent and parent not in potential_offers:
-                        potential_offers.append(parent)
+        # PRIMARY TARGET ONLY: Subway's deals grid structure
+        # Look for the specific card structure used in Subway's promotional offers section
+        deal_cards = soup.select('a[href*="/deals/"]')
         
-        # Look for elements with specific Subway-related classes or attributes
-        subway_selectors = [
-            '[data-slice-type="featured_product"]',
-            '[data-slice-type="deal_section"]',
-            '[data-slice-type="hero"]',
-            '.deal-card', '.offer-card', '.product-card',
-            '.featured-product', '.daily-special'
-        ]
+        for card in deal_cards:
+            # Ensure this is a complete offer card with title and description
+            title_element = card.select_one('p.text-xs.font-bold.uppercase, .font-bold')
+            
+            if title_element:
+                potential_offers.append(card)
         
-        for selector in subway_selectors:
-            elements = soup.select(selector)
-            potential_offers.extend(elements)
+        logger.info(f"Found {len(deal_cards)} deal cards from primary structure")
         
-        logger.info(f"Found {len(potential_offers)} potential offer elements by content")
-        return potential_offers[:15]  # Limit to avoid too many false positives
+        # STRICT FILTERING: Only return legitimate deal cards
+        # Remove any that don't look like proper promotional offers
+        filtered_offers = []
+        
+        for element in potential_offers:
+            element_text = element.get_text(separator=' ', strip=True) if hasattr(element, 'get_text') else str(element)
+            
+            # Must have substantial content but not be too large
+            if 30 < len(element_text) < 1000:
+                # Must contain offer-related terms or prices
+                if any(term in element_text.lower() for term in [
+                    'kr.', 'krónur', 'tilboð', 'máltíð', 'fjölskyld', 'barn', 'box', 'köku'
+                ]):
+                    filtered_offers.append(element)
+        
+        logger.info(f"Found {len(filtered_offers)} potential offer elements after filtering")
+        return filtered_offers  # Return all legitimate deal cards
     
     def _extract_offer_data(self, element) -> Dict:
         """Extract offer data from an element (can be dict from script or HTML element)"""
@@ -503,61 +564,101 @@ class SubwayParser(BaseParser):
             if offer['description']:
                 self.field_stats['description_extracted'] += 1
         
-        # Handle HTML elements
+        # Handle HTML elements (main focus for Subway cards)
         else:
-            full_text = element.get_text(separator=' ', strip=True) if hasattr(element, 'get_text') else str(element)
-            
-            # Extract name from various possible selectors
-            name_selectors = [
-                'h1', 'h2', 'h3', 'h4', '.title', '.heading', '.product-name', 
-                '.offer-title', '[data-product-name]'
-            ]
-            
-            for selector in name_selectors:
-                if hasattr(element, 'select_one'):
-                    name_element = element.select_one(selector)
-                    if name_element:
-                        offer['offer_name'] = self.clean_text(name_element.get_text())
-                        self.field_stats['name_extracted'] += 1
+            # Primary extraction for Subway's card structure
+            if hasattr(element, 'select_one'):
+                # Extract title using Subway's specific selectors
+                title_selectors = [
+                    'p.text-xs.font-bold.uppercase',
+                    'p.font-bold.uppercase',
+                    '.font-bold',
+                    'p[class*="font-bold"]',
+                    'h1', 'h2', 'h3', 'h4', '.title', '.heading'
+                ]
+                
+                for selector in title_selectors:
+                    title_element = element.select_one(selector)
+                    if title_element:
+                        offer['offer_name'] = self.clean_text(title_element.get_text())
+                        if offer['offer_name']:
+                            self.field_stats['name_extracted'] += 1
+                            break
+                
+                # Extract description using Subway's specific selectors
+                desc_selectors = [
+                    'p.line-clamp-3',
+                    'p.text-secondary',
+                    'p[class*="text-secondary"]',
+                    '.text-secondary',
+                    'p[class*="leading-5"]',
+                    '.description', '.details', 'p'
+                ]
+                
+                descriptions = []
+                for selector in desc_selectors:
+                    desc_elements = element.select(selector)
+                    for desc_element in desc_elements:
+                        desc_text = self.clean_text(desc_element.get_text())
+                        if len(desc_text) > 5 and desc_text not in descriptions:
+                            # Skip if it's the same as the title
+                            if desc_text != offer['offer_name']:
+                                descriptions.append(desc_text)
+                
+                if descriptions:
+                    combined_desc = ' | '.join(descriptions[:3])  # Limit to first 3 descriptions
+                    offer['description'] = self._truncate_field(combined_desc, 500)
+                    if offer['description']:
+                        self.field_stats['description_extracted'] += 1
+                
+                # Extract price using Subway's specific selectors
+                price_selectors = [
+                    'div.text-xs.font-medium',
+                    'div[class*="font-medium"]',
+                    '.price', '[class*="price"]'
+                ]
+                
+                for selector in price_selectors:
+                    try:
+                        price_elements = element.select(selector)
+                        for price_element in price_elements:
+                            price_text = price_element.get_text()
+                            if 'kr' in price_text.lower():
+                                extracted_price = self.extract_price_kr(price_text)
+                                if extracted_price:
+                                    offer['price_kr'] = extracted_price
+                                    self.field_stats['price_extracted'] += 1
+                                    break
+                    except:
+                        continue
+                    
+                    if offer['price_kr']:
                         break
+            
+            # Fallback: extract from full text if no structured data found
+            full_text = element.get_text(separator=' ', strip=True) if hasattr(element, 'get_text') else str(element)
             
             # If no name found in selectors, use first substantial line
             if not offer['offer_name'] and full_text:
                 lines = [line.strip() for line in full_text.split('\n') if line.strip()]
-                if lines:
-                    offer['offer_name'] = self._truncate_field(lines[0], 200)
-                    if offer['offer_name']:
-                        self.field_stats['name_extracted'] += 1
-            
-            # Extract description
-            desc_selectors = [
-                '.description', '.details', 'p', '.content', '.offer-description'
-            ]
-            
-            descriptions = []
-            for selector in desc_selectors:
-                if hasattr(element, 'select'):
-                    desc_elements = element.select(selector)
-                    for desc_element in desc_elements:
-                        desc_text = self.clean_text(desc_element.get_text())
-                        if len(desc_text) > 10 and desc_text not in descriptions:
-                            descriptions.append(desc_text)
-            
-            if descriptions:
-                combined_desc = ' | '.join(descriptions)
-                offer['description'] = self._truncate_field(combined_desc, 500)
-                if offer['description']:
-                    self.field_stats['description_extracted'] += 1
+                for line in lines:
+                    # Skip lines that are just prices or single words
+                    if len(line) > 3 and len(line) < 100 and not line.isdigit():
+                        offer['offer_name'] = self._truncate_field(line, 200)
+                        if offer['offer_name']:
+                            self.field_stats['name_extracted'] += 1
+                            break
         
         # Common processing for both script and HTML data
         if not full_text and offer['offer_name'] and offer['description']:
             full_text = f"{offer['offer_name']} {offer['description']}"
         
-        # Extract price
-        price = self.extract_price_kr(full_text)
-        if price:
-            offer['price_kr'] = price
-            self.field_stats['price_extracted'] += 1
+        # Extract price if not already found
+        if not offer['price_kr']:
+            price = self.extract_price_kr(full_text)
+            if price:
+                offer['price_kr'] = price
+                self.field_stats['price_extracted'] += 1
         
         # Extract pickup/delivery info
         pickup_delivery = self.extract_pickup_delivery(full_text)
@@ -574,13 +675,16 @@ class SubwayParser(BaseParser):
         # Subway-specific people estimation based on product type
         if not suits_people and offer['offer_name']:
             name_lower = offer['offer_name'].lower()
-            if any(keyword in name_lower for keyword in ['family', 'fjölskyldu', 'stór', 'large']):
+            if any(keyword in name_lower for keyword in ['fjölskyld', 'family', 'tveir 12', 'tveir 6']):
                 offer['suits_people'] = 4
                 self.field_stats['suits_people_extracted'] += 1
-            elif any(keyword in name_lower for keyword in ['foot', 'fót', '30cm']):
+            elif any(keyword in name_lower for keyword in ['barn', 'box', 'kids', 'child']):
+                offer['suits_people'] = 1
+                self.field_stats['suits_people_extracted'] += 1
+            elif any(keyword in name_lower for keyword in ['12"', '12 tommu', 'foot', 'fót']):
                 offer['suits_people'] = 2
                 self.field_stats['suits_people_extracted'] += 1
-            elif any(keyword in name_lower for keyword in ['6 inch', '15cm', 'lítill', 'small']):
+            elif any(keyword in name_lower for keyword in ['6"', '6 tommu', 'lítill', 'small']):
                 offer['suits_people'] = 1
                 self.field_stats['suits_people_extracted'] += 1
         
@@ -661,18 +765,22 @@ class SubwayParser(BaseParser):
             
         # Filter out obvious code patterns in name
         code_indicators = [
-            'self.__next_f', 'push([', ']);', 'moduleIds', 'static/chunks',
-            'function(', '.js"', '.css"', '__webpack', 'var ', 'const '
+            'self.__next_f', 'push([', 'moduleids', 'static/chunks',
+            'fallback":null', 'children":[', '"$l', '"$14"', '"$15"',
+            'compress",', '.webp?', 'auto=format', 'prismic.io',
+            'slice_type', 'slice_label', 'variation":"default',
+            'function(', '.apply(', '.call(', '.bind(', 'prototype.',
+            'undefined"', 'null,"', ':{\"', '\"}', '\":[', ']},'
         ]
         
-        if any(indicator in name for indicator in code_indicators):
+        if any(flag in full_content for flag in red_flags):
             return False
             
         return True
     
     def _is_clean_food_name(self, name):
         """Very strict validation for food names"""
-        if not name or len(name) < 3 or len(name) > 50:
+        if not name or len(name) < 3 or len(name) > 100:  # Increased from 50 to 100 for promotional offers
             return False
             
         # Reject anything that looks like code
@@ -694,16 +802,17 @@ class SubwayParser(BaseParser):
         if not re.search(r'[a-zA-ZáéíóúýþæðöÁÉÍÓÚÝÞÆÐÖ]', name):
             return False
             
-        # Reject if it's mostly symbols or numbers
+        # Reject if it's mostly symbols or numbers (but be more permissive for longer promotional text)
         symbol_count = sum(1 for c in name if not c.isalnum() and c != ' ')
-        if symbol_count > len(name) * 0.3:  # More than 30% symbols
+        symbol_threshold = 0.5 if len(name) > 50 else 0.3  # Allow more symbols in longer promotional text
+        if symbol_count > len(name) * symbol_threshold:
             return False
         
         return True
     
     def _is_clean_promo_text(self, text):
         """Very strict validation for promotional text"""
-        if not text or len(text) < 5 or len(text) > 100:
+        if not text or len(text) < 5 or len(text) > 150:
             return False
             
         # Reject anything that looks like code
@@ -712,7 +821,9 @@ class SubwayParser(BaseParser):
             '__next_', 'module', 'chunk', 'static/', '.js', '.css', '.php', '.html',
             'push(', '])', '});', 'return ', 'import ', 'export ', 'createElement',
             '\\n', '\\t', '\\r', 'JSON.', 'Object.', 'Array.', 'console.',
-            'typeof ', 'instanceof ', 'parseInt', 'parseFloat', 'setTimeout'
+            'typeof ', 'instanceof ', 'parseInt', 'parseFloat', 'setTimeout',
+            'self.__next_f', 'moduleIds', 'fallback":null', 'children":[',
+            '"$l', '"$14"', '"$15"', 'compress",', '.webp?', 'auto=format'
         ]
         
         if any(pattern in text for pattern in code_patterns):
@@ -722,11 +833,30 @@ class SubwayParser(BaseParser):
         if not re.search(r'[a-zA-ZáéíóúýþæðöÁÉÍÓÚÝÞÆÐÖ]', text):
             return False
             
-        return True
+        # Should contain offer-related keywords (more permissive)
+        offer_keywords = [
+            'afsláttur', 'tilboð', 'panta', 'deal', 'special', '%', 'krónur', 'kr',
+            'máltíð', 'bátur', 'bát', 'veisluplatt', 'platter', 'dagur', 'dag',
+            'tilboð', 'sérstaklega', 'nýtt', 'new', 'limited', 'takmarkað',
+            'fjölskyld', 'family', 'barn', 'kids', 'child', 'box', 'barna',
+            'stjörnu', 'star', 'special', 'dagstilboð', 'dagsins'
+        ]
+        
+        # Allow text that contains food terms even without explicit offer keywords
+        food_terms = [
+            'kalkúnn', 'skinka', 'ítalskur', 'blt', 'beikon', 'pizza', 'bræðingur',
+            'turkey', 'ham', 'italian', 'bacon', 'pizza', 'chicken', 'steak',
+            'kökur', 'cookies', 'stjörnu', 'star', 'gos', 'sósa', 'ostur', 'brauð'
+        ]
+        
+        has_offer_keyword = any(keyword in text.lower() for keyword in offer_keywords)
+        has_food_term = any(term in text.lower() for term in food_terms)
+        
+        return has_offer_keyword or has_food_term
     
     def _is_completely_clean_offer(self, offer):
         """Final strict validation before accepting an offer"""
-        name = offer.get('product_name', '')
+        name = offer.get('offer_name', '')  # Changed from 'product_name' to 'offer_name'
         description = offer.get('description', '')
         
         # Must have a valid name
@@ -736,11 +866,39 @@ class SubwayParser(BaseParser):
         # If there's a description, it must be clean too
         if description and not self._is_clean_promo_text(description):
             return False
+        
+        # Filter out obvious navigation elements and non-offers
+        navigation_patterns = [
+            'matseðill', 'menu', 'innskrá', 'login', 'sign in', 'register',
+            'finna stað', 'find location', 'heimsent', 'delivery', 'aha',
+            'subway |', '| subway', 'panta', 'order now', 'click here'
+        ]
+        
+        name_lower = name.lower()
+        
+        # Skip if it's primarily a navigation element
+        if any(nav in name_lower for nav in navigation_patterns) and len(name) < 30:
+            # Allow longer text that might contain navigation words but is actually an offer description
+            return False
+        
+        # Must contain offer-related content (food names, promotional terms, or price indicators)
+        offer_indicators = [
+            'tilboð', 'afsláttur', 'máltíð', 'bátur', 'bát', 'box', 'fjölskyld',
+            'kr.', 'krónur', '%', 'dagur', 'dagsins', 'stjörnu', 'special',
+            'kalkúnn', 'skinka', 'pizza', 'ítalskur', 'blt', 'beikon',
+            'túnfisk', 'grænmetis', 'sandwich', 'sub', 'tommu', 'köku', 'gos',
+            'barn', 'kökur', 'cookies', 'sterkur', 'ávaxtasafi', 'glaðningur',
+            'stjörnumáltíð', 'brauð', 'ostur', 'sósa'
+        ]
+        
+        full_text = f"{name} {description}".lower()
+        has_offer_content = any(indicator in full_text for indicator in offer_indicators)
+        
+        # Require offer-related content unless it's a very short, clear promotional term
+        if not has_offer_content and len(name) > 10:  # Reduced from 15 to 10
+            return False
             
         # Additional checks for obvious code patterns
-        full_content = f"{name} {description}".lower()
-        
-        # Red flags that indicate this is definitely code
         red_flags = [
             'self.__next_f', 'push([', 'moduleids', 'static/chunks',
             'fallback":null', 'children":[', '"$l', '"$14"', '"$15"',
@@ -750,7 +908,7 @@ class SubwayParser(BaseParser):
             'undefined"', 'null,"', ':{\"', '\"}', '\":[', ']},'
         ]
         
-        if any(flag in full_content for flag in red_flags):
+        if any(flag in full_text for flag in red_flags):
             return False
             
         return True

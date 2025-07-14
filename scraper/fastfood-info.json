@@ -2,18 +2,19 @@
   {
     "name": "Hlöllabátar",
     "website": "https://hlollabatar.is",
-    "offers_page": "https://hlolli.is"
+    "offers_page": "https://hlolli.is",
+    "menu_page": "https://hlolli.is/panta"
   },
   {
     "name": "KFC Iceland",
     "website": "https://www.kfc.is",
-    "menu_page": "https://www.kfc.is/menu",
+    "menu_page": "https://www.kfc.is",
     "offers_page": "https://www.kfc.is/menu#category_tilbod"
   },
   {
     "name": "Domino's Pizza Iceland",
     "website": "https://www.dominos.is",
-    "menu_page": "https://www.dominos.is/panta/pizzur",
+    "menu_page": "https://www.dominos.is/panta/sosur",
     "offers_page": "https://www.dominos.is/panta/tilbod"
   },
   {
@@ -43,7 +44,8 @@
   },
   {
     "name": "Ali Baba",
-    "website": "https://www.alibaba.is"
+    "website": "https://www.alibaba.is",
+    "menu_page": "https://alibaba.is/shop"
   },
   {
     "name": "Taco Bell Iceland",

@@ -8,6 +8,9 @@ from typing import List, Optional
 import os
 from datetime import datetime
 from dotenv import load_dotenv
+import json
+from pathlib import Path
+import logging
 
 # Load environment variables
 load_dotenv()
@@ -162,6 +165,7 @@ def read_root():
         "endpoints": {
             "/restaurants": "Get all restaurants with their offers",
             "/restaurants/{restaurant_id}": "Get specific restaurant with offers",
+            "/enhanced-offers": "Get restaurants with enhanced food visualization data",
             "/health": "Health check"
         }
     }
@@ -169,6 +173,114 @@ def read_root():
 @app.get("/health")
 def health_check():
     return {"status": "healthy", "timestamp": datetime.utcnow()}
+
+@app.get("/enhanced-offers")
+def get_enhanced_offers(db: Session = Depends(get_db)):
+    """Get restaurants with enhanced food information including food items, meal types, etc."""
+    try:
+        # Try to read the enhanced offers JSON file from the scraper
+        
+        # Look for the enhanced offers file in likely locations
+        possible_paths = [
+            "../scraper/enhanced_offers_with_food_info.json",
+            "enhanced_offers_with_food_info.json",
+            "../enhanced_offers_with_food_info.json"
+        ]
+        
+        enhanced_data = None
+        for path in possible_paths:
+            file_path = Path(path)
+            if file_path.exists():
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    enhanced_data = json.load(f)
+                break
+        
+        if not enhanced_data:
+            # Fallback to basic data if enhanced file not found
+            return get_restaurants(db)
+        
+        def get_restaurant_logo(restaurant_name: str) -> str:
+            """Get logo URL for restaurant"""
+            name = restaurant_name.lower()
+            if 'dominos' in name or 'domino' in name:
+                return '/dominos.png'
+            elif 'kfc' in name:
+                return '/kfc.png'
+            elif 'subway' in name:
+                return '/subway.jpg'
+            return '/restaurant-default.png'
+        
+        def get_restaurant_background_color(restaurant_name: str) -> str:
+            """Get background color for restaurant"""
+            name = restaurant_name.lower()
+            if 'dominos' in name or 'domino' in name:
+                return '#FFD700'  # Gold
+            elif 'kfc' in name:
+                return '#FF0000'  # Red
+            elif 'subway' in name:
+                return '#000000'  # Black
+            return '#FFFFFF'  # White
+        
+        # Group enhanced offers by restaurant
+        restaurant_map = {}
+        
+        for enhanced_offer in enhanced_data.get('offers', []):
+            restaurant_name = enhanced_offer.get('restaurant_name', 'Unknown')
+            
+            if restaurant_name not in restaurant_map:
+                restaurant_map[restaurant_name] = {
+                    "id": len(restaurant_map) + 1,
+                    "name": restaurant_name,
+                    "website": None,
+                    "logo": get_restaurant_logo(restaurant_name),
+                    "background_color": get_restaurant_background_color(restaurant_name),
+                    "offers": []
+                }
+            
+            # Convert enhanced offer to match frontend expectations
+            offer = {
+                "id": len(restaurant_map[restaurant_name]["offers"]) + 1,
+                "name": enhanced_offer.get('offer_name', 'Unknown Offer'),
+                "description": enhanced_offer.get('description', ''),
+                "price_kr": enhanced_offer.get('price_kr'),
+                "available_weekdays": enhanced_offer.get('available_weekdays'),
+                "available_hours": enhanced_offer.get('available_hours'),
+                "availability_text": enhanced_offer.get('availability_text'),
+                "pickup_delivery": enhanced_offer.get('pickup_delivery'),
+                "suits_people": enhanced_offer.get('suits_people'),
+                "scraped_at": enhanced_offer.get('scraped_at'),
+                "source_url": enhanced_offer.get('source_url'),
+                
+                # Enhanced food information
+                "food_items": enhanced_offer.get('food_items', []),
+                "meal_type": enhanced_offer.get('meal_type'),
+                "is_combo": enhanced_offer.get('is_combo', False),
+                "complexity_score": enhanced_offer.get('complexity_score'),
+                "total_food_items": enhanced_offer.get('total_food_items', 0),
+                "main_items": enhanced_offer.get('main_items', []),
+                "side_items": enhanced_offer.get('side_items', []),
+                "drink_items": enhanced_offer.get('drink_items', []),
+                "dessert_items": enhanced_offer.get('dessert_items', []),
+                "visual_summary": enhanced_offer.get('visual_summary', '')
+            }
+            
+            restaurant_map[restaurant_name]["offers"].append(offer)
+        
+        # Convert to list and calculate totals
+        restaurants = list(restaurant_map.values())
+        total_offers = sum(len(r["offers"]) for r in restaurants)
+        last_updated = enhanced_data.get('scraped_at', datetime.utcnow().isoformat())
+        
+        return {
+            "restaurants": restaurants,
+            "total_offers": total_offers,
+            "last_updated": last_updated
+        }
+        
+    except Exception as e:
+        logging.error(f"Failed to load enhanced offers: {e}")
+        # Fallback to basic data
+        return get_restaurants(db)
 
 @app.get("/restaurants", response_model=RestaurantsListResponse)
 def get_restaurants(db: Session = Depends(get_db)):

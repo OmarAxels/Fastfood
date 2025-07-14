@@ -153,70 +153,61 @@ class WebsiteCrawler:
         except Exception as e:
             print(f"Error saving offers HTML: {e}")
 
-    def crawl_restaurant(self, restaurant: Dict) -> Dict:
-        """Crawl a single restaurant's website."""
+    def crawl_restaurant(self, restaurant: Dict) -> Tuple[Dict, str]:
+        """Crawl a single restaurant's website. Returns (updated_restaurant, status)."""
         name = restaurant.get('name', 'Unknown')
         website = restaurant.get('website')
-        
         if not website:
             print(f"No website found for {name}")
-            return restaurant
-        
+            return restaurant, 'no_website'
         print(f"\nCrawling {name} ({website})")
-        
-        # Check if menu_page and offers_page already exist
-        has_menu = 'menu_page' in restaurant
-        has_offers = 'offers_page' in restaurant
-        
-        if has_menu and has_offers:
-            print(f"  Already has menu and offers pages")
-            # Still download offers HTML if it exists
-            website_name = self.extract_website_name(website)
-            self.download_offers_page(restaurant['offers_page'], website_name)
-            return restaurant
-        
-        # Find missing pages
+        # Always try to find menu/offers pages, even if they exist
         menu_page, offers_page = self.find_menu_and_offers_pages(website)
-        
-        # Update restaurant data
         updated_restaurant = restaurant.copy()
-        
-        if menu_page and not has_menu:
+        updated = False
+        if menu_page and menu_page != restaurant.get('menu_page'):
             updated_restaurant['menu_page'] = menu_page
             print(f"  Found menu page: {menu_page}")
-        
-        if offers_page and not has_offers:
+            updated = True
+        if offers_page and offers_page != restaurant.get('offers_page'):
             updated_restaurant['offers_page'] = offers_page
             print(f"  Found offers page: {offers_page}")
-        
+            updated = True
         # Download offers page HTML if found
         if offers_page:
             website_name = self.extract_website_name(website)
             self.download_offers_page(offers_page, website_name)
-        
-        return updated_restaurant
+        # Status logic
+        if not menu_page and not offers_page:
+            return updated_restaurant, 'no_menu_or_offers'
+        elif not offers_page:
+            return updated_restaurant, 'no_offers'
+        elif not menu_page:
+            return updated_restaurant, 'no_menu'
+        elif updated:
+            return updated_restaurant, 'updated'
+        else:
+            return updated_restaurant, 'unchanged'
 
     def crawl_all(self) -> None:
         """Crawl all restaurants in the JSON file."""
         restaurants = self.load_restaurants()
         if not restaurants:
             return
-        
         print(f"Found {len(restaurants)} restaurants to process")
-        
         updated_restaurants = []
-        
+        summary = {'updated': [], 'unchanged': [], 'no_website': [], 'no_menu_or_offers': [], 'no_menu': [], 'no_offers': []}
         for i, restaurant in enumerate(restaurants, 1):
             print(f"\n[{i}/{len(restaurants)}] Processing restaurant...")
-            updated_restaurant = self.crawl_restaurant(restaurant)
+            updated_restaurant, status = self.crawl_restaurant(restaurant)
             updated_restaurants.append(updated_restaurant)
-            
-            # Add delay between requests to be respectful
+            summary.setdefault(status, []).append(updated_restaurant.get('name', 'Unknown'))
             time.sleep(1)
-        
-        # Save updated data
         self.save_restaurants(updated_restaurants)
         print(f"\nCrawling completed! Results saved to {self.json_file_path}")
+        print("\nSummary:")
+        for k, v in summary.items():
+            print(f"  {k}: {len(v)} - {v}")
 
 
 def main():

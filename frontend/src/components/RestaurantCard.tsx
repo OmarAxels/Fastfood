@@ -1,86 +1,69 @@
 import { Restaurant } from '@/types'
 import OfferItem from './OfferItem'
+import { colors, restaurantThemes } from '@/config/colors'
 
 interface RestaurantCardProps {
   restaurant: Restaurant
 }
 
-function getRestaurantLogo(restaurantName: string): string {
-  const name = restaurantName.toLowerCase()
-  if (name.includes('dominos') || name.includes('domino')) {
-    return '/dominos.png'
-  } else if (name.includes('kfc')) {
-    return '/kfc.png'
-  }
-  // Default placeholder if no logo found
-  return '/dominos.png' // You can change this to a generic restaurant icon
-}
-
-function getRestaurantColors(restaurantName: string): { bg: string; text: string } {
-  const name = restaurantName.toLowerCase()
-  if (name.includes('dominos') || name.includes('domino')) {
-    return { bg: 'bg-blue-50', text: 'text-blue-700' }
-  } else if (name.includes('kfc')) {
-    return { bg: 'bg-red-50', text: 'text-red-700' }
-  }
-  // Default colors
-  return { bg: 'bg-red-50', text: 'text-red-700' }
-}
-
 export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
-  const logoSrc = getRestaurantLogo(restaurant.name)
-  const colors = getRestaurantColors(restaurant.name)
+  if (!restaurant.offers || restaurant.offers.length === 0) {
+    return null
+  }
+
+  // Get restaurant theme color or fallback to info color
+  const themeColor = restaurantThemes[restaurant.name as keyof typeof restaurantThemes] || colors.info
   
   return (
-    <div className="mb-6">
-      {/* Restaurant Banner */}
-      <div className="-mx-4 mb-4">
-        {restaurant.website ? (
+    <div 
+      className="rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100" 
+      style={{ 
+        backgroundColor: colors.surface
+      }}
+    >
+      {/* Restaurant Header */}
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-3">
+          {restaurant.logo && (
+            <img 
+              src={restaurant.logo} 
+              alt={restaurant.name} 
+              className="w-10 h-10 rounded-full shadow-sm" 
+            />
+          )}
+          <div>
+            <h2 className="text-xl font-bold" style={{ color: colors.primary }}>
+              {restaurant.name}
+            </h2>
+            <div className="flex items-center gap-2 mt-1">
+              <span className="text-sm px-3 py-1 rounded-full font-medium shadow-sm" style={{ 
+                color: colors.white,
+                background: `linear-gradient(135deg, ${themeColor} 0%, ${themeColor}CC 100%)`
+              }}>
+                {restaurant.offers.length} tilboð
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        {restaurant.website && (
           <a
             href={restaurant.website}
             target="_blank"
             rel="noopener noreferrer"
-            className={`block ${colors.bg} rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow`}
+            className="text-sm font-medium hover:opacity-80 transition-all duration-200 px-3 py-2 rounded-lg hover:shadow-sm"
+            style={{ 
+              color: colors.info,
+              backgroundColor: colors.gray[50]
+            }}
           >
-            <div className="flex items-center space-x-3">
-              <img
-                src={logoSrc}
-                alt={restaurant.name}
-                className="w-8 h-8 rounded-md"
-              />
-              <div>
-                <h2 className={`text-lg font-semibold ${colors.text}`}>
-                  {restaurant.name}
-                </h2>
-                <p className="text-sm text-gray-600">
-                  {restaurant.offers.length} tilboð
-                </p>
-              </div>
-            </div>
+            Heimasíða ↗
           </a>
-        ) : (
-          <div className={`${colors.bg} rounded-xl p-4 shadow-sm`}>
-            <div className="flex items-center space-x-3">
-              <img
-                src={logoSrc}
-                alt={restaurant.name}
-                className="w-8 h-8 rounded-md"
-              />
-              <div>
-                <h2 className={`text-lg font-semibold ${colors.text}`}>
-                  {restaurant.name}
-                </h2>
-                <p className="text-sm text-gray-600">
-                  {restaurant.offers.length} tilboð
-                </p>
-              </div>
-            </div>
-          </div>
         )}
       </div>
 
-      {/* Offer Cards */}
-      <div className="grid grid-cols-3 gap-2">
+      {/* Offers - One per row */}
+      <div className="space-y-4">
         {restaurant.offers.map((offer) => (
           <OfferItem key={offer.id} offer={offer} />
         ))}

@@ -1,10 +1,13 @@
 import logging
 import time
+import json
+from pathlib import Path
 from typing import Dict, List
 from json_reader import FastfoodInfoReader
 from parsers.kfc_parser import KFCParser
 from parsers.dominos_parser import DominosParser
 from parsers.subway_parser import SubwayParser
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +34,9 @@ class FastfoodScraper:
             'restaurants_processed': 0,
             'offers_saved': 0
         }
+        
+        # Storage for enhanced offers with food information
+        self.enhanced_offers_data = []
     
     def run(self):
         """Run the complete scraping process"""
@@ -47,6 +53,9 @@ class FastfoodScraper:
                 time.sleep(2)
             
             self._log_summary()
+            
+            # Save enhanced offers with food information to JSON file
+            self._save_enhanced_offers_json()
             
         except Exception as e:
             logger.error(f"Scraping failed: {e}")
@@ -75,26 +84,37 @@ class FastfoodScraper:
                 self.stats['failed_scrapes'] += 1
                 return
             
+            # Enhance offers with food information for visual representations
+            enhanced_offers = parser.enhance_offers_with_food_info(offers)
+            
+            # Store enhanced offers for later JSON export
+            for offer in enhanced_offers:
+                offer['restaurant_name'] = restaurant_name
+                self.enhanced_offers_data.append(offer)
+            
+            # Prepare database-compatible offers (without food information fields)
+            db_offers = parser.prepare_offers_for_database(enhanced_offers)
+            
             # Add source_url to each offer
-            for offer in offers:
+            for offer in db_offers:
                 offer['source_url'] = offers_url
             
             # Use batch save method to clear existing offers and save new ones
             try:
                 saved_count = self.db_manager.save_offers_batch(
-                    offers_data=offers,
+                    offers_data=db_offers,
                     restaurant_data=restaurant,
                     clear_existing=True  # This will overwrite old data
                 )
                 self.stats['offers_saved'] += saved_count
-                self.stats['total_offers'] += len(offers)
+                self.stats['total_offers'] += len(enhanced_offers)
                 self.stats['successful_scrapes'] += 1
-                logger.info(f"Successfully scraped {len(offers)} offers from {restaurant_name}")
+                logger.info(f"Successfully scraped {len(enhanced_offers)} offers from {restaurant_name}")
             except Exception as e:
                 logger.error(f"Failed to save offers for {restaurant_name}: {e}")
                 # Fallback to individual saves (backward compatibility)
                 saved_count = 0
-                for offer in offers:
+                for offer in db_offers:
                     try:
                         self.db_manager.save_offer(offer, restaurant)
                         saved_count += 1
@@ -103,9 +123,9 @@ class FastfoodScraper:
                 
                 if saved_count > 0:
                     self.stats['offers_saved'] += saved_count
-                    self.stats['total_offers'] += len(offers)
+                    self.stats['total_offers'] += len(enhanced_offers)
                     self.stats['successful_scrapes'] += 1
-                    logger.info(f"Successfully saved {saved_count}/{len(offers)} offers from {restaurant_name}")
+                    logger.info(f"Successfully saved {saved_count}/{len(enhanced_offers)} offers from {restaurant_name}")
                 else:
                     self.stats['failed_scrapes'] += 1
             
@@ -134,4 +154,42 @@ class FastfoodScraper:
         
         # This would be populated by parsers during scraping
         # For now, we'll add this functionality to the parsers
-        logger.info("Field extraction details will be logged by individual parsers") 
+        logger.info("Field extraction details will be logged by individual parsers")
+    
+    def _save_enhanced_offers_json(self):
+        """Save enhanced offers with food information to a JSON file"""
+        if not self.enhanced_offers_data:
+            logger.info("No enhanced offers data to save")
+            return
+        
+        try:
+            # Create enhanced offers file path
+            output_file = Path("enhanced_offers_with_food_info.json")
+            
+            # Prepare data for JSON serialization
+            json_data = {
+                'scraped_at': datetime.utcnow().isoformat(),
+                'total_offers': len(self.enhanced_offers_data),
+                'restaurants': list(set(offer['restaurant_name'] for offer in self.enhanced_offers_data)),
+                'offers': []
+            }
+            
+            # Convert offers to JSON-serializable format
+            for offer in self.enhanced_offers_data:
+                json_offer = {}
+                for key, value in offer.items():
+                    # Handle datetime objects
+                    if hasattr(value, 'isoformat'):
+                        json_offer[key] = value.isoformat()
+                    else:
+                        json_offer[key] = value
+                json_data['offers'].append(json_offer)
+            
+            # Save to JSON file
+            with open(output_file, 'w', encoding='utf-8') as f:
+                json.dump(json_data, f, indent=2, ensure_ascii=False)
+            
+            logger.info(f"Saved {len(self.enhanced_offers_data)} enhanced offers with food information to {output_file}")
+            
+        except Exception as e:
+            logger.error(f"Failed to save enhanced offers JSON: {e}") 

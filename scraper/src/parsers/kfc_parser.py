@@ -1,6 +1,7 @@
 import logging
 from typing import List, Dict
 from .base_parser import BaseParser
+import re, json as pyjson
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +14,28 @@ class KFCParser(BaseParser):
         try:
             soup = self.fetch_page(url)
             offers = []
-            
+
+            # --- NEW: Build product_id -> price mapping from script blocks ---
+            product_price_map = {}
+            for script in soup.find_all('script', string=True):
+                script_text = script.string
+                if not script_text:
+                    continue
+                match = re.search(r"Product\.setBasePricing\('([^']+)',\s*(\{.*?\})\);", script_text)
+                if match:
+                    product_id = match.group(1)
+                    data = match.group(2)
+                    try:
+                        data_json = pyjson.loads(data.replace("'", '"'))
+                        price = None
+                        if 'skus' in data_json and '' in data_json['skus']:
+                            price = data_json['skus']['']
+                        if price:
+                            product_price_map[product_id] = price
+                    except Exception:
+                        continue
+            # --- END NEW ---
+
             # KFC Iceland specific selectors for TILBOÐ sections only
             # Look for category sections that contain "tilboð" in their ID or heading
             tilbod_sections = []
@@ -61,7 +83,7 @@ class KFCParser(BaseParser):
             logger.info(f"Total offer products to process: {len(offer_elements)}")
             
             for element in offer_elements:
-                offer = self._extract_offer_data(element)
+                offer = self._extract_offer_data(element, product_price_map)
                 if offer and offer.get('offer_name'):
                     offers.append(offer)
             
@@ -96,7 +118,7 @@ class KFCParser(BaseParser):
         logger.info(f"Found {len(potential_offers)} potential product elements by content")
         return potential_offers[:30]  # Limit to avoid too many false positives
     
-    def _extract_offer_data(self, element) -> Dict:
+    def _extract_offer_data(self, element, product_price_map=None) -> Dict:
         """Extract offer data from a single product element"""
         offer = {
             'offer_name': None,
@@ -109,6 +131,15 @@ class KFCParser(BaseParser):
             'availability_text': None
         }
         
+        # --- NEW: Try to get product_id from form or container ---
+        product_id = None
+        form = element.find('form', {'data-product': True})
+        if form:
+            product_id = form.get('data-product')
+        if not product_id and element.get('id') and element.get('id').startswith('product_'):
+            product_id = element.get('id').replace('product_', '')
+        # --- END NEW ---
+
         # Extract name using KFC specific selectors
         name_selectors = [
             '.product__name-wrapper',  # KFC specific name wrapper
@@ -149,26 +180,36 @@ class KFCParser(BaseParser):
             offer['description'] = self.clean_text(combined_desc)
             self.field_stats['description_extracted'] += 1
         
-        # Extract price using KFC specific selectors and format
-        price_selectors = [
-            '.product__price',           # KFC specific price
-            '.product__mobile-price-value',  # KFC mobile price
-            '[data-product-price]',      # KFC price data attribute
-            '.price'                     # Generic fallback
-        ]
-        
-        for selector in price_selectors:
-            price_elements = element.select(selector)
-            for price_element in price_elements:
-                price_text = price_element.get_text()
-                # Handle KFC specific format: "kr&nbsp;2299" or "kr 2299"
-                price = self.extract_price_kr(price_text)
-                if price:
-                    offer['price_kr'] = price
-                    self.field_stats['price_extracted'] += 1
+        # --- NEW: Use product_price_map if available ---
+        if product_price_map and product_id and product_id in product_price_map:
+            price = product_price_map[product_id]
+            if price:
+                offer['price_kr'] = int(round(price / 100))
+                self.field_stats['price_extracted'] += 1
+        else:
+            # fallback to old extraction
+            price_selectors = [
+                '.product__price',           # KFC specific price
+                '.product__mobile-price-value',  # KFC mobile price
+                '[data-product-price]',      # KFC price data attribute
+                '.price'                     # Generic fallback
+            ]
+            for selector in price_selectors:
+                price_elements = element.select(selector)
+                for price_element in price_elements:
+                    price_text = price_element.get_text()
+                    # Handle KFC specific format: "kr&nbsp;2299" or "kr 2299"
+                    price = self.extract_price_kr(price_text)
+                    if price:
+                        # KFC-specific fix: if price is less than 1000, multiply by 10 (missing trailing zero)
+                        if price < 1000:
+                            price = price * 10
+                        offer['price_kr'] = price
+                        self.field_stats['price_extracted'] += 1
+                        break
+                if offer['price_kr']:
                     break
-            if offer['price_kr']:
-                break
+        # --- END NEW ---
         
         # Get all text for additional extraction
         full_text = element.get_text(separator=' ', strip=True)
