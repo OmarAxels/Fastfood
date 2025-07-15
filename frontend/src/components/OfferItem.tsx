@@ -2,6 +2,7 @@ import { Offer } from '@/types'
 import { useState } from 'react'
 import MealVisualizer from './MealVisualizer'
 import { colors } from '@/config/colors'
+import { Icon } from '@iconify/react'
 
 interface OfferItemProps {
   offer: Offer
@@ -45,12 +46,22 @@ const PeopleIcon = ({ count }: { count: number }) => (
 export default function OfferItem({ offer }: OfferItemProps) {
   const [isExpanded, setIsExpanded] = useState(false)
 
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    console.log('Offer clicked, current state:', isExpanded)
+    console.log('Offer name:', offer.name)
+    setIsExpanded(!isExpanded)
+    console.log('New state will be:', !isExpanded)
+  }
+
   return (
     <div className="relative group w-full">
       <div 
-        className="rounded-xl p-4 cursor-pointer hover:shadow-lg transition-all duration-300 w-full border border-gray-100"
+        className="rounded-xl p-4 cursor-pointer hover:shadow-lg transition-all duration-300 w-full border border-gray-100 select-none"
         style={{ backgroundColor: colors.surface }}
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={handleClick}
+        onMouseDown={(e) => e.preventDefault()}
       >
         {/* Main content - always visible */}
         <div className="flex items-start justify-between gap-4">
@@ -125,47 +136,76 @@ export default function OfferItem({ offer }: OfferItemProps) {
               )}
             </div>
           </div>
+
+          {/* Expand/Collapse indicator */}
+          <div className="flex items-center ml-2">
+            <Icon 
+              icon={isExpanded ? "mdi:chevron-up" : "mdi:chevron-down"} 
+              className="w-5 h-5 transition-transform duration-200"
+              style={{ color: colors.secondary }}
+            />
+          </div>
         </div>
 
-        {/* Expanded content - shown when expanded on mobile or hover on desktop */}
-        {(isExpanded || true) && (
-          <>
-            {/* Mobile: Expanded description and food details */}
-            {isExpanded && (
-              <div className="mt-4 pt-4 md:hidden space-y-3" style={{ borderTop: `1px solid ${colors.gray[200]}` }}>
-                {/* Detailed Food Visualization */}
-                <MealVisualizer offer={offer} showDetails={true} />
-                
-                {/* Description */}
-                {offer.description && (
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <h4 className="text-sm font-semibold mb-2" style={{ color: colors.primary }}>Lýsing</h4>
-                    <p className="text-sm leading-relaxed" style={{ color: colors.secondary }}>
-                      {offer.description}
-                    </p>
-                  </div>
-                )}
+        {/* Click indicator for debugging */}
+        <div className="text-xs text-gray-400 mt-2">
+          Click anywhere to expand/collapse
+        </div>
+
+        {/* Test button */}
+        <button 
+          onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            console.log('Test button clicked!')
+            alert('Test button works!')
+          }}
+          className="text-xs bg-blue-500 text-white px-2 py-1 rounded mt-2"
+        >
+          Test Click
+        </button>
+
+        {/* Expanded content - shown when expanded */}
+        {isExpanded && (
+          <div className="mt-4 pt-4 space-y-3" style={{ borderTop: `1px solid ${colors.gray[200]}` }}>
+            {/* Debug info */}
+            <div className="text-xs text-gray-500 mb-2">
+              ✅ Expanded: {isExpanded.toString()}
+              <br />
+              Food items: {offer.food_items?.length || 0}
+              <br />
+              Main items: {offer.main_items?.length || 0}
+              <br />
+              Side items: {offer.side_items?.length || 0}
+              <br />
+              Drink items: {offer.drink_items?.length || 0}
+              <br />
+              Dessert items: {offer.dessert_items?.length || 0}
+            </div>
+            
+            {/* Detailed Food Visualization */}
+            <MealVisualizer offer={offer} showDetails={true} />
+            
+            {/* Description */}
+            {offer.description && (
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h4 className="text-sm font-semibold mb-2" style={{ color: colors.primary }}>Lýsing</h4>
+                <p className="text-sm leading-relaxed" style={{ color: colors.secondary }}>
+                  {offer.description}
+                </p>
               </div>
             )}
             
-            {/* Desktop: Hover description and food details */}
-            <div className="hidden md:block absolute left-0 right-0 top-full mt-2 rounded-xl p-4 shadow-xl z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto border border-gray-100" style={{ backgroundColor: colors.white }}>
-              {/* Detailed Food Visualization */}
-              <div className="mb-1">
-                <MealVisualizer offer={offer} showDetails={true} />
+            {/* Fallback if no food items */}
+            {(!offer.food_items || offer.food_items.length === 0) && (
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h4 className="text-sm font-semibold mb-2" style={{ color: colors.primary }}>Upplýsingar</h4>
+                <p className="text-sm leading-relaxed" style={{ color: colors.secondary }}>
+                  Engin nánari upplýsingar um matvæli í boði fyrir þetta tilboð.
+                </p>
               </div>
-              
-              {/* Description */}
-              {offer.description && (
-                <div className="bg-gray-50 p-3 rounded-lg">
-                  <h4 className="text-sm font-semibold mb-2" style={{ color: colors.primary }}>Lýsing</h4>
-                  <p className="text-sm leading-relaxed" style={{ color: colors.secondary }}>
-                    {offer.description}
-                  </p>
-                </div>
-              )}
-            </div>
-          </>
+            )}
+          </div>
         )}
       </div>
     </div>

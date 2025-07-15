@@ -1,5 +1,7 @@
 import { FoodItem as FoodItemType } from '@/types'
 import { colors } from '@/config/colors'
+import { Icon } from '@iconify/react'
+import { getFoodIcon, getIconSizeClass, getFoodIconColor } from '@/utils/iconMapping'
 
 interface FoodItemProps {
   item: FoodItemType
@@ -54,15 +56,30 @@ export default function FoodItem({ item, showDetails = false }: FoodItemProps) {
 
   const sizeText = getSizeText()
   const categoryColors = getCategoryColor()
+  const iconColor = getFoodIconColor(item.type, item.category)
 
   if (!showDetails) {
     // Compact view - just icon and quantity
     return (
       <div className="flex items-center gap-1">
-        <span className="text-base">{item.icon}</span>
-        {item.quantity > 1 && (
-          <span className="text-sm font-semibold" style={{ color: colors.primary }}>{item.quantity}x</span>
-        )}
+        <div className="relative">
+          <Icon 
+            icon={getFoodIcon(item.type, item.category)} 
+            className={getIconSizeClass('md')}
+            style={{ color: iconColor }}
+          />
+          {item.quantity > 1 && (
+            <div 
+              className="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold"
+              style={{ 
+                backgroundColor: colors.accent,
+                color: colors.white
+              }}
+            >
+              {item.quantity}
+            </div>
+          )}
+        </div>
         {sizeText && (
           <span className="text-sm" style={{ color: colors.secondary }}>({sizeText})</span>
         )}
@@ -76,12 +93,26 @@ export default function FoodItem({ item, showDetails = false }: FoodItemProps) {
       background: categoryColors.background,
       color: categoryColors.color
     }}>
-      <span className="text-base">{item.icon}</span>
+      <div className="relative">
+        <Icon 
+          icon={getFoodIcon(item.type, item.category)} 
+          className={getIconSizeClass('lg')}
+          style={{ color: iconColor }}
+        />
+        {item.quantity > 1 && (
+          <div 
+            className="absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold"
+            style={{ 
+              backgroundColor: colors.white,
+              color: colors.accent
+            }}
+          >
+            {item.quantity}
+          </div>
+        )}
+      </div>
       <div className="flex flex-col gap-0.5">
         <div className="flex items-center gap-1">
-          {item.quantity > 1 && (
-            <span className="text-sm font-bold">{item.quantity}x</span>
-          )}
           <span className="text-sm font-semibold">{item.name}</span>
           {sizeText && (
             <span className="text-sm opacity-80">({sizeText})</span>

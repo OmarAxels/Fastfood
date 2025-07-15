@@ -199,7 +199,7 @@ def get_enhanced_offers(db: Session = Depends(get_db)):
             # Fallback to basic data if enhanced file not found
             return get_restaurants(db)
         
-        def get_restaurant_logo(restaurant_name: str) -> str:
+        def get_restaurant_logo(restaurant_name: str) -> str | None:
             """Get logo URL for restaurant"""
             name = restaurant_name.lower()
             if 'dominos' in name or 'domino' in name:
@@ -208,7 +208,7 @@ def get_enhanced_offers(db: Session = Depends(get_db)):
                 return '/kfc.png'
             elif 'subway' in name:
                 return '/subway.jpg'
-            return '/restaurant-default.png'
+            return None
         
         def get_restaurant_background_color(restaurant_name: str) -> str:
             """Get background color for restaurant"""

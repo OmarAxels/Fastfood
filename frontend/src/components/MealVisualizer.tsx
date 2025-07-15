@@ -1,6 +1,7 @@
 import { Offer } from '@/types'
 import FoodItem from './FoodItem'
 import { colors } from '@/config/colors'
+import { Icon } from '@iconify/react'
 
 interface MealVisualizerProps {
   offer: Offer
@@ -8,33 +9,31 @@ interface MealVisualizerProps {
 }
 
 export default function MealVisualizer({ offer, showDetails = false }: MealVisualizerProps) {
-  if (!offer.food_items || offer.food_items.length === 0) {
-    return null
-  }
-
-
   if (!showDetails) {
-    // Compact view - show visual summary without sauces and no plus signs
-    const getFilteredVisualSummary = () => {
-      if (offer.visual_summary) {
-        // Remove plus signs and sauce icons from visual summary
-        return offer.visual_summary
-          .replace(/\s*\+\s*/g, ' ')  // Remove plus signs
-          .replace(/🥄/g, '')          // Remove sauce icons
-          .replace(/\s+/g, ' ')       // Clean up extra spaces
-          .trim()
-      }
-      return '🍽️ Mat'
-    }
-
+    // Compact view - always show something
     return (
-      <div className="text-sm font-medium" style={{ color: colors.primary }}>
-        {getFilteredVisualSummary()}
+      <div className="flex items-center gap-1 text-sm font-medium" style={{ color: colors.primary }}>
+        <Icon 
+          icon="mdi:food" 
+          className="w-4 h-4" 
+          style={{ color: colors.accent }}
+        />
+        <span>Mat</span>
       </div>
     )
   }
 
   // Detailed view
+  if (!offer.food_items || offer.food_items.length === 0) {
+    return (
+      <div className="space-y-3">
+        <div className="text-sm text-gray-500 italic">
+          Engin nánari upplýsingar um matvæli í boði.
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-3">
 

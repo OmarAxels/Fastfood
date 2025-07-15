@@ -14,6 +14,16 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
   // Get restaurant theme color or fallback to info color
   const themeColor = restaurantThemes[restaurant.name as keyof typeof restaurantThemes] || colors.info
   
+  // Generate initials from restaurant name
+  const getInitials = (name: string): string => {
+    return name
+      .split(' ')
+      .map(word => word.charAt(0))
+      .join('')
+      .toUpperCase()
+      .slice(0, 2)
+  }
+
   return (
     <div 
       className="rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100" 
@@ -24,12 +34,22 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
       {/* Restaurant Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          {restaurant.logo && (
+          {restaurant.logo ? (
             <img 
               src={restaurant.logo} 
               alt={restaurant.name} 
               className="w-10 h-10 rounded-full shadow-sm" 
             />
+          ) : (
+            <div 
+              className="w-10 h-10 rounded-full shadow-sm flex items-center justify-center font-bold text-sm"
+              style={{ 
+                backgroundColor: themeColor,
+                color: colors.white
+              }}
+            >
+              {getInitials(restaurant.name)}
+            </div>
           )}
           <div>
             <h2 className="text-xl font-bold" style={{ color: colors.primary }}>
