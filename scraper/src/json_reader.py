@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 class FastfoodInfoReader:
     """Reads and parses fastfood restaurant information from JSON file"""
     
-    def __init__(self, json_file_path: str = "fastfood-info-test.json"):
+    def __init__(self, json_file_path: str = "fastfood-info.json"):
         self.json_file_path = Path(json_file_path)
         if not self.json_file_path.exists():
             raise FileNotFoundError(f"Fastfood info file not found: {json_file_path}")

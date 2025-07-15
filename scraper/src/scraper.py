@@ -7,6 +7,8 @@ from json_reader import FastfoodInfoReader
 from parsers.kfc_parser import KFCParser
 from parsers.dominos_parser import DominosParser
 from parsers.subway_parser import SubwayParser
+from parsers.ai_parser import AIParser
+from config import PARSER_CONFIG, CRAWL_DELAY
 from datetime import datetime
 
 logger = logging.getLogger(__name__)
@@ -19,12 +21,9 @@ class FastfoodScraper:
         self.db_manager = db_manager
         self.json_reader = FastfoodInfoReader()
         
-        # Initialize parsers
-        self.parsers = {
-            'KFC Iceland': KFCParser(),
-            "Domino's Pizza Iceland": DominosParser(),
-            'Subway Iceland': SubwayParser()
-        }
+        # Initialize parsers based on configuration
+        self.parsers = {}
+        self._initialize_parsers()
         
         # Statistics tracking
         self.stats = {
@@ -38,6 +37,34 @@ class FastfoodScraper:
         # Storage for enhanced offers with food information
         self.enhanced_offers_data = []
     
+    def _initialize_parsers(self):
+        """Initialize parsers based on configuration"""
+        for restaurant_name, parser_type in PARSER_CONFIG.items():
+            if parser_type == 'ai':
+                self.parsers[restaurant_name] = AIParser()
+            elif parser_type == 'traditional':
+                # Map restaurant names to their traditional parsers
+                if restaurant_name == 'KFC Iceland':
+                    self.parsers[restaurant_name] = KFCParser()
+                elif restaurant_name == "Domino's Pizza Iceland":
+                    self.parsers[restaurant_name] = DominosParser()
+                elif restaurant_name == 'Subway Iceland':
+                    self.parsers[restaurant_name] = SubwayParser()
+                else:
+                    logger.warning(f"No traditional parser available for {restaurant_name}")
+            else:
+                logger.warning(f"Unknown parser type '{parser_type}' for {restaurant_name}")
+    
+    def _get_parser_for_restaurant(self, restaurant_name: str):
+        """Get the appropriate parser for a restaurant, defaulting to AI parser"""
+        # Check if we have a specific parser configured
+        if restaurant_name in self.parsers:
+            return self.parsers[restaurant_name]
+        
+        # Default to AI parser for new restaurants
+        logger.info(f"No specific parser configured for {restaurant_name}, using AI parser")
+        return AIParser()
+    
     def run(self):
         """Run the complete scraping process"""
         logger.info("Starting fastfood scraper")
@@ -50,7 +77,7 @@ class FastfoodScraper:
                 self._scrape_restaurant(restaurant)
                 
                 # Small delay between restaurants to be respectful
-                time.sleep(2)
+                time.sleep(CRAWL_DELAY)
             
             self._log_summary()
             
@@ -70,11 +97,7 @@ class FastfoodScraper:
         
         try:
             # Get appropriate parser
-            parser = self.parsers.get(restaurant_name)
-            if not parser:
-                logger.warning(f"No parser available for {restaurant_name}")
-                self.stats['failed_scrapes'] += 1
-                return
+            parser = self._get_parser_for_restaurant(restaurant_name)
             
             # Scrape offers
             offers = parser.scrape_offers(offers_url)
