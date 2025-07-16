@@ -147,42 +147,9 @@ export default function OfferItem({ offer }: OfferItemProps) {
           </div>
         </div>
 
-        {/* Click indicator for debugging */}
-        <div className="text-xs text-gray-400 mt-2">
-          Click anywhere to expand/collapse
-        </div>
-
-        {/* Test button */}
-        <button 
-          onClick={(e) => {
-            e.preventDefault()
-            e.stopPropagation()
-            console.log('Test button clicked!')
-            alert('Test button works!')
-          }}
-          className="text-xs bg-blue-500 text-white px-2 py-1 rounded mt-2"
-        >
-          Test Click
-        </button>
-
         {/* Expanded content - shown when expanded */}
         {isExpanded && (
           <div className="mt-4 pt-4 space-y-3" style={{ borderTop: `1px solid ${colors.gray[200]}` }}>
-            {/* Debug info */}
-            <div className="text-xs text-gray-500 mb-2">
-              ✅ Expanded: {isExpanded.toString()}
-              <br />
-              Food items: {offer.food_items?.length || 0}
-              <br />
-              Main items: {offer.main_items?.length || 0}
-              <br />
-              Side items: {offer.side_items?.length || 0}
-              <br />
-              Drink items: {offer.drink_items?.length || 0}
-              <br />
-              Dessert items: {offer.dessert_items?.length || 0}
-            </div>
-            
             {/* Detailed Food Visualization */}
             <MealVisualizer offer={offer} showDetails={true} />
             

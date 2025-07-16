@@ -11,9 +11,9 @@ interface FoodItemProps {
 export default function FoodItem({ item, showDetails = false }: FoodItemProps) {
   const getSizeText = () => {
     if (!item.size) return null
-    
+
     if (item.size.inches) {
-      return `${item.size.inches}"`
+      return `${item.size.inches}\"`;
     }
     if (item.size.liters) {
       return `${item.size.liters}L`
@@ -24,64 +24,70 @@ export default function FoodItem({ item, showDetails = false }: FoodItemProps) {
     return null
   }
 
+  // Compute size letter for badge (L: lítið/small, M: miðlungs/medium, S: stórt/large)
+  const getSizeLetter = () => {
+    if (!item.size || !item.size.descriptor) return null
+    const d = item.size.descriptor.toLowerCase()
+    if (d.includes('lítið') || d === 'small') return 'L'
+    if (d.includes('miðlungs') || d === 'medium') return 'M'
+    if (d.includes('stórt') || d === 'large') return 'S'
+    return null
+  }
+
+  const sizeText = getSizeText()
+  const sizeLetter = getSizeLetter()
+
   const getCategoryColor = () => {
     switch (item.category) {
-      case 'main': 
-        return { 
+      case 'main':
+        return {
           background: `linear-gradient(135deg, ${colors.accent} 0%, #FF6B6B 100%)`,
-          color: colors.white
+          color: colors.white,
         }
-      case 'side': 
-        return { 
+      case 'side':
+        return {
           background: `linear-gradient(135deg, ${colors.success} 0%, #48BB78 100%)`,
-          color: colors.white
+          color: colors.white,
         }
-      case 'drink': 
-        return { 
+      case 'drink':
+        return {
           background: `linear-gradient(135deg, ${colors.info} 0%, ${colors.purple} 100%)`,
-          color: colors.white
+          color: colors.white,
         }
-      case 'dessert': 
-        return { 
+      case 'dessert':
+        return {
           background: `linear-gradient(135deg, ${colors.pink} 0%, #ED64A6 100%)`,
-          color: colors.white
+          color: colors.white,
         }
-      default: 
-        return { 
+      default:
+        return {
           background: `linear-gradient(135deg, ${colors.warning} 0%, #F6AD55 100%)`,
-          color: colors.white
+          color: colors.white,
         }
     }
   }
 
-  const sizeText = getSizeText()
   const categoryColors = getCategoryColor()
   const iconColor = getFoodIconColor(item.type, item.category)
 
   if (!showDetails) {
-    // Compact view - just icon and quantity
+    // Compact view - badge and icon
     return (
-      <div className="flex items-center gap-1">
-        <div className="relative">
-          <Icon 
-            icon={getFoodIcon(item.type, item.category)} 
-            className={getIconSizeClass('md')}
-            style={{ color: iconColor }}
-          />
-          {item.quantity > 1 && (
-            <div 
-              className="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold"
-              style={{ 
-                backgroundColor: colors.accent,
-                color: colors.white
-              }}
-            >
-              {item.quantity}
-            </div>
-          )}
-        </div>
+      <div className="flex items-center gap-2">
+        {item.quantity > 1 && (
+          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 text-sm font-bold text-gray-700">
+            {`${sizeLetter || ''}${item.quantity}`}
+          </div>
+        )}
+        <Icon
+          icon={getFoodIcon(item.type, item.category)}
+          className={getIconSizeClass('md')}
+          style={{ color: iconColor }}
+        />
         {sizeText && (
-          <span className="text-sm" style={{ color: colors.secondary }}>({sizeText})</span>
+          <span className="text-sm" style={{ color: colors.secondary }}>
+            ({sizeText})
+          </span>
         )}
       </div>
     )
@@ -89,28 +95,23 @@ export default function FoodItem({ item, showDetails = false }: FoodItemProps) {
 
   // Detailed view
   return (
-    <div className="flex items-center gap-2 px-3 py-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-200" style={{ 
-      background: categoryColors.background,
-      color: categoryColors.color
-    }}>
-      <div className="relative">
-        <Icon 
-          icon={getFoodIcon(item.type, item.category)} 
-          className={getIconSizeClass('lg')}
-          style={{ color: iconColor }}
-        />
-        {item.quantity > 1 && (
-          <div 
-            className="absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold"
-            style={{ 
-              backgroundColor: colors.white,
-              color: colors.accent
-            }}
-          >
-            {item.quantity}
-          </div>
-        )}
-      </div>
+    <div
+      className="flex items-center gap-3 px-3 py-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-200"
+      style={{
+        background: categoryColors.background,
+        color: categoryColors.color,
+      }}
+    >
+      {item.quantity > 1 && (
+        <div className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 text-sm font-bold text-gray-700">
+          {`${sizeLetter || ''}${item.quantity}`}
+        </div>
+      )}
+      <Icon
+        icon={getFoodIcon(item.type, item.category)}
+        className={getIconSizeClass('lg')}
+        style={{ color: iconColor }}
+      />
       <div className="flex flex-col gap-0.5">
         <div className="flex items-center gap-1">
           <span className="text-sm font-semibold">{item.name}</span>
@@ -127,4 +128,4 @@ export default function FoodItem({ item, showDetails = false }: FoodItemProps) {
       </div>
     </div>
   )
-} 
+}
