@@ -123,7 +123,9 @@ class LLMFoodExtractor:
     
     def _create_llm_prompt(self, offer: Dict, batch_data: Dict) -> str:
         """Create prompt for LLM"""
-        print(f"Creating prompt for offer: {offer['offer_name']}")
+        # Debug output to stderr instead of stdout
+        import sys
+        print(f"Creating prompt for offer: {offer['offer_name']}", file=sys.stderr)
 
         # Get current food categories
         food_categories = self.categories_data['food_categories']

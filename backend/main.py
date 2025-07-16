@@ -11,6 +11,8 @@ from dotenv import load_dotenv
 import json
 from pathlib import Path
 import logging
+import subprocess
+import sys
 
 # Load environment variables
 load_dotenv()
@@ -132,6 +134,11 @@ class RestaurantsListResponse(BaseModel):
     total_offers: int
     last_updated: Optional[datetime] = None
 
+# Add request model for LLM extractor
+class LLMExtractorRequest(BaseModel):
+    offer_name: str
+    description: str
+
 # FastAPI app
 app = FastAPI(
     title="Fastfood Offers API",
@@ -173,6 +180,87 @@ def read_root():
 @app.get("/health")
 def health_check():
     return {"status": "healthy", "timestamp": datetime.utcnow()}
+
+@app.post("/test/llm_food_extractor")
+async def test_llm_food_extractor(request: LLMExtractorRequest):
+    """
+    Test the LLM food extractor script.
+    Accepts POST requests with offer_name and description.
+    Calls the Python LLM extractor script and returns the result.
+    """
+    try:
+        # Locate the scraper directory and CLI script
+        scraper_dir = Path("../scraper")
+        if not scraper_dir.exists():
+            raise HTTPException(status_code=500, detail="Scraper directory not found")
+        
+        script_path = scraper_dir / "src" / "llm_food_extractor_cli.py"
+        if not script_path.exists():
+            raise HTTPException(status_code=500, detail=f"LLM extractor CLI script not found at {script_path}")
+        
+        # Prepare the offer data as JSON
+        offer_data = [{
+            "offer_name": request.offer_name,
+            "description": request.description,
+            "price_kr": None,
+            "pickup_delivery": None,
+            "suits_people": None,
+            "available_weekdays": None,
+            "available_hours": None,
+            "restaurant_name": "Test"
+        }]
+        
+        # Run the subprocess with proper working directory
+        result = subprocess.run(
+            [sys.executable, str(script_path)],
+            input=json.dumps(offer_data),
+            capture_output=True,
+            text=True,
+            cwd=str(scraper_dir),  # Set working directory to scraper
+            encoding='utf-8'
+        )
+        
+        if result.returncode != 0:
+            error_msg = result.stderr or "Unknown error"
+            raise HTTPException(
+                status_code=500,
+                detail=f"LLM extractor failed: {error_msg}"
+            )
+        
+        # Parse the JSON response
+        try:
+            # Extract JSON from output (ignore debug prints)
+            output_lines = result.stdout.strip()
+            
+            # Find the JSON part (starts with [ or {)
+            json_start = -1
+            for i, char in enumerate(output_lines):
+                if char in '[{':
+                    json_start = i
+                    break
+            
+            if json_start == -1:
+                raise ValueError("No JSON found in output")
+            
+            json_part = output_lines[json_start:]
+            output_data = json.loads(json_part)
+            return output_data[0] if output_data else {}
+        except json.JSONDecodeError as e:
+            raise HTTPException(
+                status_code=500,
+                detail=f"Failed to parse extractor output: {e}. Output: {result.stdout}"
+            )
+        except ValueError as e:
+            raise HTTPException(
+                status_code=500,
+                detail=f"No valid JSON found in output: {e}. Output: {result.stdout}"
+            )
+            
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"LLM extractor execution failed: {e}")
+        raise HTTPException(status_code=500, detail=f"LLM extractor execution failed: {str(e)}")
 
 @app.get("/enhanced-offers")
 def get_enhanced_offers(db: Session = Depends(get_db)):

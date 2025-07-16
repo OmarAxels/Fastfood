@@ -30,8 +30,8 @@ export const getFoodIcon = (type: string, category: string): string => {
     'vegetables': 'mdi:food-apple',
     
     // Drinks
-    'soda': 'mdi:cup',
-    'cola': 'mdi:cup',
+    'soda': 'mdi:bottle-soda-classic',
+    'cola': 'mdi:bottle-soda-classic',
     'water': 'mdi:cup-water',
     'beer': 'mdi:beer',
     'wine': 'mdi:glass-wine',
