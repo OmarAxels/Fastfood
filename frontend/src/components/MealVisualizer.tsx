@@ -2,6 +2,7 @@ import { Offer } from '@/types'
 import FoodItem from './FoodItem'
 import { colors } from '@/config/colors'
 import { Icon } from '@iconify/react'
+import { getMainFoodType } from '@/utils/iconMapping'
 
 interface MealVisualizerProps {
   offer: Offer
@@ -10,15 +11,16 @@ interface MealVisualizerProps {
 
 export default function MealVisualizer({ offer, showDetails = false }: MealVisualizerProps) {
   if (!showDetails) {
-    // Compact view - always show something
+    // Compact view - show main food type
+    const mainFood = getMainFoodType(offer)
     return (
       <div className="flex items-center gap-1 text-sm font-medium" style={{ color: colors.primary }}>
         <Icon 
-          icon="mdi:food" 
+          icon={mainFood.icon} 
           className="w-4 h-4" 
           style={{ color: colors.accent }}
         />
-        <span>Mat</span>
+        <span>{mainFood.displayName}</span>
       </div>
     )
   }

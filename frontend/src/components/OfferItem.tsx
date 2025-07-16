@@ -27,19 +27,21 @@ function formatWeekdays(weekdays: string | null): string {
 }
 
 function formatPrice(price: number): string {
-  return new Intl.NumberFormat('is-IS').format(price)
+  return price.toLocaleString('de-DE', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  })
 }
 
 // Better people icon component
 const PeopleIcon = ({ count }: { count: number }) => (
-  <div className="flex items-center space-x-1 text-xs px-3 py-1.5 rounded-full shadow-sm transition-all duration-200 hover:shadow-md" style={{ 
-    background: `linear-gradient(135deg, ${colors.info} 0%, ${colors.purple} 100%)`,
-    color: colors.white 
+  <div className="flex items-center space-x-1 text-xs px-2 py-1 transition-all duration-200" style={{ 
+    color: colors.info
   }}>
     <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="flex-shrink-0">
       <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
     </svg>
-    <span className="font-medium">{count}</span>
+    <span className="font-medium leading-none">{count}</span>
   </div>
 )
 
@@ -68,7 +70,7 @@ export default function OfferItem({ offer }: OfferItemProps) {
           {/* Left side - Title and Food visualization */}
           <div className="flex-1 min-w-0">
             {/* Offer Title */}
-            <h3 className="text-lg font-bold mb-3" style={{ color: colors.primary }}>
+            <h3 className="text-md font-bold mb-3" style={{ color: colors.primary }}>
               {offer.name}
             </h3>
             
@@ -82,10 +84,10 @@ export default function OfferItem({ offer }: OfferItemProps) {
           <div className="flex flex-col items-end gap-3 flex-shrink-0">
             {/* Price with modern gradient background */}
             {offer.price_kr !== null ? (
-              <div className="px-4 py-2 shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105" style={{ 
+              <div className="" style={{ 
                 color: '#0073aa'
               }}>
-                <p className="text-lg font-bold">
+                <p className="text-md font-bold">
                   {formatPrice(offer.price_kr)} kr.
                 </p>
               </div>
@@ -105,31 +107,40 @@ export default function OfferItem({ offer }: OfferItemProps) {
                 <PeopleIcon count={offer.suits_people} />
               )}
               
-              {/* Pickup/Delivery with modern styling */}
+              {/* Pickup/Delivery with floating style */}
               {offer.pickup_delivery && (
-                <div className="text-xs font-semibold px-3 py-1.5 rounded-full shadow-sm hover:shadow-md transition-all duration-200" style={{ 
-                  background: `linear-gradient(135deg, ${colors.success} 0%, #48BB78 100%)`,
-                  color: colors.white 
+                <div className="text-xs font-medium px-2 py-1 transition-all duration-200" style={{ 
+                  color: colors.success
                 }}>
-                  {offer.pickup_delivery === 'Pickup' || offer.pickup_delivery === 'sækja' ? '🛍️ Sótt' : offer.pickup_delivery === 'Delivery' ? '🚚 Heimsent' : offer.pickup_delivery}
+                  {offer.pickup_delivery === 'sækja' ? (
+                    <>
+                      <Icon icon="streamline-ultimate-color:car-4" className="inline-block mr-1" />
+                      Sótt
+                    </>
+                  ) : offer.pickup_delivery === 'Delivery' ? (
+                    <>
+                      <Icon icon="mdi:truck" className="inline-block mr-1" />
+                      Heimsent
+                    </>
+                  ) : (
+                    offer.pickup_delivery
+                  )}
                 </div>
               )}
               
-              {/* Available hours with modern styling */}
+              {/* Available hours with floating style */}
               {offer.available_hours && (
-                <div className="text-xs font-semibold px-3 py-1.5 rounded-full shadow-sm hover:shadow-md transition-all duration-200" style={{ 
-                  background: `linear-gradient(135deg, ${colors.warning} 0%, #F6AD55 100%)`,
-                  color: colors.white 
+                <div className="text-xs font-medium px-2 py-1 transition-all duration-200" style={{ 
+                  color: colors.warning
                 }}>
                   ⏰ {offer.available_hours}
                 </div>
               )}
               
-              {/* Available days with modern styling */}
+              {/* Available days with floating style */}
               {offer.available_weekdays && (
-                <div className="text-xs font-semibold px-3 py-1.5 rounded-full shadow-sm hover:shadow-md transition-all duration-200" style={{ 
-                  background: `linear-gradient(135deg, ${colors.pink} 0%, #ED64A6 100%)`,
-                  color: colors.white 
+                <div className="text-xs font-medium px-2 py-1 transition-all duration-200" style={{ 
+                  color: colors.pink
                 }}>
                   📅 {formatWeekdays(offer.available_weekdays)}
                 </div>

@@ -39,7 +39,7 @@ class FoodExtractor:
                 'icon': '🍕'
             },
             'burger': {
-                'terms': ['hamborgari', 'borgari', 'burger'],
+                'terms': ['hamborgari', 'borgari', 'burger', 'búlluborgari', 'búlluborgarar', 'barnaborgari', 'barnaborgarar'],
                 'category': 'main', 
                 'icon': '🍔'
             },

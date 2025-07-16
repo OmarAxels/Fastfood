@@ -1,0 +1,380 @@
+[
+  {
+    "offer_name": "Fjölskyldutilboð",
+    "description": "2 Búlluborgarar, 2 barnaborgarar, stór franskar, 2 l gos og 2 kokteilsósur",
+    "price_kr": 6000,
+    "pickup_delivery": null,
+    "suits_people": 4,
+    "available_weekdays": null,
+    "available_hours": null,
+    "restaurant_name": "Búllan",
+    "food_items": [
+      {
+        "type": "burger",
+        "name": "Búlluborgarar",
+        "category": "main",
+        "icon": "fluent-emoji:hamburger",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 Búlluborgarar"
+      },
+      {
+        "type": "burger",
+        "name": "barnaborgarar",
+        "category": "main",
+        "icon": "fluent-emoji:hamburger",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 barnaborgarar"
+      },
+      {
+        "type": "fries",
+        "name": "franskar",
+        "category": "side",
+        "icon": "noto:french-fries",
+        "quantity": 1,
+        "size": {
+          "descriptor": "stór"
+        },
+        "modifiers": [],
+        "phrase": "1 franskar"
+      },
+      {
+        "type": "soda",
+        "name": "gos",
+        "category": "drink",
+        "icon": "mdi:cup",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 gos"
+      },
+      {
+        "type": "sauce",
+        "name": "kokteilsósur",
+        "category": "side",
+        "icon": "game-icons:ketchup",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 kokteilsósur"
+      }
+    ],
+    "meal_type": "combo",
+    "is_combo": true,
+    "complexity_score": 20,
+    "total_food_items": 9,
+    "main_items": [
+      {
+        "type": "burger",
+        "name": "Búlluborgarar",
+        "category": "main",
+        "icon": "fluent-emoji:hamburger",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 Búlluborgarar"
+      },
+      {
+        "type": "burger",
+        "name": "barnaborgarar",
+        "category": "main",
+        "icon": "fluent-emoji:hamburger",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 barnaborgarar"
+      }
+    ],
+    "side_items": [
+      {
+        "type": "fries",
+        "name": "franskar",
+        "category": "side",
+        "icon": "noto:french-fries",
+        "quantity": 1,
+        "size": {
+          "descriptor": "stór"
+        },
+        "modifiers": [],
+        "phrase": "1 franskar"
+      },
+      {
+        "type": "sauce",
+        "name": "kokteilsósur",
+        "category": "side",
+        "icon": "game-icons:ketchup",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 kokteilsósur"
+      }
+    ],
+    "drink_items": [
+      {
+        "type": "soda",
+        "name": "gos",
+        "category": "drink",
+        "icon": "mdi:cup",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 gos"
+      }
+    ],
+    "dessert_items": [],
+    "visual_summary": "🍽️ fluent-emoji:hamburgerfluent-emoji:hamburger + noto:french-friesgame-icons:ketchup + mdi:cup",
+    "new_categories": []
+  },
+  {
+    "offer_name": "Duo Bucket fyrir 2",
+    "description": "Tveir Original kjúklingabitar, tvær Zinger kjúklingalundir, fjórir Hot Wings, tveir skammtar af heitri brúnni sósu, tveir skammtar af frönskum, fjórar Hot Sauce og BBQ Dip-sósa.",
+    "price_kr": 454,
+    "pickup_delivery": null,
+    "suits_people": 2,
+    "available_weekdays": null,
+    "available_hours": null,
+    "restaurant_name": "KFC Iceland",
+    "food_items": [
+      {
+        "type": "chicken",
+        "name": "Original kjúklingabitar",
+        "category": "main",
+        "icon": "mdi:food-drumstick",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 Original kjúklingabitar"
+      },
+      {
+        "type": "chicken",
+        "name": "Zinger kjúklingalundir",
+        "category": "main",
+        "icon": "mdi:food-drumstick",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 Zinger kjúklingalundir"
+      },
+      {
+        "type": "chicken",
+        "name": "Hot Wings",
+        "category": "main",
+        "icon": "mdi:food-drumstick",
+        "quantity": 4,
+        "size": null,
+        "modifiers": [],
+        "phrase": "4 Hot Wings"
+      },
+      {
+        "type": "sauce",
+        "name": "heitri brúnni sósu",
+        "category": "side",
+        "icon": "game-icons:ketchup",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 heitri brúnni sósu"
+      },
+      {
+        "type": "fries",
+        "name": "frönskum",
+        "category": "side",
+        "icon": "noto:french-fries",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 frönskum"
+      },
+      {
+        "type": "sauce",
+        "name": "Hot Sauce",
+        "category": "side",
+        "icon": "game-icons:ketchup",
+        "quantity": 4,
+        "size": null,
+        "modifiers": [],
+        "phrase": "4 Hot Sauce"
+      },
+      {
+        "type": "sauce",
+        "name": "BBQ Dip-sósa",
+        "category": "side",
+        "icon": "game-icons:ketchup",
+        "quantity": 1,
+        "size": null,
+        "modifiers": [],
+        "phrase": "1 BBQ Dip-sósa"
+      }
+    ],
+    "meal_type": "sharing",
+    "is_combo": true,
+    "complexity_score": 18,
+    "total_food_items": 17,
+    "main_items": [
+      {
+        "type": "chicken",
+        "name": "Original kjúklingabitar",
+        "category": "main",
+        "icon": "mdi:food-drumstick",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 Original kjúklingabitar"
+      },
+      {
+        "type": "chicken",
+        "name": "Zinger kjúklingalundir",
+        "category": "main",
+        "icon": "mdi:food-drumstick",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 Zinger kjúklingalundir"
+      },
+      {
+        "type": "chicken",
+        "name": "Hot Wings",
+        "category": "main",
+        "icon": "mdi:food-drumstick",
+        "quantity": 4,
+        "size": null,
+        "modifiers": [],
+        "phrase": "4 Hot Wings"
+      }
+    ],
+    "side_items": [
+      {
+        "type": "sauce",
+        "name": "heitri brúnni sósu",
+        "category": "side",
+        "icon": "game-icons:ketchup",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 heitri brúnni sósu"
+      },
+      {
+        "type": "fries",
+        "name": "frönskum",
+        "category": "side",
+        "icon": "noto:french-fries",
+        "quantity": 2,
+        "size": null,
+        "modifiers": [],
+        "phrase": "2 frönskum"
+      },
+      {
+        "type": "sauce",
+        "name": "Hot Sauce",
+        "category": "side",
+        "icon": "game-icons:ketchup",
+        "quantity": 4,
+        "size": null,
+        "modifiers": [],
+        "phrase": "4 Hot Sauce"
+      },
+      {
+        "type": "sauce",
+        "name": "BBQ Dip-sósa",
+        "category": "side",
+        "icon": "game-icons:ketchup",
+        "quantity": 1,
+        "size": null,
+        "modifiers": [],
+        "phrase": "1 BBQ Dip-sósa"
+      }
+    ],
+    "drink_items": [],
+    "dessert_items": [],
+    "visual_summary": "👥 mdi:food-drumstickmdi:food-drumstickmdi:food-drumstick + game-icons:ketchupnoto:french-friesgame-icons:ketchupgame-icons:ketchup",
+    "new_categories": []
+  },
+  {
+    "offer_name": "BÁTUR MÁNAÐARINS: GRÆNMETISBÁTUR OG GOS",
+    "description": "Grænmetisbátur með gosi",
+    "price_kr": 1299,
+    "pickup_delivery": null,
+    "suits_people": 1,
+    "available_weekdays": null,
+    "available_hours": null,
+    "restaurant_name": "Subway Iceland",
+    "food_items": [
+      {
+        "type": "sub",
+        "name": "Grænmetisbátur",
+        "category": "main",
+        "icon": "game-icons:sandwich",
+        "quantity": 1,
+        "size": null,
+        "modifiers": [],
+        "phrase": "1 Grænmetisbátur"
+      },
+      {
+        "type": "soda",
+        "name": "gosi",
+        "category": "drink",
+        "icon": "mdi:cup",
+        "quantity": 1,
+        "size": null,
+        "modifiers": [],
+        "phrase": "1 gosi"
+      }
+    ],
+    "meal_type": "individual",
+    "is_combo": true,
+    "complexity_score": 8,
+    "total_food_items": 2,
+    "main_items": [
+      {
+        "type": "sub",
+        "name": "Grænmetisbátur",
+        "category": "main",
+        "icon": "game-icons:sandwich",
+        "quantity": 1,
+        "size": null,
+        "modifiers": [],
+        "phrase": "1 Grænmetisbátur"
+      }
+    ],
+    "side_items": [],
+    "drink_items": [
+      {
+        "type": "soda",
+        "name": "gosi",
+        "category": "drink",
+        "icon": "mdi:cup",
+        "quantity": 1,
+        "size": null,
+        "modifiers": [],
+        "phrase": "1 gosi"
+      }
+    ],
+    "dessert_items": [],
+    "visual_summary": "🧑 game-icons:sandwich + mdi:cup",
+    "new_categories": []
+  },
+  {
+    "offer_name": "HÁDEGISTILBOÐ",
+    "description": "Alla daga til kl. 14:00",
+    "price_kr": 2495,
+    "pickup_delivery": null,
+    "suits_people": null,
+    "available_weekdays": null,
+    "available_hours": null,
+    "restaurant_name": "Hlöllabátar",
+    "food_items": [],
+    "meal_type": null,
+    "is_combo": false,
+    "complexity_score": 0,
+    "total_food_items": 0,
+    "main_items": [],
+    "side_items": [],
+    "drink_items": [],
+    "dessert_items": [],
+    "visual_summary": "🍽️ General offer",
+    "new_categories": []
+  }
+]

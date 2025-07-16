@@ -1,15 +1,13 @@
 {
-  "scraped_at": "2025-07-15T16:19:16.554017",
-  "total_offers": 53,
+  "scraped_at": "2025-07-16T16:07:44.355590",
+  "total_offers": 42,
   "restaurants": [
-    "KFC Iceland",
-    "Krua Thai",
     "Domino's Pizza Iceland",
-    "Ali Baba",
-    "Búllan",
-    "Noodle Station",
     "Hlöllabátar",
-    "Serrano"
+    "Noodle Station",
+    "Búllan",
+    "KFC Iceland",
+    "Krua Thai"
   ],
   "offers": [
     {
@@ -56,7 +54,7 @@
     },
     {
       "offer_name": "BÁTUR MÁNAÐARINS: GRÆNMETISBÁTUR OG GOS",
-      "description": "",
+      "description": "BÁTUR MÁNAÐARINS: GRÆNMETISBÁTUR OG GOS",
       "price_kr": 2195,
       "pickup_delivery": null,
       "suits_people": null,
@@ -69,7 +67,7 @@
           "name": "bátur",
           "category": "main",
           "icon": "🥪",
-          "quantity": 1,
+          "quantity": 2,
           "size": null,
           "modifiers": [],
           "phrase": "bátur mánaðarins: grænmetisbátur"
@@ -79,7 +77,7 @@
           "name": "grænmeti",
           "category": "side",
           "icon": "🥗",
-          "quantity": 1,
+          "quantity": 2,
           "size": null,
           "modifiers": [],
           "phrase": "bátur mánaðarins: grænmetisbátur"
@@ -89,23 +87,23 @@
           "name": "gos",
           "category": "drink",
           "icon": "🥤",
-          "quantity": 1,
+          "quantity": 2,
           "size": null,
           "modifiers": [],
-          "phrase": "gos"
+          "phrase": "gos bátur mánaðarins: grænmetisbátur"
         }
       ],
-      "meal_type": "combo",
+      "meal_type": "family",
       "is_combo": true,
-      "complexity_score": 12,
-      "total_food_items": 3,
+      "complexity_score": 15,
+      "total_food_items": 6,
       "main_items": [
         {
           "type": "sub",
           "name": "bátur",
           "category": "main",
           "icon": "🥪",
-          "quantity": 1,
+          "quantity": 2,
           "size": null,
           "modifiers": [],
           "phrase": "bátur mánaðarins: grænmetisbátur"
@@ -117,7 +115,7 @@
           "name": "grænmeti",
           "category": "side",
           "icon": "🥗",
-          "quantity": 1,
+          "quantity": 2,
           "size": null,
           "modifiers": [],
           "phrase": "bátur mánaðarins: grænmetisbátur"
@@ -129,14 +127,14 @@
           "name": "gos",
           "category": "drink",
           "icon": "🥤",
-          "quantity": 1,
+          "quantity": 2,
           "size": null,
           "modifiers": [],
-          "phrase": "gos"
+          "phrase": "gos bátur mánaðarins: grænmetisbátur"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "🍽️ 🥪 + 🥗 + 🥤",
+      "visual_summary": "👨‍👩‍👧‍👦 🥪 + 🥗 + 🥤",
       "restaurant_name": "Hlöllabátar"
     },
     {
@@ -158,8 +156,8 @@
           "size": null,
           "modifiers": [
             "original",
-            "hot",
-            "zinger"
+            "zinger",
+            "hot"
           ],
           "phrase": "2 tveir original kjúklingabitar"
         },
@@ -191,8 +189,8 @@
           "size": null,
           "modifiers": [
             "original",
-            "hot",
-            "zinger"
+            "zinger",
+            "hot"
           ],
           "phrase": "2 tveir original kjúklingabitar"
         }
@@ -257,10 +255,10 @@
           "quantity": 3,
           "size": null,
           "modifiers": [
-            "heit",
             "brún",
-            "kokteilsósa",
-            "bbq"
+            "heit",
+            "bbq",
+            "kokteilsósa"
           ],
           "phrase": "tvær sósur – heit brún sósa"
         },
@@ -322,10 +320,10 @@
           "quantity": 3,
           "size": null,
           "modifiers": [
-            "heit",
             "brún",
-            "kokteilsósa",
-            "bbq"
+            "heit",
+            "bbq",
+            "kokteilsósa"
           ],
           "phrase": "tvær sósur – heit brún sósa"
         },
@@ -396,10 +394,10 @@
           "quantity": 3,
           "size": null,
           "modifiers": [
-            "heit",
             "brún",
-            "kokteilsósa",
-            "bbq"
+            "heit",
+            "bbq",
+            "kokteilsósa"
           ],
           "phrase": "tvær sósur – heit brún sósa"
         },
@@ -461,10 +459,10 @@
           "quantity": 3,
           "size": null,
           "modifiers": [
-            "heit",
             "brún",
-            "kokteilsósa",
-            "bbq"
+            "heit",
+            "bbq",
+            "kokteilsósa"
           ],
           "phrase": "tvær sósur – heit brún sósa"
         },
@@ -837,7 +835,7 @@
       "restaurant_name": "KFC Iceland"
     },
     {
-      "offer_name": "8 Original Lundir",
+      "offer_name": "8 Orginal Lundir",
       "description": "Bucketlistinn #3.",
       "price_kr": 3389,
       "pickup_delivery": null,
@@ -1218,52 +1216,9 @@
       "restaurant_name": "Domino's Pizza Iceland"
     },
     {
-      "offer_name": "Þriðjudagstilboð",
-      "description": "Miðstærð af pizzu með 3 áleggstegundum. | Miðstærð af pizzu með 3 áleggstegundum.",
-      "price_kr": 1500.0,
-      "pickup_delivery": "sækja",
-      "suits_people": null,
-      "available_weekdays": null,
-      "available_hours": null,
-      "availability_text": null,
-      "food_items": [
-        {
-          "type": "pizza",
-          "name": "pizzu",
-          "category": "main",
-          "icon": "🍕",
-          "quantity": 2,
-          "size": null,
-          "modifiers": [],
-          "phrase": "þriðjudagstilboð miðstærð af pizzu"
-        }
-      ],
-      "meal_type": "individual",
-      "is_combo": false,
-      "complexity_score": 5,
-      "total_food_items": 2,
-      "main_items": [
-        {
-          "type": "pizza",
-          "name": "pizzu",
-          "category": "main",
-          "icon": "🍕",
-          "quantity": 2,
-          "size": null,
-          "modifiers": [],
-          "phrase": "þriðjudagstilboð miðstærð af pizzu"
-        }
-      ],
-      "side_items": [],
-      "drink_items": [],
-      "dessert_items": [],
-      "visual_summary": "🧑 🍕",
-      "restaurant_name": "Domino's Pizza Iceland"
-    },
-    {
-      "offer_name": "Þín pizza",
+      "offer_name": "Hásumartilboð",
       "description": "Stór eða pönnupizza með tveimur áleggstegundum. | Stór eða pönnupizza með tveimur áleggstegundum.",
-      "price_kr": 2490.0,
+      "price_kr": 1990.0,
       "pickup_delivery": "sækja",
       "suits_people": 4,
       "available_weekdays": null,
@@ -1284,7 +1239,7 @@
             "stór",
             "pönnupizza"
           ],
-          "phrase": "þín pizza stór eða pönnupizza"
+          "phrase": "hásumartilboð stór eða pönnupizza"
         }
       ],
       "meal_type": "individual",
@@ -1306,7 +1261,60 @@
             "stór",
             "pönnupizza"
           ],
-          "phrase": "þín pizza stór eða pönnupizza"
+          "phrase": "hásumartilboð stór eða pönnupizza"
+        }
+      ],
+      "side_items": [],
+      "drink_items": [],
+      "dessert_items": [],
+      "visual_summary": "🧑 🍕",
+      "restaurant_name": "Domino's Pizza Iceland"
+    },
+    {
+      "offer_name": "Hádegistilboð 1",
+      "description": "Lítil pizza af matseðli og skammtur af brauðstöngum með sósu að eigin vali. Gildir frá 11:00 - 16:00 alla daga. | Lítil pizza af matseðli og skammtur af brauðstöngum með sósu að eigin vali. Gildir frá 11:00 - 16:00 alla daga.",
+      "price_kr": 1890.0,
+      "pickup_delivery": "sækja",
+      "suits_people": 1,
+      "available_weekdays": null,
+      "available_hours": "11:00-16:00,11:00-15:00",
+      "availability_text": "Hádegistilboð 1 Lítil pizza af matseðli og skammtur af brauðstöngum með sósu að eigin vali. Gildir frá 11:00 - 16:00 alla daga. Sækja 1.890 kr. 1-2",
+      "food_items": [
+        {
+          "type": "pizza",
+          "name": "pizza",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 2,
+          "size": {
+            "descriptor": "lítil",
+            "unit": "descriptor"
+          },
+          "modifiers": [
+            "lítil"
+          ],
+          "phrase": "hádegistilboð 1 lítil pizza af matseðli"
+        }
+      ],
+      "meal_type": "individual",
+      "is_combo": false,
+      "complexity_score": 7,
+      "total_food_items": 2,
+      "main_items": [
+        {
+          "type": "pizza",
+          "name": "pizza",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 2,
+          "size": {
+            "descriptor": "lítil",
+            "unit": "descriptor"
+          },
+          "modifiers": [
+            "lítil"
+          ],
+          "phrase": "hádegistilboð 1 lítil pizza af matseðli"
         }
       ],
       "side_items": [],
@@ -1504,6 +1512,70 @@
       ],
       "dessert_items": [],
       "visual_summary": "👨‍👩‍👧‍👦 🍕 + 🍅 + 🥤",
+      "restaurant_name": "Domino's Pizza Iceland"
+    },
+    {
+      "offer_name": "Hádegistilboð 2",
+      "description": "Miðstærð af pizzu af matseðli og 0.5 ltr. gos. Gildir frá 11:00 - 16:00 alla daga. | Miðstærð af pizzu af matseðli og 0.5 ltr. gos. Gildir frá 11:00 - 16:00 alla daga.",
+      "price_kr": 2190.0,
+      "pickup_delivery": "sækja",
+      "suits_people": null,
+      "available_weekdays": null,
+      "available_hours": "11:00-16:00,11:00-15:00",
+      "availability_text": "Hádegistilboð 2 Miðstærð af pizzu af matseðli og 0.5 ltr. gos. Gildir frá 11:00 - 16:00 alla daga. Sækja 2.190 kr. 1-2",
+      "food_items": [
+        {
+          "type": "pizza",
+          "name": "pizzu",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 3,
+          "size": null,
+          "modifiers": [],
+          "phrase": "hádegistilboð 2 miðstærð af pizzu af matseðli"
+        },
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "gos"
+        }
+      ],
+      "meal_type": "combo",
+      "is_combo": true,
+      "complexity_score": 11,
+      "total_food_items": 5,
+      "main_items": [
+        {
+          "type": "pizza",
+          "name": "pizzu",
+          "category": "main",
+          "icon": "🍕",
+          "quantity": 3,
+          "size": null,
+          "modifiers": [],
+          "phrase": "hádegistilboð 2 miðstærð af pizzu af matseðli"
+        }
+      ],
+      "side_items": [],
+      "drink_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "gos"
+        }
+      ],
+      "dessert_items": [],
+      "visual_summary": "🍽️ 🍕 + 🥤",
       "restaurant_name": "Domino's Pizza Iceland"
     },
     {
@@ -1765,305 +1837,8 @@
       "restaurant_name": "Domino's Pizza Iceland"
     },
     {
-      "offer_name": "Catering Event",
-      "description": "Host your next event with AliBaba´s catering! Our authentic Syrian dishes, available for groups of 15 or more, will make your gathering unforgettable.",
-      "price_kr": 500,
-      "pickup_delivery": null,
-      "suits_people": null,
-      "available_weekdays": null,
-      "available_hours": null,
-      "availability_text": null,
-      "food_items": [],
-      "meal_type": "snack",
-      "is_combo": false,
-      "complexity_score": 0,
-      "total_food_items": 0,
-      "main_items": [],
-      "side_items": [],
-      "drink_items": [],
-      "dessert_items": [],
-      "visual_summary": "🍽️ General offer",
-      "restaurant_name": "Ali Baba"
-    },
-    {
-      "offer_name": "Taro chips with tomato salsa",
-      "description": "",
-      "price_kr": 500,
-      "pickup_delivery": null,
-      "suits_people": null,
-      "available_weekdays": null,
-      "available_hours": null,
-      "availability_text": null,
-      "food_items": [],
-      "meal_type": "snack",
-      "is_combo": false,
-      "complexity_score": 0,
-      "total_food_items": 0,
-      "main_items": [],
-      "side_items": [],
-      "drink_items": [],
-      "dessert_items": [],
-      "visual_summary": "🍽️ General offer",
-      "restaurant_name": "Ali Baba"
-    },
-    {
-      "offer_name": "Mini Shawarma Sandwich",
-      "description": "",
-      "price_kr": 300,
-      "pickup_delivery": null,
-      "suits_people": null,
-      "available_weekdays": null,
-      "available_hours": null,
-      "availability_text": null,
-      "food_items": [],
-      "meal_type": "snack",
-      "is_combo": false,
-      "complexity_score": 0,
-      "total_food_items": 0,
-      "main_items": [],
-      "side_items": [],
-      "drink_items": [],
-      "dessert_items": [],
-      "visual_summary": "🍽️ General offer",
-      "restaurant_name": "Ali Baba"
-    },
-    {
-      "offer_name": "Hummus Tart",
-      "description": "",
-      "price_kr": 500,
-      "pickup_delivery": null,
-      "suits_people": null,
-      "available_weekdays": null,
-      "available_hours": null,
-      "availability_text": null,
-      "food_items": [],
-      "meal_type": "snack",
-      "is_combo": false,
-      "complexity_score": 0,
-      "total_food_items": 0,
-      "main_items": [],
-      "side_items": [],
-      "drink_items": [],
-      "dessert_items": [],
-      "visual_summary": "🍽️ General offer",
-      "restaurant_name": "Ali Baba"
-    },
-    {
-      "offer_name": "Chicken Tawook Skewers",
-      "description": "",
-      "price_kr": 1000,
-      "pickup_delivery": null,
-      "suits_people": null,
-      "available_weekdays": null,
-      "available_hours": null,
-      "availability_text": null,
-      "food_items": [
-        {
-          "type": "chicken",
-          "name": "chicken",
-          "category": "main",
-          "icon": "🍗",
-          "quantity": 1,
-          "size": null,
-          "modifiers": [],
-          "phrase": "chicken tawook skewers"
-        }
-      ],
-      "meal_type": "individual",
-      "is_combo": false,
-      "complexity_score": 4,
-      "total_food_items": 1,
-      "main_items": [
-        {
-          "type": "chicken",
-          "name": "chicken",
-          "category": "main",
-          "icon": "🍗",
-          "quantity": 1,
-          "size": null,
-          "modifiers": [],
-          "phrase": "chicken tawook skewers"
-        }
-      ],
-      "side_items": [],
-      "drink_items": [],
-      "dessert_items": [],
-      "visual_summary": "🧑 🍗",
-      "restaurant_name": "Ali Baba"
-    },
-    {
-      "offer_name": "Shrimp Arancini",
-      "description": "",
-      "price_kr": 900,
-      "pickup_delivery": null,
-      "suits_people": null,
-      "available_weekdays": null,
-      "available_hours": null,
-      "availability_text": null,
-      "food_items": [],
-      "meal_type": "snack",
-      "is_combo": false,
-      "complexity_score": 0,
-      "total_food_items": 0,
-      "main_items": [],
-      "side_items": [],
-      "drink_items": [],
-      "dessert_items": [],
-      "visual_summary": "🍽️ General offer",
-      "restaurant_name": "Ali Baba"
-    },
-    {
-      "offer_name": "Mini Falafel Sandwich",
-      "description": "",
-      "price_kr": 700,
-      "pickup_delivery": null,
-      "suits_people": null,
-      "available_weekdays": null,
-      "available_hours": null,
-      "availability_text": null,
-      "food_items": [],
-      "meal_type": "snack",
-      "is_combo": false,
-      "complexity_score": 0,
-      "total_food_items": 0,
-      "main_items": [],
-      "side_items": [],
-      "drink_items": [],
-      "dessert_items": [],
-      "visual_summary": "🍽️ General offer",
-      "restaurant_name": "Ali Baba"
-    },
-    {
-      "offer_name": "Lobster Bruschetta",
-      "description": "",
-      "price_kr": 1000,
-      "pickup_delivery": null,
-      "suits_people": null,
-      "available_weekdays": null,
-      "available_hours": null,
-      "availability_text": null,
-      "food_items": [],
-      "meal_type": "snack",
-      "is_combo": false,
-      "complexity_score": 0,
-      "total_food_items": 0,
-      "main_items": [],
-      "side_items": [],
-      "drink_items": [],
-      "dessert_items": [],
-      "visual_summary": "🍽️ General offer",
-      "restaurant_name": "Ali Baba"
-    },
-    {
-      "offer_name": "Ham and Egg Sandwich",
-      "description": "",
-      "price_kr": 1000,
-      "pickup_delivery": null,
-      "suits_people": null,
-      "available_weekdays": null,
-      "available_hours": null,
-      "availability_text": null,
-      "food_items": [],
-      "meal_type": "snack",
-      "is_combo": false,
-      "complexity_score": 0,
-      "total_food_items": 0,
-      "main_items": [],
-      "side_items": [],
-      "drink_items": [],
-      "dessert_items": [],
-      "visual_summary": "🍽️ General offer",
-      "restaurant_name": "Ali Baba"
-    },
-    {
-      "offer_name": "Mini Beef Burger",
-      "description": "",
-      "price_kr": 500,
-      "pickup_delivery": null,
-      "suits_people": null,
-      "available_weekdays": null,
-      "available_hours": null,
-      "availability_text": null,
-      "food_items": [
-        {
-          "type": "burger",
-          "name": "burger",
-          "category": "main",
-          "icon": "🍔",
-          "quantity": 1,
-          "size": null,
-          "modifiers": [],
-          "phrase": "mini beef burger"
-        }
-      ],
-      "meal_type": "individual",
-      "is_combo": false,
-      "complexity_score": 4,
-      "total_food_items": 1,
-      "main_items": [
-        {
-          "type": "burger",
-          "name": "burger",
-          "category": "main",
-          "icon": "🍔",
-          "quantity": 1,
-          "size": null,
-          "modifiers": [],
-          "phrase": "mini beef burger"
-        }
-      ],
-      "side_items": [],
-      "drink_items": [],
-      "dessert_items": [],
-      "visual_summary": "🧑 🍔",
-      "restaurant_name": "Ali Baba"
-    },
-    {
-      "offer_name": "Assorted Crudites with Avocado Dip",
-      "description": "",
-      "price_kr": 1000,
-      "pickup_delivery": null,
-      "suits_people": null,
-      "available_weekdays": null,
-      "available_hours": null,
-      "availability_text": null,
-      "food_items": [
-        {
-          "type": "sauce",
-          "name": "dip",
-          "category": "side",
-          "icon": "🍅",
-          "quantity": 1,
-          "size": null,
-          "modifiers": [],
-          "phrase": "assorted crudites with avocado dip"
-        }
-      ],
-      "meal_type": "snack",
-      "is_combo": false,
-      "complexity_score": 4,
-      "total_food_items": 1,
-      "main_items": [],
-      "side_items": [
-        {
-          "type": "sauce",
-          "name": "dip",
-          "category": "side",
-          "icon": "🍅",
-          "quantity": 1,
-          "size": null,
-          "modifiers": [],
-          "phrase": "assorted crudites with avocado dip"
-        }
-      ],
-      "drink_items": [],
-      "dessert_items": [],
-      "visual_summary": "🥨 🍅",
-      "restaurant_name": "Ali Baba"
-    },
-    {
       "offer_name": "Núðlur súpa með grænmeti",
-      "description": "",
+      "description": "A delicious noodle soup made with fresh vegetables.",
       "price_kr": 1490,
       "pickup_delivery": null,
       "suits_people": null,
@@ -2079,7 +1854,7 @@
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "grænmeti"
+          "phrase": "grænmeti a delicious noodle soup made with fresh vegetables"
         }
       ],
       "meal_type": "snack",
@@ -2096,7 +1871,7 @@
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "grænmeti"
+          "phrase": "grænmeti a delicious noodle soup made with fresh vegetables"
         }
       ],
       "drink_items": [],
@@ -2106,28 +1881,50 @@
     },
     {
       "offer_name": "Núðlur súpa með kjúlingi",
-      "description": "",
+      "description": "A flavorful noodle soup with tender chicken pieces.",
       "price_kr": 2410,
       "pickup_delivery": null,
       "suits_people": null,
       "available_weekdays": null,
       "available_hours": null,
       "availability_text": null,
-      "food_items": [],
-      "meal_type": "snack",
+      "food_items": [
+        {
+          "type": "chicken",
+          "name": "chicken",
+          "category": "main",
+          "icon": "🍗",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "kjúlingi a flavorful noodle soup with tender chicken pieces"
+        }
+      ],
+      "meal_type": "individual",
       "is_combo": false,
-      "complexity_score": 0,
-      "total_food_items": 0,
-      "main_items": [],
+      "complexity_score": 4,
+      "total_food_items": 1,
+      "main_items": [
+        {
+          "type": "chicken",
+          "name": "chicken",
+          "category": "main",
+          "icon": "🍗",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "kjúlingi a flavorful noodle soup with tender chicken pieces"
+        }
+      ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "🍽️ General offer",
+      "visual_summary": "🧑 🍗",
       "restaurant_name": "Noodle Station"
     },
     {
       "offer_name": "Núðlur súpa með nautakjöti",
-      "description": "",
+      "description": "A rich noodle soup featuring succulent beef.",
       "price_kr": 2390,
       "pickup_delivery": null,
       "suits_people": null,
@@ -2145,48 +1942,6 @@
       "dessert_items": [],
       "visual_summary": "🍽️ General offer",
       "restaurant_name": "Noodle Station"
-    },
-    {
-      "offer_name": "Fjölskyldufiesta",
-      "description": "Gómsæt máltíð fyrir stóra sem smáa.",
-      "price_kr": 0,
-      "pickup_delivery": null,
-      "suits_people": null,
-      "available_weekdays": null,
-      "available_hours": null,
-      "availability_text": null,
-      "food_items": [],
-      "meal_type": "snack",
-      "is_combo": false,
-      "complexity_score": 0,
-      "total_food_items": 0,
-      "main_items": [],
-      "side_items": [],
-      "drink_items": [],
-      "dessert_items": [],
-      "visual_summary": "🍽️ General offer",
-      "restaurant_name": "Serrano"
-    },
-    {
-      "offer_name": "Taco Tuesday",
-      "description": "Hver segir að það megi ekki fagna á þriðjudögum?",
-      "price_kr": 0,
-      "pickup_delivery": null,
-      "suits_people": null,
-      "available_weekdays": null,
-      "available_hours": null,
-      "availability_text": null,
-      "food_items": [],
-      "meal_type": "snack",
-      "is_combo": false,
-      "complexity_score": 0,
-      "total_food_items": 0,
-      "main_items": [],
-      "side_items": [],
-      "drink_items": [],
-      "dessert_items": [],
-      "visual_summary": "🍽️ General offer",
-      "restaurant_name": "Serrano"
     },
     {
       "offer_name": "Sótt & Sent tilboð #1",
@@ -2318,9 +2073,9 @@
       "restaurant_name": "Krua Thai"
     },
     {
-      "offer_name": "Þriðjudagstilboð",
-      "description": "Búlluborgari með frönskum og gosi – aðeins á Þriðjudögum!",
-      "price_kr": 1,
+      "offer_name": "Tilboð Aldarinnar",
+      "description": "Búlluborgari (120 gr.) með frönskum og gosi",
+      "price_kr": 2190,
       "pickup_delivery": null,
       "suits_people": null,
       "available_weekdays": null,
@@ -2335,7 +2090,7 @@
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "þriðjudagstilboð búlluborgari"
+          "phrase": "tilboð aldarinnar búlluborgari (120 gr"
         },
         {
           "type": "soda",
@@ -2345,7 +2100,7 @@
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gosi – aðeins á þriðjudögum!"
+          "phrase": "gosi"
         }
       ],
       "meal_type": "combo",
@@ -2361,7 +2116,7 @@
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "þriðjudagstilboð búlluborgari"
+          "phrase": "tilboð aldarinnar búlluborgari (120 gr"
         }
       ],
       "side_items": [],
@@ -2374,7 +2129,7 @@
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gosi – aðeins á þriðjudögum!"
+          "phrase": "gosi"
         }
       ],
       "dessert_items": [],
@@ -2382,9 +2137,94 @@
       "restaurant_name": "Búllan"
     },
     {
+      "offer_name": "Kjúklingaborgara máltíð",
+      "description": "Grillaður kjúklingaborgari með osti, beikoni, grænmeti og hvítlaukssósu. Kemur með frönskum og gosi.",
+      "price_kr": 2190,
+      "pickup_delivery": null,
+      "suits_people": null,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "burger",
+          "name": "borgari",
+          "category": "main",
+          "icon": "🍔",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "kjúklingaborgara máltíð grillaður kjúklingaborgari"
+        },
+        {
+          "type": "salad",
+          "name": "grænmeti",
+          "category": "side",
+          "icon": "🥗",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "grænmeti"
+        },
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "gosi"
+        }
+      ],
+      "meal_type": "combo",
+      "is_combo": true,
+      "complexity_score": 12,
+      "total_food_items": 3,
+      "main_items": [
+        {
+          "type": "burger",
+          "name": "borgari",
+          "category": "main",
+          "icon": "🍔",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "kjúklingaborgara máltíð grillaður kjúklingaborgari"
+        }
+      ],
+      "side_items": [
+        {
+          "type": "salad",
+          "name": "grænmeti",
+          "category": "side",
+          "icon": "🥗",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "grænmeti"
+        }
+      ],
+      "drink_items": [
+        {
+          "type": "soda",
+          "name": "gos",
+          "category": "drink",
+          "icon": "🥤",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "gosi"
+        }
+      ],
+      "dessert_items": [],
+      "visual_summary": "🍽️ 🍔 + 🥗 + 🥤",
+      "restaurant_name": "Búllan"
+    },
+    {
       "offer_name": "Tilbod Aldarinnar",
       "description": "Búlluborgari (150gr.), franskar og gos",
-      "price_kr": 1,
+      "price_kr": 1090,
       "pickup_delivery": null,
       "suits_people": null,
       "available_weekdays": null,
@@ -2469,7 +2309,7 @@
     {
       "offer_name": "Grænmetis tilboð",
       "description": "Grænmetisborgari með frönskum og gosi (viltu fá hann vegan? láttu okkur vita og við græjum það)",
-      "price_kr": 1,
+      "price_kr": 1490,
       "pickup_delivery": null,
       "suits_people": null,
       "available_weekdays": null,
@@ -2554,7 +2394,7 @@
     {
       "offer_name": "Barnatilboð",
       "description": "Barnaborgari með frönskum og gosi eða djús",
-      "price_kr": 6,
+      "price_kr": 6990,
       "pickup_delivery": null,
       "suits_people": null,
       "available_weekdays": null,
@@ -2618,13 +2458,23 @@
     {
       "offer_name": "Fjölskyldutilboð",
       "description": "2 Búlluborgarar, 2 barnaborgarar, stór franskar, 2 l gos og 2 kokteilsósur",
-      "price_kr": 6,
+      "price_kr": 6890,
       "pickup_delivery": null,
       "suits_people": null,
       "available_weekdays": null,
       "available_hours": null,
       "availability_text": null,
       "food_items": [
+        {
+          "type": "burger",
+          "name": "búlluborgarar",
+          "category": "main",
+          "icon": "🍔",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "fjölskyldutilboð 2 búlluborgarar"
+        },
         {
           "type": "fries",
           "name": "franskar",
@@ -2659,11 +2509,22 @@
           "phrase": "2 kokteilsósur"
         }
       ],
-      "meal_type": "snack",
+      "meal_type": "family",
       "is_combo": true,
-      "complexity_score": 15,
-      "total_food_items": 5,
-      "main_items": [],
+      "complexity_score": 20,
+      "total_food_items": 9,
+      "main_items": [
+        {
+          "type": "burger",
+          "name": "búlluborgarar",
+          "category": "main",
+          "icon": "🍔",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "fjölskyldutilboð 2 búlluborgarar"
+        }
+      ],
       "side_items": [
         {
           "type": "fries",
@@ -2702,19 +2563,29 @@
         }
       ],
       "dessert_items": [],
-      "visual_summary": "🥨 🍟🍅 + 🥤",
+      "visual_summary": "👨‍👩‍👧‍👦 🍔 + 🍟🍅 + 🥤",
       "restaurant_name": "Búllan"
     },
     {
       "offer_name": "Fjölskyldutilboð",
       "description": "2 Búlluborgarar, 2 barnaborgarar, 4 franskar, 4 gos og 2 sósur",
-      "price_kr": 2,
+      "price_kr": 2690,
       "pickup_delivery": null,
       "suits_people": null,
       "available_weekdays": null,
       "available_hours": null,
       "availability_text": null,
       "food_items": [
+        {
+          "type": "burger",
+          "name": "búlluborgarar",
+          "category": "main",
+          "icon": "🍔",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "fjölskyldutilboð 2 búlluborgarar"
+        },
         {
           "type": "fries",
           "name": "franskar",
@@ -2748,9 +2619,20 @@
       ],
       "meal_type": "family",
       "is_combo": true,
-      "complexity_score": 18,
-      "total_food_items": 10,
-      "main_items": [],
+      "complexity_score": 20,
+      "total_food_items": 14,
+      "main_items": [
+        {
+          "type": "burger",
+          "name": "búlluborgarar",
+          "category": "main",
+          "icon": "🍔",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "fjölskyldutilboð 2 búlluborgarar"
+        }
+      ],
       "side_items": [
         {
           "type": "fries",
@@ -2786,7 +2668,7 @@
         }
       ],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍟🍅 + 🥤",
+      "visual_summary": "👨‍👩‍👧‍👦 🍔 + 🍟🍅 + 🥤",
       "restaurant_name": "Búllan"
     }
   ]

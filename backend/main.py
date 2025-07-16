@@ -208,17 +208,29 @@ def get_enhanced_offers(db: Session = Depends(get_db)):
                 return '/kfc.png'
             elif 'subway' in name:
                 return '/subway.jpg'
+            elif 'hlöllabátar' in name or 'hlollabatar' in name:
+                return '/hlolli.png'
+            elif 'búllan' in name or 'bullan' in name:
+                return '/bullan.svg'
+            elif 'noodle station' in name or 'noodlestation' in name:
+                return '/noodlestation.png'
             return None
         
         def get_restaurant_background_color(restaurant_name: str) -> str:
             """Get background color for restaurant"""
             name = restaurant_name.lower()
             if 'dominos' in name or 'domino' in name:
-                return '#FFD700'  # Gold
+                return '#4133FF'  # Blue
             elif 'kfc' in name:
                 return '#FF0000'  # Red
             elif 'subway' in name:
-                return '#000000'  # Black
+                return '#4ED512'  # Green
+            elif 'hlöllabátar' in name or 'hlollabatar' in name:
+                return '#DC291A'  # Red (from HlöllaBátar logo)
+            elif 'búllan' in name or 'bullan' in name:
+                return '#DC291A'  # Red (from Bullan logo)
+            elif 'noodle station' in name or 'noodlestation' in name:
+                return '#FF6B35'  # Orange (typical for noodle restaurants)
             return '#FFFFFF'  # White
         
         # Group enhanced offers by restaurant

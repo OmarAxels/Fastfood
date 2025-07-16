@@ -55,31 +55,32 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
             <h2 className="text-xl font-bold" style={{ color: colors.primary }}>
               {restaurant.name}
             </h2>
-            <div className="flex items-center gap-2 mt-1">
-              <span className="text-sm px-3 py-1 rounded-full font-medium shadow-sm" style={{ 
-                color: colors.white,
-                background: `linear-gradient(135deg, ${themeColor} 0%, ${themeColor}CC 100%)`
-              }}>
-                {restaurant.offers.length} tilboð
-              </span>
-            </div>
           </div>
         </div>
         
-        {restaurant.website && (
-          <a
-            href={restaurant.website}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm font-medium hover:opacity-80 transition-all duration-200 px-3 py-2 rounded-lg hover:shadow-sm"
-            style={{ 
-              color: colors.info,
-              backgroundColor: colors.gray[50]
-            }}
-          >
-            Heimasíða ↗
-          </a>
-        )}
+        <div className="flex items-center gap-3">
+          <span className="text-sm px-3 py-1 rounded-full font-medium shadow-sm" style={{ 
+            color: colors.white,
+            background: `linear-gradient(135deg, ${themeColor} 0%, ${themeColor}CC 100%)`
+          }}>
+            {restaurant.offers.length} tilboð
+          </span>
+          
+          {restaurant.website && (
+            <a
+              href={restaurant.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium hover:opacity-80 transition-all duration-200 px-3 py-2 rounded-lg hover:shadow-sm"
+              style={{ 
+                color: colors.info,
+                backgroundColor: colors.gray[50]
+              }}
+            >
+              Heimasíða ↗
+            </a>
+          )}
+        </div>
       </div>
 
       {/* Offers - One per row */}

@@ -207,7 +207,7 @@ export default function HomePage() {
           </div>
 
           {/* Restaurants using RestaurantCard component */}
-          <div style={{ padding: '20px' }}>
+          <div >
             {restaurants.map((restaurant) => (
               <RestaurantCard key={restaurant.id} restaurant={restaurant} />
             ))}

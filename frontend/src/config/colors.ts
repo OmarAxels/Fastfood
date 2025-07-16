@@ -27,7 +27,10 @@ export const colors = {
 export const restaurantThemes = {
   'KFC': '#E4002B',
   'Domino\'s Pizza': '#0078D4', 
-  'Subway': '#00A651'
+  'Subway': '#00A651',
+  'Hlöllabátar': '#DC291A',
+  'Búllan': '#DC291A',
+  'Noodle Station': '#FF6B35'
 } as const
 
 export type ColorKey = keyof typeof colors
