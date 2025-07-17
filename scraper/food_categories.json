@@ -1,121 +1,226 @@
 {
   "food_categories": {
     "pizza": {
-      "terms": ["pizza", "pizzur", "pizzu", "pönnupizza"],
+      "terms": [
+        "pizza",
+        "pizzur",
+        "pizzu",
+        "pönnupizza"
+      ],
       "category": "main",
       "icon": "twemoji:pizza",
       "description": "Italian flatbread with toppings"
     },
     "burger": {
-      "terms": ["hamborgari", "borgari", "burger", "búlluborgari", "búlluborgarar", "barnaborgari", "barnaborgarar"],
+      "terms": [
+        "hamborgari",
+        "borgari",
+        "burger",
+        "búlluborgari",
+        "búlluborgarar",
+        "barnaborgari",
+        "barnaborgarar"
+      ],
       "category": "main",
       "icon": "fluent-emoji:hamburger",
       "description": "Sandwich with meat patty"
     },
     "sub": {
-      "terms": ["bátur", "báta", "bát", "skinkubát", "pizzabát", "sub"],
+      "terms": [
+        "bátur",
+        "báta",
+        "bát",
+        "skinkubát",
+        "pizzabát",
+        "sub"
+      ],
       "category": "main",
       "icon": "game-icons:sandwich",
       "description": "Long sandwich on bread"
     },
     "chicken": {
-      "terms": ["kjúklingur", "kjúklingabitar", "kjúklingalundir", "chicken", "wings", "hot wings"],
+      "terms": [
+        "kjúklingur",
+        "kjúklingabitar",
+        "kjúklingalundir",
+        "chicken",
+        "wings",
+        "hot wings"
+      ],
       "category": "main",
       "icon": "mdi:food-drumstick",
       "description": "Poultry meat dishes"
     },
     "fries": {
-      "terms": ["franskar", "kartöflur", "fries"],
+      "terms": [
+        "franskar",
+        "kartöflur",
+        "fries"
+      ],
       "category": "side",
       "icon": "noto:french-fries",
       "description": "Fried potato strips"
     },
     "soda": {
-      "terms": ["gos", "gosdrykk", "drykkur", "soda", "kók", "kóka", "ískalt gos"],
+      "terms": [
+        "gos",
+        "gosdrykk",
+        "drykkur",
+        "soda",
+        "kók",
+        "kóka",
+        "ískalt gos"
+      ],
       "category": "drink",
       "icon": "mdi:cup",
       "description": "Carbonated beverages"
     },
     "cookie": {
-      "terms": ["kaka", "kökur", "cookie", "cookies"],
+      "terms": [
+        "kaka",
+        "kökur",
+        "cookie",
+        "cookies"
+      ],
       "category": "dessert",
       "icon": "mdi:cookie",
       "description": "Sweet baked goods"
     },
     "sauce": {
-      "terms": ["sósa", "sósur", "sauce", "dip"],
+      "terms": [
+        "sósa",
+        "sósur",
+        "sauce",
+        "dip"
+      ],
       "category": "side",
       "icon": "game-icons:ketchup",
       "description": "Condiments and dips"
     },
     "salad": {
-      "terms": ["salat", "hrásalat", "grænmeti", "salad"],
+      "terms": [
+        "salat",
+        "hrásalat",
+        "grænmeti",
+        "salad"
+      ],
       "category": "side",
       "icon": "noto:green-salad",
       "description": "Fresh vegetables and greens"
     },
     "fruit": {
-      "terms": ["ávaxta", "ávextir", "fruit", "juice"],
+      "terms": [
+        "ávaxta",
+        "ávextir",
+        "fruit",
+        "juice"
+      ],
       "category": "drink",
       "icon": "mdi:food-apple",
       "description": "Fresh fruits and juices"
     },
     "snack": {
-      "terms": ["snakki", "meðlæti", "side", "snack"],
+      "terms": [
+        "snakki",
+        "meðlæti",
+        "side",
+        "snack"
+      ],
       "category": "side",
       "icon": "mdi:food-variant",
       "description": "Small food items"
     },
     "fish": {
-      "terms": ["fiskur", "fish", "lax", "salmon", "þorskur", "cod"],
+      "terms": [
+        "fiskur",
+        "fish",
+        "lax",
+        "salmon",
+        "þorskur",
+        "cod"
+      ],
       "category": "main",
       "icon": "mdi:fish",
       "description": "Seafood dishes"
     },
     "beef": {
-      "terms": ["nautakjöt", "beef", "steik", "steak"],
+      "terms": [
+        "nautakjöt",
+        "beef",
+        "steik",
+        "steak"
+      ],
       "category": "main",
       "icon": "mdi:food-steak",
       "description": "Beef meat dishes"
     },
     "pasta": {
-      "terms": ["pasta", "núðlur", "noodles", "spaghetti"],
+      "terms": [
+        "pasta",
+        "núðlur",
+        "noodles",
+        "spaghetti"
+      ],
       "category": "main",
       "icon": "mdi:food-variant",
       "description": "Italian pasta dishes"
     },
     "soup": {
-      "terms": ["súpa", "soup", "suppa"],
+      "terms": [
+        "súpa",
+        "soup",
+        "suppa"
+      ],
       "category": "main",
       "icon": "mdi:food-variant",
       "description": "Liquid food dishes"
     },
     "ice_cream": {
-      "terms": ["ís", "ice cream", "ísaldur"],
+      "terms": [
+        "ís",
+        "ice cream",
+        "ísaldur"
+      ],
       "category": "dessert",
       "icon": "mdi:ice-cream",
       "description": "Frozen dessert"
     },
     "coffee": {
-      "terms": ["kaffi", "coffee", "kaffi"],
+      "terms": [
+        "kaffi",
+        "coffee",
+        "kaffi"
+      ],
       "category": "drink",
       "icon": "mdi:coffee",
       "description": "Hot coffee beverages"
     },
     "tea": {
-      "terms": ["te", "tea", "te"],
+      "terms": [
+        "te",
+        "tea",
+        "te"
+      ],
       "category": "drink",
       "icon": "mdi:tea",
       "description": "Hot tea beverages"
     },
     "beer": {
-      "terms": ["bjór", "beer", "öl"],
+      "terms": [
+        "bjór",
+        "beer",
+        "öl"
+      ],
       "category": "drink",
       "icon": "mdi:beer",
       "description": "Alcoholic beer"
     },
     "wine": {
-      "terms": ["vín", "wine", "vín"],
+      "terms": [
+        "vín",
+        "wine",
+        "vín"
+      ],
       "category": "drink",
       "icon": "mdi:glass-wine",
       "description": "Alcoholic wine"
@@ -165,4 +270,4 @@
       "icon": "🥨"
     }
   }
-} 
+}
