@@ -1,11 +1,11 @@
 {
-  "scraped_at": "2025-07-16T16:07:44.355590",
+  "scraped_at": "2025-07-17T15:20:05.689276",
   "total_offers": 42,
   "restaurants": [
-    "Domino's Pizza Iceland",
     "Hlöllabátar",
-    "Noodle Station",
     "Búllan",
+    "Noodle Station",
+    "Domino's Pizza Iceland",
     "KFC Iceland",
     "Krua Thai"
   ],
@@ -20,7 +20,7 @@
       "available_hours": null,
       "availability_text": null,
       "food_items": [],
-      "meal_type": "snack",
+      "meal_type": null,
       "is_combo": false,
       "complexity_score": 0,
       "total_food_items": 0,
@@ -29,6 +29,7 @@
       "drink_items": [],
       "dessert_items": [],
       "visual_summary": "🍽️ General offer",
+      "new_categories": [],
       "restaurant_name": "Hlöllabátar"
     },
     {
@@ -41,7 +42,7 @@
       "available_hours": null,
       "availability_text": null,
       "food_items": [],
-      "meal_type": "snack",
+      "meal_type": null,
       "is_combo": false,
       "complexity_score": 0,
       "total_food_items": 0,
@@ -50,11 +51,12 @@
       "drink_items": [],
       "dessert_items": [],
       "visual_summary": "🍽️ General offer",
+      "new_categories": [],
       "restaurant_name": "Hlöllabátar"
     },
     {
       "offer_name": "BÁTUR MÁNAÐARINS: GRÆNMETISBÁTUR OG GOS",
-      "description": "BÁTUR MÁNAÐARINS: GRÆNMETISBÁTUR OG GOS",
+      "description": "BÁTUR MÁNAÐARINS: Grænmetisbátur og gos.",
       "price_kr": 2195,
       "pickup_delivery": null,
       "suits_people": null,
@@ -64,77 +66,57 @@
       "food_items": [
         {
           "type": "sub",
-          "name": "bátur",
+          "name": "Grænmetisbátur",
           "category": "main",
-          "icon": "🥪",
-          "quantity": 2,
+          "icon": "game-icons:sandwich",
+          "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "bátur mánaðarins: grænmetisbátur"
-        },
-        {
-          "type": "salad",
-          "name": "grænmeti",
-          "category": "side",
-          "icon": "🥗",
-          "quantity": 2,
-          "size": null,
-          "modifiers": [],
-          "phrase": "bátur mánaðarins: grænmetisbátur"
+          "phrase": "1 Grænmetisbátur"
         },
         {
           "type": "soda",
           "name": "gos",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 2,
+          "icon": "mdi:cup",
+          "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gos bátur mánaðarins: grænmetisbátur"
+          "phrase": "1 gos"
         }
       ],
-      "meal_type": "family",
+      "meal_type": "individual",
       "is_combo": true,
-      "complexity_score": 15,
-      "total_food_items": 6,
+      "complexity_score": 8,
+      "total_food_items": 2,
       "main_items": [
         {
           "type": "sub",
-          "name": "bátur",
+          "name": "Grænmetisbátur",
           "category": "main",
-          "icon": "🥪",
-          "quantity": 2,
+          "icon": "game-icons:sandwich",
+          "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "bátur mánaðarins: grænmetisbátur"
+          "phrase": "1 Grænmetisbátur"
         }
       ],
-      "side_items": [
-        {
-          "type": "salad",
-          "name": "grænmeti",
-          "category": "side",
-          "icon": "🥗",
-          "quantity": 2,
-          "size": null,
-          "modifiers": [],
-          "phrase": "bátur mánaðarins: grænmetisbátur"
-        }
-      ],
+      "side_items": [],
       "drink_items": [
         {
           "type": "soda",
           "name": "gos",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 2,
+          "icon": "mdi:cup",
+          "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gos bátur mánaðarins: grænmetisbátur"
+          "phrase": "1 gos"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🥪 + 🥗 + 🥤",
+      "visual_summary": "🧑 game-icons:sandwich + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "Hlöllabátar"
     },
     {
@@ -149,70 +131,157 @@
       "food_items": [
         {
           "type": "chicken",
-          "name": "kjúklingabitar",
+          "name": "Original kjúklingabitar",
           "category": "main",
-          "icon": "🍗",
-          "quantity": 8,
+          "icon": "mdi:food-drumstick",
+          "quantity": 2,
           "size": null,
-          "modifiers": [
-            "original",
-            "zinger",
-            "hot"
-          ],
-          "phrase": "2 tveir original kjúklingabitar"
+          "modifiers": [],
+          "phrase": "2 Original kjúklingabitar"
+        },
+        {
+          "type": "chicken",
+          "name": "Zinger kjúklingalundir",
+          "category": "main",
+          "icon": "mdi:food-drumstick",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2 Zinger kjúklingalundir"
+        },
+        {
+          "type": "chicken",
+          "name": "Hot Wings",
+          "category": "main",
+          "icon": "mdi:food-drumstick",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "4 Hot Wings"
         },
         {
           "type": "sauce",
-          "name": "sauce",
+          "name": "heit brúnni sósu",
           "category": "side",
-          "icon": "🍅",
-          "quantity": 5,
+          "icon": "game-icons:ketchup",
+          "quantity": 2,
           "size": null,
-          "modifiers": [
-            "hot sauce",
-            "bbq"
-          ],
-          "phrase": "fjórar hot sauce"
+          "modifiers": [],
+          "phrase": "2 heit brúnni sósu"
+        },
+        {
+          "type": "fries",
+          "name": "frönskum",
+          "category": "side",
+          "icon": "noto:french-fries",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2 frönskum"
+        },
+        {
+          "type": "sauce",
+          "name": "Hot Sauce",
+          "category": "side",
+          "icon": "game-icons:ketchup",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "4 Hot Sauce"
+        },
+        {
+          "type": "sauce",
+          "name": "BBQ Dip-sósa",
+          "category": "side",
+          "icon": "game-icons:ketchup",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 BBQ Dip-sósa"
         }
       ],
-      "meal_type": "family",
+      "meal_type": "sharing",
       "is_combo": true,
-      "complexity_score": 16,
-      "total_food_items": 13,
+      "complexity_score": 18,
+      "total_food_items": 17,
       "main_items": [
         {
           "type": "chicken",
-          "name": "kjúklingabitar",
+          "name": "Original kjúklingabitar",
           "category": "main",
-          "icon": "🍗",
-          "quantity": 8,
+          "icon": "mdi:food-drumstick",
+          "quantity": 2,
           "size": null,
-          "modifiers": [
-            "original",
-            "zinger",
-            "hot"
-          ],
-          "phrase": "2 tveir original kjúklingabitar"
+          "modifiers": [],
+          "phrase": "2 Original kjúklingabitar"
+        },
+        {
+          "type": "chicken",
+          "name": "Zinger kjúklingalundir",
+          "category": "main",
+          "icon": "mdi:food-drumstick",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2 Zinger kjúklingalundir"
+        },
+        {
+          "type": "chicken",
+          "name": "Hot Wings",
+          "category": "main",
+          "icon": "mdi:food-drumstick",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "4 Hot Wings"
         }
       ],
       "side_items": [
         {
           "type": "sauce",
-          "name": "sauce",
+          "name": "heit brúnni sósu",
           "category": "side",
-          "icon": "🍅",
-          "quantity": 5,
+          "icon": "game-icons:ketchup",
+          "quantity": 2,
           "size": null,
-          "modifiers": [
-            "hot sauce",
-            "bbq"
-          ],
-          "phrase": "fjórar hot sauce"
+          "modifiers": [],
+          "phrase": "2 heit brúnni sósu"
+        },
+        {
+          "type": "fries",
+          "name": "frönskum",
+          "category": "side",
+          "icon": "noto:french-fries",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2 frönskum"
+        },
+        {
+          "type": "sauce",
+          "name": "Hot Sauce",
+          "category": "side",
+          "icon": "game-icons:ketchup",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "4 Hot Sauce"
+        },
+        {
+          "type": "sauce",
+          "name": "BBQ Dip-sósa",
+          "category": "side",
+          "icon": "game-icons:ketchup",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 BBQ Dip-sósa"
         }
       ],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍗 + 🍅",
+      "visual_summary": "👥 mdi:food-drumstickmdi:food-drumstickmdi:food-drumstick + game-icons:ketchupnoto:french-friesgame-icons:ketchupgame-icons:ketchup",
+      "new_categories": [],
       "restaurant_name": "KFC Iceland"
     },
     {
@@ -227,78 +296,75 @@
       "food_items": [
         {
           "type": "chicken",
-          "name": "kjúklingabitar",
+          "name": "Original kjúklingabitar",
           "category": "main",
-          "icon": "🍗",
-          "quantity": 6,
+          "icon": "mdi:food-drumstick",
+          "quantity": 12,
           "size": null,
-          "modifiers": [
-            "original"
-          ],
-          "phrase": "6 tólf original kjúklingabitar"
+          "modifiers": [],
+          "phrase": "12 Original kjúklingabitar"
         },
         {
           "type": "fries",
           "name": "franskar",
           "category": "side",
-          "icon": "🍟",
+          "icon": "noto:french-fries",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "franskar"
+          "phrase": "1 franskar"
         },
         {
           "type": "sauce",
-          "name": "sósa",
+          "name": "sósur",
           "category": "side",
-          "icon": "🍅",
-          "quantity": 3,
+          "icon": "game-icons:ketchup",
+          "quantity": 2,
           "size": null,
           "modifiers": [
-            "brún",
-            "heit",
-            "bbq",
+            "heitt brún sósa",
+            "heit BBQ-sósa",
             "kokteilsósa"
           ],
-          "phrase": "tvær sósur – heit brún sósa"
+          "phrase": "2 sósur"
         },
         {
           "type": "salad",
-          "name": "salat",
+          "name": "hrásalat",
           "category": "side",
-          "icon": "🥗",
+          "icon": "noto:green-salad",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "hrásalat"
+          "phrase": "1 hrásalat"
         },
         {
           "type": "soda",
-          "name": "gos",
+          "name": "gosi",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 1,
-          "size": null,
+          "icon": "mdi:cup",
+          "quantity": 2,
+          "size": {
+            "descriptor": "lítra"
+          },
           "modifiers": [],
-          "phrase": "tveggja lítra gosi"
+          "phrase": "2 gosi"
         }
       ],
       "meal_type": "family",
       "is_combo": true,
       "complexity_score": 20,
-      "total_food_items": 12,
+      "total_food_items": 18,
       "main_items": [
         {
           "type": "chicken",
-          "name": "kjúklingabitar",
+          "name": "Original kjúklingabitar",
           "category": "main",
-          "icon": "🍗",
-          "quantity": 6,
+          "icon": "mdi:food-drumstick",
+          "quantity": 12,
           "size": null,
-          "modifiers": [
-            "original"
-          ],
-          "phrase": "6 tólf original kjúklingabitar"
+          "modifiers": [],
+          "phrase": "12 Original kjúklingabitar"
         }
       ],
       "side_items": [
@@ -306,52 +372,54 @@
           "type": "fries",
           "name": "franskar",
           "category": "side",
-          "icon": "🍟",
+          "icon": "noto:french-fries",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "franskar"
+          "phrase": "1 franskar"
         },
         {
           "type": "sauce",
-          "name": "sósa",
+          "name": "sósur",
           "category": "side",
-          "icon": "🍅",
-          "quantity": 3,
+          "icon": "game-icons:ketchup",
+          "quantity": 2,
           "size": null,
           "modifiers": [
-            "brún",
-            "heit",
-            "bbq",
+            "heitt brún sósa",
+            "heit BBQ-sósa",
             "kokteilsósa"
           ],
-          "phrase": "tvær sósur – heit brún sósa"
+          "phrase": "2 sósur"
         },
         {
           "type": "salad",
-          "name": "salat",
+          "name": "hrásalat",
           "category": "side",
-          "icon": "🥗",
+          "icon": "noto:green-salad",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "hrásalat"
+          "phrase": "1 hrásalat"
         }
       ],
       "drink_items": [
         {
           "type": "soda",
-          "name": "gos",
+          "name": "gosi",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 1,
-          "size": null,
+          "icon": "mdi:cup",
+          "quantity": 2,
+          "size": {
+            "descriptor": "lítra"
+          },
           "modifiers": [],
-          "phrase": "tveggja lítra gosi"
+          "phrase": "2 gosi"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍗 + 🍟🍅🥗 + 🥤",
+      "visual_summary": "👨‍👩‍👧‍👦 mdi:food-drumstick + noto:french-friesgame-icons:ketchupnoto:green-salad + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "KFC Iceland"
     },
     {
@@ -366,78 +434,73 @@
       "food_items": [
         {
           "type": "chicken",
-          "name": "kjúklingabitar",
+          "name": "Original kjúklingabitar",
           "category": "main",
-          "icon": "🍗",
-          "quantity": 4,
+          "icon": "mdi:food-drumstick",
+          "quantity": 8,
           "size": null,
-          "modifiers": [
-            "original"
-          ],
-          "phrase": "4 átta original kjúklingabitar"
+          "modifiers": [],
+          "phrase": "8 Original kjúklingabitar"
         },
         {
           "type": "fries",
           "name": "franskar",
           "category": "side",
-          "icon": "🍟",
+          "icon": "noto:french-fries",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "franskar"
+          "phrase": "1 franskar"
         },
         {
           "type": "sauce",
-          "name": "sósa",
+          "name": "sósur",
           "category": "side",
-          "icon": "🍅",
-          "quantity": 3,
-          "size": null,
-          "modifiers": [
-            "brún",
-            "heit",
-            "bbq",
-            "kokteilsósa"
-          ],
-          "phrase": "tvær sósur – heit brún sósa"
+          "icon": "game-icons:ketchup",
+          "quantity": 2,
+          "size": {
+            "descriptor": "heitt brún sósa, heit BBQ-sósa eða kokteilsósa"
+          },
+          "modifiers": [],
+          "phrase": "2 sósur"
         },
         {
           "type": "salad",
-          "name": "salat",
+          "name": "hrásalat",
           "category": "side",
-          "icon": "🥗",
+          "icon": "noto:green-salad",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "hrásalat"
+          "phrase": "1 hrásalat"
         },
         {
           "type": "soda",
-          "name": "gos",
+          "name": "gosi",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 1,
-          "size": null,
+          "icon": "mdi:cup",
+          "quantity": 2,
+          "size": {
+            "descriptor": "lítra"
+          },
           "modifiers": [],
-          "phrase": "tveggja lítra gosi"
+          "phrase": "2 gosi"
         }
       ],
       "meal_type": "family",
       "is_combo": true,
       "complexity_score": 20,
-      "total_food_items": 10,
+      "total_food_items": 14,
       "main_items": [
         {
           "type": "chicken",
-          "name": "kjúklingabitar",
+          "name": "Original kjúklingabitar",
           "category": "main",
-          "icon": "🍗",
-          "quantity": 4,
+          "icon": "mdi:food-drumstick",
+          "quantity": 8,
           "size": null,
-          "modifiers": [
-            "original"
-          ],
-          "phrase": "4 átta original kjúklingabitar"
+          "modifiers": [],
+          "phrase": "8 Original kjúklingabitar"
         }
       ],
       "side_items": [
@@ -445,52 +508,52 @@
           "type": "fries",
           "name": "franskar",
           "category": "side",
-          "icon": "🍟",
+          "icon": "noto:french-fries",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "franskar"
+          "phrase": "1 franskar"
         },
         {
           "type": "sauce",
-          "name": "sósa",
+          "name": "sósur",
           "category": "side",
-          "icon": "🍅",
-          "quantity": 3,
-          "size": null,
-          "modifiers": [
-            "brún",
-            "heit",
-            "bbq",
-            "kokteilsósa"
-          ],
-          "phrase": "tvær sósur – heit brún sósa"
+          "icon": "game-icons:ketchup",
+          "quantity": 2,
+          "size": {
+            "descriptor": "heitt brún sósa, heit BBQ-sósa eða kokteilsósa"
+          },
+          "modifiers": [],
+          "phrase": "2 sósur"
         },
         {
           "type": "salad",
-          "name": "salat",
+          "name": "hrásalat",
           "category": "side",
-          "icon": "🥗",
+          "icon": "noto:green-salad",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "hrásalat"
+          "phrase": "1 hrásalat"
         }
       ],
       "drink_items": [
         {
           "type": "soda",
-          "name": "gos",
+          "name": "gosi",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 1,
-          "size": null,
+          "icon": "mdi:cup",
+          "quantity": 2,
+          "size": {
+            "descriptor": "lítra"
+          },
           "modifiers": [],
-          "phrase": "tveggja lítra gosi"
+          "phrase": "2 gosi"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍗 + 🍟🍅🥗 + 🥤",
+      "visual_summary": "👨‍👩‍👧‍👦 mdi:food-drumstick + noto:french-friesgame-icons:ketchupnoto:green-salad + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "KFC Iceland"
     },
     {
@@ -505,53 +568,59 @@
       "food_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 3,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "þreföld þrenna 3 leggir - 3 hot wings - franskar"
+          "modifiers": [],
+          "phrase": "3 Hot Wings"
         },
         {
           "type": "fries",
           "name": "franskar",
           "category": "side",
-          "icon": "🍟",
-          "quantity": 3,
+          "icon": "noto:french-fries",
+          "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "þreföld þrenna 3 leggir - 3 hot wings - franskar"
+          "phrase": "1 franskar"
         },
         {
           "type": "soda",
           "name": "gos",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gos"
+          "phrase": "1 gos"
+        },
+        {
+          "type": "ice_cream",
+          "name": "kúlur",
+          "category": "dessert",
+          "icon": "mdi:ice-cream",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 kúlur"
         }
       ],
-      "meal_type": "family",
+      "meal_type": "combo",
       "is_combo": true,
-      "complexity_score": 16,
-      "total_food_items": 7,
+      "complexity_score": 18,
+      "total_food_items": 6,
       "main_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 3,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "þreföld þrenna 3 leggir - 3 hot wings - franskar"
+          "modifiers": [],
+          "phrase": "3 Hot Wings"
         }
       ],
       "side_items": [
@@ -559,11 +628,11 @@
           "type": "fries",
           "name": "franskar",
           "category": "side",
-          "icon": "🍟",
-          "quantity": 3,
+          "icon": "noto:french-fries",
+          "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "þreföld þrenna 3 leggir - 3 hot wings - franskar"
+          "phrase": "1 franskar"
         }
       ],
       "drink_items": [
@@ -571,15 +640,27 @@
           "type": "soda",
           "name": "gos",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gos"
+          "phrase": "1 gos"
         }
       ],
-      "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍗 + 🍟 + 🥤",
+      "dessert_items": [
+        {
+          "type": "ice_cream",
+          "name": "kúlur",
+          "category": "dessert",
+          "icon": "mdi:ice-cream",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 kúlur"
+        }
+      ],
+      "visual_summary": "🍽️ mdi:food-drumstick + noto:french-fries + mdi:cup + mdi:ice-cream",
+      "new_categories": [],
       "restaurant_name": "KFC Iceland"
     },
     {
@@ -593,36 +674,62 @@
       "availability_text": null,
       "food_items": [
         {
+          "type": "burger",
+          "name": "Original kjúklingaborgarar",
+          "category": "main",
+          "icon": "fluent-emoji:hamburger",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "4 Original kjúklingaborgarar"
+        },
+        {
           "type": "soda",
           "name": "gos",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 1,
-          "size": null,
+          "icon": "mdi:cup",
+          "quantity": 2,
+          "size": {
+            "descriptor": "liters"
+          },
           "modifiers": [],
-          "phrase": "tveggja lítra gos"
+          "phrase": "2 gos"
         }
       ],
-      "meal_type": "snack",
-      "is_combo": false,
-      "complexity_score": 4,
-      "total_food_items": 1,
-      "main_items": [],
+      "meal_type": "combo",
+      "is_combo": true,
+      "complexity_score": 14,
+      "total_food_items": 6,
+      "main_items": [
+        {
+          "type": "burger",
+          "name": "Original kjúklingaborgarar",
+          "category": "main",
+          "icon": "fluent-emoji:hamburger",
+          "quantity": 4,
+          "size": null,
+          "modifiers": [],
+          "phrase": "4 Original kjúklingaborgarar"
+        }
+      ],
       "side_items": [],
       "drink_items": [
         {
           "type": "soda",
           "name": "gos",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 1,
-          "size": null,
+          "icon": "mdi:cup",
+          "quantity": 2,
+          "size": {
+            "descriptor": "liters"
+          },
           "modifiers": [],
-          "phrase": "tveggja lítra gos"
+          "phrase": "2 gos"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "🥨 🥤",
+      "visual_summary": "🍽️ fluent-emoji:hamburger + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "KFC Iceland"
     },
     {
@@ -637,39 +744,36 @@
       "food_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 15,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "15 hot wings fataðu þig #1"
+          "modifiers": [],
+          "phrase": "15 Hot Wings"
         }
       ],
-      "meal_type": "family",
+      "meal_type": "individual",
       "is_combo": false,
       "complexity_score": 13,
       "total_food_items": 15,
       "main_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 15,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "15 hot wings fataðu þig #1"
+          "modifiers": [],
+          "phrase": "15 Hot Wings"
         }
       ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍗",
+      "visual_summary": "🧑 mdi:food-drumstick",
+      "new_categories": [],
       "restaurant_name": "KFC Iceland"
     },
     {
@@ -684,39 +788,36 @@
       "food_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "BBQ Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 15,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "15 bbq hot wings fataðu þig #2"
+          "modifiers": [],
+          "phrase": "15 BBQ Hot Wings"
         }
       ],
-      "meal_type": "family",
+      "meal_type": "individual",
       "is_combo": false,
       "complexity_score": 13,
       "total_food_items": 15,
       "main_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "BBQ Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 15,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "15 bbq hot wings fataðu þig #2"
+          "modifiers": [],
+          "phrase": "15 BBQ Hot Wings"
         }
       ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍗",
+      "visual_summary": "🧑 mdi:food-drumstick",
+      "new_categories": [],
       "restaurant_name": "KFC Iceland"
     },
     {
@@ -731,39 +832,36 @@
       "food_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "Buffalo Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 15,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "15 buffalo hot wings fataðu þig #3"
+          "modifiers": [],
+          "phrase": "15 Buffalo Hot Wings"
         }
       ],
-      "meal_type": "family",
+      "meal_type": "individual",
       "is_combo": false,
       "complexity_score": 13,
       "total_food_items": 15,
       "main_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "Buffalo Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 15,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "15 buffalo hot wings fataðu þig #3"
+          "modifiers": [],
+          "phrase": "15 Buffalo Hot Wings"
         }
       ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍗",
+      "visual_summary": "🧑 mdi:food-drumstick",
+      "new_categories": [],
       "restaurant_name": "KFC Iceland"
     },
     {
@@ -778,39 +876,36 @@
       "food_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 20,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "20 hot wings bucketlistinn #1"
+          "modifiers": [],
+          "phrase": "20 Hot Wings"
         }
       ],
-      "meal_type": "family",
+      "meal_type": "individual",
       "is_combo": false,
       "complexity_score": 13,
       "total_food_items": 20,
       "main_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 20,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "20 hot wings bucketlistinn #1"
+          "modifiers": [],
+          "phrase": "20 Hot Wings"
         }
       ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍗",
+      "visual_summary": "🧑 mdi:food-drumstick",
+      "new_categories": [],
       "restaurant_name": "KFC Iceland"
     },
     {
@@ -822,16 +917,39 @@
       "available_weekdays": null,
       "available_hours": null,
       "availability_text": null,
-      "food_items": [],
-      "meal_type": "snack",
+      "food_items": [
+        {
+          "type": "chicken",
+          "name": "kjúklingaleggir",
+          "category": "main",
+          "icon": "mdi:food-drumstick",
+          "quantity": 10,
+          "size": null,
+          "modifiers": [],
+          "phrase": "10 kjúklingaleggir"
+        }
+      ],
+      "meal_type": "individual",
       "is_combo": false,
-      "complexity_score": 0,
-      "total_food_items": 0,
-      "main_items": [],
+      "complexity_score": 13,
+      "total_food_items": 10,
+      "main_items": [
+        {
+          "type": "chicken",
+          "name": "kjúklingaleggir",
+          "category": "main",
+          "icon": "mdi:food-drumstick",
+          "quantity": 10,
+          "size": null,
+          "modifiers": [],
+          "phrase": "10 kjúklingaleggir"
+        }
+      ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "🍽️ General offer",
+      "visual_summary": "🧑 mdi:food-drumstick",
+      "new_categories": [],
       "restaurant_name": "KFC Iceland"
     },
     {
@@ -844,7 +962,7 @@
       "available_hours": null,
       "availability_text": null,
       "food_items": [],
-      "meal_type": "snack",
+      "meal_type": null,
       "is_combo": false,
       "complexity_score": 0,
       "total_food_items": 0,
@@ -853,6 +971,7 @@
       "drink_items": [],
       "dessert_items": [],
       "visual_summary": "🍽️ General offer",
+      "new_categories": [],
       "restaurant_name": "KFC Iceland"
     },
     {
@@ -869,33 +988,34 @@
           "type": "chicken",
           "name": "kjúklingabitar",
           "category": "main",
-          "icon": "🍗",
-          "quantity": 6,
+          "icon": "mdi:food-drumstick",
+          "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "6 ekki kjúklingabitar bucketlistinn #4"
+          "phrase": "1 kjúklingabitar"
         }
       ],
-      "meal_type": "family",
+      "meal_type": "individual",
       "is_combo": false,
-      "complexity_score": 9,
-      "total_food_items": 6,
+      "complexity_score": 4,
+      "total_food_items": 1,
       "main_items": [
         {
           "type": "chicken",
           "name": "kjúklingabitar",
           "category": "main",
-          "icon": "🍗",
-          "quantity": 6,
+          "icon": "mdi:food-drumstick",
+          "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "6 ekki kjúklingabitar bucketlistinn #4"
+          "phrase": "1 kjúklingabitar"
         }
       ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍗",
+      "visual_summary": "🧑 mdi:food-drumstick",
+      "new_categories": [],
       "restaurant_name": "KFC Iceland"
     },
     {
@@ -910,39 +1030,36 @@
       "food_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 25,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "25 hot wings ódýrari á laugardögum"
+          "modifiers": [],
+          "phrase": "25 Hot Wings"
         }
       ],
-      "meal_type": "family",
+      "meal_type": "individual",
       "is_combo": false,
       "complexity_score": 13,
       "total_food_items": 25,
       "main_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 25,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "25 hot wings ódýrari á laugardögum"
+          "modifiers": [],
+          "phrase": "25 Hot Wings"
         }
       ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍗",
+      "visual_summary": "🧑 mdi:food-drumstick",
+      "new_categories": [],
       "restaurant_name": "KFC Iceland"
     },
     {
@@ -957,39 +1074,36 @@
       "food_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 50,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "50 hot wings ódýrari á laugardögum"
+          "modifiers": [],
+          "phrase": "50 Hot Wings"
         }
       ],
-      "meal_type": "family",
+      "meal_type": "individual",
       "is_combo": false,
       "complexity_score": 13,
       "total_food_items": 50,
       "main_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 50,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "50 hot wings ódýrari á laugardögum"
+          "modifiers": [],
+          "phrase": "50 Hot Wings"
         }
       ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍗",
+      "visual_summary": "🧑 mdi:food-drumstick",
+      "new_categories": [],
       "restaurant_name": "KFC Iceland"
     },
     {
@@ -1004,39 +1118,36 @@
       "food_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 100,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "100 hot wings ódýrari á laugardögum"
+          "modifiers": [],
+          "phrase": "100 Hot Wings"
         }
       ],
-      "meal_type": "family",
+      "meal_type": "individual",
       "is_combo": false,
       "complexity_score": 13,
       "total_food_items": 100,
       "main_items": [
         {
           "type": "chicken",
-          "name": "wings",
+          "name": "Hot Wings",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 100,
           "size": null,
-          "modifiers": [
-            "hot"
-          ],
-          "phrase": "100 hot wings ódýrari á laugardögum"
+          "modifiers": [],
+          "phrase": "100 Hot Wings"
         }
       ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍗",
+      "visual_summary": "🧑 mdi:food-drumstick",
+      "new_categories": [],
       "restaurant_name": "KFC Iceland"
     },
     {
@@ -1051,64 +1162,75 @@
       "food_items": [
         {
           "type": "pizza",
-          "name": "pizza",
+          "name": "pönnupizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 2,
+          "icon": "twemoji:pizza",
+          "quantity": 1,
           "size": {
-            "descriptor": "stór",
-            "unit": "descriptor"
+            "descriptor": "stór"
           },
-          "modifiers": [
-            "stór",
-            "pönnupizza"
-          ],
-          "phrase": "em tilboð stór eða pönnupizza af matseðli"
+          "modifiers": [],
+          "phrase": "1 pönnupizza"
         },
         {
           "type": "soda",
-          "name": "gos",
+          "name": "ís kalt gos",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 4,
+          "icon": "mdi:cup",
+          "quantity": 1,
           "size": {
-            "liters": 2,
-            "unit": "liters"
+            "descriptor": "2 lítra"
           },
           "modifiers": [],
-          "phrase": "2 lítra ískalt gos"
+          "phrase": "1 ís kalt gos"
+        },
+        {
+          "type": "side",
+          "name": "meðlæti",
+          "category": "main",
+          "icon": "mdi:food",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 meðlæti"
         },
         {
           "type": "sauce",
           "name": "sósa",
           "category": "side",
-          "icon": "🍅",
-          "quantity": 2,
+          "icon": "game-icons:ketchup",
+          "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "sósa"
+          "phrase": "1 sósa"
         }
       ],
       "meal_type": "family",
       "is_combo": true,
-      "complexity_score": 19,
-      "total_food_items": 8,
+      "complexity_score": 17,
+      "total_food_items": 4,
       "main_items": [
         {
           "type": "pizza",
-          "name": "pizza",
+          "name": "pönnupizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 2,
+          "icon": "twemoji:pizza",
+          "quantity": 1,
           "size": {
-            "descriptor": "stór",
-            "unit": "descriptor"
+            "descriptor": "stór"
           },
-          "modifiers": [
-            "stór",
-            "pönnupizza"
-          ],
-          "phrase": "em tilboð stór eða pönnupizza af matseðli"
+          "modifiers": [],
+          "phrase": "1 pönnupizza"
+        },
+        {
+          "type": "side",
+          "name": "meðlæti",
+          "category": "main",
+          "icon": "mdi:food",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 meðlæti"
         }
       ],
       "side_items": [
@@ -1116,30 +1238,30 @@
           "type": "sauce",
           "name": "sósa",
           "category": "side",
-          "icon": "🍅",
-          "quantity": 2,
+          "icon": "game-icons:ketchup",
+          "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "sósa"
+          "phrase": "1 sósa"
         }
       ],
       "drink_items": [
         {
           "type": "soda",
-          "name": "gos",
+          "name": "ís kalt gos",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 4,
+          "icon": "mdi:cup",
+          "quantity": 1,
           "size": {
-            "liters": 2,
-            "unit": "liters"
+            "descriptor": "2 lítra"
           },
           "modifiers": [],
-          "phrase": "2 lítra ískalt gos"
+          "phrase": "1 ís kalt gos"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍕 + 🍅 + 🥤",
+      "visual_summary": "👨‍👩‍👧‍👦 twemoji:pizzamdi:food + game-icons:ketchup + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "Domino's Pizza Iceland"
     },
     {
@@ -1154,65 +1276,40 @@
       "food_items": [
         {
           "type": "pizza",
-          "name": "pizzur",
+          "name": "pizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 6,
-          "size": null,
-          "modifiers": [],
-          "phrase": "tríó í hverjum mánuði eru 3 pizzur af matseðli á 2"
-        },
-        {
-          "type": "pizza",
-          "name": "pizzur",
-          "category": "main",
-          "icon": "🍕",
-          "quantity": 2,
+          "icon": "twemoji:pizza",
+          "quantity": 3,
           "size": {
-            "descriptor": "stór",
-            "unit": "descriptor"
+            "descriptor": "large"
           },
-          "modifiers": [
-            "stór"
-          ],
-          "phrase": "stórar pizzur"
+          "modifiers": [],
+          "phrase": "3 pizza"
         }
       ],
-      "meal_type": "family",
-      "is_combo": true,
-      "complexity_score": 13,
-      "total_food_items": 8,
+      "meal_type": "combo",
+      "is_combo": false,
+      "complexity_score": 8,
+      "total_food_items": 3,
       "main_items": [
         {
           "type": "pizza",
-          "name": "pizzur",
+          "name": "pizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 6,
-          "size": null,
-          "modifiers": [],
-          "phrase": "tríó í hverjum mánuði eru 3 pizzur af matseðli á 2"
-        },
-        {
-          "type": "pizza",
-          "name": "pizzur",
-          "category": "main",
-          "icon": "🍕",
-          "quantity": 2,
+          "icon": "twemoji:pizza",
+          "quantity": 3,
           "size": {
-            "descriptor": "stór",
-            "unit": "descriptor"
+            "descriptor": "large"
           },
-          "modifiers": [
-            "stór"
-          ],
-          "phrase": "stórar pizzur"
+          "modifiers": [],
+          "phrase": "3 pizza"
         }
       ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍕🍕",
+      "visual_summary": "🍽️ twemoji:pizza",
+      "new_categories": [],
       "restaurant_name": "Domino's Pizza Iceland"
     },
     {
@@ -1227,47 +1324,44 @@
       "food_items": [
         {
           "type": "pizza",
-          "name": "pizza",
+          "name": "pönnupizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 2,
+          "icon": "twemoji:pizza",
+          "quantity": 1,
           "size": {
-            "descriptor": "stór",
-            "unit": "descriptor"
+            "descriptor": "stór"
           },
           "modifiers": [
-            "stór",
-            "pönnupizza"
+            "með tveimur áleggstegundum"
           ],
-          "phrase": "hásumartilboð stór eða pönnupizza"
+          "phrase": "1 pönnupizza"
         }
       ],
       "meal_type": "individual",
       "is_combo": false,
-      "complexity_score": 7,
-      "total_food_items": 2,
+      "complexity_score": 6,
+      "total_food_items": 1,
       "main_items": [
         {
           "type": "pizza",
-          "name": "pizza",
+          "name": "pönnupizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 2,
+          "icon": "twemoji:pizza",
+          "quantity": 1,
           "size": {
-            "descriptor": "stór",
-            "unit": "descriptor"
+            "descriptor": "stór"
           },
           "modifiers": [
-            "stór",
-            "pönnupizza"
+            "með tveimur áleggstegundum"
           ],
-          "phrase": "hásumartilboð stór eða pönnupizza"
+          "phrase": "1 pönnupizza"
         }
       ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "🧑 🍕",
+      "visual_summary": "🧑 twemoji:pizza",
+      "new_categories": [],
       "restaurant_name": "Domino's Pizza Iceland"
     },
     {
@@ -1282,45 +1376,65 @@
       "food_items": [
         {
           "type": "pizza",
-          "name": "pizza",
+          "name": "lítil pizza af matseðli",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 2,
+          "icon": "twemoji:pizza",
+          "quantity": 1,
           "size": {
-            "descriptor": "lítil",
-            "unit": "descriptor"
+            "descriptor": "lítil"
           },
+          "modifiers": [],
+          "phrase": "1 lítil pizza af matseðli"
+        },
+        {
+          "type": "snack",
+          "name": "brauðstöngur",
+          "category": "side",
+          "icon": "mdi:food-variant",
+          "quantity": 1,
+          "size": null,
           "modifiers": [
-            "lítil"
+            "með sósu að eigin vali"
           ],
-          "phrase": "hádegistilboð 1 lítil pizza af matseðli"
+          "phrase": "1 brauðstöngur"
         }
       ],
       "meal_type": "individual",
-      "is_combo": false,
-      "complexity_score": 7,
+      "is_combo": true,
+      "complexity_score": 10,
       "total_food_items": 2,
       "main_items": [
         {
           "type": "pizza",
-          "name": "pizza",
+          "name": "lítil pizza af matseðli",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 2,
+          "icon": "twemoji:pizza",
+          "quantity": 1,
           "size": {
-            "descriptor": "lítil",
-            "unit": "descriptor"
+            "descriptor": "lítil"
           },
-          "modifiers": [
-            "lítil"
-          ],
-          "phrase": "hádegistilboð 1 lítil pizza af matseðli"
+          "modifiers": [],
+          "phrase": "1 lítil pizza af matseðli"
         }
       ],
-      "side_items": [],
+      "side_items": [
+        {
+          "type": "snack",
+          "name": "brauðstöngur",
+          "category": "side",
+          "icon": "mdi:food-variant",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [
+            "með sósu að eigin vali"
+          ],
+          "phrase": "1 brauðstöngur"
+        }
+      ],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "🧑 🍕",
+      "visual_summary": "🧑 twemoji:pizza + mdi:food-variant",
+      "new_categories": [],
       "restaurant_name": "Domino's Pizza Iceland"
     },
     {
@@ -1335,35 +1449,65 @@
       "food_items": [
         {
           "type": "pizza",
-          "name": "pizzu",
+          "name": "pizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 6,
+          "icon": "twemoji:pizza",
+          "quantity": 2,
           "size": null,
+          "modifiers": [
+            "dýrari pizzuna"
+          ],
+          "phrase": "2 pizza"
+        },
+        {
+          "type": "snack",
+          "name": "brauðstöngum",
+          "category": "side",
+          "icon": "mdi:food-variant",
+          "quantity": 1,
+          "size": {
+            "descriptor": "stóran skammt"
+          },
           "modifiers": [],
-          "phrase": "tvennutilboð þú sækir pizzu"
+          "phrase": "1 brauðstöngum"
         }
       ],
-      "meal_type": "family",
-      "is_combo": false,
-      "complexity_score": 9,
-      "total_food_items": 6,
+      "meal_type": "combo",
+      "is_combo": true,
+      "complexity_score": 11,
+      "total_food_items": 3,
       "main_items": [
         {
           "type": "pizza",
-          "name": "pizzu",
+          "name": "pizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 6,
+          "icon": "twemoji:pizza",
+          "quantity": 2,
           "size": null,
-          "modifiers": [],
-          "phrase": "tvennutilboð þú sækir pizzu"
+          "modifiers": [
+            "dýrari pizzuna"
+          ],
+          "phrase": "2 pizza"
         }
       ],
-      "side_items": [],
+      "side_items": [
+        {
+          "type": "snack",
+          "name": "brauðstöngum",
+          "category": "side",
+          "icon": "mdi:food-variant",
+          "quantity": 1,
+          "size": {
+            "descriptor": "stóran skammt"
+          },
+          "modifiers": [],
+          "phrase": "1 brauðstöngum"
+        }
+      ],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍕",
+      "visual_summary": "🍽️ twemoji:pizza + mdi:food-variant",
+      "new_categories": [],
       "restaurant_name": "Domino's Pizza Iceland"
     },
     {
@@ -1378,45 +1522,73 @@
       "food_items": [
         {
           "type": "pizza",
-          "name": "pizzur",
+          "name": "pizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 4,
+          "icon": "twemoji:pizza",
+          "quantity": 2,
           "size": {
-            "descriptor": "stór",
-            "unit": "descriptor"
+            "descriptor": "large"
           },
           "modifiers": [
-            "stór"
+            "two toppings"
           ],
-          "phrase": "hópatilboð tvær stórar pizzur"
+          "phrase": "2 pizza"
+        },
+        {
+          "type": "fries",
+          "name": "brauðstangir",
+          "category": "side",
+          "icon": "noto:french-fries",
+          "quantity": 1,
+          "size": {
+            "descriptor": "large"
+          },
+          "modifiers": [
+            "with sauce"
+          ],
+          "phrase": "1 brauðstangir"
         }
       ],
-      "meal_type": "individual",
-      "is_combo": false,
-      "complexity_score": 9,
-      "total_food_items": 4,
+      "meal_type": "family",
+      "is_combo": true,
+      "complexity_score": 11,
+      "total_food_items": 3,
       "main_items": [
         {
           "type": "pizza",
-          "name": "pizzur",
+          "name": "pizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 4,
+          "icon": "twemoji:pizza",
+          "quantity": 2,
           "size": {
-            "descriptor": "stór",
-            "unit": "descriptor"
+            "descriptor": "large"
           },
           "modifiers": [
-            "stór"
+            "two toppings"
           ],
-          "phrase": "hópatilboð tvær stórar pizzur"
+          "phrase": "2 pizza"
         }
       ],
-      "side_items": [],
+      "side_items": [
+        {
+          "type": "fries",
+          "name": "brauðstangir",
+          "category": "side",
+          "icon": "noto:french-fries",
+          "quantity": 1,
+          "size": {
+            "descriptor": "large"
+          },
+          "modifiers": [
+            "with sauce"
+          ],
+          "phrase": "1 brauðstangir"
+        }
+      ],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "🧑 🍕",
+      "visual_summary": "👨‍👩‍👧‍👦 twemoji:pizza + noto:french-fries",
+      "new_categories": [],
       "restaurant_name": "Domino's Pizza Iceland"
     },
     {
@@ -1431,87 +1603,102 @@
       "food_items": [
         {
           "type": "pizza",
-          "name": "pizzur",
+          "name": "pizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 4,
-          "size": {
-            "descriptor": "stór",
-            "unit": "descriptor"
-          },
-          "modifiers": [
-            "stór"
-          ],
-          "phrase": "matarboð tvær stórar pizzur af matseðli"
+          "icon": "twemoji:pizza",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2 pizza"
+        },
+        {
+          "type": "side",
+          "name": "side dishes",
+          "category": "main",
+          "icon": "mdi:food",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2 side dishes"
         },
         {
           "type": "sauce",
-          "name": "sósur",
+          "name": "sauce",
           "category": "side",
-          "icon": "🍅",
-          "quantity": 4,
+          "icon": "game-icons:ketchup",
+          "quantity": 2,
           "size": null,
           "modifiers": [],
-          "phrase": "tvær sósur"
+          "phrase": "2 sauce"
         },
         {
           "type": "soda",
-          "name": "gos",
+          "name": "soda",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 4,
-          "size": null,
+          "icon": "mdi:cup",
+          "quantity": 1,
+          "size": {
+            "descriptor": "2L"
+          },
           "modifiers": [],
-          "phrase": "2l gos"
+          "phrase": "1 soda"
         }
       ],
       "meal_type": "family",
       "is_combo": true,
       "complexity_score": 20,
-      "total_food_items": 12,
+      "total_food_items": 7,
       "main_items": [
         {
           "type": "pizza",
-          "name": "pizzur",
+          "name": "pizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 4,
-          "size": {
-            "descriptor": "stór",
-            "unit": "descriptor"
-          },
-          "modifiers": [
-            "stór"
-          ],
-          "phrase": "matarboð tvær stórar pizzur af matseðli"
+          "icon": "twemoji:pizza",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2 pizza"
+        },
+        {
+          "type": "side",
+          "name": "side dishes",
+          "category": "main",
+          "icon": "mdi:food",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2 side dishes"
         }
       ],
       "side_items": [
         {
           "type": "sauce",
-          "name": "sósur",
+          "name": "sauce",
           "category": "side",
-          "icon": "🍅",
-          "quantity": 4,
+          "icon": "game-icons:ketchup",
+          "quantity": 2,
           "size": null,
           "modifiers": [],
-          "phrase": "tvær sósur"
+          "phrase": "2 sauce"
         }
       ],
       "drink_items": [
         {
           "type": "soda",
-          "name": "gos",
+          "name": "soda",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 4,
-          "size": null,
+          "icon": "mdi:cup",
+          "quantity": 1,
+          "size": {
+            "descriptor": "2L"
+          },
           "modifiers": [],
-          "phrase": "2l gos"
+          "phrase": "1 soda"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍕 + 🍅 + 🥤",
+      "visual_summary": "👨‍👩‍👧‍👦 twemoji:pizzamdi:food + game-icons:ketchup + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "Domino's Pizza Iceland"
     },
     {
@@ -1526,56 +1713,65 @@
       "food_items": [
         {
           "type": "pizza",
-          "name": "pizzu",
+          "name": "pizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 3,
-          "size": null,
+          "icon": "twemoji:pizza",
+          "quantity": 1,
+          "size": {
+            "descriptor": "medium"
+          },
           "modifiers": [],
-          "phrase": "hádegistilboð 2 miðstærð af pizzu af matseðli"
+          "phrase": "1 pizza"
         },
         {
           "type": "soda",
-          "name": "gos",
+          "name": "soda",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 2,
-          "size": null,
+          "icon": "mdi:cup",
+          "quantity": 1,
+          "size": {
+            "descriptor": "0.5 ltr"
+          },
           "modifiers": [],
-          "phrase": "gos"
+          "phrase": "1 soda"
         }
       ],
-      "meal_type": "combo",
+      "meal_type": "individual",
       "is_combo": true,
-      "complexity_score": 11,
-      "total_food_items": 5,
+      "complexity_score": 10,
+      "total_food_items": 2,
       "main_items": [
         {
           "type": "pizza",
-          "name": "pizzu",
+          "name": "pizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 3,
-          "size": null,
+          "icon": "twemoji:pizza",
+          "quantity": 1,
+          "size": {
+            "descriptor": "medium"
+          },
           "modifiers": [],
-          "phrase": "hádegistilboð 2 miðstærð af pizzu af matseðli"
+          "phrase": "1 pizza"
         }
       ],
       "side_items": [],
       "drink_items": [
         {
           "type": "soda",
-          "name": "gos",
+          "name": "soda",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 2,
-          "size": null,
+          "icon": "mdi:cup",
+          "quantity": 1,
+          "size": {
+            "descriptor": "0.5 ltr"
+          },
           "modifiers": [],
-          "phrase": "gos"
+          "phrase": "1 soda"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "🍽️ 🍕 + 🥤",
+      "visual_summary": "🧑 twemoji:pizza + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "Domino's Pizza Iceland"
     },
     {
@@ -1589,57 +1785,91 @@
       "availability_text": null,
       "food_items": [
         {
-          "type": "sub",
-          "name": "báta",
+          "type": "chicken",
+          "name": "kjúklingavængir",
           "category": "main",
-          "icon": "🥪",
-          "quantity": 2,
+          "icon": "mdi:food-drumstick",
+          "quantity": 20,
           "size": null,
-          "modifiers": [],
-          "phrase": "kartöflubátar"
+          "modifiers": [
+            "sósu að eigin vali"
+          ],
+          "phrase": "20 kjúklingavængir"
+        },
+        {
+          "type": "fries",
+          "name": "kartöflubátar",
+          "category": "side",
+          "icon": "noto:french-fries",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [
+            "með sósu"
+          ],
+          "phrase": "1 kartöflubátar"
         },
         {
           "type": "soda",
-          "name": "gos",
+          "name": "ískaalt gos",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 4,
-          "size": null,
+          "icon": "mdi:cup",
+          "quantity": 1,
+          "size": {
+            "descriptor": "2l"
+          },
           "modifiers": [],
-          "phrase": "2l ískalt gos"
+          "phrase": "1 ískaalt gos"
         }
       ],
-      "meal_type": "family",
+      "meal_type": "combo",
       "is_combo": true,
-      "complexity_score": 12,
-      "total_food_items": 6,
+      "complexity_score": 20,
+      "total_food_items": 22,
       "main_items": [
         {
-          "type": "sub",
-          "name": "báta",
+          "type": "chicken",
+          "name": "kjúklingavængir",
           "category": "main",
-          "icon": "🥪",
-          "quantity": 2,
+          "icon": "mdi:food-drumstick",
+          "quantity": 20,
           "size": null,
-          "modifiers": [],
-          "phrase": "kartöflubátar"
+          "modifiers": [
+            "sósu að eigin vali"
+          ],
+          "phrase": "20 kjúklingavængir"
         }
       ],
-      "side_items": [],
+      "side_items": [
+        {
+          "type": "fries",
+          "name": "kartöflubátar",
+          "category": "side",
+          "icon": "noto:french-fries",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [
+            "með sósu"
+          ],
+          "phrase": "1 kartöflubátar"
+        }
+      ],
       "drink_items": [
         {
           "type": "soda",
-          "name": "gos",
+          "name": "ískaalt gos",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 4,
-          "size": null,
+          "icon": "mdi:cup",
+          "quantity": 1,
+          "size": {
+            "descriptor": "2l"
+          },
           "modifiers": [],
-          "phrase": "2l ískalt gos"
+          "phrase": "1 ískaalt gos"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🥪 + 🥤",
+      "visual_summary": "🍽️ mdi:food-drumstick + noto:french-fries + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "Domino's Pizza Iceland"
     },
     {
@@ -1654,95 +1884,110 @@
       "food_items": [
         {
           "type": "pizza",
-          "name": "pizza",
+          "name": "pönnupizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 2,
+          "icon": "twemoji:pizza",
+          "quantity": 1,
           "size": {
-            "descriptor": "stór",
-            "unit": "descriptor"
+            "descriptor": "stór"
           },
-          "modifiers": [
-            "stór",
-            "pönnupizza"
-          ],
-          "phrase": "sparitilboð a stór eða pönnupizza af matseðli"
+          "modifiers": [],
+          "phrase": "1 pönnupizza"
         },
         {
           "type": "soda",
-          "name": "gos",
+          "name": "ískaalt gos",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 4,
+          "icon": "mdi:cup",
+          "quantity": 1,
           "size": {
-            "liters": 2,
-            "unit": "liters"
+            "descriptor": "2 lítra"
           },
           "modifiers": [],
-          "phrase": "2 lítra ískalt gos"
+          "phrase": "1 ískaalt gos"
+        },
+        {
+          "type": "snack",
+          "name": "brauðstöngur",
+          "category": "side",
+          "icon": "mdi:food-variant",
+          "quantity": 1,
+          "size": {
+            "descriptor": "stór skammtur"
+          },
+          "modifiers": [],
+          "phrase": "1 brauðstöngur"
         },
         {
           "type": "sauce",
           "name": "sósa",
           "category": "side",
-          "icon": "🍅",
-          "quantity": 2,
+          "icon": "game-icons:ketchup",
+          "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "sósa"
+          "phrase": "1 sósa"
         }
       ],
       "meal_type": "family",
       "is_combo": true,
-      "complexity_score": 19,
-      "total_food_items": 8,
+      "complexity_score": 17,
+      "total_food_items": 4,
       "main_items": [
         {
           "type": "pizza",
-          "name": "pizza",
+          "name": "pönnupizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 2,
+          "icon": "twemoji:pizza",
+          "quantity": 1,
           "size": {
-            "descriptor": "stór",
-            "unit": "descriptor"
+            "descriptor": "stór"
           },
-          "modifiers": [
-            "stór",
-            "pönnupizza"
-          ],
-          "phrase": "sparitilboð a stór eða pönnupizza af matseðli"
+          "modifiers": [],
+          "phrase": "1 pönnupizza"
         }
       ],
       "side_items": [
         {
+          "type": "snack",
+          "name": "brauðstöngur",
+          "category": "side",
+          "icon": "mdi:food-variant",
+          "quantity": 1,
+          "size": {
+            "descriptor": "stór skammtur"
+          },
+          "modifiers": [],
+          "phrase": "1 brauðstöngur"
+        },
+        {
           "type": "sauce",
           "name": "sósa",
           "category": "side",
-          "icon": "🍅",
-          "quantity": 2,
+          "icon": "game-icons:ketchup",
+          "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "sósa"
+          "phrase": "1 sósa"
         }
       ],
       "drink_items": [
         {
           "type": "soda",
-          "name": "gos",
+          "name": "ískaalt gos",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 4,
+          "icon": "mdi:cup",
+          "quantity": 1,
           "size": {
-            "liters": 2,
-            "unit": "liters"
+            "descriptor": "2 lítra"
           },
           "modifiers": [],
-          "phrase": "2 lítra ískalt gos"
+          "phrase": "1 ískaalt gos"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍕 + 🍅 + 🥤",
+      "visual_summary": "👨‍👩‍👧‍👦 twemoji:pizza + mdi:food-variantgame-icons:ketchup + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "Domino's Pizza Iceland"
     },
     {
@@ -1757,88 +2002,119 @@
       "food_items": [
         {
           "type": "pizza",
-          "name": "pizzu",
+          "name": "pizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 2,
-          "size": null,
+          "icon": "twemoji:pizza",
+          "quantity": 1,
+          "size": {
+            "descriptor": "medium"
+          },
           "modifiers": [],
-          "phrase": "sparitilboð b miðstærð af pizzu af matseðli"
+          "phrase": "1 pizza"
         },
         {
           "type": "soda",
-          "name": "gos",
+          "name": "soda",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 4,
+          "icon": "mdi:cup",
+          "quantity": 1,
           "size": {
-            "liters": 2,
-            "unit": "liters"
+            "descriptor": "2 liters"
+          },
+          "modifiers": [
+            "iced"
+          ],
+          "phrase": "1 soda"
+        },
+        {
+          "type": "snack",
+          "name": "breadsticks",
+          "category": "side",
+          "icon": "mdi:food-variant",
+          "quantity": 1,
+          "size": {
+            "descriptor": "large"
           },
           "modifiers": [],
-          "phrase": "2 lítra ískalt gos"
+          "phrase": "1 breadsticks"
         },
         {
           "type": "sauce",
-          "name": "sósa",
+          "name": "sauce",
           "category": "side",
-          "icon": "🍅",
-          "quantity": 2,
+          "icon": "game-icons:ketchup",
+          "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "sósa"
+          "phrase": "1 sauce"
         }
       ],
-      "meal_type": "family",
+      "meal_type": "combo",
       "is_combo": true,
-      "complexity_score": 19,
-      "total_food_items": 8,
+      "complexity_score": 17,
+      "total_food_items": 4,
       "main_items": [
         {
           "type": "pizza",
-          "name": "pizzu",
+          "name": "pizza",
           "category": "main",
-          "icon": "🍕",
-          "quantity": 2,
-          "size": null,
+          "icon": "twemoji:pizza",
+          "quantity": 1,
+          "size": {
+            "descriptor": "medium"
+          },
           "modifiers": [],
-          "phrase": "sparitilboð b miðstærð af pizzu af matseðli"
+          "phrase": "1 pizza"
         }
       ],
       "side_items": [
         {
-          "type": "sauce",
-          "name": "sósa",
+          "type": "snack",
+          "name": "breadsticks",
           "category": "side",
-          "icon": "🍅",
-          "quantity": 2,
+          "icon": "mdi:food-variant",
+          "quantity": 1,
+          "size": {
+            "descriptor": "large"
+          },
+          "modifiers": [],
+          "phrase": "1 breadsticks"
+        },
+        {
+          "type": "sauce",
+          "name": "sauce",
+          "category": "side",
+          "icon": "game-icons:ketchup",
+          "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "sósa"
+          "phrase": "1 sauce"
         }
       ],
       "drink_items": [
         {
           "type": "soda",
-          "name": "gos",
+          "name": "soda",
           "category": "drink",
-          "icon": "🥤",
-          "quantity": 4,
+          "icon": "mdi:cup",
+          "quantity": 1,
           "size": {
-            "liters": 2,
-            "unit": "liters"
+            "descriptor": "2 liters"
           },
-          "modifiers": [],
-          "phrase": "2 lítra ískalt gos"
+          "modifiers": [
+            "iced"
+          ],
+          "phrase": "1 soda"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍕 + 🍅 + 🥤",
+      "visual_summary": "🍽️ twemoji:pizza + mdi:food-variantgame-icons:ketchup + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "Domino's Pizza Iceland"
     },
     {
       "offer_name": "Núðlur súpa með grænmeti",
-      "description": "A delicious noodle soup made with fresh vegetables.",
+      "description": "Noodle soup with vegetables.",
       "price_kr": 1490,
       "pickup_delivery": null,
       "suits_people": null,
@@ -1847,57 +2123,14 @@
       "availability_text": null,
       "food_items": [
         {
-          "type": "salad",
-          "name": "grænmeti",
-          "category": "side",
-          "icon": "🥗",
-          "quantity": 1,
-          "size": null,
-          "modifiers": [],
-          "phrase": "grænmeti a delicious noodle soup made with fresh vegetables"
-        }
-      ],
-      "meal_type": "snack",
-      "is_combo": false,
-      "complexity_score": 4,
-      "total_food_items": 1,
-      "main_items": [],
-      "side_items": [
-        {
-          "type": "salad",
-          "name": "grænmeti",
-          "category": "side",
-          "icon": "🥗",
-          "quantity": 1,
-          "size": null,
-          "modifiers": [],
-          "phrase": "grænmeti a delicious noodle soup made with fresh vegetables"
-        }
-      ],
-      "drink_items": [],
-      "dessert_items": [],
-      "visual_summary": "🥨 🥗",
-      "restaurant_name": "Noodle Station"
-    },
-    {
-      "offer_name": "Núðlur súpa með kjúlingi",
-      "description": "A flavorful noodle soup with tender chicken pieces.",
-      "price_kr": 2410,
-      "pickup_delivery": null,
-      "suits_people": null,
-      "available_weekdays": null,
-      "available_hours": null,
-      "availability_text": null,
-      "food_items": [
-        {
-          "type": "chicken",
-          "name": "chicken",
+          "type": "soup",
+          "name": "Núðlur súpa með grænmeti",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-variant",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "kjúlingi a flavorful noodle soup with tender chicken pieces"
+          "phrase": "1 Núðlur súpa með grænmeti"
         }
       ],
       "meal_type": "individual",
@@ -1906,41 +2139,113 @@
       "total_food_items": 1,
       "main_items": [
         {
-          "type": "chicken",
-          "name": "chicken",
+          "type": "soup",
+          "name": "Núðlur súpa með grænmeti",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-variant",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "kjúlingi a flavorful noodle soup with tender chicken pieces"
+          "phrase": "1 Núðlur súpa með grænmeti"
         }
       ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "🧑 🍗",
+      "visual_summary": "🧑 mdi:food-variant",
+      "new_categories": [],
+      "restaurant_name": "Noodle Station"
+    },
+    {
+      "offer_name": "Núðlur súpa með kjúlingi",
+      "description": "Noodle soup with chicken.",
+      "price_kr": 2410,
+      "pickup_delivery": null,
+      "suits_people": null,
+      "available_weekdays": null,
+      "available_hours": null,
+      "availability_text": null,
+      "food_items": [
+        {
+          "type": "soup",
+          "name": "Núðlur súpa með kjúlingi",
+          "category": "main",
+          "icon": "mdi:food-variant",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [
+            "with chicken"
+          ],
+          "phrase": "1 Núðlur súpa með kjúlingi"
+        }
+      ],
+      "meal_type": "individual",
+      "is_combo": false,
+      "complexity_score": 4,
+      "total_food_items": 1,
+      "main_items": [
+        {
+          "type": "soup",
+          "name": "Núðlur súpa með kjúlingi",
+          "category": "main",
+          "icon": "mdi:food-variant",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [
+            "with chicken"
+          ],
+          "phrase": "1 Núðlur súpa með kjúlingi"
+        }
+      ],
+      "side_items": [],
+      "drink_items": [],
+      "dessert_items": [],
+      "visual_summary": "🧑 mdi:food-variant",
+      "new_categories": [],
       "restaurant_name": "Noodle Station"
     },
     {
       "offer_name": "Núðlur súpa með nautakjöti",
-      "description": "A rich noodle soup featuring succulent beef.",
+      "description": "Noodle soup with beef.",
       "price_kr": 2390,
       "pickup_delivery": null,
       "suits_people": null,
       "available_weekdays": null,
       "available_hours": null,
       "availability_text": null,
-      "food_items": [],
-      "meal_type": "snack",
+      "food_items": [
+        {
+          "type": "soup",
+          "name": "Núðlur súpa með nautakjöti",
+          "category": "main",
+          "icon": "mdi:food-variant",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 Núðlur súpa með nautakjöti"
+        }
+      ],
+      "meal_type": "individual",
       "is_combo": false,
-      "complexity_score": 0,
-      "total_food_items": 0,
-      "main_items": [],
+      "complexity_score": 4,
+      "total_food_items": 1,
+      "main_items": [
+        {
+          "type": "soup",
+          "name": "Núðlur súpa með nautakjöti",
+          "category": "main",
+          "icon": "mdi:food-variant",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 Núðlur súpa með nautakjöti"
+        }
+      ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "🍽️ General offer",
+      "visual_summary": "🧑 mdi:food-variant",
+      "new_categories": [],
       "restaurant_name": "Noodle Station"
     },
     {
@@ -1955,35 +2260,100 @@
       "food_items": [
         {
           "type": "chicken",
-          "name": "kjúklingur",
+          "name": "Steiktar eggjanúðlur með kjúklingi",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "massaman kjúklingur"
+          "phrase": "1 Steiktar eggjanúðlur með kjúklingi"
+        },
+        {
+          "type": "chicken",
+          "name": "Massaman kjúklingur",
+          "category": "main",
+          "icon": "mdi:food-drumstick",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 Massaman kjúklingur"
+        },
+        {
+          "type": "beef",
+          "name": "Nautakjöt í ostrusósu",
+          "category": "main",
+          "icon": "mdi:food-steak",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 Nautakjöt í ostrusósu"
+        },
+        {
+          "type": "fish",
+          "name": "Djúpsteiktar rækjur",
+          "category": "main",
+          "icon": "mdi:fish",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [
+            "djúpsteiktar"
+          ],
+          "phrase": "1 Djúpsteiktar rækjur"
         }
       ],
-      "meal_type": "individual",
-      "is_combo": false,
-      "complexity_score": 4,
-      "total_food_items": 1,
+      "meal_type": "sharing",
+      "is_combo": true,
+      "complexity_score": 11,
+      "total_food_items": 4,
       "main_items": [
         {
           "type": "chicken",
-          "name": "kjúklingur",
+          "name": "Steiktar eggjanúðlur með kjúklingi",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "massaman kjúklingur"
+          "phrase": "1 Steiktar eggjanúðlur með kjúklingi"
+        },
+        {
+          "type": "chicken",
+          "name": "Massaman kjúklingur",
+          "category": "main",
+          "icon": "mdi:food-drumstick",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 Massaman kjúklingur"
+        },
+        {
+          "type": "beef",
+          "name": "Nautakjöt í ostrusósu",
+          "category": "main",
+          "icon": "mdi:food-steak",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 Nautakjöt í ostrusósu"
+        },
+        {
+          "type": "fish",
+          "name": "Djúpsteiktar rækjur",
+          "category": "main",
+          "icon": "mdi:fish",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [
+            "djúpsteiktar"
+          ],
+          "phrase": "1 Djúpsteiktar rækjur"
         }
       ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "🧑 🍗",
+      "visual_summary": "👥 mdi:food-drumstickmdi:food-drumstickmdi:food-steakmdi:fish",
+      "new_categories": [],
       "restaurant_name": "Krua Thai"
     },
     {
@@ -1998,35 +2368,104 @@
       "food_items": [
         {
           "type": "chicken",
-          "name": "kjúklingur",
+          "name": "Hrísnúðlur",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "kjúklingur í grænu karrý"
+          "phrase": "1 Hrísnúðlur"
+        },
+        {
+          "type": "beef",
+          "name": "Súrsætt svínakjöt",
+          "category": "main",
+          "icon": "mdi:food-steak",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 Súrsætt svínakjöt"
+        },
+        {
+          "type": "chicken",
+          "name": "Kjúklingur í grænu karrý",
+          "category": "main",
+          "icon": "mdi:food-drumstick",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [
+            "green curry"
+          ],
+          "phrase": "1 Kjúklingur í grænu karrý"
+        },
+        {
+          "type": "fish",
+          "name": "Djúpsteiktar rækjur",
+          "category": "main",
+          "icon": "mdi:fish",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [
+            "deep-fried"
+          ],
+          "phrase": "1 Djúpsteiktar rækjur"
         }
       ],
       "meal_type": "individual",
-      "is_combo": false,
-      "complexity_score": 4,
-      "total_food_items": 1,
+      "is_combo": true,
+      "complexity_score": 11,
+      "total_food_items": 4,
       "main_items": [
         {
           "type": "chicken",
-          "name": "kjúklingur",
+          "name": "Hrísnúðlur",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-drumstick",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "kjúklingur í grænu karrý"
+          "phrase": "1 Hrísnúðlur"
+        },
+        {
+          "type": "beef",
+          "name": "Súrsætt svínakjöt",
+          "category": "main",
+          "icon": "mdi:food-steak",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 Súrsætt svínakjöt"
+        },
+        {
+          "type": "chicken",
+          "name": "Kjúklingur í grænu karrý",
+          "category": "main",
+          "icon": "mdi:food-drumstick",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [
+            "green curry"
+          ],
+          "phrase": "1 Kjúklingur í grænu karrý"
+        },
+        {
+          "type": "fish",
+          "name": "Djúpsteiktar rækjur",
+          "category": "main",
+          "icon": "mdi:fish",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [
+            "deep-fried"
+          ],
+          "phrase": "1 Djúpsteiktar rækjur"
         }
       ],
       "side_items": [],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "🧑 🍗",
+      "visual_summary": "🧑 mdi:food-drumstickmdi:food-steakmdi:food-drumstickmdi:fish",
+      "new_categories": [],
       "restaurant_name": "Krua Thai"
     },
     {
@@ -2040,36 +2479,154 @@
       "availability_text": null,
       "food_items": [
         {
-          "type": "chicken",
-          "name": "kjúklingur",
+          "type": "pasta",
+          "name": "Eggjanúðlur",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-variant",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [
+            "with chicken"
+          ],
+          "phrase": "1 Eggjanúðlur"
+        },
+        {
+          "type": "chicken",
+          "name": "Kjúklingur",
+          "category": "main",
+          "icon": "mdi:food-drumstick",
+          "quantity": 1,
+          "size": {
+            "descriptor": "in yellow curry"
+          },
+          "modifiers": [],
+          "phrase": "1 Kjúklingur"
+        },
+        {
+          "type": "beef",
+          "name": "Svínakjöt",
+          "category": "main",
+          "icon": "mdi:food-steak",
+          "quantity": 1,
+          "size": {
+            "descriptor": "in oyster sauce and ginger"
+          },
+          "modifiers": [],
+          "phrase": "1 Svínakjöt"
+        },
+        {
+          "type": "fish",
+          "name": "Djúpsteikt ýsa",
+          "category": "main",
+          "icon": "mdi:fish",
+          "quantity": 1,
+          "size": {
+            "descriptor": "deep-fried"
+          },
+          "modifiers": [],
+          "phrase": "1 Djúpsteikt ýsa"
+        },
+        {
+          "type": "side",
+          "name": "Hrísgrjón",
+          "category": "main",
+          "icon": "mdi:food",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "kjúklingur í gulu karrý"
+          "phrase": "1 Hrísgrjón"
+        },
+        {
+          "type": "sauce",
+          "name": "Súrsæt sósu",
+          "category": "side",
+          "icon": "game-icons:ketchup",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 Súrsæt sósu"
         }
       ],
       "meal_type": "individual",
-      "is_combo": false,
-      "complexity_score": 4,
-      "total_food_items": 1,
+      "is_combo": true,
+      "complexity_score": 20,
+      "total_food_items": 6,
       "main_items": [
         {
-          "type": "chicken",
-          "name": "kjúklingur",
+          "type": "pasta",
+          "name": "Eggjanúðlur",
           "category": "main",
-          "icon": "🍗",
+          "icon": "mdi:food-variant",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [
+            "with chicken"
+          ],
+          "phrase": "1 Eggjanúðlur"
+        },
+        {
+          "type": "chicken",
+          "name": "Kjúklingur",
+          "category": "main",
+          "icon": "mdi:food-drumstick",
+          "quantity": 1,
+          "size": {
+            "descriptor": "in yellow curry"
+          },
+          "modifiers": [],
+          "phrase": "1 Kjúklingur"
+        },
+        {
+          "type": "beef",
+          "name": "Svínakjöt",
+          "category": "main",
+          "icon": "mdi:food-steak",
+          "quantity": 1,
+          "size": {
+            "descriptor": "in oyster sauce and ginger"
+          },
+          "modifiers": [],
+          "phrase": "1 Svínakjöt"
+        },
+        {
+          "type": "fish",
+          "name": "Djúpsteikt ýsa",
+          "category": "main",
+          "icon": "mdi:fish",
+          "quantity": 1,
+          "size": {
+            "descriptor": "deep-fried"
+          },
+          "modifiers": [],
+          "phrase": "1 Djúpsteikt ýsa"
+        },
+        {
+          "type": "side",
+          "name": "Hrísgrjón",
+          "category": "main",
+          "icon": "mdi:food",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "kjúklingur í gulu karrý"
+          "phrase": "1 Hrísgrjón"
         }
       ],
-      "side_items": [],
+      "side_items": [
+        {
+          "type": "sauce",
+          "name": "Súrsæt sósu",
+          "category": "side",
+          "icon": "game-icons:ketchup",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 Súrsæt sósu"
+        }
+      ],
       "drink_items": [],
       "dessert_items": [],
-      "visual_summary": "🧑 🍗",
+      "visual_summary": "🧑 mdi:food-variantmdi:food-drumstickmdi:food-steakmdi:fishmdi:food + game-icons:ketchup",
+      "new_categories": [],
       "restaurant_name": "Krua Thai"
     },
     {
@@ -2084,56 +2641,82 @@
       "food_items": [
         {
           "type": "burger",
-          "name": "borgari",
+          "name": "Búlluborgari",
           "category": "main",
-          "icon": "🍔",
+          "icon": "fluent-emoji:hamburger",
+          "quantity": 1,
+          "size": {
+            "descriptor": "120 gr."
+          },
+          "modifiers": [],
+          "phrase": "1 Búlluborgari"
+        },
+        {
+          "type": "fries",
+          "name": "frönskum",
+          "category": "side",
+          "icon": "noto:french-fries",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "tilboð aldarinnar búlluborgari (120 gr"
+          "phrase": "1 frönskum"
         },
         {
           "type": "soda",
-          "name": "gos",
+          "name": "gosi",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gosi"
+          "phrase": "1 gosi"
         }
       ],
       "meal_type": "combo",
       "is_combo": true,
-      "complexity_score": 8,
-      "total_food_items": 2,
+      "complexity_score": 14,
+      "total_food_items": 3,
       "main_items": [
         {
           "type": "burger",
-          "name": "borgari",
+          "name": "Búlluborgari",
           "category": "main",
-          "icon": "🍔",
+          "icon": "fluent-emoji:hamburger",
+          "quantity": 1,
+          "size": {
+            "descriptor": "120 gr."
+          },
+          "modifiers": [],
+          "phrase": "1 Búlluborgari"
+        }
+      ],
+      "side_items": [
+        {
+          "type": "fries",
+          "name": "frönskum",
+          "category": "side",
+          "icon": "noto:french-fries",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "tilboð aldarinnar búlluborgari (120 gr"
+          "phrase": "1 frönskum"
         }
       ],
-      "side_items": [],
       "drink_items": [
         {
           "type": "soda",
-          "name": "gos",
+          "name": "gosi",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gosi"
+          "phrase": "1 gosi"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "🍽️ 🍔 + 🥤",
+      "visual_summary": "🍽️ fluent-emoji:hamburger + noto:french-fries + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "Búllan"
     },
     {
@@ -2148,83 +2731,96 @@
       "food_items": [
         {
           "type": "burger",
-          "name": "borgari",
+          "name": "kjúklingaborgari",
           "category": "main",
-          "icon": "🍔",
+          "icon": "fluent-emoji:hamburger",
           "quantity": 1,
           "size": null,
-          "modifiers": [],
-          "phrase": "kjúklingaborgara máltíð grillaður kjúklingaborgari"
+          "modifiers": [
+            "grillaður",
+            "með osti",
+            "með beikoni",
+            "með grænmeti",
+            "með hvítlaukssósu"
+          ],
+          "phrase": "1 kjúklingaborgari"
         },
         {
-          "type": "salad",
-          "name": "grænmeti",
+          "type": "fries",
+          "name": "franskar",
           "category": "side",
-          "icon": "🥗",
+          "icon": "noto:french-fries",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "grænmeti"
+          "phrase": "1 franskar"
         },
         {
           "type": "soda",
-          "name": "gos",
+          "name": "gosi",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gosi"
+          "phrase": "1 gosi"
         }
       ],
-      "meal_type": "combo",
+      "meal_type": "individual",
       "is_combo": true,
       "complexity_score": 12,
       "total_food_items": 3,
       "main_items": [
         {
           "type": "burger",
-          "name": "borgari",
+          "name": "kjúklingaborgari",
           "category": "main",
-          "icon": "🍔",
+          "icon": "fluent-emoji:hamburger",
           "quantity": 1,
           "size": null,
-          "modifiers": [],
-          "phrase": "kjúklingaborgara máltíð grillaður kjúklingaborgari"
+          "modifiers": [
+            "grillaður",
+            "með osti",
+            "með beikoni",
+            "með grænmeti",
+            "með hvítlaukssósu"
+          ],
+          "phrase": "1 kjúklingaborgari"
         }
       ],
       "side_items": [
         {
-          "type": "salad",
-          "name": "grænmeti",
+          "type": "fries",
+          "name": "franskar",
           "category": "side",
-          "icon": "🥗",
+          "icon": "noto:french-fries",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "grænmeti"
+          "phrase": "1 franskar"
         }
       ],
       "drink_items": [
         {
           "type": "soda",
-          "name": "gos",
+          "name": "gosi",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gosi"
+          "phrase": "1 gosi"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "🍽️ 🍔 + 🥗 + 🥤",
+      "visual_summary": "🧑 fluent-emoji:hamburger + noto:french-fries + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "Búllan"
     },
     {
       "offer_name": "Tilbod Aldarinnar",
       "description": "Búlluborgari (150gr.), franskar og gos",
-      "price_kr": 1090,
+      "price_kr": 10,
       "pickup_delivery": null,
       "suits_people": null,
       "available_weekdays": null,
@@ -2233,49 +2829,53 @@
       "food_items": [
         {
           "type": "burger",
-          "name": "borgari",
+          "name": "Búlluborgari",
           "category": "main",
-          "icon": "🍔",
+          "icon": "fluent-emoji:hamburger",
           "quantity": 1,
-          "size": null,
+          "size": {
+            "descriptor": "150gr"
+          },
           "modifiers": [],
-          "phrase": "tilbod aldarinnar búlluborgari (150gr"
+          "phrase": "1 Búlluborgari"
         },
         {
           "type": "fries",
           "name": "franskar",
           "category": "side",
-          "icon": "🍟",
+          "icon": "noto:french-fries",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "franskar"
+          "phrase": "1 franskar"
         },
         {
           "type": "soda",
           "name": "gos",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gos"
+          "phrase": "1 gos"
         }
       ],
-      "meal_type": "combo",
+      "meal_type": "individual",
       "is_combo": true,
-      "complexity_score": 12,
+      "complexity_score": 14,
       "total_food_items": 3,
       "main_items": [
         {
           "type": "burger",
-          "name": "borgari",
+          "name": "Búlluborgari",
           "category": "main",
-          "icon": "🍔",
+          "icon": "fluent-emoji:hamburger",
           "quantity": 1,
-          "size": null,
+          "size": {
+            "descriptor": "150gr"
+          },
           "modifiers": [],
-          "phrase": "tilbod aldarinnar búlluborgari (150gr"
+          "phrase": "1 Búlluborgari"
         }
       ],
       "side_items": [
@@ -2283,11 +2883,11 @@
           "type": "fries",
           "name": "franskar",
           "category": "side",
-          "icon": "🍟",
+          "icon": "noto:french-fries",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "franskar"
+          "phrase": "1 franskar"
         }
       ],
       "drink_items": [
@@ -2295,15 +2895,16 @@
           "type": "soda",
           "name": "gos",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gos"
+          "phrase": "1 gos"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "🍽️ 🍔 + 🍟 + 🥤",
+      "visual_summary": "🧑 fluent-emoji:hamburger + noto:french-fries + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "Búllan"
     },
     {
@@ -2318,77 +2919,82 @@
       "food_items": [
         {
           "type": "burger",
-          "name": "borgari",
+          "name": "Grænmetisborgari",
           "category": "main",
-          "icon": "🍔",
+          "icon": "fluent-emoji:hamburger",
           "quantity": 1,
           "size": null,
-          "modifiers": [],
-          "phrase": "grænmetis tilboð grænmetisborgari"
+          "modifiers": [
+            "vegan"
+          ],
+          "phrase": "1 Grænmetisborgari"
         },
         {
-          "type": "salad",
-          "name": "grænmeti",
+          "type": "fries",
+          "name": "frönskum",
           "category": "side",
-          "icon": "🥗",
+          "icon": "noto:french-fries",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "grænmetis tilboð grænmetisborgari"
+          "phrase": "1 frönskum"
         },
         {
           "type": "soda",
-          "name": "gos",
+          "name": "gosi",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gosi (viltu fá hann vegan? láttu okkur vita"
+          "phrase": "1 gosi"
         }
       ],
-      "meal_type": "combo",
+      "meal_type": "individual",
       "is_combo": true,
       "complexity_score": 12,
       "total_food_items": 3,
       "main_items": [
         {
           "type": "burger",
-          "name": "borgari",
+          "name": "Grænmetisborgari",
           "category": "main",
-          "icon": "🍔",
+          "icon": "fluent-emoji:hamburger",
           "quantity": 1,
           "size": null,
-          "modifiers": [],
-          "phrase": "grænmetis tilboð grænmetisborgari"
+          "modifiers": [
+            "vegan"
+          ],
+          "phrase": "1 Grænmetisborgari"
         }
       ],
       "side_items": [
         {
-          "type": "salad",
-          "name": "grænmeti",
+          "type": "fries",
+          "name": "frönskum",
           "category": "side",
-          "icon": "🥗",
+          "icon": "noto:french-fries",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "grænmetis tilboð grænmetisborgari"
+          "phrase": "1 frönskum"
         }
       ],
       "drink_items": [
         {
           "type": "soda",
-          "name": "gos",
+          "name": "gosi",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gosi (viltu fá hann vegan? láttu okkur vita"
+          "phrase": "1 gosi"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "🍽️ 🍔 + 🥗 + 🥤",
+      "visual_summary": "🧑 fluent-emoji:hamburger + noto:french-fries + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "Búllan"
     },
     {
@@ -2403,56 +3009,98 @@
       "food_items": [
         {
           "type": "burger",
-          "name": "borgari",
+          "name": "Barnaborgari",
           "category": "main",
-          "icon": "🍔",
+          "icon": "fluent-emoji:hamburger",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "barnatilboð barnaborgari"
+          "phrase": "1 Barnaborgari"
+        },
+        {
+          "type": "fries",
+          "name": "frönskum",
+          "category": "side",
+          "icon": "noto:french-fries",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 frönskum"
         },
         {
           "type": "soda",
-          "name": "gos",
+          "name": "gosi",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gosi eða djús"
+          "phrase": "1 gosi"
+        },
+        {
+          "type": "fruit",
+          "name": "djús",
+          "category": "drink",
+          "icon": "mdi:food-apple",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 djús"
         }
       ],
-      "meal_type": "combo",
+      "meal_type": "individual",
       "is_combo": true,
-      "complexity_score": 8,
-      "total_food_items": 2,
+      "complexity_score": 15,
+      "total_food_items": 4,
       "main_items": [
         {
           "type": "burger",
-          "name": "borgari",
+          "name": "Barnaborgari",
           "category": "main",
-          "icon": "🍔",
+          "icon": "fluent-emoji:hamburger",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "barnatilboð barnaborgari"
+          "phrase": "1 Barnaborgari"
         }
       ],
-      "side_items": [],
+      "side_items": [
+        {
+          "type": "fries",
+          "name": "frönskum",
+          "category": "side",
+          "icon": "noto:french-fries",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 frönskum"
+        }
+      ],
       "drink_items": [
         {
           "type": "soda",
-          "name": "gos",
+          "name": "gosi",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 1,
           "size": null,
           "modifiers": [],
-          "phrase": "gosi eða djús"
+          "phrase": "1 gosi"
+        },
+        {
+          "type": "fruit",
+          "name": "djús",
+          "category": "drink",
+          "icon": "mdi:food-apple",
+          "quantity": 1,
+          "size": null,
+          "modifiers": [],
+          "phrase": "1 djús"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "🍽️ 🍔 + 🥤",
+      "visual_summary": "🧑 fluent-emoji:hamburger + noto:french-fries + mdi:cupmdi:food-apple",
+      "new_categories": [],
       "restaurant_name": "Búllan"
     },
     {
@@ -2467,62 +3115,81 @@
       "food_items": [
         {
           "type": "burger",
-          "name": "búlluborgarar",
+          "name": "Búlluborgarar",
           "category": "main",
-          "icon": "🍔",
-          "quantity": 4,
+          "icon": "fluent-emoji:hamburger",
+          "quantity": 2,
           "size": null,
           "modifiers": [],
-          "phrase": "fjölskyldutilboð 2 búlluborgarar"
+          "phrase": "2 Búlluborgarar"
+        },
+        {
+          "type": "burger",
+          "name": "barnaborgarar",
+          "category": "main",
+          "icon": "fluent-emoji:hamburger",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2 barnaborgarar"
         },
         {
           "type": "fries",
           "name": "franskar",
           "category": "side",
-          "icon": "🍟",
+          "icon": "noto:french-fries",
           "quantity": 1,
           "size": {
-            "descriptor": "stór",
-            "unit": "descriptor"
+            "descriptor": "stór"
           },
           "modifiers": [],
-          "phrase": "stór franskar"
+          "phrase": "1 franskar"
         },
         {
           "type": "soda",
           "name": "gos",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 2,
           "size": null,
           "modifiers": [],
-          "phrase": "2 l gos"
+          "phrase": "2 gos"
         },
         {
           "type": "sauce",
-          "name": "sósur",
+          "name": "kokteilsósur",
           "category": "side",
-          "icon": "🍅",
+          "icon": "game-icons:ketchup",
           "quantity": 2,
           "size": null,
           "modifiers": [],
           "phrase": "2 kokteilsósur"
         }
       ],
-      "meal_type": "family",
+      "meal_type": "combo",
       "is_combo": true,
       "complexity_score": 20,
       "total_food_items": 9,
       "main_items": [
         {
           "type": "burger",
-          "name": "búlluborgarar",
+          "name": "Búlluborgarar",
           "category": "main",
-          "icon": "🍔",
-          "quantity": 4,
+          "icon": "fluent-emoji:hamburger",
+          "quantity": 2,
           "size": null,
           "modifiers": [],
-          "phrase": "fjölskyldutilboð 2 búlluborgarar"
+          "phrase": "2 Búlluborgarar"
+        },
+        {
+          "type": "burger",
+          "name": "barnaborgarar",
+          "category": "main",
+          "icon": "fluent-emoji:hamburger",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2 barnaborgarar"
         }
       ],
       "side_items": [
@@ -2530,20 +3197,19 @@
           "type": "fries",
           "name": "franskar",
           "category": "side",
-          "icon": "🍟",
+          "icon": "noto:french-fries",
           "quantity": 1,
           "size": {
-            "descriptor": "stór",
-            "unit": "descriptor"
+            "descriptor": "stór"
           },
           "modifiers": [],
-          "phrase": "stór franskar"
+          "phrase": "1 franskar"
         },
         {
           "type": "sauce",
-          "name": "sósur",
+          "name": "kokteilsósur",
           "category": "side",
-          "icon": "🍅",
+          "icon": "game-icons:ketchup",
           "quantity": 2,
           "size": null,
           "modifiers": [],
@@ -2555,15 +3221,16 @@
           "type": "soda",
           "name": "gos",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 2,
           "size": null,
           "modifiers": [],
-          "phrase": "2 l gos"
+          "phrase": "2 gos"
         }
       ],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍔 + 🍟🍅 + 🥤",
+      "visual_summary": "🍽️ fluent-emoji:hamburgerfluent-emoji:hamburger + noto:french-friesgame-icons:ketchup + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "Búllan"
     },
     {
@@ -2578,19 +3245,29 @@
       "food_items": [
         {
           "type": "burger",
-          "name": "búlluborgarar",
+          "name": "Búlluborgarar",
           "category": "main",
-          "icon": "🍔",
-          "quantity": 4,
+          "icon": "fluent-emoji:hamburger",
+          "quantity": 2,
           "size": null,
           "modifiers": [],
-          "phrase": "fjölskyldutilboð 2 búlluborgarar"
+          "phrase": "2 Búlluborgarar"
+        },
+        {
+          "type": "burger",
+          "name": "barnaborgarar",
+          "category": "main",
+          "icon": "fluent-emoji:hamburger",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2 barnaborgarar"
         },
         {
           "type": "fries",
           "name": "franskar",
           "category": "side",
-          "icon": "🍟",
+          "icon": "noto:french-fries",
           "quantity": 4,
           "size": null,
           "modifiers": [],
@@ -2600,7 +3277,7 @@
           "type": "soda",
           "name": "gos",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 4,
           "size": null,
           "modifiers": [],
@@ -2610,27 +3287,37 @@
           "type": "sauce",
           "name": "sósur",
           "category": "side",
-          "icon": "🍅",
+          "icon": "game-icons:ketchup",
           "quantity": 2,
           "size": null,
           "modifiers": [],
           "phrase": "2 sósur"
         }
       ],
-      "meal_type": "family",
+      "meal_type": "combo",
       "is_combo": true,
       "complexity_score": 20,
       "total_food_items": 14,
       "main_items": [
         {
           "type": "burger",
-          "name": "búlluborgarar",
+          "name": "Búlluborgarar",
           "category": "main",
-          "icon": "🍔",
-          "quantity": 4,
+          "icon": "fluent-emoji:hamburger",
+          "quantity": 2,
           "size": null,
           "modifiers": [],
-          "phrase": "fjölskyldutilboð 2 búlluborgarar"
+          "phrase": "2 Búlluborgarar"
+        },
+        {
+          "type": "burger",
+          "name": "barnaborgarar",
+          "category": "main",
+          "icon": "fluent-emoji:hamburger",
+          "quantity": 2,
+          "size": null,
+          "modifiers": [],
+          "phrase": "2 barnaborgarar"
         }
       ],
       "side_items": [
@@ -2638,7 +3325,7 @@
           "type": "fries",
           "name": "franskar",
           "category": "side",
-          "icon": "🍟",
+          "icon": "noto:french-fries",
           "quantity": 4,
           "size": null,
           "modifiers": [],
@@ -2648,7 +3335,7 @@
           "type": "sauce",
           "name": "sósur",
           "category": "side",
-          "icon": "🍅",
+          "icon": "game-icons:ketchup",
           "quantity": 2,
           "size": null,
           "modifiers": [],
@@ -2660,7 +3347,7 @@
           "type": "soda",
           "name": "gos",
           "category": "drink",
-          "icon": "🥤",
+          "icon": "mdi:cup",
           "quantity": 4,
           "size": null,
           "modifiers": [],
@@ -2668,7 +3355,8 @@
         }
       ],
       "dessert_items": [],
-      "visual_summary": "👨‍👩‍👧‍👦 🍔 + 🍟🍅 + 🥤",
+      "visual_summary": "🍽️ fluent-emoji:hamburgerfluent-emoji:hamburger + noto:french-friesgame-icons:ketchup + mdi:cup",
+      "new_categories": [],
       "restaurant_name": "Búllan"
     }
   ]

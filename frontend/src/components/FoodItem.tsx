@@ -97,10 +97,10 @@ export default function FoodItem({ item, showDetails = false }: FoodItemProps) {
   return (
     <div
       className="flex items-center gap-3 px-3 py-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-200"
-      style={{
+     /* style={{
         background: categoryColors.background,
         color: categoryColors.color,
-      }}
+      }}*/
     >
       {item.quantity > 1 && (
         <div className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 text-sm font-bold text-gray-700">

@@ -30,6 +30,70 @@ class LLMFoodExtractor:
             'ellefu': 11, 'tólf': 12
         }
         
+        # Icelandic declension normalization mapping
+        self.icelandic_declensions = {
+            # Beverages (soda)
+            'gosi': 'gos',
+            'gosinu': 'gos',
+            'goss': 'gos',
+            'gosanna': 'gos',
+            'gosum': 'gos',
+            
+            # Fries
+            'frönskum': 'franskar',
+            'franska': 'franskar',
+            'franskar': 'franskar',
+            'franskum': 'franskar',
+            'frönsku': 'franskar',
+            
+            # Burgers
+            'borgara': 'borgari',
+            'borgarann': 'borgari',
+            'borgaranum': 'borgari',
+            'borgarans': 'borgari',
+            'borgari': 'borgari',
+            'borgurum': 'borgari',
+            
+            # Chicken
+            'kjúklinginn': 'kjúklingur',
+            'kjúklingnum': 'kjúklingur',
+            'kjúklings': 'kjúklingur',
+            'kjúklinga': 'kjúklingur',
+            'kjúklingum': 'kjúklingur',
+            'kjúklingunum': 'kjúklingur',
+            
+            # Pizza
+            'pizzuna': 'pizza',
+            'pizzunni': 'pizza',
+            'pizzunnar': 'pizza',
+            'pizzur': 'pizza',
+            'pizzum': 'pizza',
+            'pizzanna': 'pizza',
+            
+            # Wings
+            'vængina': 'vængir',
+            'væng': 'vængir',
+            'vængjum': 'vængir',
+            'vængina': 'vængir',
+            
+            # Sauce
+            'sósu': 'sósa',
+            'sósunni': 'sósa',
+            'sósur': 'sósa',
+            'sósum': 'sósa',
+            'sósanna': 'sósa',
+            
+            # Bread/sub
+            'brauðinu': 'brauð',
+            'brauðs': 'brauð',
+            'brauðið': 'brauð',
+            'báti': 'bátur',
+            'bátinn': 'bátur',
+            'bátnum': 'bátur',
+            'báta': 'bátur',
+            'bátum': 'bátur',
+        }
+        
         # Size patterns
         self.size_patterns = {
             'inches': r'(\d+)\s*["\']?\s*tommu?',  # 12 tommu, 6"
@@ -149,7 +213,41 @@ class LLMFoodExtractor:
         ])
         
         prompt = f"""
-You are a food categorization expert. Analyze the following restaurant offer and extract structured food information.
+You are a food categorization expert specializing in Icelandic restaurant offers. Analyze the following restaurant offer and extract structured food information.
+
+IMPORTANT INSTRUCTIONS:
+
+1. ICELANDIC DECLENSIONS: Normalize Icelandic words to their base form:
+   - "gosi", "gosinu", "goss" → "gos" (soda)
+   - "frönskum", "franska", "frönsku" → "franskar" (fries)
+   - "borgara", "borgarann" → "borgari" (burger)
+   - "kjúklinga", "kjúklingnum" → "kjúklingur" (chicken)
+   - "pizzuna", "pizzunni" → "pizza"
+   - "sósu", "sósunni" → "sósa" (sauce)
+   - Always use the nominative singular form for food names
+
+2. FOOD CHOICES: When you see "eða" (or), treat as alternatives/choices:
+   - "gos eða djús" = customer can choose soda OR juice
+   - Create separate entries for each choice item
+   - Mark ALL choice items with "is_choice": true
+   - Use "choice_group" to link alternatives (e.g., "drinks")
+
+3. FOOD CATEGORIZATION: Use these categories accurately:
+   - burger: Any type of burger (borgari, hamborgari, etc.)
+   - fries: French fries (franskar, frönskum, etc.)
+   - soda: Carbonated drinks (gos, kók, etc.)
+   - fruit: Juice and fruit drinks (djús, appelsínusafi, etc.)
+   - chicken: Chicken items (kjúklingur, wings, etc.)
+   - pizza: Pizza items
+   - sauce: Dipping sauces and condiments
+   - salad: Salads and vegetables
+
+EXAMPLE:
+"Barnaborgari með frönskum og gosi eða djús" should be parsed as:
+- barnaborgari (burger, not a choice)
+- franskar (fries, not a choice)  
+- gos (soda, is_choice: true, choice_group: "drinks")
+- djús (fruit, is_choice: true, choice_group: "drinks")
 
 AVAILABLE FOOD CATEGORIES:
 {food_categories_text}
@@ -169,22 +267,17 @@ Available Hours: {batch_data['available_hours']}
 Pickup/Delivery: {batch_data['pickup_delivery']}
 Suits People: {batch_data['suits_people']}
 
-TASK:
-1. Identify all food items in the offer
-2. Categorize each food item into the predefined categories
-3. If a food item doesn't fit any predefined category, suggest a new category name
-4. Determine the meal type
-5. Extract any additional information (weekdays, time, pickup/delivery)
-
 RESPONSE FORMAT (JSON):
 {{
   "food_items": [
     {{
-      "name": "food item name",
+      "name": "normalized_base_form_name",
       "type": "category_name",
       "quantity": number,
       "size": {{"descriptor": "size_desc"}} or null,
-      "modifiers": ["modifier1", "modifier2"]
+      "modifiers": ["modifier1", "modifier2"],
+      "is_choice": true/false,
+      "choice_group": "group_name" or null
     }}
   ],
   "meal_type": "meal_type_name",
@@ -225,23 +318,35 @@ Respond only with valid JSON. If no food items are found, return empty arrays fo
             # Convert to our format
             food_items = []
             for item in llm_data.get('food_items', []):
+                # Normalize Icelandic declensions
+                normalized_name = self._normalize_icelandic_word(item['name'])
+                
+                # Handle choices using choice_group
+                is_choice = item.get('is_choice', False)
+                choice_group = item.get('choice_group')
+                
+                # Create food item
                 food_item = {
                     'type': item['type'],
-                    'name': item['name'],
+                    'name': normalized_name,
                     'category': self._get_category_for_type(item['type']),
                     'icon': self._get_icon_for_type(item['type']),
                     'quantity': item.get('quantity', 1),
                     'size': item.get('size'),
                     'modifiers': item.get('modifiers', []),
-                    'phrase': f"{item.get('quantity', 1)} {item['name']}"
+                    'phrase': f"{item.get('quantity', 1)} {normalized_name}",
+                    'is_choice': is_choice,
+                    'choice_group': choice_group
                 }
                 food_items.append(food_item)
-            
+                
             # Calculate complexity and determine meal type
             complexity_score = self._calculate_complexity(food_items)
             meal_type = llm_data.get('meal_type', 'snack')
-            total_items = sum(item['quantity'] for item in food_items)
-            is_combo = len([item for item in food_items if item['category'] in ['main', 'side', 'drink']]) >= 2
+            
+            # Count total items (don't double-count choices)
+            total_items = sum(item['quantity'] for item in food_items if not item.get('is_choice', False))
+            is_combo = len([item for item in food_items if item['category'] in ['main', 'side', 'drink'] and not item.get('is_choice', False)]) >= 2
             
             # Group items by category
             main_items = [item for item in food_items if item['category'] == 'main']
@@ -266,6 +371,43 @@ Respond only with valid JSON. If no food items are found, return empty arrays fo
         except Exception as e:
             logger.error(f"Failed to parse LLM response: {e}")
             return self._get_empty_food_info()
+    
+    def _normalize_icelandic_word(self, word: str) -> str:
+        """Normalize Icelandic word using declension mapping"""
+        if not word:
+            return word
+        
+        word_lower = word.lower().strip()
+        return self.icelandic_declensions.get(word_lower, word)
+    
+    def _guess_food_type(self, word: str) -> str:
+        """Guess food type for alternative items"""
+        word_lower = word.lower()
+        
+        # Common mappings for alternatives
+        if any(x in word_lower for x in ['gos', 'kók', 'pepsi', 'sprite']):
+            return 'soda'
+        elif any(x in word_lower for x in ['djús', 'safi', 'appelsínu']):
+            return 'fruit'
+        elif any(x in word_lower for x in ['franskar', 'frönskum']):
+            return 'fries'
+        elif any(x in word_lower for x in ['borgari', 'burger']):
+            return 'burger'
+        elif any(x in word_lower for x in ['kjúkling', 'chicken', 'wings']):
+            return 'chicken'
+        elif any(x in word_lower for x in ['pizza']):
+            return 'pizza'
+        elif any(x in word_lower for x in ['sósa', 'sauce']):
+            return 'sauce'
+        else:
+            # Try to find it in food categories
+            food_categories = self.categories_data.get('food_categories', {})
+            for cat_name, cat_data in food_categories.items():
+                terms = cat_data.get('terms', [])
+                if any(term in word_lower for term in terms):
+                    return cat_name
+            
+            return 'snack'  # Default fallback
     
     def _get_category_for_type(self, food_type: str) -> str:
         """Get category for a food type"""
@@ -326,11 +468,14 @@ Respond only with valid JSON. If no food items are found, return empty arrays fo
         if not food_items:
             return "🍽️ General offer"
         
+        # Filter out choice items to avoid duplicates in visual summary
+        main_items = [item for item in food_items if not item.get('is_choice', False)]
+        
         # Group by category
-        main_icons = [item['icon'] for item in food_items if item['category'] == 'main']
-        side_icons = [item['icon'] for item in food_items if item['category'] == 'side']
-        drink_icons = [item['icon'] for item in food_items if item['category'] == 'drink']
-        dessert_icons = [item['icon'] for item in food_items if item['category'] == 'dessert']
+        main_icons = [item['icon'] for item in main_items if item['category'] == 'main']
+        side_icons = [item['icon'] for item in main_items if item['category'] == 'side']
+        drink_icons = [item['icon'] for item in main_items if item['category'] == 'drink']
+        dessert_icons = [item['icon'] for item in main_items if item['category'] == 'dessert']
         
         # Create visual string
         visual_parts = []

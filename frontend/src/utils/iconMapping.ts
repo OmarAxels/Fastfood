@@ -21,6 +21,7 @@ export const getFoodIcon = (type: string, category: string): string => {
     'fish': 'mdi:fish',
     'salmon': 'mdi:fish',
     'cod': 'mdi:fish',
+    'shrimp': 'noto-v1:shrimp',
     
     // Sides
     'fries': 'noto:french-fries',

@@ -12,6 +12,9 @@ export interface FoodItem {
   } | null
   modifiers: string[]
   phrase: string
+  // Choice-related fields
+  is_choice?: boolean
+  choice_group?: string | null
 }
 
 export interface Offer {

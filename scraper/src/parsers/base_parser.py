@@ -4,7 +4,7 @@ import re
 from bs4 import BeautifulSoup
 from typing import List, Dict, Optional, Tuple
 from abc import ABC, abstractmethod
-from food_extractor import FoodExtractor
+from llm_food_extractor import LLMFoodExtractor  # Changed from food_extractor
 
 logger = logging.getLogger(__name__)
 
@@ -18,8 +18,8 @@ class BaseParser(ABC):
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
         })
         
-        # Initialize food extractor
-        self.food_extractor = FoodExtractor()
+        # Initialize LLM food extractor instead of the old one
+        self.food_extractor = LLMFoodExtractor()
         
         # Icelandic weekday patterns with proper declensions (4 cases: nominative, accusative, dative, genitive)
         # Including both singular and plural forms with word boundaries to avoid false matches
@@ -397,71 +397,46 @@ class BaseParser(ABC):
     
     def enhance_offers_with_food_info(self, offers: List[Dict]) -> List[Dict]:
         """Enhance offers with detailed food information for visual representations"""
-        enhanced_offers = []
+        if not offers:
+            return []
         
-        for offer in offers:
-            # Create a copy of the original offer
-            enhanced_offer = offer.copy()
+        # Use LLM extractor's batch processing for better results
+        try:
+            enhanced_offers = self.food_extractor.extract_food_info_batch(offers)
             
-            # Extract food information
-            offer_name = offer.get('offer_name', '')
-            description = offer.get('description', '')
+            # Update statistics for extracted food items
+            for offer in enhanced_offers:
+                if offer.get('food_items'):
+                    self.field_stats['food_extracted'] += 1
             
-            if offer_name or description:
-                try:
-                    food_info = self.food_extractor.extract_food_info(offer_name, description)
-                    
-                    # Add food information to the offer
-                    enhanced_offer.update({
-                        'food_items': food_info['food_items'],
-                        'meal_type': food_info['meal_type'],
-                        'is_combo': food_info['is_combo'],
-                        'complexity_score': food_info['complexity_score'],
-                        'total_food_items': food_info['total_items'],
-                        'main_items': food_info['main_items'],
-                        'side_items': food_info['side_items'], 
-                        'drink_items': food_info['drink_items'],
-                        'dessert_items': food_info['dessert_items'],
-                        'visual_summary': self.food_extractor.get_visual_summary(food_info)
-                    })
-                    
-                    # Update statistics
-                    if food_info['food_items']:
-                        self.field_stats['food_extracted'] += 1
-                        
-                except Exception as e:
-                    logger.warning(f"Failed to extract food info for offer '{offer_name}': {e}")
-                    # Add empty food info on failure
-                    enhanced_offer.update({
-                        'food_items': [],
-                        'meal_type': 'unknown',
-                        'is_combo': False,
-                        'complexity_score': 0,
-                        'total_food_items': 0,
-                        'main_items': [],
-                        'side_items': [],
-                        'drink_items': [],
-                        'dessert_items': [],
-                        'visual_summary': '🍽️ General offer'
-                    })
-            else:
-                # No text to analyze, add empty food info
-                enhanced_offer.update({
-                    'food_items': [],
-                    'meal_type': 'unknown', 
-                    'is_combo': False,
-                    'complexity_score': 0,
-                    'total_food_items': 0,
-                    'main_items': [],
-                    'side_items': [],
-                    'drink_items': [],
-                    'dessert_items': [],
-                    'visual_summary': '🍽️ General offer'
-                })
+            return enhanced_offers
             
-            enhanced_offers.append(enhanced_offer)
-        
-        return enhanced_offers
+        except Exception as e:
+            logger.error(f"Failed to extract food info using LLM extractor: {e}")
+            
+            # Fallback: add empty food info to all offers
+            enhanced_offers = []
+            for offer in offers:
+                enhanced_offer = offer.copy()
+                enhanced_offer.update(self._get_empty_food_info())
+                enhanced_offers.append(enhanced_offer)
+            
+            return enhanced_offers
+    
+    def _get_empty_food_info(self) -> Dict:
+        """Get empty food info structure for fallback cases"""
+        return {
+            'food_items': [],
+            'meal_type': 'snack',
+            'is_combo': False,
+            'complexity_score': 0,
+            'total_food_items': 0,
+            'main_items': [],
+            'side_items': [],
+            'drink_items': [],
+            'dessert_items': [],
+            'visual_summary': '🍽️ General offer'
+        }
 
     def prepare_offers_for_database(self, enhanced_offers: List[Dict]) -> List[Dict]:
         """Prepare enhanced offers for database saving by filtering out food information fields"""

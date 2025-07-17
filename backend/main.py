@@ -299,7 +299,7 @@ def get_enhanced_offers(db: Session = Depends(get_db)):
             elif 'hlöllabátar' in name or 'hlollabatar' in name:
                 return '/hlolli.png'
             elif 'búllan' in name or 'bullan' in name:
-                return '/bullan.svg'
+                return '/bullan.png'
             elif 'noodle station' in name or 'noodlestation' in name:
                 return '/noodlestation.png'
             return None
