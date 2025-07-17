@@ -59,11 +59,10 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
         </div>
         
         <div className="flex items-center gap-3">
-          <span className="text-sm px-3 py-1 rounded-full font-medium shadow-sm" style={{ 
-            color: colors.white,
-            background: `linear-gradient(135deg, ${themeColor} 0%, ${themeColor}CC 100%)`
+          <span className="text-sm font-medium" style={{ 
+            color: colors.gray[500]
           }}>
-            {restaurant.offers.length} tilboð
+            • {restaurant.offers.length} deal{restaurant.offers.length !== 1 ? 's' : ''}
           </span>
           
           {restaurant.website && (
@@ -86,7 +85,10 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
       {/* Offers - One per row */}
       <div className="space-y-4">
         {restaurant.offers.map((offer) => (
-          <OfferItem key={offer.id} offer={offer} />
+          <OfferItem 
+            key={offer.id} 
+            offer={offer} 
+          />
         ))}
       </div>
     </div>

@@ -50,17 +50,9 @@ function ChoiceGroup({ items }: { items: FoodItemType[] }) {
 
 export default function MealVisualizer({ offer, showDetails = false }: MealVisualizerProps) {
   if (!showDetails) {
-    // Compact view - show main food type
-    const mainFood = getMainFoodType(offer)
+
     return (
-      <div className="flex items-center gap-1 text-sm font-medium" style={{ color: colors.primary }}>
-        <Icon 
-          icon={mainFood.icon} 
-          className="w-4 h-4" 
-          style={{ color: colors.accent }}
-        />
-        <span>{mainFood.displayName}</span>
-      </div>
+      <></>
     )
   }
 
@@ -77,18 +69,18 @@ export default function MealVisualizer({ offer, showDetails = false }: MealVisua
 
   return (
     <div className="space-y-3">
-      {/* Food Items by Category */}
-      <div className="space-y-3">
+      {/* Food Items by Category - Compact Grid Layout */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {/* Main Items */}
         {offer.main_items && offer.main_items.length > 0 && (
-          <div>
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h4 className="text-sm font-semibold mb-2" style={{ color: colors.primary }}>Aðalréttur</h4>
-            <div className="space-y-2">
+            <div className="space-y-1">
               {(() => {
                 const { regularItems, choiceGroups } = groupItemsByChoices(offer.main_items)
                 return (
                   <>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="space-y-1">
                       {regularItems.map((item, index) => (
                         <FoodItem key={index} item={item} showDetails={true} />
                       ))}
@@ -105,15 +97,15 @@ export default function MealVisualizer({ offer, showDetails = false }: MealVisua
 
         {/* Side Items */}
         {offer.side_items && offer.side_items.length > 0 && (
-          <div>
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h4 className="text-sm font-semibold mb-2" style={{ color: colors.primary }}>Meðlæti</h4>
-            <div className="space-y-2">
+            <div className="space-y-1">
               {(() => {
                 const sideItemsNoSauce = offer.side_items.filter(item => item.category === 'side' && item.type !== 'sauce')
                 const { regularItems, choiceGroups } = groupItemsByChoices(sideItemsNoSauce)
                 return (
                   <>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="space-y-1">
                       {regularItems.map((item, index) => (
                         <FoodItem key={index} item={item} showDetails={true} />
                       ))}
@@ -155,14 +147,14 @@ export default function MealVisualizer({ offer, showDetails = false }: MealVisua
 
         {/* Drinks */}
         {offer.drink_items && offer.drink_items.length > 0 && (
-          <div>
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h4 className="text-sm font-semibold mb-2" style={{ color: colors.primary }}>Drykkir</h4>
-            <div className="space-y-2">
+            <div className="space-y-1">
               {(() => {
                 const { regularItems, choiceGroups } = groupItemsByChoices(offer.drink_items)
                 return (
                   <>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="space-y-1">
                       {regularItems.map((item, index) => (
                         <FoodItem key={index} item={item} showDetails={true} />
                       ))}
@@ -179,14 +171,14 @@ export default function MealVisualizer({ offer, showDetails = false }: MealVisua
 
         {/* Desserts */}
         {offer.dessert_items && offer.dessert_items.length > 0 && (
-          <div>
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h4 className="text-sm font-semibold mb-2" style={{ color: colors.primary }}>Eftirréttur</h4>
-            <div className="space-y-2">
+            <div className="space-y-1">
               {(() => {
                 const { regularItems, choiceGroups } = groupItemsByChoices(offer.dessert_items)
                 return (
                   <>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="space-y-1">
                       {regularItems.map((item, index) => (
                         <FoodItem key={index} item={item} showDetails={true} />
                       ))}

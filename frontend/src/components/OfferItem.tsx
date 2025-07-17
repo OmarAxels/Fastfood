@@ -8,23 +8,7 @@ interface OfferItemProps {
   offer: Offer
 }
 
-function formatWeekdays(weekdays: string | null): string {
-  if (!weekdays) return ''
-  
-  const dayMapping: Record<string, string> = {
-    'mánudagur': 'Mán',
-    'þriðjudagur': 'Þri',
-    'miðvikudagur': 'Mið',
-    'fimmtudagur': 'Fim',
-    'föstudagur': 'Fös',
-    'laugardagur': 'Lau',
-    'sunnudagur': 'Sun'
-  }
-  
-  return weekdays.split(',')
-    .map(day => dayMapping[day.trim()] || day.trim())
-    .join(', ')
-}
+
 
 function formatPrice(price: number): string {
   return price.toLocaleString('de-DE', {
@@ -33,17 +17,52 @@ function formatPrice(price: number): string {
   })
 }
 
-// Better people icon component
-const PeopleIcon = ({ count }: { count: number }) => (
-  <div className="flex items-center space-x-1 text-xs px-2 py-1 transition-all duration-200" style={{ 
-    color: colors.info
-  }}>
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="flex-shrink-0">
-      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-    </svg>
-    <span className="font-medium leading-none">{count}</span>
-  </div>
-)
+function formatTitle(title: string): string {
+  // Convert ALL CAPS to Title Case for better readability
+  // Handle Icelandic characters properly
+  if (title === title.toUpperCase() && title.length > 3) {
+    return title.charAt(0).toUpperCase() + title.slice(1).toLowerCase()
+  }
+  return title
+}
+
+function generateStandardizedTags(offer: Offer): Array<{label: string, icon: string, color: string}> {
+  const tags: Array<{label: string, icon: string, color: string}> = []
+  
+  // Check for common food types
+  const allItems = offer.food_items || []
+  
+  // Chicken
+  if (allItems.some(item => item.type === 'chicken' || item.name.includes('kjúkling'))) {
+    tags.push({ label: 'Kjúklingur', icon: 'mdi:food-drumstick', color: colors.warning })
+  }
+  
+  // Beef
+  if (allItems.some(item => item.type === 'beef' || item.name.includes('nautakjöt'))) {
+    tags.push({ label: 'Nautakjöt', icon: 'mdi:food-steak', color: colors.accent })
+  }
+  
+  // Pizza
+  if (allItems.some(item => item.type === 'pizza' || item.name.includes('pizza'))) {
+    tags.push({ label: 'Pizza', icon: 'twemoji:pizza', color: colors.info })
+  }
+  
+  // Vegetarian friendly
+  if (allItems.some(item => item.name.includes('grænmeti') || item.name.includes('salat'))) {
+    tags.push({ label: 'Grænmetis', icon: 'noto:green-salad', color: colors.success })
+  }
+  
+  // Drink included
+  if (offer.drink_items && offer.drink_items.length > 0) {
+    tags.push({ label: 'Drykkur', icon: 'mdi:cup', color: colors.purple })
+  }
+  
+
+  
+  return tags.slice(0, 3) // Limit to 3 tags to avoid clutter
+}
+
+
 
 export default function OfferItem({ offer }: OfferItemProps) {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -71,25 +90,50 @@ export default function OfferItem({ offer }: OfferItemProps) {
           <div className="flex-1 min-w-0">
             {/* Offer Title */}
             <h3 className="text-md font-bold mb-3" style={{ color: colors.primary }}>
-              {offer.name}
+              {formatTitle(offer.name)}
             </h3>
             
             {/* Food Visualization - Compact */}
             <div className="mb-3">
               <MealVisualizer offer={offer} showDetails={false} />
             </div>
+            
+            {/* Standardized Tags */}
+            <div className="flex flex-wrap gap-1 mb-2">
+              {generateStandardizedTags(offer).map((tag, index) => (
+                <div 
+                  key={index}
+                  className="flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium"
+                  style={{ 
+                    backgroundColor: `${tag.color}15`,
+                    color: tag.color,
+                    border: `1px solid ${tag.color}30`
+                  }}
+                >
+                  <Icon icon={tag.icon} className="w-3 h-3" />
+                  <span>{tag.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Right side - Price and Tags */}
           <div className="flex flex-col items-end gap-3 flex-shrink-0">
-            {/* Price with modern gradient background */}
+            {/* Price with price per person */}
             {offer.price_kr !== null ? (
-              <div className="" style={{ 
+              <div className="text-right" style={{ 
                 color: '#0073aa'
               }}>
                 <p className="text-md font-bold">
                   {formatPrice(offer.price_kr)} kr.
                 </p>
+                {offer.suits_people && offer.suits_people > 1 && (
+                  <p className="text-xs font-medium mt-1" style={{ 
+                    color: colors.gray[500] 
+                  }}>
+                    ({formatPrice(Math.round(offer.price_kr / offer.suits_people))} kr./mann)
+                  </p>
+                )}
               </div>
             ) : (
               <p className="text-sm font-medium px-3 py-1 rounded-full" style={{ 
@@ -100,49 +144,43 @@ export default function OfferItem({ offer }: OfferItemProps) {
               </p>
             )}
 
-            {/* Tags with smooth modern styling */}
-            <div className="flex flex-wrap gap-2 justify-end">
-              {/* People count with custom icon */}
+            {/* Additional tags with new styling */}
+            <div className="flex flex-wrap gap-1 justify-end mt-2">
+              {/* People count with new tag styling */}
               {offer.suits_people && (
-                <PeopleIcon count={offer.suits_people} />
+                <div className="flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium" style={{ 
+                  backgroundColor: `${colors.info}15`,
+                  color: colors.info,
+                  border: `1px solid ${colors.info}30`
+                }}>
+                  <Icon icon="mdi:account-group" className="w-3 h-3" />
+                  <span>{offer.suits_people}</span>
+                </div>
               )}
               
-              {/* Pickup/Delivery with floating style */}
+              {/* Pickup/Delivery with new tag styling */}
               {offer.pickup_delivery && (
-                <div className="text-xs font-medium px-2 py-1 transition-all duration-200" style={{ 
-                  color: colors.success
+                <div className="flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium" style={{ 
+                  backgroundColor: `${colors.success}15`,
+                  color: colors.success,
+                  border: `1px solid ${colors.success}30`
                 }}>
                   {offer.pickup_delivery === 'sækja' ? (
                     <>
-                      <Icon icon="streamline-ultimate-color:car-4" className="inline-block mr-1" />
-                      Sótt
+                      <Icon icon="mdi:car" className="w-3 h-3" />
+                      <span>Sótt</span>
                     </>
                   ) : offer.pickup_delivery === 'Delivery' ? (
                     <>
-                      <Icon icon="mdi:truck" className="inline-block mr-1" />
-                      Heimsent
+                      <Icon icon="mdi:truck" className="w-3 h-3" />
+                      <span>Heimsent</span>
                     </>
                   ) : (
-                    offer.pickup_delivery
+                    <>
+                      <Icon icon="mdi:information" className="w-3 h-3" />
+                      <span>{offer.pickup_delivery}</span>
+                    </>
                   )}
-                </div>
-              )}
-              
-              {/* Available hours with floating style */}
-              {offer.available_hours && (
-                <div className="text-xs font-medium px-2 py-1 transition-all duration-200" style={{ 
-                  color: colors.warning
-                }}>
-                  ⏰ {offer.available_hours}
-                </div>
-              )}
-              
-              {/* Available days with floating style */}
-              {offer.available_weekdays && (
-                <div className="text-xs font-medium px-2 py-1 transition-all duration-200" style={{ 
-                  color: colors.pink
-                }}>
-                  📅 {formatWeekdays(offer.available_weekdays)}
                 </div>
               )}
             </div>

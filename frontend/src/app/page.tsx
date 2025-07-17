@@ -157,14 +157,13 @@ export default function HomePage() {
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
         background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
         minHeight: '100vh',
-        padding: '20px',
+
         color: '#1d1d1f'
       }}>
         <div className="container" style={{
-          maxWidth: '414px',
-          margin: '0 auto',
+
+
           background: 'rgba(255, 255, 255, 0.95)',
-          borderRadius: '20px',
           backdropFilter: 'blur(20px)',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
           overflow: 'hidden'
@@ -172,7 +171,7 @@ export default function HomePage() {
           {/* Header */}
           <div style={{
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            padding: '30px 24px 32px',
+            padding: '20px 24px 22px',
             textAlign: 'center',
             position: 'relative'
           }}>
@@ -209,7 +208,10 @@ export default function HomePage() {
           {/* Restaurants using RestaurantCard component */}
           <div >
             {restaurants.map((restaurant) => (
-              <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+              <RestaurantCard 
+                key={restaurant.id} 
+                restaurant={restaurant} 
+              />
             ))}
           </div>
 
