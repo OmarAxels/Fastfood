@@ -36,38 +36,6 @@ export default function FoodItem({ item, showDetails = false }: FoodItemProps) {
 
   const sizeText = getSizeText()
   const sizeLetter = getSizeLetter()
-
-  const getCategoryColor = () => {
-    switch (item.category) {
-      case 'main':
-        return {
-          background: `linear-gradient(135deg, ${colors.accent} 0%, #FF6B6B 100%)`,
-          color: colors.white,
-        }
-      case 'side':
-        return {
-          background: `linear-gradient(135deg, ${colors.success} 0%, #48BB78 100%)`,
-          color: colors.white,
-        }
-      case 'drink':
-        return {
-          background: `linear-gradient(135deg, ${colors.info} 0%, ${colors.purple} 100%)`,
-          color: colors.white,
-        }
-      case 'dessert':
-        return {
-          background: `linear-gradient(135deg, ${colors.pink} 0%, #ED64A6 100%)`,
-          color: colors.white,
-        }
-      default:
-        return {
-          background: `linear-gradient(135deg, ${colors.warning} 0%, #F6AD55 100%)`,
-          color: colors.white,
-        }
-    }
-  }
-
-  const categoryColors = getCategoryColor()
   const iconColor = getFoodIconColor(item.type, item.category)
 
   if (!showDetails) {
