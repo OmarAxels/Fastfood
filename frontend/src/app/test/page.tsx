@@ -14,7 +14,7 @@ export default function TestLLMFoodExtractorPage() {
     setError(null);
     setResult('');
     try {
-      const res = await fetch('http://localhost:8000/test/llm_food_extractor', {
+      const res = await fetch('https://fastfood-production-2985.up.railway.app/test/llm_food_extractor', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ offer_name: offerName, description }),
@@ -22,8 +22,8 @@ export default function TestLLMFoodExtractorPage() {
       if (!res.ok) throw new Error(await res.text());
       const data = await res.json();
       setResult(JSON.stringify(data, null, 2));
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);
     }

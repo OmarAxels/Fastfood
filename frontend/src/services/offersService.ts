@@ -5,7 +5,7 @@ export class OffersService {
   private cachedData: { restaurants: Restaurant[], total_offers: number, last_updated: string } | null = null
   private lastFetch: number = 0
   private readonly CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
-  private readonly API_BASE_URL = 'http://localhost:8000'
+  private readonly API_BASE_URL = 'https://fastfood-production-2985.up.railway.app'
 
   static getInstance(): OffersService {
     if (!OffersService.instance) {
