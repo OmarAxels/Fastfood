@@ -128,10 +128,23 @@ class LLMFoodExtractor:
         restaurant_name = offers[0].get('restaurant_name', 'Unknown')
         logger.info(f"Processing {len(offers)} offers from {restaurant_name}")
         
+        # Process all offers in a single LLM call for better context
+        try:
+            enhanced_offers = self._extract_batch_food_info(offers)
+            return enhanced_offers
+        except Exception as e:
+            logger.error(f"Batch processing failed, falling back to individual processing: {e}")
+            # Fallback to individual processing
+            return self._extract_individual_offers(offers)
+    
+    def _extract_batch_food_info(self, offers: List[Dict]) -> List[Dict]:
+        """Extract food information for all offers in a single LLM call"""
+        
         # Prepare batch data for LLM
         batch_data = []
-        for offer in offers:
+        for i, offer in enumerate(offers):
             batch_data.append({
+                'id': i + 1,
                 'offer_name': offer.get('offer_name', ''),
                 'description': offer.get('description', ''),
                 'price_kr': offer.get('price_kr'),
@@ -141,12 +154,39 @@ class LLMFoodExtractor:
                 'suits_people': offer.get('suits_people')
             })
         
-        # Process with LLM
+        # Create prompt for batch processing
+        prompt = self._create_batch_llm_prompt(batch_data)
+        
+        try:
+            # Get LLM response for all offers
+            response = g4f.ChatCompletion.create(
+                model="gpt-4o-mini",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.1
+            )
+            
+            # Parse batch response
+            batch_results = self._parse_batch_llm_response(response, offers)
+            
+            # Update categories if new food types were found
+            for result in batch_results:
+                if result.get('new_categories'):
+                    self._update_categories(result['new_categories'])
+            
+            return batch_results
+            
+        except Exception as e:
+            logger.error(f"Batch LLM extraction failed: {e}")
+            # Return empty food info for all offers
+            return [self._get_empty_food_info() for _ in offers]
+    
+    def _extract_individual_offers(self, offers: List[Dict]) -> List[Dict]:
+        """Fallback: Extract food information for offers individually"""
         enhanced_offers = []
         for i, offer in enumerate(offers):
             try:
                 enhanced_offer = offer.copy()
-                food_info = self._extract_single_offer_food_info(offer, batch_data[i])
+                food_info = self._extract_single_offer_food_info(offer, offer)
                 enhanced_offer.update(food_info)
                 enhanced_offers.append(enhanced_offer)
             except Exception as e:
@@ -371,6 +411,228 @@ Respond only with valid JSON. If no food items are found, return empty arrays fo
         except Exception as e:
             logger.error(f"Failed to parse LLM response: {e}")
             return self._get_empty_food_info()
+    
+    def _create_batch_llm_prompt(self, batch_data: List[Dict]) -> str:
+        """Create prompt for batch LLM processing"""
+        # Debug output to stderr instead of stdout
+        import sys
+        print(f"Creating batch prompt for {len(batch_data)} offers", file=sys.stderr)
+
+        # Get current food categories
+        food_categories = self.categories_data['food_categories']
+        categories = self.categories_data['categories']
+        meal_types = self.categories_data['meal_types']
+        
+        # Build category descriptions
+        food_categories_text = "\n".join([
+            f"- {cat_name}: {cat_data['description']} (category: {cat_data['category']})"
+            for cat_name, cat_data in food_categories.items()
+        ])
+        
+        categories_text = "\n".join([
+            f"- {cat_name}: {cat_data['description']}"
+            for cat_name, cat_data in categories.items()
+        ])
+        
+        meal_types_text = "\n".join([
+            f"- {meal_name}: {meal_data['description']}"
+            for meal_name, meal_data in meal_types.items()
+        ])
+        
+        # Build offers list
+        offers_text = "\n\n".join([
+            f"OFFER {data['id']}:\n"
+            f"Title: {data['offer_name']}\n"
+            f"Description: {data['description']}\n"
+            f"Price: {data['price_kr']} kr\n"
+            f"Available Weekdays: {data['available_weekdays']}\n"
+            f"Available Hours: {data['available_hours']}\n"
+            f"Pickup/Delivery: {data['pickup_delivery']}\n"
+            f"Suits People: {data['suits_people']}"
+            for data in batch_data
+        ])
+        
+        prompt = f"""
+You are a food categorization expert specializing in Icelandic restaurant offers. Analyze the following batch of restaurant offers and extract structured food information for each one.
+
+IMPORTANT INSTRUCTIONS:
+
+1. ICELANDIC DECLENSIONS: Normalize Icelandic words to their base form:
+   - "gosi", "gosinu", "goss" → "gos" (soda)
+   - "frönskum", "franska", "frönsku" → "franskar" (fries)
+   - "borgara", "borgarann" → "borgari" (burger)
+   - "kjúklinga", "kjúklingnum" → "kjúklingur" (chicken)
+   - "pizzuna", "pizzunni" → "pizza"
+   - "sósu", "sósunni" → "sósa" (sauce)
+   - Always use the nominative singular form for food names
+
+2. FOOD CHOICES: When you see "eða" (or), treat as alternatives/choices:
+   - "gos eða djús" = customer can choose soda OR juice
+   - Create separate entries for each choice item
+   - Mark ALL choice items with "is_choice": true
+   - Use "choice_group" to link alternatives (e.g., "drinks")
+
+3. FOOD CATEGORIZATION: Use these categories accurately:
+   - burger: Any type of burger (borgari, hamborgari, etc.)
+   - fries: French fries (franskar, frönskum, etc.)
+   - soda: Carbonated drinks (gos, kók, etc.)
+   - fruit: Juice and fruit drinks (djús, appelsínusafi, etc.)
+   - chicken: Chicken items (kjúklingur, wings, etc.)
+   - pizza: Pizza items
+   - sauce: Dipping sauces and condiments
+   - salad: Salads and vegetables
+
+4. BATCH PROCESSING: Process ALL offers in the batch. Use the offer ID to match responses.
+
+EXAMPLE:
+"Barnaborgari með frönskum og gosi eða djús" should be parsed as:
+- barnaborgari (burger, not a choice)
+- franskar (fries, not a choice)  
+- gos (soda, is_choice: true, choice_group: "drinks")
+- djús (fruit, is_choice: true, choice_group: "drinks")
+
+AVAILABLE FOOD CATEGORIES:
+{food_categories_text}
+
+AVAILABLE CATEGORIES:
+{categories_text}
+
+AVAILABLE MEAL TYPES:
+{meal_types_text}
+
+RESTAURANT OFFERS TO ANALYZE:
+{offers_text}
+
+RESPONSE FORMAT (JSON):
+{{
+  "offers": [
+    {{
+      "offer_id": 1,
+      "food_items": [
+        {{
+          "name": "normalized_base_form_name",
+          "type": "category_name",
+          "quantity": number,
+          "size": {{"descriptor": "size_desc"}} or null,
+          "modifiers": ["modifier1", "modifier2"],
+          "is_choice": true/false,
+          "choice_group": "group_name" or null
+        }}
+      ],
+      "meal_type": "meal_type_name",
+      "is_combo": true/false,
+      "complexity_score": number,
+      "total_items": number,
+      "additional_info": {{
+        "weekdays": "extracted weekdays",
+        "hours": "extracted hours", 
+        "pickup_delivery": "extracted pickup/delivery info"
+      }},
+      "new_categories": [
+        {{
+          "name": "new_category_name",
+          "description": "description of the new category",
+          "category": "main/side/drink/dessert"
+        }}
+      ]
+    }}
+  ]
+}}
+
+Respond only with valid JSON. If no food items are found for an offer, return empty arrays for food_items and new_categories for that offer.
+"""
+        
+        return prompt
+    
+    def _parse_batch_llm_response(self, response: str, offers: List[Dict]) -> List[Dict]:
+        """Parse batch LLM response and convert to food info format"""
+        
+        try:
+            # Extract JSON from response
+            json_match = re.search(r'\{.*\}', response, re.DOTALL)
+            if not json_match:
+                logger.warning("No JSON found in batch LLM response")
+                return [self._get_empty_food_info() for _ in offers]
+            
+            llm_data = json.loads(json_match.group())
+            
+            # Create results array
+            results = []
+            
+            # Process each offer result
+            for offer_result in llm_data.get('offers', []):
+                offer_id = offer_result.get('offer_id', 1)
+                offer_index = offer_id - 1  # Convert to 0-based index
+                
+                # Ensure we have a valid index
+                if offer_index >= len(offers):
+                    logger.warning(f"Offer ID {offer_id} out of range, skipping")
+                    continue
+                
+                # Convert to our format
+                food_items = []
+                for item in offer_result.get('food_items', []):
+                    # Normalize Icelandic declensions
+                    normalized_name = self._normalize_icelandic_word(item['name'])
+                    
+                    # Handle choices using choice_group
+                    is_choice = item.get('is_choice', False)
+                    choice_group = item.get('choice_group')
+                    
+                    # Create food item
+                    food_item = {
+                        'type': item['type'],
+                        'name': normalized_name,
+                        'category': self._get_category_for_type(item['type']),
+                        'icon': self._get_icon_for_type(item['type']),
+                        'quantity': item.get('quantity', 1),
+                        'size': item.get('size'),
+                        'modifiers': item.get('modifiers', []),
+                        'phrase': f"{item.get('quantity', 1)} {normalized_name}",
+                        'is_choice': is_choice,
+                        'choice_group': choice_group
+                    }
+                    food_items.append(food_item)
+                    
+                # Calculate complexity and determine meal type
+                complexity_score = self._calculate_complexity(food_items)
+                meal_type = offer_result.get('meal_type', 'snack')
+                
+                # Count total items (don't double-count choices)
+                total_items = sum(item['quantity'] for item in food_items if not item.get('is_choice', False))
+                is_combo = len([item for item in food_items if item['category'] in ['main', 'side', 'drink'] and not item.get('is_choice', False)]) >= 2
+                
+                # Group items by category
+                main_items = [item for item in food_items if item['category'] == 'main']
+                side_items = [item for item in food_items if item['category'] == 'side']
+                drink_items = [item for item in food_items if item['category'] == 'drink']
+                dessert_items = [item for item in food_items if item['category'] == 'dessert']
+                
+                result = {
+                    'food_items': food_items,
+                    'meal_type': meal_type,
+                    'is_combo': is_combo,
+                    'complexity_score': complexity_score,
+                    'total_food_items': total_items,
+                    'main_items': main_items,
+                    'side_items': side_items,
+                    'drink_items': drink_items,
+                    'dessert_items': dessert_items,
+                    'visual_summary': self._get_visual_summary(food_items, meal_type),
+                    'new_categories': offer_result.get('new_categories', [])
+                }
+                
+                results.append(result)
+            
+            # Ensure we have results for all offers
+            while len(results) < len(offers):
+                results.append(self._get_empty_food_info())
+            
+            return results[:len(offers)]  # Ensure we don't return more than expected
+            
+        except Exception as e:
+            logger.error(f"Failed to parse batch LLM response: {e}")
+            return [self._get_empty_food_info() for _ in offers]
     
     def _normalize_icelandic_word(self, word: str) -> str:
         """Normalize Icelandic word using declension mapping"""

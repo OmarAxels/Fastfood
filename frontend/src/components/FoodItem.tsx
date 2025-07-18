@@ -1,7 +1,6 @@
 import { FoodItem as FoodItemType } from '@/types'
 import { colors } from '@/config/colors'
 import { Icon } from '@iconify/react'
-import { getFoodIcon, getIconSizeClass, getFoodIconColor } from '@/utils/iconMapping'
 
 interface FoodItemProps {
   item: FoodItemType
@@ -36,7 +35,7 @@ export default function FoodItem({ item, showDetails = false }: FoodItemProps) {
 
   const sizeText = getSizeText()
   const sizeLetter = getSizeLetter()
-  const iconColor = getFoodIconColor(item.type, item.category)
+  const iconColor = item.icon_color || colors.primary
 
   if (!showDetails) {
     // Compact view - badge and icon
@@ -48,8 +47,8 @@ export default function FoodItem({ item, showDetails = false }: FoodItemProps) {
           </div>
         )}
         <Icon
-          icon={getFoodIcon(item.type, item.category)}
-          className={getIconSizeClass('md')}
+          icon={item.icon}
+          className="w-5 h-5"
           style={{ color: iconColor }}
         />
         {sizeText && (
@@ -76,8 +75,8 @@ export default function FoodItem({ item, showDetails = false }: FoodItemProps) {
         </div>
       )}
       <Icon
-        icon={getFoodIcon(item.type, item.category)}
-        className={getIconSizeClass('lg')}
+        icon={item.icon}
+        className="w-6 h-6"
         style={{ color: iconColor }}
       />
       <div className="flex flex-col gap-0.5">

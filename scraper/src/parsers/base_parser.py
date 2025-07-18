@@ -402,12 +402,26 @@ class BaseParser(ABC):
         
         # Use LLM extractor's batch processing for better results
         try:
-            enhanced_offers = self.food_extractor.extract_food_info_batch(offers)
+            food_info_list = self.food_extractor.extract_food_info_batch(offers)
             
-            # Update statistics for extracted food items
-            for offer in enhanced_offers:
-                if offer.get('food_items'):
-                    self.field_stats['food_extracted'] += 1
+            # Merge food information with original offer data
+            enhanced_offers = []
+            for i, offer in enumerate(offers):
+                enhanced_offer = offer.copy()  # Start with original offer data
+                
+                # Add food information from LLM extractor
+                if i < len(food_info_list):
+                    food_info = food_info_list[i]
+                    enhanced_offer.update(food_info)
+                    
+                    # Update statistics for extracted food items
+                    if food_info.get('food_items'):
+                        self.field_stats['food_extracted'] += 1
+                else:
+                    # Fallback: add empty food info
+                    enhanced_offer.update(self._get_empty_food_info())
+                
+                enhanced_offers.append(enhanced_offer)
             
             return enhanced_offers
             

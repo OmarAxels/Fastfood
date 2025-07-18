@@ -883,7 +883,7 @@
           "type": "side",
           "name": "meðlæti",
           "category": "main",
-          "icon": "mdi:food",
+          "icon": "mingcute:bowl-line",
           "quantity": 1,
           "size": null,
           "modifiers": [],

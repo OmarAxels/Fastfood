@@ -62,7 +62,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
           <span className="text-sm font-medium" style={{ 
             color: colors.gray[500]
           }}>
-            • {restaurant.offers.length} deal{restaurant.offers.length !== 1 ? 's' : ''}
+            {restaurant.offers.length} tilboð
           </span>
           
           {restaurant.website && (

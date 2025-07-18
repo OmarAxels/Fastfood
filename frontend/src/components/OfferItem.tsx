@@ -8,8 +8,6 @@ interface OfferItemProps {
   offer: Offer
 }
 
-
-
 function formatPrice(price: number): string {
   return price.toLocaleString('de-DE', {
     minimumFractionDigits: 0,
@@ -25,43 +23,6 @@ function formatTitle(title: string): string {
   }
   return title
 }
-
-function generateStandardizedTags(offer: Offer): Array<{label: string, icon: string, color: string}> {
-  const tags: Array<{label: string, icon: string, color: string}> = []
-  
-  // Check for common food types
-  const allItems = offer.food_items || []
-  
-  // Chicken
-  if (allItems.some(item => item.type === 'chicken' || item.name.includes('kjúkling'))) {
-    tags.push({ label: 'Kjúklingur', icon: 'mdi:food-drumstick', color: colors.warning })
-  }
-  
-  // Beef
-  if (allItems.some(item => item.type === 'beef' || item.name.includes('nautakjöt'))) {
-    tags.push({ label: 'Nautakjöt', icon: 'mdi:food-steak', color: colors.accent })
-  }
-  
-  // Pizza
-  if (allItems.some(item => item.type === 'pizza' || item.name.includes('pizza'))) {
-    tags.push({ label: 'Pizza', icon: 'twemoji:pizza', color: colors.info })
-  }
-  
-  // Vegetarian friendly
-  if (allItems.some(item => item.name.includes('grænmeti') || item.name.includes('salat'))) {
-    tags.push({ label: 'Grænmetis', icon: 'noto:green-salad', color: colors.success })
-  }
-  
-  // Drink included
-  if (offer.drink_items && offer.drink_items.length > 0) {
-    tags.push({ label: 'Drykkur', icon: 'mdi:cup', color: colors.purple })
-  }
-  
-
-  
-  return tags.slice(0, 3) // Limit to 3 tags to avoid clutter
-}
-
 
 
 export default function OfferItem({ offer }: OfferItemProps) {
@@ -100,7 +61,7 @@ export default function OfferItem({ offer }: OfferItemProps) {
             
             {/* Standardized Tags */}
             <div className="flex flex-wrap gap-1 mb-2">
-              {generateStandardizedTags(offer).map((tag, index) => (
+              {offer.standardized_tags?.map((tag, index) => (
                 <div 
                   key={index}
                   className="flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium"
@@ -153,7 +114,7 @@ export default function OfferItem({ offer }: OfferItemProps) {
                   color: colors.info,
                   border: `1px solid ${colors.info}30`
                 }}>
-                  <Icon icon="mdi:account-group" className="w-3 h-3" />
+                  <Icon icon="mdi:people" className="w-3 h-3" />
                   <span>{offer.suits_people}</span>
                 </div>
               )}
@@ -167,7 +128,7 @@ export default function OfferItem({ offer }: OfferItemProps) {
                 }}>
                   {offer.pickup_delivery === 'sækja' ? (
                     <>
-                      <Icon icon="mdi:car" className="w-3 h-3" />
+                      <Icon icon="mdi:package-variant" className="w-3 h-3" />
                       <span>Sótt</span>
                     </>
                   ) : offer.pickup_delivery === 'Delivery' ? (
@@ -212,15 +173,7 @@ export default function OfferItem({ offer }: OfferItemProps) {
               </div>
             )}
             
-            {/* Fallback if no food items */}
-            {(!offer.food_items || offer.food_items.length === 0) && (
-              <div className="bg-gray-50 p-3 rounded-lg">
-                <h4 className="text-sm font-semibold mb-2" style={{ color: colors.primary }}>Upplýsingar</h4>
-                <p className="text-sm leading-relaxed" style={{ color: colors.secondary }}>
-                  Engin nánari upplýsingar um matvæli í boði fyrir þetta tilboð.
-                </p>
-              </div>
-            )}
+
           </div>
         )}
       </div>

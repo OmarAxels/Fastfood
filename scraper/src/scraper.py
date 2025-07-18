@@ -10,6 +10,7 @@ from parsers.subway_parser import SubwayParser
 from parsers.ai_parser import AIParser
 from config import PARSER_CONFIG, CRAWL_DELAY
 from datetime import datetime
+from icon_mapping import IconMapping
 
 logger = logging.getLogger(__name__)
 
@@ -110,10 +111,12 @@ class FastfoodScraper:
             # Enhance offers with food information for visual representations
             enhanced_offers = parser.enhance_offers_with_food_info(offers)
             
-            # Store enhanced offers for later JSON export
+            # Further enhance offers with icon mapping and display properties
             for offer in enhanced_offers:
                 offer['restaurant_name'] = restaurant_name
-                self.enhanced_offers_data.append(offer)
+                # Apply icon mapping and display enhancements
+                enhanced_offer = IconMapping.enhance_offer(offer)
+                self.enhanced_offers_data.append(enhanced_offer)
             
             # Prepare database-compatible offers (without food information fields)
             db_offers = parser.prepare_offers_for_database(enhanced_offers)

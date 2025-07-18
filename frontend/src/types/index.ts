@@ -3,6 +3,7 @@ export interface FoodItem {
   name: string
   category: 'main' | 'side' | 'drink' | 'dessert'
   icon: string
+  icon_color?: string
   quantity: number
   size?: {
     inches?: number
@@ -15,6 +16,19 @@ export interface FoodItem {
   // Choice-related fields
   is_choice?: boolean
   choice_group?: string | null
+}
+
+export interface StandardizedTag {
+  label: string
+  icon: string
+  color: string
+}
+
+export interface DisplayProperties {
+  show_category_headers: boolean
+  show_fallback_info: boolean
+  compact_view: boolean
+  max_tags: number
 }
 
 export interface Offer {
@@ -41,6 +55,10 @@ export interface Offer {
   drink_items?: FoodItem[]
   dessert_items?: FoodItem[]
   visual_summary?: string
+  
+  // Backend-processed display data
+  standardized_tags?: StandardizedTag[]
+  display_properties?: DisplayProperties
 }
 
 export interface Restaurant {

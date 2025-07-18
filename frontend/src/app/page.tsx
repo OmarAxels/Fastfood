@@ -112,9 +112,9 @@ export default function HomePage() {
           padding: '40px',
           textAlign: 'center'
         }}>
-          <div style={{ fontSize: '48px', marginBottom: '16px' }}>
-            <Icon icon="mdi:alert-circle" style={{ color: '#ff6b6b' }} />
-          </div>
+                      <div style={{ fontSize: '48px', marginBottom: '16px' }}>
+              <Icon icon="mdi:alert-circle" style={{ color: '#ff6b6b' }} />
+            </div>
           <p style={{ fontSize: '18px', fontWeight: '600', marginBottom: '8px' }}>Villa við að hlaða tilboð</p>
           <p style={{ fontSize: '14px', color: '#666', marginBottom: '24px' }}>{error}</p>
           <button 
@@ -215,32 +215,7 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Bottom Navigation */}
-          <div style={{
-            background: 'rgba(248, 248, 248, 0.95)',
-            backdropFilter: 'blur(20px)',
-            padding: '12px 24px 24px',
-            borderTop: '1px solid rgba(0, 0, 0, 0.05)'
-          }}>
-            <button 
-              style={{
-                background: 'linear-gradient(135deg, #007aff, #0056cc)',
-                color: 'white',
-                border: 'none',
-                padding: '16px 24px',
-                borderRadius: '12px',
-                fontSize: '16px',
-                fontWeight: '600',
-                width: '100%',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 4px 12px rgba(0, 122, 255, 0.3)'
-              }}
-              onClick={handleRefresh}
-            >
-              Endurnýja tilboð
-            </button>
-          </div>
+          
         </div>
       </div>
     </>
