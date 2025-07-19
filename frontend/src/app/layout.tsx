@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Skynditilboð",
-  description: "Skynditilboð",
+  title: "Skyndibiti",
+  description: "Skyndibiti",
 };
 
 export default function RootLayout({

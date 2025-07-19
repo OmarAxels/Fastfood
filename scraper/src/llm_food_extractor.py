@@ -10,6 +10,7 @@ import logging
 from typing import Dict, List, Optional, Union
 import g4f
 from pathlib import Path
+import json as _json
 
 logger = logging.getLogger(__name__)
 
@@ -277,18 +278,24 @@ IMPORTANT INSTRUCTIONS:
    - burger: Any type of burger (borgari, hamborgari, etc.)
    - fries: French fries (franskar, frönskum, etc.)
    - soda: Carbonated drinks (gos, kók, etc.)
-   - fruit: Juice and fruit drinks (djús, appelsínusafi, etc.)
+   - djús: Juice and fruit drinks (djús, appelsínusafi, etc.)
    - chicken: Chicken items (kjúklingur, wings, etc.)
    - pizza: Pizza items
    - sauce: Dipping sauces and condiments
    - salad: Salads and vegetables
+
+4. SIZE PARSING: Pay attention to size specifications:
+   - "2 l gos" = 1 soda with size: {{"liters": 2}} (NOT 2 sodas)
+   - "stór franskar" = 1 fries with size: {{"descriptor": "stór"}}
+   - "12 tommu pizza" = 1 pizza with size: {{"inches": 12}}
+   - Always separate quantity from size information
 
 EXAMPLE:
 "Barnaborgari með frönskum og gosi eða djús" should be parsed as:
 - barnaborgari (burger, not a choice)
 - franskar (fries, not a choice)  
 - gos (soda, is_choice: true, choice_group: "drinks")
-- djús (fruit, is_choice: true, choice_group: "drinks")
+- djús (djús, is_choice: true, choice_group: "drinks")
 
 AVAILABLE FOOD CATEGORIES:
 {food_categories_text}
@@ -323,7 +330,6 @@ RESPONSE FORMAT (JSON):
   ],
   "meal_type": "meal_type_name",
   "is_combo": true/false,
-  "complexity_score": number,
   "total_items": number,
   "additional_info": {{
     "weekdays": "extracted weekdays",
@@ -379,10 +385,22 @@ Respond only with valid JSON. If no food items are found, return empty arrays fo
                     'is_choice': is_choice,
                     'choice_group': choice_group
                 }
+
+                # Normalize soda quantity when size in liters implied by quantity (e.g., "2 l gos")
+                if food_item['type'] == 'soda':
+                    if food_item.get('size') and food_item['size'].get('liters'):
+                        food_item['quantity'] = 1
+                        food_item['phrase'] = f"1 {food_item['name']}"
+                    elif food_item['quantity'] > 1 and not food_item.get('size'):
+                        # Assume quantity represents liters if >1 and <=3
+                        if 1 < food_item['quantity'] <= 3:
+                            food_item['size'] = { 'liters': food_item['quantity'] }
+                            food_item['quantity'] = 1
+                            food_item['phrase'] = f"1 {food_item['size']['liters']}L {food_item['name']}"
+
                 food_items.append(food_item)
                 
             # Calculate complexity and determine meal type
-            complexity_score = self._calculate_complexity(food_items)
             meal_type = llm_data.get('meal_type', 'snack')
             
             # Count total items (don't double-count choices)
@@ -399,13 +417,11 @@ Respond only with valid JSON. If no food items are found, return empty arrays fo
                 'food_items': food_items,
                 'meal_type': meal_type,
                 'is_combo': is_combo,
-                'complexity_score': complexity_score,
                 'total_food_items': total_items,
                 'main_items': main_items,
                 'side_items': side_items,
                 'drink_items': drink_items,
                 'dessert_items': dessert_items,
-                'visual_summary': self._get_visual_summary(food_items, meal_type),
                 'new_categories': llm_data.get('new_categories', [])
             }
             
@@ -522,7 +538,6 @@ RESPONSE FORMAT (JSON):
       ],
       "meal_type": "meal_type_name",
       "is_combo": true/false,
-      "complexity_score": number,
       "total_items": number,
       "additional_info": {{
         "weekdays": "extracted weekdays",
@@ -593,10 +608,22 @@ Respond only with valid JSON. If no food items are found for an offer, return em
                         'is_choice': is_choice,
                         'choice_group': choice_group
                     }
+
+                    # Normalize soda quantity when size in liters implied by quantity (e.g., "2 l gos")
+                    if food_item['type'] == 'soda':
+                        if food_item.get('size') and food_item['size'].get('liters'):
+                            food_item['quantity'] = 1
+                            food_item['phrase'] = f"1 {food_item['name']}"
+                        elif food_item['quantity'] > 1 and not food_item.get('size'):
+                            # Assume quantity represents liters if >1 and <=3
+                            if 1 < food_item['quantity'] <= 3:
+                                food_item['size'] = { 'liters': food_item['quantity'] }
+                                food_item['quantity'] = 1
+                                food_item['phrase'] = f"1 {food_item['size']['liters']}L {food_item['name']}"
+
                     food_items.append(food_item)
                     
                 # Calculate complexity and determine meal type
-                complexity_score = self._calculate_complexity(food_items)
                 meal_type = offer_result.get('meal_type', 'snack')
                 
                 # Count total items (don't double-count choices)
@@ -613,13 +640,11 @@ Respond only with valid JSON. If no food items are found for an offer, return em
                     'food_items': food_items,
                     'meal_type': meal_type,
                     'is_combo': is_combo,
-                    'complexity_score': complexity_score,
                     'total_food_items': total_items,
                     'main_items': main_items,
                     'side_items': side_items,
                     'drink_items': drink_items,
                     'dessert_items': dessert_items,
-                    'visual_summary': self._get_visual_summary(food_items, meal_type),
                     'new_categories': offer_result.get('new_categories', [])
                 }
                 
@@ -651,7 +676,7 @@ Respond only with valid JSON. If no food items are found for an offer, return em
         if any(x in word_lower for x in ['gos', 'kók', 'pepsi', 'sprite']):
             return 'soda'
         elif any(x in word_lower for x in ['djús', 'safi', 'appelsínu']):
-            return 'fruit'
+            return 'juice'
         elif any(x in word_lower for x in ['franskar', 'frönskum']):
             return 'fries'
         elif any(x in word_lower for x in ['borgari', 'burger']):
@@ -682,8 +707,24 @@ Respond only with valid JSON. If no food items are found for an offer, return em
     def _get_icon_for_type(self, food_type: str) -> str:
         """Get icon for a food type"""
         food_categories = self.categories_data['food_categories']
-        if food_type in food_categories:
+        if food_type in food_categories and food_categories[food_type].get('icon'):
             return food_categories[food_type]['icon']
+
+        # Fallback to central icon mapping JSON
+        try:
+            icon_map_path = Path(__file__).resolve().parent.parent / 'food_icon_mapping.json'
+            if not hasattr(self, '_icon_map_cache'):
+                if icon_map_path.exists():
+                    with open(icon_map_path, 'r', encoding='utf-8') as f:
+                        self._icon_map_cache = _json.load(f)
+                else:
+                    self._icon_map_cache = {}
+            icon_mapping = self._icon_map_cache
+            if food_type in icon_mapping and icon_mapping[food_type].get('icon'):
+                return icon_mapping[food_type]['icon']
+        except Exception as e:
+            logger.error(f"Failed loading icon mapping: {e}")
+
         return 'mdi:food'  # Default icon
     
     def _update_categories(self, new_categories: List[Dict]):
@@ -706,7 +747,7 @@ Respond only with valid JSON. If no food items are found for an offer, return em
             icon_map_path = Path(__file__).resolve().parent.parent / 'food_icon_mapping.json'
             if icon_map_path.exists():
                 with open(icon_map_path, 'r', encoding='utf-8') as f:
-                    icon_map = json.load(f)
+                    icon_map = _json.load(f)
             else:
                 icon_map = {}
             updated = False
@@ -717,74 +758,11 @@ Respond only with valid JSON. If no food items are found for an offer, return em
                     updated = True
             if updated:
                 with open(icon_map_path, 'w', encoding='utf-8') as f:
-                    json.dump(icon_map, f, ensure_ascii=False, indent=2)
+                    _json.dump(icon_map, f, ensure_ascii=False, indent=2)
         except Exception as e:
             logger.error(f"Failed to update icon mapping json: {e}")
-    
-    def _calculate_complexity(self, food_items: List[Dict]) -> int:
-        """Calculate complexity score based on variety and quantity"""
-        if not food_items:
-            return 0
-        
-        # Base score from number of items
-        total_quantity = sum(item['quantity'] for item in food_items)
-        complexity = min(total_quantity, 10)  # Cap at 10
-        
-        # Add points for variety
-        unique_types = len(set(item['type'] for item in food_items))
-        complexity += unique_types * 2
-        
-        # Add points for different categories
-        unique_categories = len(set(item['category'] for item in food_items))
-        complexity += unique_categories
-        
-        # Add points for size specifications
-        has_sizes = any(item.get('size') for item in food_items)
-        if has_sizes:
-            complexity += 2
-        
-        return min(complexity, 20)  # Cap at 20
-    
-    def _get_visual_summary(self, food_items: List[Dict], meal_type: str) -> str:
-        """Generate a visual summary string for the offer"""
-        if not food_items:
-            return "🍽️ General offer"
-        
-        # Filter out choice items to avoid duplicates in visual summary
-        main_items = [item for item in food_items if not item.get('is_choice', False)]
-        
-        # Group by category
-        main_icons = [item['icon'] for item in main_items if item['category'] == 'main']
-        side_icons = [item['icon'] for item in main_items if item['category'] == 'side']
-        drink_icons = [item['icon'] for item in main_items if item['category'] == 'drink']
-        dessert_icons = [item['icon'] for item in main_items if item['category'] == 'dessert']
-        
-        # Create visual string
-        visual_parts = []
-        if main_icons:
-            visual_parts.append(''.join(main_icons))
-        if side_icons:
-            visual_parts.append(''.join(side_icons))
-        if drink_icons:
-            visual_parts.append(''.join(drink_icons))
-        if dessert_icons:
-            visual_parts.append(''.join(dessert_icons))
-        
-        visual = ' + '.join(visual_parts) if visual_parts else "🍽️"
-        
-        # Add meal type indicator
-        meal_type_icons = {
-            'family': '👨‍👩‍👧‍👦',
-            'sharing': '👥',
-            'combo': '🍽️',
-            'individual': '🧑',
-            'dessert': '🍰',
-            'snack': '🥨'
-        }
-        
-        type_icon = meal_type_icons.get(meal_type, '🍽️')
-        
-        return f"{type_icon} {visual}"
+
+   
     
     def _get_empty_food_info(self) -> Dict:
         """Return empty food info structure"""
@@ -792,11 +770,9 @@ Respond only with valid JSON. If no food items are found for an offer, return em
             'food_items': [],
             'meal_type': 'unknown',
             'is_combo': False,
-            'complexity_score': 0,
             'total_food_items': 0,
             'main_items': [],
             'side_items': [],
             'drink_items': [],
             'dessert_items': [],
-            'visual_summary': '🍽️ General offer'
         } 

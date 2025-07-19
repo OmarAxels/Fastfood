@@ -2,6 +2,16 @@ import { Restaurant } from '@/types'
 import OfferItem from './OfferItem'
 import { colors, restaurantThemes } from '@/config/colors'
 
+// Helper to convert hex to rgba with given alpha
+const hexToRgba = (hex: string, alpha: number) => {
+  const res = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+  if (!res) return hex
+  const r = parseInt(res[1], 16)
+  const g = parseInt(res[2], 16)
+  const b = parseInt(res[3], 16)
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`
+}
+
 interface RestaurantCardProps {
   restaurant: Restaurant
 }
@@ -11,9 +21,20 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
     return null
   }
 
-  // Get restaurant theme color or fallback to info color
-  const themeColor = restaurantThemes[restaurant.name as keyof typeof restaurantThemes] || colors.info
-  
+  // Generate pastel color for restaurants without predefined theme
+  const generatePastel = (str: string) => {
+    let hash = 0
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash)
+    }
+    const h = hash % 360
+    return `hsl(${h}, 70%, 85%)`
+  }
+
+  const themeColor = restaurantThemes[restaurant.name as keyof typeof restaurantThemes] || generatePastel(restaurant.name)
+
+  const restaurantBg = hexToRgba(themeColor, 0.05)
+
   // Generate initials from restaurant name
   const getInitials = (name: string): string => {
     return name
@@ -26,13 +47,11 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
 
   return (
     <div 
-      className="rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100" 
-      style={{ 
-        backgroundColor: colors.surface
-      }}
+      className="rounded-none" 
+
     >
       {/* Restaurant Header */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between px-4 py-4 sticky top-0 z-10 bg-slate-100" >
         <div className="flex items-center gap-3">
           {restaurant.logo ? (
             <img 
@@ -82,12 +101,14 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
         </div>
       </div>
 
-      {/* Offers - One per row */}
-      <div className="space-y-4">
-        {restaurant.offers.map((offer) => (
+      {/* Offers - Full width, alternating shade */}
+      <div>
+        {restaurant.offers.map((offer, idx) => (
           <OfferItem 
             key={offer.id} 
             offer={offer} 
+            index={idx}
+            themeColor={themeColor}
           />
         ))}
       </div>

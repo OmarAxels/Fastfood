@@ -443,13 +443,11 @@ class BaseParser(ABC):
             'food_items': [],
             'meal_type': 'snack',
             'is_combo': False,
-            'complexity_score': 0,
             'total_food_items': 0,
             'main_items': [],
             'side_items': [],
             'drink_items': [],
             'dessert_items': [],
-            'visual_summary': '🍽️ General offer'
         }
 
     def prepare_offers_for_database(self, enhanced_offers: List[Dict]) -> List[Dict]:

@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime, Float, Boolean, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
@@ -19,7 +19,7 @@ class Restaurant(Base):
     website = Column(String(500))
     menu_page = Column(String(500))
     offers_page = Column(String(500))
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.now(timezone.utc))
     
     # Relationship to offers
     offers = relationship("Offer", back_populates="restaurant")
@@ -45,7 +45,7 @@ class Offer(Base):
     available_hours = Column(String(200))     # Time ranges (e.g., "11:00-15:00,17:00-21:00")
     availability_text = Column(Text)          # Raw text containing temporal info for reference
     
-    scraped_at = Column(DateTime, default=datetime.utcnow)
+    scraped_at = Column(DateTime, default=datetime.now(timezone.utc))
     source_url = Column(String(500))
     
     # Relationship to restaurant

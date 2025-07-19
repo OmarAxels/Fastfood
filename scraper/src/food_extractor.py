@@ -103,7 +103,7 @@ class FoodExtractor:
         Extract structured food information from offer name and description
         
         Returns:
-            Dict with food_items, total_items, meal_type, complexity_score
+            Dict with food_items, total_items, meal_type,
         """
         full_text = f"{offer_name} {description}".lower()
         
@@ -112,7 +112,7 @@ class FoodExtractor:
         
         # Determine meal type and complexity
         meal_type = self._determine_meal_type(food_items)
-        complexity_score = self._calculate_complexity(food_items)
+
         
         # Extract total item count
         total_items = sum(item.get('quantity', 1) for item in food_items)
@@ -125,7 +125,7 @@ class FoodExtractor:
             'total_items': total_items,
             'meal_type': meal_type,
             'is_combo': is_combo,
-            'complexity_score': complexity_score,
+ 
             'main_items': [item for item in food_items if item['category'] == 'main'],
             'side_items': [item for item in food_items if item['category'] == 'side'],
             'drink_items': [item for item in food_items if item['category'] == 'drink'],
@@ -292,65 +292,5 @@ class FoodExtractor:
             return 'dessert'  # Dessert item
         else:
             return 'snack'  # Side items only
-    
-    def _calculate_complexity(self, food_items: List[Dict]) -> int:
-        """Calculate complexity score based on variety and quantity"""
-        if not food_items:
-            return 0
-        
-        # Base score from number of items
-        total_quantity = sum(item['quantity'] for item in food_items)
-        complexity = min(total_quantity, 10)  # Cap at 10
-        
-        # Add points for variety
-        unique_types = len(set(item['type'] for item in food_items))
-        complexity += unique_types * 2
-        
-        # Add points for different categories
-        unique_categories = len(set(item['category'] for item in food_items))
-        complexity += unique_categories
-        
-        # Add points for size specifications
-        has_sizes = any(item.get('size') for item in food_items)
-        if has_sizes:
-            complexity += 2
-        
-        return min(complexity, 20)  # Cap at 20
-    
-    def get_visual_summary(self, food_info: Dict) -> str:
-        """Generate a visual summary string for the offer"""
-        if not food_info['food_items']:
-            return "🍽️ General offer"
-        
-        # Group by category
-        main_icons = [item['icon'] for item in food_info['main_items']]
-        side_icons = [item['icon'] for item in food_info['side_items']]
-        drink_icons = [item['icon'] for item in food_info['drink_items']]
-        dessert_icons = [item['icon'] for item in food_info['dessert_items']]
-        
-        # Create visual string
-        visual_parts = []
-        if main_icons:
-            visual_parts.append(''.join(main_icons))
-        if side_icons:
-            visual_parts.append(''.join(side_icons))
-        if drink_icons:
-            visual_parts.append(''.join(drink_icons))
-        if dessert_icons:
-            visual_parts.append(''.join(dessert_icons))
-        
-        visual = ' + '.join(visual_parts) if visual_parts else "🍽️"
-        
-        # Add meal type indicator
-        meal_type_icons = {
-            'family': '👨‍👩‍👧‍👦',
-            'sharing': '👥',
-            'combo': '🍽️',
-            'individual': '🧑',
-            'dessert': '🍰',
-            'snack': '🥨'
-        }
-        
-        type_icon = meal_type_icons.get(food_info['meal_type'], '🍽️')
-        
-        return f"{type_icon} {visual}" 
+
+  

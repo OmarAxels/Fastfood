@@ -139,13 +139,13 @@ class IconMapping:
     
     # Tag Icons (for offer tags)
     TAG_ICONS = {
-        'Borgari': {'icon': 'fluent-emoji:hamburger', 'color': '#8B4513'},
+        'Borgari': {'icon': 'fluent-emoji:hamburger', 'color': '#f0f8ff'},
         'Kjúklingur': {'icon': 'mdi:food-drumstick', 'color': '#D4AF37'},
         'Nautakjöt': {'icon': 'mdi:food-steak', 'color': '#8B4513'},
         'Pizza': {'icon': 'twemoji:pizza', 'color': '#FF6B35'},
-        'Franskar': {'icon': 'mdi:food-french-fries', 'color': '#8B4513'},
+        'Franskar': {'icon': 'noto:french-fries', 'color': '#8B4513'},
         'Sub': {'icon': 'mdi:food-sandwich', 'color': '#228B22'},
-        'Gos': {'icon': 'mdi:cup', 'color': '#000000'},
+        'Gos': {'icon': '/foodicons/soda.png', 'color': '#4A90E2'},
         'Drykkur': {'icon': 'mdi:cup', 'color': '#4A90E2'},
         'Fiskur': {'icon': 'mdi:fish', 'color': '#4A90E2'},
         'Rækjur': {'icon': 'noto-v1:shrimp', 'color': '#FF6B6B'},
@@ -190,7 +190,7 @@ class IconMapping:
                 return mapping
 
         # Default fallback
-        return {'icon': 'mdi:food', 'color': '#8B4513'}
+        return {'icon': 'icon-park-outline:dot', 'color': '#8B4513'}
     
     @classmethod
     def generate_standardized_tags(cls, offer: Dict[str, Any]) -> List[Dict[str, str]]:

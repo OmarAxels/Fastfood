@@ -5,7 +5,8 @@ export class OffersService {
   private cachedData: { restaurants: Restaurant[], total_offers: number, last_updated: string } | null = null
   private lastFetch: number = 0
   private readonly CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
-  private readonly API_BASE_URL = 'https://fastfood-production-2985.up.railway.app'
+  //read api_url from env
+  private readonly API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
 
   static getInstance(): OffersService {
     if (!OffersService.instance) {
@@ -24,6 +25,7 @@ export class OffersService {
 
     try {
       // Try enhanced-offers endpoint first for rich food visualization data
+      console.log("API_BASE_URL", this.API_BASE_URL)
       const response = await fetch(`${this.API_BASE_URL}/enhanced-offers`, {
         method: 'GET',
         headers: {

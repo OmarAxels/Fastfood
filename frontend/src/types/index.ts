@@ -48,13 +48,13 @@ export interface Offer {
   food_items?: FoodItem[]
   meal_type?: 'family' | 'combo' | 'sharing' | 'individual' | 'dessert' | 'snack' | 'unknown'
   is_combo?: boolean
-  complexity_score?: number
+
   total_food_items?: number
   main_items?: FoodItem[]
   side_items?: FoodItem[]
   drink_items?: FoodItem[]
   dessert_items?: FoodItem[]
-  visual_summary?: string
+
   
   // Backend-processed display data
   standardized_tags?: StandardizedTag[]
@@ -96,13 +96,11 @@ export interface EnhancedOffer {
   food_items?: FoodItem[]
   meal_type?: 'family' | 'combo' | 'sharing' | 'individual' | 'dessert' | 'snack' | 'unknown'
   is_combo?: boolean
-  complexity_score?: number
   total_food_items?: number
   main_items?: FoodItem[]
   side_items?: FoodItem[]
   drink_items?: FoodItem[]
   dessert_items?: FoodItem[]
-  visual_summary?: string
 }
 
 export interface EnhancedOffersData {

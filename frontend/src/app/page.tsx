@@ -57,7 +57,7 @@ export default function HomePage() {
     return (
       <div style={{
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-        background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+        background: 'slate-200',
         minHeight: '100vh',
         padding: '20px',
         color: '#1d1d1f'
@@ -155,7 +155,7 @@ export default function HomePage() {
       
       <div className="main-body" style={{
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-        background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+        background: 'slate-200',
         minHeight: '100vh',
 
         color: '#1d1d1f'
@@ -168,42 +168,7 @@ export default function HomePage() {
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
           overflow: 'hidden'
         }}>
-          {/* Header */}
-          <div style={{
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            padding: '20px 24px 22px',
-            textAlign: 'center',
-            position: 'relative'
-          }}>
-            <div style={{
-              content: '',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: 'rgba(255, 255, 255, 0.1)',
-              backdropFilter: 'blur(10px)'
-            }}></div>
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              <h1 style={{
-                fontSize: '28px',
-                fontWeight: '700',
-                color: 'white',
-                marginBottom: '8px',
-                letterSpacing: '-0.5px'
-              }}>
-                Skynditilboð 🍔
-              </h1>
-              <p style={{
-                fontSize: '16px',
-                color: 'rgba(255, 255, 255, 0.8)',
-                fontWeight: '400'
-              }}>
-                Bestu tilboðin í bænum
-              </p>
-            </div>
-          </div>
+         
 
           {/* Restaurants using RestaurantCard component */}
           <div >

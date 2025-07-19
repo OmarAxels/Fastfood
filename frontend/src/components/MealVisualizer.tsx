@@ -24,12 +24,15 @@ function groupItemsByChoices(items: FoodItemType[]) {
   return { regularItems, choiceGroups }
 }
 
+const hasQuantityColumn = (items: FoodItemType[]) => {
+  return items.some(item => item.quantity > 1)
+}
 // Component to display choice items
 function ChoiceGroup({ items }: { items: FoodItemType[] }) {
   if (items.length === 0) return null
   
   return (
-    <div className="flex items-center gap-2 p-2 rounded-lg border border-dashed border-gray-300 bg-gray-50">
+    <div className="flex items-center gap-2 p-2 rounded-lg border border-dashed border-gray-300 bg-gray-50 w-fit">
       <div className="flex items-center gap-1">
         {items.map((item, index) => (
           <div key={index} className="flex items-center gap-1">
@@ -91,15 +94,15 @@ export default function MealVisualizer({ offer, showDetails = false }: MealVisua
   return (
     <div className="space-y-3">
       {/* All Food Items - Simple List Layout */}
-      <div className="bg-gray-50 p-3 rounded-lg">
+      <div className="bg-gray-50 p-1 rounded-lg">
         <div className="space-y-2">
           {(() => {
             const { regularItems, choiceGroups } = groupItemsByChoices(allFoodItems)
             return (
               <>
-                <div className="space-y-2">
+                <div className="space-y-1">
                   {regularItems.map((item, index) => (
-                    <FoodItem key={index} item={item} showDetails={true} />
+                    <FoodItem key={index} item={item} hasQuantityColumn={hasQuantityColumn(regularItems)} showDetails={true} />
                   ))}
                 </div>
                 {Object.entries(choiceGroups).map(([groupName, items]) => (

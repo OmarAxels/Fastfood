@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker, Session, relationship
 from pydantic import BaseModel
 from typing import List, Optional
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from dotenv import load_dotenv
 import json
 from pathlib import Path
@@ -59,7 +59,7 @@ class Restaurant(Base):
     website = Column(String(500))
     menu_page = Column(String(500))
     offers_page = Column(String(500))
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.now(timezone.utc))
     
     offers = relationship("Offer", back_populates="restaurant")
 
@@ -79,7 +79,7 @@ class Offer(Base):
     available_hours = Column(String(200))
     availability_text = Column(Text)
     
-    scraped_at = Column(DateTime, default=datetime.utcnow)
+    scraped_at = Column(DateTime, default=datetime.now(timezone.utc))
     source_url = Column(String(500))
     
     restaurant = relationship("Restaurant", back_populates="offers")
@@ -183,88 +183,7 @@ def read_root():
 
 @app.get("/health")
 def health_check():
-    return {"status": "healthy", "timestamp": datetime.utcnow()}
-
-@app.post("/test/llm_food_extractor")
-async def test_llm_food_extractor(request: LLMExtractorRequest):
-    """
-    Test the LLM food extractor script.
-    Accepts POST requests with offer_name and description.
-    Calls the Python LLM extractor script and returns the result.
-    """
-    try:
-        # Locate the scraper directory and CLI script
-        scraper_dir = Path("../scraper")
-        if not scraper_dir.exists():
-            raise HTTPException(status_code=500, detail="Scraper directory not found")
-        
-        script_path = scraper_dir / "src" / "llm_food_extractor_cli.py"
-        if not script_path.exists():
-            raise HTTPException(status_code=500, detail=f"LLM extractor CLI script not found at {script_path}")
-        
-        # Prepare the offer data as JSON
-        offer_data = [{
-            "offer_name": request.offer_name,
-            "description": request.description,
-            "price_kr": None,
-            "pickup_delivery": None,
-            "suits_people": None,
-            "available_weekdays": None,
-            "available_hours": None,
-            "restaurant_name": "Test"
-        }]
-        
-        # Run the subprocess with proper working directory
-        result = subprocess.run(
-            [sys.executable, str(script_path)],
-            input=json.dumps(offer_data),
-            capture_output=True,
-            text=True,
-            cwd=str(scraper_dir),  # Set working directory to scraper
-            encoding='utf-8'
-        )
-        
-        if result.returncode != 0:
-            error_msg = result.stderr or "Unknown error"
-            raise HTTPException(
-                status_code=500,
-                detail=f"LLM extractor failed: {error_msg}"
-            )
-        
-        # Parse the JSON response
-        try:
-            # Extract JSON from output (ignore debug prints)
-            output_lines = result.stdout.strip()
-            
-            # Find the JSON part (starts with [ or {)
-            json_start = -1
-            for i, char in enumerate(output_lines):
-                if char in '[{':
-                    json_start = i
-                    break
-            
-            if json_start == -1:
-                raise ValueError("No JSON found in output")
-            
-            json_part = output_lines[json_start:]
-            output_data = json.loads(json_part)
-            return output_data[0] if output_data else {}
-        except json.JSONDecodeError as e:
-            raise HTTPException(
-                status_code=500,
-                detail=f"Failed to parse extractor output: {e}. Output: {result.stdout}"
-            )
-        except ValueError as e:
-            raise HTTPException(
-                status_code=500,
-                detail=f"No valid JSON found in output: {e}. Output: {result.stdout}"
-            )
-            
-    except HTTPException:
-        raise
-    except Exception as e:
-        logging.error(f"LLM extractor execution failed: {e}")
-        raise HTTPException(status_code=500, detail=f"LLM extractor execution failed: {str(e)}")
+    return {"status": "healthy", "timestamp": datetime.now(timezone.utc)}
 
 @app.get("/enhanced-offers")
 def get_enhanced_offers(db: Session = Depends(get_db)):
@@ -285,9 +204,12 @@ def get_enhanced_offers(db: Session = Depends(get_db)):
             if file_path.exists():
                 with open(file_path, 'r', encoding='utf-8') as f:
                     enhanced_data = json.load(f)
+                    print("enhanced_data")
+                    print(enhanced_data)
                 break
         
         if not enhanced_data:
+            print("No enhanced data found")
             # Fallback to basic data if enhanced file not found
             return get_restaurants(db)
         
@@ -359,13 +281,11 @@ def get_enhanced_offers(db: Session = Depends(get_db)):
                 "food_items": enhanced_offer.get('food_items', []),
                 "meal_type": enhanced_offer.get('meal_type'),
                 "is_combo": enhanced_offer.get('is_combo', False),
-                "complexity_score": enhanced_offer.get('complexity_score'),
                 "total_food_items": enhanced_offer.get('total_food_items', 0),
                 "main_items": enhanced_offer.get('main_items', []),
                 "side_items": enhanced_offer.get('side_items', []),
                 "drink_items": enhanced_offer.get('drink_items', []),
                 "dessert_items": enhanced_offer.get('dessert_items', []),
-                "visual_summary": enhanced_offer.get('visual_summary', '')
             }
             
             restaurant_map[restaurant_name]["offers"].append(offer)
@@ -373,7 +293,7 @@ def get_enhanced_offers(db: Session = Depends(get_db)):
         # Convert to list and calculate totals
         restaurants = list(restaurant_map.values())
         total_offers = sum(len(r["offers"]) for r in restaurants)
-        last_updated = enhanced_data.get('scraped_at', datetime.utcnow().isoformat())
+        last_updated = enhanced_data.get('scraped_at', datetime.now(timezone.utc).isoformat())
         
         return {
             "restaurants": restaurants,

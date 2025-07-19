@@ -75,6 +75,16 @@
       "icon": "mdi:cup",
       "description": "Carbonated beverages"
     },
+    "juice": {
+      "terms": [
+        "djús",
+        "juice",
+        "juicebox"
+      ],
+      "category": "drink",
+      "icon": "/foodicons/juice-box.png",
+      "description": "Juice and fruit drinks"
+    },
     "cookie": {
       "terms": [
         "kaka",
@@ -116,8 +126,19 @@
         "juice"
       ],
       "category": "drink",
-      "icon": "mdi:food-apple",
+      "icon": "/foodicons/juice-box.png",
       "description": "Fresh fruits and juices"
+    },
+    "djús": {
+      "terms": [
+        "djús",
+        "safi",
+        "appelsínusafi",
+        "juice"
+      ],
+      "category": "drink",
+      "icon": "/foodicons/juice-box.png",
+      "description": "Juice beverages"
     },
     "snack": {
       "terms": [

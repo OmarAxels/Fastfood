@@ -9,7 +9,7 @@ from parsers.dominos_parser import DominosParser
 from parsers.subway_parser import SubwayParser
 from parsers.ai_parser import AIParser
 from config import PARSER_CONFIG, CRAWL_DELAY
-from datetime import datetime
+from datetime import datetime, timezone
 from icon_mapping import IconMapping
 
 logger = logging.getLogger(__name__)
@@ -191,10 +191,14 @@ class FastfoodScraper:
         try:
             # Create enhanced offers file path
             output_file = Path("enhanced_offers_with_food_info.json")
+            backend_output_file = Path("../backend/enhanced_offers_with_food_info.json")
+            
+            # Ensure backend directory exists
+            backend_output_file.parent.mkdir(parents=True, exist_ok=True)
             
             # Prepare data for JSON serialization
             json_data = {
-                'scraped_at': datetime.utcnow().isoformat(),
+                'scraped_at': datetime.now(timezone.utc).isoformat(),
                 'total_offers': len(self.enhanced_offers_data),
                 'restaurants': list(set(offer['restaurant_name'] for offer in self.enhanced_offers_data)),
                 'offers': []
@@ -214,8 +218,9 @@ class FastfoodScraper:
             # Save to JSON file
             with open(output_file, 'w', encoding='utf-8') as f:
                 json.dump(json_data, f, indent=2, ensure_ascii=False)
-            
+            with open(backend_output_file, 'w', encoding='utf-8') as f:
+                json.dump(json_data, f, indent=2, ensure_ascii=False)
             logger.info(f"Saved {len(self.enhanced_offers_data)} enhanced offers with food information to {output_file}")
-            
+            logger.info(f"Saved {len(self.enhanced_offers_data)} enhanced offers with food information to {backend_output_file}")
         except Exception as e:
             logger.error(f"Failed to save enhanced offers JSON: {e}") 
