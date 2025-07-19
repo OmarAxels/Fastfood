@@ -32,7 +32,7 @@ export default function HomePage() {
     }
 
     fetchData()
-  }, [])
+  }, [offersService])
 
   const handleRefresh = async () => {
     try {

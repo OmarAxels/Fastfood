@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { FoodItem as FoodItemType } from '@/types'
 import { colors } from '@/config/colors'
 import { Icon } from '@iconify/react'

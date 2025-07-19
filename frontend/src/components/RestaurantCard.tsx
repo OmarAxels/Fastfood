@@ -2,16 +2,6 @@ import { Restaurant } from '@/types'
 import OfferItem from './OfferItem'
 import { colors, restaurantThemes } from '@/config/colors'
 
-// Helper to convert hex to rgba with given alpha
-const hexToRgba = (hex: string, alpha: number) => {
-  const res = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-  if (!res) return hex
-  const r = parseInt(res[1], 16)
-  const g = parseInt(res[2], 16)
-  const b = parseInt(res[3], 16)
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`
-}
-
 interface RestaurantCardProps {
   restaurant: Restaurant
 }
@@ -106,8 +96,6 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
           <OfferItem 
             key={offer.id} 
             offer={offer} 
-            index={idx}
-            themeColor={themeColor}
           />
         ))}
       </div>

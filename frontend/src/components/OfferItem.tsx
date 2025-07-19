@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Offer } from '@/types'
 import { useState } from 'react'
 import MealVisualizer from './MealVisualizer'
@@ -138,8 +139,6 @@ function extractGeneralTags(offer: Offer) {
 
 interface OfferItemProps {
   offer: Offer
-  index?: number
-  themeColor?: string
 }
 
 function formatWeekdays(weekdays: string | null): string {
@@ -182,7 +181,7 @@ const PeopleIcon = ({ count, color }: { count: number, color: string }) => (
   </div>
 )
 
-export default function OfferItem({ offer, index = 0, themeColor = '#ffffff' }: OfferItemProps) {
+export default function OfferItem({ offer }: OfferItemProps) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   const handleClick = (e: React.MouseEvent) => {
