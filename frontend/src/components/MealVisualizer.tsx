@@ -3,7 +3,6 @@ import FoodItem from './FoodItem'
 
 interface MealVisualizerProps {
   offer: Offer
-  showDetails?: boolean
 }
 
 // Helper function to group items by choice group
@@ -36,7 +35,7 @@ function ChoiceGroup({ items }: { items: FoodItemType[] }) {
       <div className="flex items-center gap-1">
         {items.map((item, index) => (
           <div key={index} className="flex items-center gap-1">
-            <FoodItem item={item} showDetails={true} />
+            <FoodItem item={item} />
             {index < items.length - 1 && (
               <span className="text-xs text-gray-500 mx-1">eða</span>
             )}
@@ -47,35 +46,7 @@ function ChoiceGroup({ items }: { items: FoodItemType[] }) {
   )
 }
 
-export default function MealVisualizer({ offer, showDetails = false }: MealVisualizerProps) {
-  // Compact (collapsed) view – just show icons for a quick glance
-  if (!showDetails) {
-    const allFoodItems = [
-      ...(offer.main_items || []),
-      ...(offer.side_items || []),
-      ...(offer.drink_items || []),
-      ...(offer.dessert_items || [])
-    ]
-
-    if (allFoodItems.length === 0) return <></>
-
-    return (
-      <div className="flex flex-wrap items-center gap-2">
-        {allFoodItems.slice(0, 8).map((item, index) => (
-          <FoodItem key={index} item={item} showDetails={false} />
-        ))}
-      </div>
-    )
-  }
-
-  // Check display properties from backend
-  const displayProps = offer.display_properties || {
-    show_category_headers: false,
-    show_fallback_info: false,
-    compact_view: true,
-    max_tags: 3
-  }
-
+export default function MealVisualizer({ offer, }: MealVisualizerProps) {
   // Detailed view
   if (!offer.food_items || offer.food_items.length === 0) {
     return (
@@ -102,7 +73,7 @@ export default function MealVisualizer({ offer, showDetails = false }: MealVisua
               <>
                 <div className="space-y-1">
                   {regularItems.map((item, index) => (
-                    <FoodItem key={index} item={item} hasQuantityColumn={hasQuantityColumn(regularItems)} showDetails={true} />
+                    <FoodItem key={index} item={item} hasQuantityColumn={hasQuantityColumn(regularItems)} />
                   ))}
                 </div>
                 {Object.entries(choiceGroups).map(([groupName, items]) => (

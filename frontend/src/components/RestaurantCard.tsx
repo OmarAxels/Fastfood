@@ -33,7 +33,6 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
 
   const themeColor = restaurantThemes[restaurant.name as keyof typeof restaurantThemes] || generatePastel(restaurant.name)
 
-  const restaurantBg = hexToRgba(themeColor, 0.05)
 
   // Generate initials from restaurant name
   const getInitials = (name: string): string => {

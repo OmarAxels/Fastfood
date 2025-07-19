@@ -22,12 +22,11 @@ const FoodIcon = ({ icon, className, style }: { icon: string; className?: string
 
 interface FoodItemProps {
   item: FoodItemType
-  showDetails?: boolean
   // Add this prop to indicate if ANY item in the list has quantity > 1
   hasQuantityColumn?: boolean
 }
 
-export default function FoodItem({ item, showDetails = false, hasQuantityColumn = false }: FoodItemProps) {
+export default function FoodItem({ item, hasQuantityColumn = false }: FoodItemProps) {
   const getSizeText = () => {
     if (!item.size) return null
 

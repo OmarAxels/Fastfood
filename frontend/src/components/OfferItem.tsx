@@ -194,9 +194,6 @@ export default function OfferItem({ offer, index = 0, themeColor = '#ffffff' }: 
     console.log('New state will be:', !isExpanded)
   }
 
-  // Alternate shade based on index
-  const bg = index % 2 === 0 ? hexToRgba(themeColor, 0.03) : hexToRgba(themeColor, 0.12)
-  // need top and bottom border
   return (
     <div className="relative group w-full border-b border-t border-gray-100 bg-slate-50">
       <div 
@@ -321,7 +318,7 @@ export default function OfferItem({ offer, index = 0, themeColor = '#ffffff' }: 
               </div>
             )}
                   {/* Detailed Food Visualization */}
-                  <MealVisualizer offer={offer} showDetails={true} />
+                  <MealVisualizer offer={offer}/>
 
           
           </div>
