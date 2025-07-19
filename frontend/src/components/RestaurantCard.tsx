@@ -1,6 +1,7 @@
 import { Restaurant } from '@/types'
 import OfferItem from './OfferItem'
 import { colors, restaurantThemes } from '@/config/colors'
+import Image from 'next/image'
 
 interface RestaurantCardProps {
   restaurant: Restaurant
@@ -43,10 +44,12 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
       <div className="flex items-center justify-between px-4 py-4 sticky top-0 z-10 bg-slate-100" >
         <div className="flex items-center gap-3">
           {restaurant.logo ? (
-            <img 
+            <Image 
               src={restaurant.logo} 
               alt={restaurant.name} 
               className="w-10 h-10 rounded-full shadow-sm" 
+              width={40}
+              height={40}
             />
           ) : (
             <div 
@@ -92,7 +95,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
 
       {/* Offers - Full width, alternating shade */}
       <div>
-        {restaurant.offers.map((offer, idx) => (
+        {restaurant.offers.map((offer) => (
           <OfferItem 
             key={offer.id} 
             offer={offer} 
