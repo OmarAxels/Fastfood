@@ -5,6 +5,8 @@ Handles all icon assignments and data processing logic
 
 from typing import Dict, List, Any, Optional
 import re
+import json
+from pathlib import Path
 
 
 class IconMapping:
@@ -137,6 +139,7 @@ class IconMapping:
     
     # Tag Icons (for offer tags)
     TAG_ICONS = {
+        'Borgari': {'icon': 'fluent-emoji:hamburger', 'color': '#8B4513'},
         'Kjúklingur': {'icon': 'mdi:food-drumstick', 'color': '#D4AF37'},
         'Nautakjöt': {'icon': 'mdi:food-steak', 'color': '#8B4513'},
         'Pizza': {'icon': 'twemoji:pizza', 'color': '#FF6B35'},
@@ -144,28 +147,48 @@ class IconMapping:
         'Sub': {'icon': 'mdi:food-sandwich', 'color': '#228B22'},
         'Gos': {'icon': 'mdi:cup', 'color': '#000000'},
         'Drykkur': {'icon': 'mdi:cup', 'color': '#4A90E2'},
-        'Grænmetis': {'icon': 'mdi:food-apple', 'color': '#228B22'},
+        'Fiskur': {'icon': 'mdi:fish', 'color': '#4A90E2'},
+        'Rækjur': {'icon': 'noto-v1:shrimp', 'color': '#FF6B6B'},
+        'Pasta': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
+        'Sushi': {'icon': 'mdi:food-variant', 'color': '#FF6B6B'},
+        'Thai': {'icon': 'mdi:food-variant', 'color': '#FF6B35'},
+        'Núðlur': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
+        'Núðlusúp': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
+        'Vegan': {'icon': 'mdi:food-variant', 'color': '#228B22'},
     }
     
     @classmethod
+    def _load_food_icons(cls):
+        """Load icon mappings from JSON and cache them"""
+        if not hasattr(cls, '_icons_cache'):
+            json_path = Path(__file__).resolve().parent.parent / 'food_icon_mapping.json'
+            try:
+                with open(json_path, 'r', encoding='utf-8') as f:
+                    cls._icons_cache = json.load(f)
+            except FileNotFoundError:
+                cls._icons_cache = {}
+        return cls._icons_cache
+    
+    @classmethod
     def get_food_icon(cls, food_type: str, category: str = None) -> Dict[str, str]:
-        """Get icon and color for a food item"""
+        """Get icon and color for a food item using JSON mapping"""
+        icons = cls._load_food_icons()
         normalized_type = food_type.lower().strip()
         normalized_category = category.lower().strip() if category else None
-        
+
         # Try exact match first
-        if normalized_type in cls.FOOD_ICONS:
-            return cls.FOOD_ICONS[normalized_type]
-        
+        if normalized_type in icons:
+            return icons[normalized_type]
+
         # Try category match
-        if normalized_category and normalized_category in cls.FOOD_ICONS:
-            return cls.FOOD_ICONS[normalized_category]
-        
+        if normalized_category and normalized_category in icons:
+            return icons[normalized_category]
+
         # Try partial matches
-        for key, mapping in cls.FOOD_ICONS.items():
+        for key, mapping in icons.items():
             if normalized_type in key or key in normalized_type:
                 return mapping
-        
+
         # Default fallback
         return {'icon': 'mdi:food', 'color': '#8B4513'}
     

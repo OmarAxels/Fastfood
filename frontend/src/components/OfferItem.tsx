@@ -40,7 +40,7 @@ export default function OfferItem({ offer }: OfferItemProps) {
   return (
     <div className="relative group w-full">
       <div 
-        className="rounded-xl p-4 cursor-pointer hover:shadow-lg transition-all duration-300 w-full border border-gray-100 select-none"
+        className="p-4 cursor-pointer hover:shadow-lg transition-all duration-300 w-full border-t border-b border-gray-100 select-none"
         style={{ backgroundColor: colors.surface }}
         onClick={handleClick}
         onMouseDown={(e) => e.preventDefault()}
@@ -50,9 +50,15 @@ export default function OfferItem({ offer }: OfferItemProps) {
           {/* Left side - Title and Food visualization */}
           <div className="flex-1 min-w-0">
             {/* Offer Title */}
-            <h3 className="text-md font-bold mb-3" style={{ color: colors.primary }}>
+            <h3 className="text-md font-bold mb-1" style={{ color: colors.primary }}>
               {formatTitle(offer.name)}
             </h3>
+
+            {offer.description && (
+              <p className="text-xs mb-2" style={{ color: colors.gray[500] }}>
+                {offer.description.length > 30 ? `${offer.description.slice(0, 30)}...` : offer.description}
+              </p>
+            )}
             
             {/* Food Visualization - Compact */}
             <div className="mb-3">

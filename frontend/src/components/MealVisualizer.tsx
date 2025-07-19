@@ -45,9 +45,23 @@ function ChoiceGroup({ items }: { items: FoodItemType[] }) {
 }
 
 export default function MealVisualizer({ offer, showDetails = false }: MealVisualizerProps) {
+  // Compact (collapsed) view – just show icons for a quick glance
   if (!showDetails) {
+    const allFoodItems = [
+      ...(offer.main_items || []),
+      ...(offer.side_items || []),
+      ...(offer.drink_items || []),
+      ...(offer.dessert_items || [])
+    ]
+
+    if (allFoodItems.length === 0) return <></>
+
     return (
-      <></>
+      <div className="flex flex-wrap items-center gap-2">
+        {allFoodItems.slice(0, 8).map((item, index) => (
+          <FoodItem key={index} item={item} showDetails={false} />
+        ))}
+      </div>
     )
   }
 

@@ -9,6 +9,7 @@ import re
 import logging
 from typing import Dict, List, Optional, Union
 import g4f
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
@@ -686,7 +687,7 @@ Respond only with valid JSON. If no food items are found for an offer, return em
         return 'mdi:food'  # Default icon
     
     def _update_categories(self, new_categories: List[Dict]):
-        """Update categories file with new categories"""
+        """Update categories file with new categories and sync icon mapping json"""
         for new_cat in new_categories:
             cat_name = new_cat['name']
             if cat_name not in self.categories_data['food_categories']:
@@ -697,9 +698,28 @@ Respond only with valid JSON. If no food items are found for an offer, return em
                     'description': new_cat['description']
                 }
                 logger.info(f"Added new category: {cat_name}")
-        
         # Save updated categories
         self._save_categories()
+
+        # --- NEW: Update central icon mapping JSON ---
+        try:
+            icon_map_path = Path(__file__).resolve().parent.parent / 'food_icon_mapping.json'
+            if icon_map_path.exists():
+                with open(icon_map_path, 'r', encoding='utf-8') as f:
+                    icon_map = json.load(f)
+            else:
+                icon_map = {}
+            updated = False
+            for new_cat in new_categories:
+                name = new_cat['name']
+                if name not in icon_map:
+                    icon_map[name] = {"icon": "", "color": ""}
+                    updated = True
+            if updated:
+                with open(icon_map_path, 'w', encoding='utf-8') as f:
+                    json.dump(icon_map, f, ensure_ascii=False, indent=2)
+        except Exception as e:
+            logger.error(f"Failed to update icon mapping json: {e}")
     
     def _calculate_complexity(self, food_items: List[Dict]) -> int:
         """Calculate complexity score based on variety and quantity"""
