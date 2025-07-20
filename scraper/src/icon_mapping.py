@@ -14,7 +14,11 @@ class IconMapping:
     
     # Food Type Icons with colors
     FOOD_ICONS = {
-        # Meat Types
+        # Chicken Types - More Specific
+        'chicken_piece': {'icon': 'mdi:food-drumstick', 'color': '#D4AF37'},
+        'chicken_leg': {'icon': 'mdi:food-drumstick', 'color': '#D4AF37'}, 
+        'chicken_wings': {'icon': 'mdi:food-drumstick', 'color': '#D4AF37'},
+        'chicken_burger': {'icon': 'fluent-emoji:hamburger', 'color': '#8B4513'},
         'chicken': {'icon': 'mdi:food-drumstick', 'color': '#D4AF37'},
         'wings': {'icon': 'mdi:food-drumstick', 'color': '#D4AF37'},
         'breast': {'icon': 'mdi:food-drumstick', 'color': '#D4AF37'},
@@ -98,43 +102,43 @@ class IconMapping:
         'main': {'icon': 'mdi:food', 'color': '#8B4513'},
         'side': {'icon': 'mdi:food-fork-drink', 'color': '#228B22'},
         'drink': {'icon': 'mdi:cup', 'color': '#4A90E2'},
-        'snack': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
+        'snack': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
         'fruit': {'icon': 'mdi:food-apple', 'color': '#228B22'},
         'ávöxtur': {'icon': 'mdi:food-apple', 'color': '#228B22'},
-        'soup': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'suppa': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'curry': {'icon': 'mdi:food-variant', 'color': '#FF6B35'},
-        'kebab': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'quesadilla': {'icon': 'mdi:food-variant', 'color': '#FFD700'},
-        'burrito': {'icon': 'mdi:food-variant', 'color': '#228B22'},
-        'enchilada': {'icon': 'mdi:food-variant', 'color': '#FF6B35'},
-        'fajita': {'icon': 'mdi:food-variant', 'color': '#FFD700'},
-        'gyro': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'shawarma': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'falafel': {'icon': 'mdi:food-variant', 'color': '#228B22'},
-        'dumpling': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'springroll': {'icon': 'mdi:food-variant', 'color': '#228B22'},
-        'eggroll': {'icon': 'mdi:food-variant', 'color': '#FFD700'},
-        'tempura': {'icon': 'mdi:food-variant', 'color': '#FFD700'},
-        'teriyaki': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'stirfry': {'icon': 'mdi:food-variant', 'color': '#228B22'},
-        'lo mein': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'pad thai': {'icon': 'mdi:food-variant', 'color': '#FFD700'},
-        'pho': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'ramen': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'udon': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'soba': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'bibimbap': {'icon': 'mdi:food-variant', 'color': '#FF6B35'},
-        'bulgogi': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'japchae': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'kimchi': {'icon': 'mdi:food-variant', 'color': '#FF6B35'},
-        'taco': {'icon': 'mdi:food-variant', 'color': '#FFD700'},
-        'thai': {'icon': 'mdi:food-variant', 'color': '#FF6B35'},
-        'noodlesoup': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'noodles': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'núðlur': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'pasta': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'sushi': {'icon': 'mdi:food-variant', 'color': '#FF6B6B'},
+        'soup': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'suppa': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'curry': {'icon': 'icon-park-outline:dot', 'color': '#FF6B35'},
+        'kebab': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'quesadilla': {'icon': 'icon-park-outline:dot', 'color': '#FFD700'},
+        'burrito': {'icon': 'icon-park-outline:dot', 'color': '#228B22'},
+        'enchilada': {'icon': 'icon-park-outline:dot', 'color': '#FF6B35'},
+        'fajita': {'icon': 'icon-park-outline:dot', 'color': '#FFD700'},
+        'gyro': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'shawarma': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'falafel': {'icon': 'icon-park-outline:dot', 'color': '#228B22'},
+        'dumpling': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'springroll': {'icon': 'icon-park-outline:dot', 'color': '#228B22'},
+        'eggroll': {'icon': 'icon-park-outline:dot', 'color': '#FFD700'},
+        'tempura': {'icon': 'icon-park-outline:dot', 'color': '#FFD700'},
+        'teriyaki': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'stirfry': {'icon': 'icon-park-outline:dot', 'color': '#228B22'},
+        'lo mein': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'pad thai': {'icon': 'icon-park-outline:dot', 'color': '#FFD700'},
+        'pho': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'ramen': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'udon': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'soba': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'bibimbap': {'icon': 'icon-park-outline:dot', 'color': '#FF6B35'},
+        'bulgogi': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'japchae': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'kimchi': {'icon': 'icon-park-outline:dot', 'color': '#FF6B35'},
+        'taco': {'icon': 'icon-park-outline:dot', 'color': '#FFD700'},
+        'thai': {'icon': 'icon-park-outline:dot', 'color': '#FF6B35'},
+        'noodlesoup': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'noodles': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'núðlur': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'pasta': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'sushi': {'icon': 'icon-park-outline:dot', 'color': '#FF6B6B'},
     }
     
     # Tag Icons (for offer tags)
@@ -149,12 +153,12 @@ class IconMapping:
         'Drykkur': {'icon': 'mdi:cup', 'color': '#4A90E2'},
         'Fiskur': {'icon': 'mdi:fish', 'color': '#4A90E2'},
         'Rækjur': {'icon': 'noto-v1:shrimp', 'color': '#FF6B6B'},
-        'Pasta': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'Sushi': {'icon': 'mdi:food-variant', 'color': '#FF6B6B'},
-        'Thai': {'icon': 'mdi:food-variant', 'color': '#FF6B35'},
-        'Núðlur': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'Núðlusúp': {'icon': 'mdi:food-variant', 'color': '#8B4513'},
-        'Vegan': {'icon': 'mdi:food-variant', 'color': '#228B22'},
+        'Pasta': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'Sushi': {'icon': 'icon-park-outline:dot', 'color': '#FF6B6B'},
+        'Thai': {'icon': 'icon-park-outline:dot', 'color': '#FF6B35'},
+        'Núðlur': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'Núðlusúp': {'icon': 'icon-park-outline:dot', 'color': '#8B4513'},
+        'Vegan': {'icon': 'icon-park-outline:dot', 'color': '#228B22'},
     }
     
     @classmethod
@@ -172,6 +176,12 @@ class IconMapping:
     @classmethod
     def get_food_icon(cls, food_type: str, category: str = None) -> Dict[str, str]:
         """Get icon and color for a food item using JSON mapping"""
+        # Handle specific chicken types first
+        if food_type == 'chicken_burger':
+            return {'icon': 'fluent-emoji:hamburger', 'color': '#8B4513'}
+        elif food_type in ['chicken_piece', 'chicken_leg', 'chicken_wings', 'chicken']:
+            return {'icon': 'mdi:food-drumstick', 'color': '#D4AF37'}
+        
         icons = cls._load_food_icons()
         normalized_type = food_type.lower().strip()
         normalized_category = category.lower().strip() if category else None
@@ -297,31 +307,28 @@ class IconMapping:
         """Enhance an offer with all necessary display information"""
         enhanced_offer = offer.copy()
         
-        # Enhance all food items
-        if 'food_items' in enhanced_offer:
-            enhanced_offer['food_items'] = [
-                cls.enhance_food_item(item) for item in enhanced_offer['food_items']
+        # Filter out sauce items from all food item lists
+        def filter_non_sauce_items(items):
+            return [
+                cls.enhance_food_item(item) for item in items 
+                if item.get('type') != 'sauce'
             ]
+        
+        # Enhance all food items (excluding sauces)
+        if 'food_items' in enhanced_offer:
+            enhanced_offer['food_items'] = filter_non_sauce_items(enhanced_offer['food_items'])
         
         if 'main_items' in enhanced_offer:
-            enhanced_offer['main_items'] = [
-                cls.enhance_food_item(item) for item in enhanced_offer['main_items']
-            ]
+            enhanced_offer['main_items'] = filter_non_sauce_items(enhanced_offer['main_items'])
         
         if 'side_items' in enhanced_offer:
-            enhanced_offer['side_items'] = [
-                cls.enhance_food_item(item) for item in enhanced_offer['side_items']
-            ]
+            enhanced_offer['side_items'] = filter_non_sauce_items(enhanced_offer['side_items'])
         
         if 'drink_items' in enhanced_offer:
-            enhanced_offer['drink_items'] = [
-                cls.enhance_food_item(item) for item in enhanced_offer['drink_items']
-            ]
+            enhanced_offer['drink_items'] = filter_non_sauce_items(enhanced_offer['drink_items'])
         
         if 'dessert_items' in enhanced_offer:
-            enhanced_offer['dessert_items'] = [
-                cls.enhance_food_item(item) for item in enhanced_offer['dessert_items']
-            ]
+            enhanced_offer['dessert_items'] = filter_non_sauce_items(enhanced_offer['dessert_items'])
         
         # Generate standardized tags
         enhanced_offer['standardized_tags'] = cls.generate_standardized_tags(enhanced_offer)

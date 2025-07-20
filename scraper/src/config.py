@@ -35,7 +35,7 @@ if not DATABASE_URL:
 
 # Parser configuration - which restaurants should use AI parser vs traditional parsers
 PARSER_CONFIG = {
-    'KFC Iceland': 'ai',  # Use AI parser
+    'KFC Iceland': 'traditional',  # Use traditional parser temporarily due to encoding issues
     "Domino's Pizza Iceland": 'traditional',  # Use traditional parser
     'Subway Iceland': 'traditional',  # Use traditional parser
     # All other restaurants will use AI parser by default

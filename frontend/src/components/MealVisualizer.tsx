@@ -29,9 +29,9 @@ const hasQuantityColumn = (items: FoodItemType[]) => {
 // Component to display choice items
 function ChoiceGroup({ items }: { items: FoodItemType[] }) {
   if (items.length === 0) return null
-  
+  // reduce font size
   return (
-    <div className="flex items-center gap-2 p-2 rounded-lg border border-dashed border-gray-300 bg-gray-50 w-fit">
+    <div className="flex items-center gap-2 p-2 rounded-lg border border-dashed border-gray-300 bg-gray-50 w-fit text-sm">
       <div className="flex items-center gap-1">
         {items.map((item, index) => (
           <div key={index} className="flex items-center gap-1">

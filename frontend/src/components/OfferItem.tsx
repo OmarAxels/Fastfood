@@ -65,14 +65,14 @@ const GENERAL_CATEGORIES: {
   {
     key: 'noodlesoup',
     label: 'Núðlusúpa',
-    icon: 'mdi:food-variant',
+    icon: 'icon-park-outline:dot',
     color: '#8B4513',
     synonyms: ['noodlesoup', 'núðlusúp', 'núðlusúpa']
   },
   {
     key: 'noodles',
     label: 'Núðlur',
-    icon: 'mdi:food-variant',
+    icon: 'icon-park-outline:dot',
     color: '#8B4513',
     synonyms: ['noodles', 'núðlur', 'pasta']
   },

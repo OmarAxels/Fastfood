@@ -148,7 +148,7 @@
         "snack"
       ],
       "category": "side",
-      "icon": "mdi:food-variant",
+      "icon": "icon-park-outline:dot",
       "description": "Small food items"
     },
     "fish": {
@@ -183,7 +183,7 @@
         "spaghetti"
       ],
       "category": "main",
-      "icon": "mdi:food-variant",
+      "icon": "icon-park-outline:dot",
       "description": "Italian pasta dishes"
     },
     "soup": {
@@ -193,7 +193,7 @@
         "suppa"
       ],
       "category": "main",
-      "icon": "mdi:food-variant",
+      "icon": "icon-park-outline:dot",
       "description": "Liquid food dishes"
     },
     "ice_cream": {

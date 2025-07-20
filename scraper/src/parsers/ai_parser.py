@@ -20,9 +20,52 @@ class AIParser(BaseParser):
     async def _get_markdown_content(self, url: str) -> str:
         """Get markdown content from URL using crawl4ai"""
         try:
-            async with AsyncWebCrawler() as crawler:
-                result = await crawler.arun(url=url)
-                return result.markdown
+            # Configure crawler with specific settings to avoid encoding issues
+            crawler_config = {
+                'verbose': False,
+                'headless': True,
+                'browser_type': 'chromium'
+            }
+            
+            async with AsyncWebCrawler(**crawler_config) as crawler:
+                result = await crawler.arun(
+                    url=url,
+                    wait_for_selector="body",
+                    timeout=30
+                )
+                
+                if not result or not result.markdown:
+                    logger.warning(f"No markdown content found for {url}")
+                    return ""
+                
+                # Clean markdown content to avoid encoding issues
+                markdown_content = result.markdown
+                
+                # Replace problematic Unicode characters
+                replacements = {
+                    '\u2192': '->',
+                    '\u2190': '<-',
+                    '\u2013': '-',
+                    '\u2014': '--',
+                    '\u2019': "'",
+                    '\u201c': '"',
+                    '\u201d': '"',
+                    '\u00a0': ' '
+                }
+                
+                for unicode_char, replacement in replacements.items():
+                    markdown_content = markdown_content.replace(unicode_char, replacement)
+                
+                # Final cleanup - remove any remaining non-ASCII characters
+                try:
+                    # Test if content can be encoded to CP1252 (Windows console)
+                    markdown_content.encode('cp1252')
+                    return markdown_content
+                except UnicodeEncodeError:
+                    # If encoding fails, strip non-ASCII characters
+                    cleaned_content = ''.join(char if ord(char) < 128 else ' ' for char in markdown_content)
+                    return cleaned_content
+                    
         except Exception as e:
             logger.error(f"Failed to get markdown content from {url}: {e}")
             return ""
@@ -47,14 +90,36 @@ class AIParser(BaseParser):
             {markdown_content}
             """
 
-            response = g4f.ChatCompletion.create(
-                model=AI_MODEL,
-                messages=[
-                    {"role": "system", "content": prompt},
-                    {"role": "user", "content": markdown_content}
-                ]
-            )
+            # Try primary AI model
+            try:
+                response = g4f.ChatCompletion.create(
+                    model=AI_MODEL,
+                    messages=[
+                        {"role": "system", "content": prompt},
+                        {"role": "user", "content": markdown_content}
+                    ]
+                )
+            except Exception as primary_error:
+                logger.warning(f"Primary AI model ({AI_MODEL}) failed: {primary_error}")
+                # Try fallback model
+                try:
+                    logger.info(f"Trying fallback AI model for {restaurant_name}")
+                    response = g4f.ChatCompletion.create(
+                        model="gpt-3.5-turbo",
+                        messages=[
+                            {"role": "system", "content": prompt},
+                            {"role": "user", "content": markdown_content}
+                        ]
+                    )
+                except Exception as fallback_error:
+                    logger.error(f"Fallback AI model also failed: {fallback_error}")
+                    return []
 
+            # Check if response is empty or None
+            if not response or not response.strip():
+                logger.warning(f"Received empty response from AI model for {restaurant_name}")
+                return []
+            
             # Clean up the response - remove markdown code blocks if present
             cleaned_response = response.strip()
             if cleaned_response.startswith("```json"):
@@ -62,9 +127,20 @@ class AIParser(BaseParser):
             if cleaned_response.endswith("```"):
                 cleaned_response = cleaned_response[:-3]
             cleaned_response = cleaned_response.strip()
+            
+            # Check if cleaned response is empty
+            if not cleaned_response:
+                logger.warning(f"Response became empty after cleaning for {restaurant_name}")
+                return []
 
             # Parse JSON response
-            offers_data = json.loads(cleaned_response)
+            try:
+                offers_data = json.loads(cleaned_response)
+            except json.JSONDecodeError as json_error:
+                logger.error(f"Failed to parse AI response as JSON for {restaurant_name}: {json_error}")
+                logger.debug(f"Raw response: {response}")
+                logger.debug(f"Cleaned response: {cleaned_response}")
+                return []
             
             # Convert to our standard format
             offers = []

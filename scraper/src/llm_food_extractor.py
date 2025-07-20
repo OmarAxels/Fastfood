@@ -279,23 +279,34 @@ IMPORTANT INSTRUCTIONS:
    - fries: French fries (franskar, frönskum, etc.)
    - soda: Carbonated drinks (gos, kók, etc.)
    - djús: Juice and fruit drinks (djús, appelsínusafi, etc.)
-   - chicken: Chicken items (kjúklingur, wings, etc.)
+   - chicken_piece: Chicken pieces (kjúklingabitar, kjúklingalundir, etc.)
+   - chicken_leg: Chicken legs/drumsticks (leggir, kjúklingaleggir, etc.)
+   - chicken_wings: Chicken wings (Hot Wings, wings, vængir, etc.)
+   - chicken_burger: Chicken burgers (kjúklingaborgarar, etc.)
    - pizza: Pizza items
    - sauce: Dipping sauces and condiments
    - salad: Salads and vegetables
 
 4. SIZE PARSING: Pay attention to size specifications:
    - "2 l gos" = 1 soda with size: {{"liters": 2}} (NOT 2 sodas)
+   - "tveggja lítra gos" = 1 soda with size: {{"liters": 2}} (NOT 2 sodas)
    - "stór franskar" = 1 fries with size: {{"descriptor": "stór"}}
    - "12 tommu pizza" = 1 pizza with size: {{"inches": 12}}
    - Always separate quantity from size information
+   - Convert Icelandic numbers: "tveggja" = 2, "þriggja" = 3, "fjögurra" = 4
 
 EXAMPLE:
 "Barnaborgari með frönskum og gosi eða djús" should be parsed as:
 - barnaborgari (burger, not a choice)
 - franskar (fries, not a choice)  
 - gos (soda, is_choice: true, choice_group: "drinks")
-- djús (djús, is_choice: true, choice_group: "drinks")
+- djús (fruit, is_choice: true, choice_group: "drinks")
+
+CHICKEN EXAMPLES:
+"Tveir Original kjúklingabitar" → chicken_piece
+"Fjórir Hot Wings" → chicken_wings  
+"Þrír leggir" → chicken_leg
+"Fjórir kjúklingaborgarar" → chicken_burger
 
 AVAILABLE FOOD CATEGORIES:
 {food_categories_text}
@@ -390,13 +401,15 @@ Respond only with valid JSON. If no food items are found, return empty arrays fo
                 if food_item['type'] == 'soda':
                     if food_item.get('size') and food_item['size'].get('liters'):
                         food_item['quantity'] = 1
-                        food_item['phrase'] = f"1 {food_item['name']}"
+                        liters = food_item['size']['liters']
+                        food_item['phrase'] = f"{food_item['name']} ({liters} lítra)"
                     elif food_item['quantity'] > 1 and not food_item.get('size'):
                         # Assume quantity represents liters if >1 and <=3
                         if 1 < food_item['quantity'] <= 3:
                             food_item['size'] = { 'liters': food_item['quantity'] }
+                            liters = food_item['quantity']
                             food_item['quantity'] = 1
-                            food_item['phrase'] = f"1 {food_item['size']['liters']}L {food_item['name']}"
+                            food_item['phrase'] = f"{food_item['name']} ({liters} lítra)"
 
                 food_items.append(food_item)
                 
@@ -494,12 +507,23 @@ IMPORTANT INSTRUCTIONS:
    - fries: French fries (franskar, frönskum, etc.)
    - soda: Carbonated drinks (gos, kók, etc.)
    - fruit: Juice and fruit drinks (djús, appelsínusafi, etc.)
-   - chicken: Chicken items (kjúklingur, wings, etc.)
+   - chicken_piece: Chicken pieces (kjúklingabitar, kjúklingalundir, etc.)
+   - chicken_leg: Chicken legs/drumsticks (leggir, kjúklingaleggir, etc.)
+   - chicken_wings: Chicken wings (Hot Wings, wings, vængir, etc.)
+   - chicken_burger: Chicken burgers (kjúklingaborgarar, etc.)
    - pizza: Pizza items
    - sauce: Dipping sauces and condiments
    - salad: Salads and vegetables
 
-4. BATCH PROCESSING: Process ALL offers in the batch. Use the offer ID to match responses.
+4. SIZE PARSING: Pay attention to size specifications:
+   - "2 l gos" = 1 soda with size: {{"liters": 2}} (NOT 2 sodas)
+   - "tveggja lítra gos" = 1 soda with size: {{"liters": 2}} (NOT 2 sodas)
+   - "stór franskar" = 1 fries with size: {{"descriptor": "stór"}}
+   - "12 tommu pizza" = 1 pizza with size: {{"inches": 12}}
+   - Always separate quantity from size information
+   - Convert Icelandic numbers: "tveggja" = 2, "þriggja" = 3, "fjögurra" = 4
+
+5. BATCH PROCESSING: Process ALL offers in the batch. Use the offer ID to match responses.
 
 EXAMPLE:
 "Barnaborgari með frönskum og gosi eða djús" should be parsed as:
@@ -507,6 +531,12 @@ EXAMPLE:
 - franskar (fries, not a choice)  
 - gos (soda, is_choice: true, choice_group: "drinks")
 - djús (fruit, is_choice: true, choice_group: "drinks")
+
+CHICKEN EXAMPLES:
+"Tveir Original kjúklingabitar" → chicken_piece
+"Fjórir Hot Wings" → chicken_wings  
+"Þrír leggir" → chicken_leg
+"Fjórir kjúklingaborgarar" → chicken_burger
 
 AVAILABLE FOOD CATEGORIES:
 {food_categories_text}
@@ -613,13 +643,15 @@ Respond only with valid JSON. If no food items are found for an offer, return em
                     if food_item['type'] == 'soda':
                         if food_item.get('size') and food_item['size'].get('liters'):
                             food_item['quantity'] = 1
-                            food_item['phrase'] = f"1 {food_item['name']}"
+                            liters = food_item['size']['liters']
+                            food_item['phrase'] = f"{food_item['name']} ({liters} lítra)"
                         elif food_item['quantity'] > 1 and not food_item.get('size'):
                             # Assume quantity represents liters if >1 and <=3
                             if 1 < food_item['quantity'] <= 3:
                                 food_item['size'] = { 'liters': food_item['quantity'] }
+                                liters = food_item['quantity']
                                 food_item['quantity'] = 1
-                                food_item['phrase'] = f"1 {food_item['size']['liters']}L {food_item['name']}"
+                                food_item['phrase'] = f"{food_item['name']} ({liters} lítra)"
 
                     food_items.append(food_item)
                     
@@ -702,10 +734,21 @@ Respond only with valid JSON. If no food items are found for an offer, return em
         food_categories = self.categories_data['food_categories']
         if food_type in food_categories:
             return food_categories[food_type]['category']
+        
+        # Handle new chicken types
+        if food_type.startswith('chicken_'):
+            return 'main'
+        
         return 'main'  # Default to main
     
     def _get_icon_for_type(self, food_type: str) -> str:
         """Get icon for a food type"""
+        # Handle specific chicken types first
+        if food_type == 'chicken_burger':
+            return 'fluent-emoji:hamburger'
+        elif food_type in ['chicken_piece', 'chicken_leg', 'chicken_wings', 'chicken']:
+            return 'mdi:food-drumstick'
+        
         food_categories = self.categories_data['food_categories']
         if food_type in food_categories and food_categories[food_type].get('icon'):
             return food_categories[food_type]['icon']
@@ -725,7 +768,7 @@ Respond only with valid JSON. If no food items are found for an offer, return em
         except Exception as e:
             logger.error(f"Failed loading icon mapping: {e}")
 
-        return 'mdi:food'  # Default icon
+        return 'icon-park-outline:dot'  # Default icon
     
     def _update_categories(self, new_categories: List[Dict]):
         """Update categories file with new categories and sync icon mapping json"""
