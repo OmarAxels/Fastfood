@@ -94,6 +94,12 @@ class LLMFoodExtractor:
             'bátnum': 'bátur',
             'báta': 'bátur',
             'bátum': 'bátur',
+            
+            # Side dishes
+            'meðlæti': 'meðlæti',
+            'meðlætis': 'meðlæti',
+            'meðlætinu': 'meðlæti',
+            'meðlætin': 'meðlæti',
         }
         
         # Size patterns
@@ -166,6 +172,11 @@ class LLMFoodExtractor:
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.1
             )
+            
+            # Debug: Log the AI response for food extraction
+            logger.info(f"=== LLM FOOD EXTRACTION RESPONSE ===")
+            logger.info(f"Raw LLM response: {repr(response)}")
+            logger.info("=== END LLM RESPONSE ===")
             
             # Parse batch response
             batch_results = self._parse_batch_llm_response(response, offers)
@@ -270,9 +281,12 @@ IMPORTANT INSTRUCTIONS:
 
 2. FOOD CHOICES: When you see "eða" (or), treat as alternatives/choices:
    - "gos eða djús" = customer can choose soda OR juice
+   - "Stór eða pönnupizza" = customer can choose large pizza OR deep pan pizza
+   - "3 pizzur af matseðli" = customer can choose 1 pizza from 3 options on menu
    - Create separate entries for each choice item
    - Mark ALL choice items with "is_choice": true
-   - Use "choice_group" to link alternatives (e.g., "drinks")
+   - Use "choice_group" to link alternatives (e.g., "drinks", "pizza_type")
+   - When description mentions selecting from menu options, treat as choices not quantities
 
 3. FOOD CATEGORIZATION: Use these categories accurately:
    - burger: Any type of burger (borgari, hamborgari, etc.)
@@ -286,6 +300,7 @@ IMPORTANT INSTRUCTIONS:
    - pizza: Pizza items
    - sauce: Dipping sauces and condiments
    - salad: Salads and vegetables
+   - side_dish: Side dishes like meðlæti, accompaniments
 
 4. SIZE PARSING: Pay attention to size specifications:
    - "2 l gos" = 1 soda with size: {{"liters": 2}} (NOT 2 sodas)
@@ -295,12 +310,22 @@ IMPORTANT INSTRUCTIONS:
    - Always separate quantity from size information
    - Convert Icelandic numbers: "tveggja" = 2, "þriggja" = 3, "fjögurra" = 4
 
-EXAMPLE:
+EXAMPLES:
 "Barnaborgari með frönskum og gosi eða djús" should be parsed as:
 - barnaborgari (burger, not a choice)
 - franskar (fries, not a choice)  
 - gos (soda, is_choice: true, choice_group: "drinks")
 - djús (fruit, is_choice: true, choice_group: "drinks")
+
+"Stór eða pönnupizza af matseðli, 2 lítra íska lt gos, meðlæti og sósa" should be parsed as:
+- pizza (is_choice: true, choice_group: "pizza_type", size: "stór")
+- pizza (is_choice: true, choice_group: "pizza_type", type: "deep_pan")
+- gos (soda, size: 2L)
+- meðlæti (side_dish)
+- sósa (sauce)
+
+"3 pizzur af matseðli á 2.590 kr. stykki ð" should be parsed as:
+- pizza (is_choice: true, choice_group: "menu_pizza", quantity: 1, modifiers: ["af matseðli"])
 
 CHICKEN EXAMPLES:
 "Tveir Original kjúklingabitar" → chicken_piece
@@ -498,9 +523,12 @@ IMPORTANT INSTRUCTIONS:
 
 2. FOOD CHOICES: When you see "eða" (or), treat as alternatives/choices:
    - "gos eða djús" = customer can choose soda OR juice
+   - "Stór eða pönnupizza" = customer can choose large pizza OR deep pan pizza
+   - "3 pizzur af matseðli" = customer can choose 1 pizza from 3 options on menu
    - Create separate entries for each choice item
    - Mark ALL choice items with "is_choice": true
-   - Use "choice_group" to link alternatives (e.g., "drinks")
+   - Use "choice_group" to link alternatives (e.g., "drinks", "pizza_type")
+   - When description mentions selecting from menu options, treat as choices not quantities
 
 3. FOOD CATEGORIZATION: Use these categories accurately:
    - burger: Any type of burger (borgari, hamborgari, etc.)
@@ -514,6 +542,7 @@ IMPORTANT INSTRUCTIONS:
    - pizza: Pizza items
    - sauce: Dipping sauces and condiments
    - salad: Salads and vegetables
+   - side_dish: Side dishes like meðlæti, accompaniments
 
 4. SIZE PARSING: Pay attention to size specifications:
    - "2 l gos" = 1 soda with size: {{"liters": 2}} (NOT 2 sodas)
@@ -525,12 +554,22 @@ IMPORTANT INSTRUCTIONS:
 
 5. BATCH PROCESSING: Process ALL offers in the batch. Use the offer ID to match responses.
 
-EXAMPLE:
+EXAMPLES:
 "Barnaborgari með frönskum og gosi eða djús" should be parsed as:
 - barnaborgari (burger, not a choice)
 - franskar (fries, not a choice)  
 - gos (soda, is_choice: true, choice_group: "drinks")
 - djús (fruit, is_choice: true, choice_group: "drinks")
+
+"Stór eða pönnupizza af matseðli, 2 lítra íska lt gos, meðlæti og sósa" should be parsed as:
+- pizza (is_choice: true, choice_group: "pizza_type", size: "stór")
+- pizza (is_choice: true, choice_group: "pizza_type", type: "deep_pan")
+- gos (soda, size: 2L)
+- meðlæti (side_dish)
+- sósa (sauce)
+
+"3 pizzur af matseðli á 2.590 kr. stykki ð" should be parsed as:
+- pizza (is_choice: true, choice_group: "menu_pizza", quantity: 1, modifiers: ["af matseðli"])
 
 CHICKEN EXAMPLES:
 "Tveir Original kjúklingabitar" → chicken_piece
@@ -719,6 +758,8 @@ Respond only with valid JSON. If no food items are found for an offer, return em
             return 'pizza'
         elif any(x in word_lower for x in ['sósa', 'sauce']):
             return 'sauce'
+        elif any(x in word_lower for x in ['meðlæti', 'accompaniment', 'side']):
+            return 'side_dish'
         else:
             # Try to find it in food categories
             food_categories = self.categories_data.get('food_categories', {})

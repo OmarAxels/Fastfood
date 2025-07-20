@@ -5,10 +5,10 @@ from pathlib import Path
 from typing import Dict, List
 from json_reader import FastfoodInfoReader
 from parsers.kfc_parser import KFCParser
-from parsers.dominos_parser import DominosParser
 from parsers.subway_parser import SubwayParser
 from parsers.ai_parser import AIParser
 from parsers.bullan_parser import BullanParser
+from parsers.dominos_parser import DominosParser
 from config import PARSER_CONFIG, CRAWL_DELAY
 from datetime import datetime, timezone
 from icon_mapping import IconMapping

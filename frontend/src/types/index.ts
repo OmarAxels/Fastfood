@@ -55,6 +55,9 @@ export interface Offer {
   drink_items?: FoodItem[]
   dessert_items?: FoodItem[]
 
+  // Special fields for specific offers
+  trio_pizzas?: string[]
+
   
   // Backend-processed display data
   standardized_tags?: StandardizedTag[]

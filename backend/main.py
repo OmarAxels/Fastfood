@@ -193,9 +193,9 @@ def get_enhanced_offers(db: Session = Depends(get_db)):
         
         # Look for the enhanced offers file in likely locations
         possible_paths = [
-            "../scraper/enhanced_offers_with_food_info.json",
             "enhanced_offers_with_food_info.json",
-            "../enhanced_offers_with_food_info.json"
+            "../scraper/enhanced_offers_with_food_info.json",
+            "../backend/enhanced_offers_with_food_info.json"
         ]
         
         enhanced_data = None

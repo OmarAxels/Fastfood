@@ -25,9 +25,10 @@ interface FoodItemProps {
   item: FoodItemType
   // Add this prop to indicate if ANY item in the list has quantity > 1
   hasQuantityColumn?: boolean
+  isChoice?: boolean
 }
 
-export default function FoodItem({ item, hasQuantityColumn = false }: FoodItemProps) {
+export default function FoodItem({ item, hasQuantityColumn = false, isChoice = false }: FoodItemProps) {
   const getSizeText = () => {
     if (!item.size) return null
 
@@ -49,7 +50,7 @@ export default function FoodItem({ item, hasQuantityColumn = false }: FoodItemPr
   // Use CSS Grid for consistent alignment
   return (
     <div
-      className="grid items-center gap-3 px-3 py-2 rounded-lg hover:shadow-md transition-all duration-200 w-fit"
+      className="grid items-center gap-2 px-3 py-2 rounded-lg hover:shadow-md transition-all duration-200 w-fit"
       style={{
         gridTemplateColumns: hasQuantityColumn 
           ? 'auto auto 1fr' // quantity column, icon column, content column
@@ -70,16 +71,16 @@ export default function FoodItem({ item, hasQuantityColumn = false }: FoodItemPr
       {/* Icon column */}
       <FoodIcon
         icon={item.icon}
-        className="w-6 h-6"
+        className={`${isChoice ? 'w-4 h-4' : 'w-6 h-6'}`}
         style={{ color: iconColor }}
       />
       
       {/* Content column */}
       <div className="flex flex-col gap-0.5">
         <div className="flex items-center gap-1">
-          <span className="text-sm font-semibold">{item.name}</span>
+          <span className={`text-sm font-semibold ${isChoice ? 'text-xs' : ''}`}>{item.name}</span>
           {sizeText && (
-            <span className="text-sm opacity-80">({sizeText})</span>
+            <span className={`text-sm opacity-80 ${isChoice ? 'text-xs' : ''}`}>({sizeText})</span>
           )}
         </div>
         {item.modifiers.length > 0 && (

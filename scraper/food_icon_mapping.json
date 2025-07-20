@@ -67,7 +67,7 @@
   "shrimp": { "icon": "noto-v1:shrimp", "color": "#FF6B6B" },
   "rækja": { "icon": "noto-v1:shrimp", "color": "#FF6B6B" },
   "main": { "icon": "mdi:food", "color": "#8B4513" },
-  "side": { "icon": "mdi:food-fork-drink", "color": "#228B22" },
+  "side": { "icon": "/foodicons/side-dish.png", "color": "#228B22" },
   "drink": { "icon": "mdi:cup", "color": "#4A90E2" },
   "snack": { "icon": "icon-park-outline:dot", "color": "#8B4513" },
   "fruit": { "icon": "/foodicons/juice-box.png", "color": "#228B22" },
@@ -107,5 +107,5 @@
   "núðlur": { "icon": "icon-park-outline:dot", "color": "#8B4513" },
   "pasta": { "icon": "icon-park-outline:dot", "color": "#8B4513" },
   "sushi": { "icon": "icon-park-outline:dot", "color": "#FF6B6B" },
-  "brauðstangir": { "icon": "mdi:bread-slice", "color": "#D2691E" }
+  "brauðstangir": { "icon": "/foodicons/breadsticks.png", "color": "#D2691E" }
 } 

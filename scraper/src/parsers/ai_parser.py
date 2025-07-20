@@ -152,10 +152,8 @@ class AIParser(BaseParser):
 
             INSTRUCTIONS:
             1. Look ONLY in the "Tilboð" section at the top of the menu
-            2. Extract ONLY combo offers that include multiple items (burger + sides + drink)
             3. IGNORE individual burgers, sides, or drinks from other sections
             4. PRESERVE Icelandic characters: á, é, í, ó, ú, ý, þ, ð, æ, ö
-            5. Return maximum 3-4 main offers only
             6. Each offer must have name, description, and price
 
             CRITICAL: Return ONLY valid JSON array, no markdown, no explanations, no formatting.

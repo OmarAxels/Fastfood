@@ -31,11 +31,11 @@ function ChoiceGroup({ items }: { items: FoodItemType[] }) {
   if (items.length === 0) return null
   // reduce font size
   return (
-    <div className="flex items-center gap-2 p-2 rounded-lg border border-dashed border-gray-300 bg-gray-50 w-fit text-sm">
+    <div className="flex items-center gap-2 rounded-lg border-gray-300 bg-gray-50 w-fit">
       <div className="flex items-center gap-1">
         {items.map((item, index) => (
           <div key={index} className="flex items-center gap-1">
-            <FoodItem item={item} />
+            <FoodItem item={item} isChoice={true} />
             {index < items.length - 1 && (
               <span className="text-xs text-gray-500 mx-1">eða</span>
             )}
@@ -47,7 +47,39 @@ function ChoiceGroup({ items }: { items: FoodItemType[] }) {
 }
 
 export default function MealVisualizer({ offer, }: MealVisualizerProps) {
-  // Detailed view
+  // Special handling for TRÍÓ offer
+  if (offer.name.toLowerCase().includes('trío') || offer.name.toLowerCase().includes('trio')) {
+    // Check if we have trio_pizzas data
+    const trioPizzas = (offer as any).trio_pizzas || ['Bistro', 'Domino\'s Deluxe', 'Kjötveisla']
+    
+    return (
+      <div className="space-y-3">
+        <div className="bg-gray-50 p-3 rounded-lg">
+          <h4 className="text-sm font-semibold mb-2" style={{ color: '#FF6B35' }}>Velja á milli:</h4>
+          <div className="flex items-center gap-2 flex-wrap">
+            {trioPizzas.map((pizza: string, index: number) => (
+              <div key={index} className="flex items-center gap-1">
+                <div className="flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium"
+                  style={{
+                    backgroundColor: 'rgba(255, 107, 53, 0.12)',
+                    color: '#FF6B35',
+                    border: '1px solid rgba(255, 107, 53, 0.3)'
+                  }}>
+                  <span>🍕</span>
+                  <span>{pizza}</span>
+                </div>
+                {index < trioPizzas.length - 1 && (
+                  <span className="text-xs text-gray-500 mx-1">eða</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Regular detailed view
   if (!offer.food_items || offer.food_items.length === 0) {
     return (
       <></>
