@@ -1,8 +1,9 @@
 [
   {
-    "name": "KFC Iceland",
-    "website": "https://www.kfc.is",
-    "menu_page": "https://www.kfc.is",
-    "offers_page": "https://www.kfc.is/menu#category_tilbod"
+    "name": "Búllan",
+    "website": "https://www.bullan.is",
+    "note": "Alternative name for Hamborgarabúllan",
+    "menu_page": "https://tommis.is/is/matsedill/?location=is",
+    "offers_page": "https://tommis.is/is/matsedill/?location=is"
   }
 ]

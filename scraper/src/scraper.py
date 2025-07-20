@@ -8,6 +8,7 @@ from parsers.kfc_parser import KFCParser
 from parsers.dominos_parser import DominosParser
 from parsers.subway_parser import SubwayParser
 from parsers.ai_parser import AIParser
+from parsers.bullan_parser import BullanParser
 from config import PARSER_CONFIG, CRAWL_DELAY
 from datetime import datetime, timezone
 from icon_mapping import IconMapping
@@ -43,6 +44,8 @@ class FastfoodScraper:
         for restaurant_name, parser_type in PARSER_CONFIG.items():
             if parser_type == 'ai':
                 self.parsers[restaurant_name] = AIParser()
+            elif parser_type == 'bullan':
+                self.parsers[restaurant_name] = BullanParser()
             elif parser_type == 'traditional':
                 # Map restaurant names to their traditional parsers
                 if restaurant_name == 'KFC Iceland':
