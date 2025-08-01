@@ -450,22 +450,6 @@ class BaseParser(ABC):
             'dessert_items': [],
         }
 
-    def prepare_offers_for_database(self, enhanced_offers: List[Dict]) -> List[Dict]:
-        """Prepare enhanced offers for database saving by filtering out food information fields"""
-        # Database-compatible fields (from the Offer model)
-        db_fields = {
-            'offer_name', 'description', 'price_kr', 'pickup_delivery', 'suits_people',
-            'available_weekdays', 'available_hours', 'availability_text', 
-            'source_url', 'restaurant_id'
-        }
-        
-        db_offers = []
-        for offer in enhanced_offers:
-            # Create a clean copy with only database-compatible fields
-            db_offer = {key: value for key, value in offer.items() if key in db_fields}
-            db_offers.append(db_offer)
-        
-        return db_offers
 
     @abstractmethod
     def scrape_offers(self, url: str) -> List[Dict]:

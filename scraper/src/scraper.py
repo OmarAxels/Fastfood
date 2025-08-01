@@ -19,8 +19,8 @@ logger = logging.getLogger(__name__)
 class FastfoodScraper:
     """Main scraper class that coordinates scraping from multiple fastfood websites"""
     
-    def __init__(self, db_manager):
-        self.db_manager = db_manager
+    def __init__(self):
+        # No database manager needed anymore
         self.json_reader = FastfoodInfoReader()
         
         # Initialize parsers based on configuration
@@ -32,8 +32,7 @@ class FastfoodScraper:
             'total_offers': 0,
             'successful_scrapes': 0,
             'failed_scrapes': 0,
-            'restaurants_processed': 0,
-            'offers_saved': 0
+            'restaurants_processed': 0
         }
         
         # Storage for enhanced offers with food information
@@ -121,42 +120,10 @@ class FastfoodScraper:
                 enhanced_offer = IconMapping.enhance_offer(offer)
                 self.enhanced_offers_data.append(enhanced_offer)
             
-            # Prepare database-compatible offers (without food information fields)
-            db_offers = parser.prepare_offers_for_database(enhanced_offers)
-            
-            # Add source_url to each offer
-            for offer in db_offers:
-                offer['source_url'] = offers_url
-            
-            # Use batch save method to clear existing offers and save new ones
-            try:
-                saved_count = self.db_manager.save_offers_batch(
-                    offers_data=db_offers,
-                    restaurant_data=restaurant,
-                    clear_existing=True  # This will overwrite old data
-                )
-                self.stats['offers_saved'] += saved_count
-                self.stats['total_offers'] += len(enhanced_offers)
-                self.stats['successful_scrapes'] += 1
-                logger.info(f"Successfully scraped {len(enhanced_offers)} offers from {restaurant_name}")
-            except Exception as e:
-                logger.error(f"Failed to save offers for {restaurant_name}: {e}")
-                # Fallback to individual saves (backward compatibility)
-                saved_count = 0
-                for offer in db_offers:
-                    try:
-                        self.db_manager.save_offer(offer, restaurant)
-                        saved_count += 1
-                    except Exception as save_error:
-                        logger.error(f"Failed to save individual offer: {save_error}")
-                
-                if saved_count > 0:
-                    self.stats['offers_saved'] += saved_count
-                    self.stats['total_offers'] += len(enhanced_offers)
-                    self.stats['successful_scrapes'] += 1
-                    logger.info(f"Successfully saved {saved_count}/{len(enhanced_offers)} offers from {restaurant_name}")
-                else:
-                    self.stats['failed_scrapes'] += 1
+            # Update statistics
+            self.stats['total_offers'] += len(enhanced_offers)
+            self.stats['successful_scrapes'] += 1
+            logger.info(f"Successfully scraped {len(enhanced_offers)} offers from {restaurant_name}")
             
         except Exception as e:
             logger.error(f"Failed to scrape {restaurant_name}: {e}")
@@ -169,7 +136,7 @@ class FastfoodScraper:
         logger.info(f"Successful scrapes: {self.stats['successful_scrapes']}")
         logger.info(f"Failed scrapes: {self.stats['failed_scrapes']}")
         logger.info(f"Total offers found: {self.stats['total_offers']}")
-        logger.info(f"Offers saved to database: {self.stats['offers_saved']}")
+        logger.info(f"Total offers processed: {self.stats['total_offers']}")
         
         success_rate = (self.stats['successful_scrapes'] / self.stats['restaurants_processed']) * 100 if self.stats['restaurants_processed'] > 0 else 0
         logger.info(f"Success rate: {success_rate:.1f}%")
@@ -194,10 +161,6 @@ class FastfoodScraper:
         try:
             # Create enhanced offers file path
             output_file = Path("enhanced_offers_with_food_info.json")
-            backend_output_file = Path("../backend/enhanced_offers_with_food_info.json")
-            
-            # Ensure backend directory exists
-            backend_output_file.parent.mkdir(parents=True, exist_ok=True)
             
             # Prepare data for JSON serialization
             json_data = {
@@ -221,9 +184,6 @@ class FastfoodScraper:
             # Save to JSON file
             with open(output_file, 'w', encoding='utf-8') as f:
                 json.dump(json_data, f, indent=2, ensure_ascii=False)
-            with open(backend_output_file, 'w', encoding='utf-8') as f:
-                json.dump(json_data, f, indent=2, ensure_ascii=False)
             logger.info(f"Saved {len(self.enhanced_offers_data)} enhanced offers with food information to {output_file}")
-            logger.info(f"Saved {len(self.enhanced_offers_data)} enhanced offers with food information to {backend_output_file}")
         except Exception as e:
             logger.error(f"Failed to save enhanced offers JSON: {e}") 

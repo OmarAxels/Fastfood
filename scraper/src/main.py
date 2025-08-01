@@ -11,18 +11,13 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent))
 
 from scraper import FastfoodScraper
-from database import DatabaseManager
 
 
 def main():
     """Main entry point for the fastfood scraper"""
     try:
-        # Initialize database
-        db_manager = DatabaseManager()
-        db_manager.create_tables()
-        
-        # Initialize and run scraper
-        scraper = FastfoodScraper(db_manager)
+        # Initialize and run scraper (no database needed)
+        scraper = FastfoodScraper()
         scraper.run()
         
         logging.info("Scraping completed successfully")
