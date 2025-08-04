@@ -15,6 +15,13 @@ jobs:
   scrape-and-deploy:
     runs-on: ubuntu-latest
     
+    # Add explicit permissions for GitHub Pages deployment
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+      actions: read
+    
     steps:
     - name: Checkout Fastfood repository
       uses: actions/checkout@v4
@@ -107,6 +114,7 @@ jobs:
         publish_dir: ./gh-pages-data
         publish_branch: gh-pages
         commit_message: 'Update food data - ${{ github.event.head_commit.message || github.event_name }}'
+        force_orphan: true  # This helps with initial deployment
         
     - name: Create deployment summary
       run: |
