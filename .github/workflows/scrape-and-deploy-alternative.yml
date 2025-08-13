@@ -1,4 +1,4 @@
-name: Scrape Food Data and Deploy
+name: Scrape Food Data and Deploy (Alternative)
 
 on:
   schedule:
@@ -11,13 +11,23 @@ on:
       - 'scraper/**'
       - 'backend/**'
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   scrape-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
     
     steps:
     - name: Checkout Fastfood repository
@@ -83,7 +93,7 @@ jobs:
                 <a href="enhanced_offers_with_food_info.json" class="download-link">📥 Download JSON Data</a>
                 
                 <h3>API Usage</h3>
-                <code>https://yourusername.github.io/Fastfood/enhanced_offers_with_food_info.json</code>
+                <code>https://omaraxels.github.io/Fastfood/enhanced_offers_with_food_info.json</code>
                 
                 <script>
                     fetch('enhanced_offers_with_food_info.json')
@@ -104,15 +114,17 @@ jobs:
         </html>
         EOF
         
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Setup Pages
+      uses: actions/configure-pages@v3
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./gh-pages-data
-        publish_branch: gh-pages
-        commit_message: 'Update food data - ${{ github.event.head_commit.message || github.event_name }}'
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
+        path: './gh-pages-data'
+        
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v2
         
     - name: Create deployment summary
       run: |
@@ -120,10 +132,10 @@ jobs:
         echo "- **Timestamp:** $(date)" >> $GITHUB_STEP_SUMMARY
         echo "- **Offers found:** $(jq '.total_offers' gh-pages-data/enhanced_offers_with_food_info.json)" >> $GITHUB_STEP_SUMMARY
         echo "- **Restaurants:** $(jq '.restaurants | length' gh-pages-data/enhanced_offers_with_food_info.json)" >> $GITHUB_STEP_SUMMARY
-        echo "- **Data URL:** https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/enhanced_offers_with_food_info.json" >> $GITHUB_STEP_SUMMARY
+        echo "- **Data URL:** https://omaraxels.github.io/Fastfood/enhanced_offers_with_food_info.json" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "### Frontend Setup" >> $GITHUB_STEP_SUMMARY
         echo "Set this environment variable in your reykjavik-food-finder deployment:" >> $GITHUB_STEP_SUMMARY
         echo '```' >> $GITHUB_STEP_SUMMARY
-        echo "VITE_DATA_URL=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/enhanced_offers_with_food_info.json" >> $GITHUB_STEP_SUMMARY
+        echo "VITE_DATA_URL=https://omaraxels.github.io/Fastfood/enhanced_offers_with_food_info.json" >> $GITHUB_STEP_SUMMARY
         echo '```' >> $GITHUB_STEP_SUMMARY
