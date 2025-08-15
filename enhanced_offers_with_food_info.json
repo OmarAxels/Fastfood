@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2025-08-15T06:05:55.048287+00:00",
+  "scraped_at": "2025-08-15T12:06:39.945819+00:00",
   "total_offers": 3,
   "restaurants": [
     "Búllan"
@@ -22,7 +22,7 @@
           "icon": "fluent-emoji:hamburger",
           "quantity": 1,
           "size": {
-            "descriptor": "120 gr."
+            "descriptor": "120 gr"
           },
           "modifiers": [],
           "phrase": "1 búlluborgari",
@@ -68,7 +68,7 @@
           "icon": "fluent-emoji:hamburger",
           "quantity": 1,
           "size": {
-            "descriptor": "120 gr."
+            "descriptor": "120 gr"
           },
           "modifiers": [],
           "phrase": "1 búlluborgari",
@@ -141,18 +141,19 @@
       "food_items": [
         {
           "type": "chicken_burger",
-          "name": "grillaður kjúklingaborgari",
+          "name": "kjúklingaborgari",
           "category": "main",
           "icon": "fluent-emoji:hamburger",
           "quantity": 1,
           "size": null,
           "modifiers": [
+            "grillaður",
             "osti",
             "beikoni",
             "grænmeti",
             "hvítlaukssósu"
           ],
-          "phrase": "1 grillaður kjúklingaborgari",
+          "phrase": "1 kjúklingaborgari",
           "is_choice": false,
           "choice_group": null,
           "icon_color": "#8B4513"
@@ -190,18 +191,19 @@
       "main_items": [
         {
           "type": "chicken_burger",
-          "name": "grillaður kjúklingaborgari",
+          "name": "kjúklingaborgari",
           "category": "main",
           "icon": "fluent-emoji:hamburger",
           "quantity": 1,
           "size": null,
           "modifiers": [
+            "grillaður",
             "osti",
             "beikoni",
             "grænmeti",
             "hvítlaukssósu"
           ],
-          "phrase": "1 grillaður kjúklingaborgari",
+          "phrase": "1 kjúklingaborgari",
           "is_choice": false,
           "choice_group": null,
           "icon_color": "#8B4513"
