@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2025-08-17T00:12:27.565631+00:00",
+  "scraped_at": "2025-08-17T06:05:16.688768+00:00",
   "total_offers": 3,
   "restaurants": [
     "Búllan"
@@ -22,7 +22,7 @@
           "icon": "fluent-emoji:hamburger",
           "quantity": 1,
           "size": {
-            "descriptor": "120 gr."
+            "descriptor": "120 gr"
           },
           "modifiers": [],
           "phrase": "1 búlluborgari",
@@ -68,7 +68,7 @@
           "icon": "fluent-emoji:hamburger",
           "quantity": 1,
           "size": {
-            "descriptor": "120 gr."
+            "descriptor": "120 gr"
           },
           "modifiers": [],
           "phrase": "1 búlluborgari",
