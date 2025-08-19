@@ -1,14 +1,14 @@
 {
-  "scraped_at": "2025-08-18T18:05:45.304324+00:00",
+  "scraped_at": "2025-08-19T00:11:53.687547+00:00",
   "total_offers": 3,
   "restaurants": [
     "Búllan"
   ],
   "offers": [
     {
-      "offer_name": "Tilboð Aldarinnar",
-      "description": "Búlluborgari (120 gr.) með frönskum og gosi",
-      "price_kr": 2990,
+      "offer_name": "Þriðjudagstilboð",
+      "description": "Búlluborgari með frönskum og gosi – aðeins á Þriðjudögum!",
+      "price_kr": 1990,
       "pickup_delivery": null,
       "suits_people": null,
       "available_weekdays": null,
@@ -21,9 +21,7 @@
           "category": "main",
           "icon": "fluent-emoji:hamburger",
           "quantity": 1,
-          "size": {
-            "descriptor": "120 gr"
-          },
+          "size": null,
           "modifiers": [],
           "phrase": "1 búlluborgari",
           "is_choice": false,
@@ -67,9 +65,7 @@
           "category": "main",
           "icon": "fluent-emoji:hamburger",
           "quantity": 1,
-          "size": {
-            "descriptor": "120 gr"
-          },
+          "size": null,
           "modifiers": [],
           "phrase": "1 búlluborgari",
           "is_choice": false,
@@ -328,14 +324,14 @@
           },
           "modifiers": [],
           "phrase": "gos (2 lítra)",
-          "is_choice": true,
-          "choice_group": "drinks",
+          "is_choice": false,
+          "choice_group": null,
           "icon_color": "#4A90E2"
         }
       ],
       "meal_type": "family",
       "is_combo": true,
-      "total_food_items": 7,
+      "total_food_items": 8,
       "main_items": [
         {
           "type": "burger",
@@ -393,8 +389,8 @@
           },
           "modifiers": [],
           "phrase": "gos (2 lítra)",
-          "is_choice": true,
-          "choice_group": "drinks",
+          "is_choice": false,
+          "choice_group": null,
           "icon_color": "#4A90E2"
         }
       ],
