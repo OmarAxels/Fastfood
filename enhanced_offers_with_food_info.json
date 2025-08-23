@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2025-08-23T12:05:44.661729+00:00",
+  "scraped_at": "2025-08-23T18:05:25.931337+00:00",
   "total_offers": 3,
   "restaurants": [
     "Búllan"
@@ -328,14 +328,14 @@
           },
           "modifiers": [],
           "phrase": "gos (2 lítra)",
-          "is_choice": false,
-          "choice_group": null,
+          "is_choice": true,
+          "choice_group": "drinks",
           "icon_color": "#4A90E2"
         }
       ],
       "meal_type": "family",
       "is_combo": true,
-      "total_food_items": 8,
+      "total_food_items": 7,
       "main_items": [
         {
           "type": "burger",
@@ -393,8 +393,8 @@
           },
           "modifiers": [],
           "phrase": "gos (2 lítra)",
-          "is_choice": false,
-          "choice_group": null,
+          "is_choice": true,
+          "choice_group": "drinks",
           "icon_color": "#4A90E2"
         }
       ],
