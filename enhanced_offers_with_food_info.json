@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2025-08-25T00:11:59.322800+00:00",
+  "scraped_at": "2025-08-25T06:05:52.394047+00:00",
   "total_offers": 3,
   "restaurants": [
     "Búllan"
@@ -331,19 +331,6 @@
           "is_choice": true,
           "choice_group": "drinks",
           "icon_color": "#4A90E2"
-        },
-        {
-          "type": "sósa",
-          "name": "kokteilsósa",
-          "category": "main",
-          "icon": "/foodicons/ketchup.png",
-          "quantity": 2,
-          "size": null,
-          "modifiers": [],
-          "phrase": "2 kokteilsósa",
-          "is_choice": false,
-          "choice_group": null,
-          "icon_color": "#FF4500"
         }
       ],
       "meal_type": "family",
@@ -375,19 +362,6 @@
           "is_choice": false,
           "choice_group": null,
           "icon_color": "#8B4513"
-        },
-        {
-          "type": "sósa",
-          "name": "kokteilsósa",
-          "category": "main",
-          "icon": "/foodicons/ketchup.png",
-          "quantity": 2,
-          "size": null,
-          "modifiers": [],
-          "phrase": "2 kokteilsósa",
-          "is_choice": false,
-          "choice_group": null,
-          "icon_color": "#FF4500"
         }
       ],
       "side_items": [
