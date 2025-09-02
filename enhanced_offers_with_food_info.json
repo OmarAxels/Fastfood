@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2025-09-02T06:06:09.595736+00:00",
+  "scraped_at": "2025-09-02T12:07:02.454393+00:00",
   "total_offers": 3,
   "restaurants": [
     "Búllan"
@@ -35,7 +35,9 @@
           "icon": "noto:french-fries",
           "quantity": 1,
           "size": null,
-          "modifiers": [],
+          "modifiers": [
+            "stór"
+          ],
           "phrase": "1 franskar",
           "is_choice": false,
           "choice_group": null,
@@ -81,7 +83,9 @@
           "icon": "noto:french-fries",
           "quantity": 1,
           "size": null,
-          "modifiers": [],
+          "modifiers": [
+            "stór"
+          ],
           "phrase": "1 franskar",
           "is_choice": false,
           "choice_group": null,
