@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2025-10-14T12:07:38.412102+00:00",
+  "scraped_at": "2025-10-14T18:06:52.163630+00:00",
   "total_offers": 3,
   "restaurants": [
     "Búllan"
@@ -8,7 +8,7 @@
     {
       "offer_name": "Þriðjudagstilboð",
       "description": "Búlluborgari með frönskum og gosi – aðeins á Þriðjudögum!",
-      "price_kr": 1990,
+      "price_kr": 2190,
       "pickup_delivery": null,
       "suits_people": null,
       "available_weekdays": null,
@@ -34,7 +34,7 @@
     {
       "offer_name": "Kjúklingaborgara máltíð",
       "description": "Grillaður kjúklingaborgari með osti, beikoni, grænmeti og hvítlaukssósu. Kemur með frönskum og gosi.",
-      "price_kr": 3190,
+      "price_kr": 3390,
       "pickup_delivery": null,
       "suits_people": null,
       "available_weekdays": null,
@@ -60,7 +60,7 @@
     {
       "offer_name": "Fjölskyldutilboð",
       "description": "2 Búlluborgarar, 2 barnaborgarar, stór franskar, 2 l gos og 2 kokteilsósur",
-      "price_kr": 7690,
+      "price_kr": 8150,
       "pickup_delivery": null,
       "suits_people": null,
       "available_weekdays": null,
