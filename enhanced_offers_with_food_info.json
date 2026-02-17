@@ -1,14 +1,14 @@
 {
-  "scraped_at": "2026-02-16T18:12:28.617323+00:00",
+  "scraped_at": "2026-02-17T00:16:01.118442+00:00",
   "total_offers": 3,
   "restaurants": [
     "Búllan"
   ],
   "offers": [
     {
-      "offer_name": "Tilboð Aldarinnar",
-      "description": "Búlluborgari (120 gr.) með frönskum og gosi",
-      "price_kr": 2990,
+      "offer_name": "Þriðjudagstilboð",
+      "description": "Búlluborgari með frönskum og gosi – aðeins á Þriðjudögum!",
+      "price_kr": 2190,
       "pickup_delivery": null,
       "suits_people": null,
       "available_weekdays": null,
